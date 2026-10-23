@@ -11,12 +11,12 @@ K = 10
 
 USING_HIERMERGE = 1
 
-data_type_to_use = 'float'  # signed fixed, int, or float.
+data_type_to_use = 'signed fixed'  # signed fixed, int, or float.
 
 ### NOTE: Total number of bits currently must be a power of 2.
 ###   These parameters are only used if we're using fixed point.
-#data_type_int_bits = 12      # Number of bits in the integer part (including sign bit, if signed)
-#data_type_fract_bits = 20    # Number of bits in the fractional part
+data_type_int_bits = 12      # Number of bits in the integer part (including sign bit, if signed)
+data_type_fract_bits = 20    # Number of bits in the fractional part
 
 ### These values are from running 'platforminfo -p /opt/xilinx/platforms/$(BOARD_NAME)/$(BOARD_NAME).xpfm'.
 ### For more info, refer to https://www.xilinx.com/support/documentation/boards_and_kits/accelerator-cards/ug1120-alveo-platforms.pdf
@@ -27,6 +27,8 @@ SLR_resource_U200 = [{'BRAM':638,  'DSP':2265, 'FF':723372, 'LUT':354831, 'URAM'
 SLR_resource_U280 = [{'BRAM':507,  'DSP':2733, 'FF':745576, 'LUT':369145, 'URAM':320}, \
                      {'BRAM':468,  'DSP':2877, 'FF':676164, 'LUT':333217, 'URAM':320}, \
                      {'BRAM':512,  'DSP':2880, 'FF':729059, 'LUT':367546, 'URAM':320}]
+
+SLR_resource_ZU3EG = [{'BRAM': 216, 'DSP': 360, 'FF': 141120, 'LUT': 70560, 'URAM': 0}]
 
 resource_limit = 0.6
 
@@ -41,14 +43,14 @@ SW_EMU_N = 128*1024         # Specifies the number of searchspace points used du
 ###########################
 
 # FPGA Platform Specifications
-FPGA_target_name = 'xilinx_u280_xdma_201920_3'  # xilinx_u280_xdma_201920_3 or xilinx_u200_xdma_201830_2
-FPGA_part_name = 'xcu280-fsvh2892-2L-e' # xcu200-fsgd2104-2-e = U200; xcu280-fsvh2892-2L-e = U280
-SLR_resource = SLR_resource_U280
-memory_type = 'HBM2'
-num_mem_banks = 32
-kernel_frequency = 225 #MHz. For U280, this should always be 225.
+FPGA_target_name = 'u96v2_sbc_base_2023_2-vitis-platform'  # xilinx_u280_xdma_201920_3 or xilinx_u200_xdma_201830_2
+FPGA_part_name   = 'xczu3eg-sbva484-1-e'                   # xcu200-fsgd2104-2-e = U200; xcu280-fsvh2892-2L-e = U280
+SLR_resource = SLR_resource_ZU3EG
+memory_type = 'DDR4'
+num_mem_banks = 4 
+kernel_frequency = 200 #MHz. For U280, this should always be 225.
 ### Port width (in bits) to off-chip memory
-max_port_width = 512   # For the U280, this should always be 512.
+max_port_width = 128   # For the U280, this should always be 512.
 
 
 if (data_type_to_use == "float"):

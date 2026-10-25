@@ -1,8 +1,8 @@
-#!/usr/bin/python 
+#!/usr/bin/python
 
 import os
 import re
-import math 
+import math
 import sys
 import stat
 from config import *
@@ -243,7 +243,7 @@ def Generate_Host_Code(_num_PE, _knn_config):
     _host__file.append('                  << std::endl' + "\n")
     _host__file.append('                  << " FPGA result = " << hw_id[i] << " : " << hw_dist[i]' + "\n")
     _host__file.append('                  << std::endl' + "\n")
-    
+
     if (_knn_config.using_float):
         _host__file.append('                  << " Delta = " << fabs(sw_dist[i] - hw_dist[i])' + "\n")
     elif (_knn_config.using_fixedpt):
@@ -398,7 +398,7 @@ def Generate_Host_Code(_num_PE, _knn_config):
     _host__file.append('    //printf("KDEBUG: I2D_FACTOR_W= %d\\n", I2D_FACTOR_W);' + "\n")
     _host__file.append('' + "\n")
 
-    if (_knn_config.using_segments == 1): 
+    if (_knn_config.using_segments == 1):
         _host__file.append('    //printf("KDEBUG: NUM_SEGMENTS = %d \\n", NUM_SEGMENTS);' + "\n")
         _host__file.append('    //printf("KDEBUG: SEGMENT_SIZE_IN_D = %d \\n", SEGMENT_SIZE_IN_D);' + "\n")
         _host__file.append('    //printf("KDEBUG: SEGMENT_SIZE_IN_L = %d \\n", SEGMENT_SIZE_IN_L);' + "\n")
@@ -539,7 +539,7 @@ def Generate_Host_Code(_num_PE, _knn_config):
 
     _host__file.append('    // verify results' + "\n")
     _host__file.append('    bool match = true;' + "\n")
-    
+
     if (_knn_config.data_type_total_sz < 32):
         _host__file.append('    match = verify(sw_dist, hw_dist_raw, hw_dist, sw_id, hw_id, query_data, searchspace_data, TOP);' + "\n")
     else:
@@ -704,8 +704,8 @@ def Generate_MakeFile(_kernel_freq, _fpga_part_name):
     make_file.append('	      --run-tapacc \\' + "\n")
     make_file.append('	      --run-hls \\' + "\n")
     make_file.append('	      --generate-task-rtl \\' + "\n")
-    make_file.append('	      --run-floorplanning \\' + "\n")
-    make_file.append('	      --constraint build_script/knn_floorplan.tcl \\' + "\n")
+    # make_file.append('	      --run-floorplanning \\' + "\n")
+    # make_file.append('	      --constraint build_script/knn_floorplan.tcl \\' + "\n")
     make_file.append('	      --generate-top-rtl \\' + "\n")
     make_file.append('	      --pack-xo \\' + "\n")
     if (memory_type == "HBM2"):

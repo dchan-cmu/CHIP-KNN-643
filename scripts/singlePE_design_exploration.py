@@ -1,4 +1,4 @@
-#!/usr/bin/python 
+#!/usr/bin/python
 import os
 import re
 import subprocess
@@ -47,8 +47,8 @@ if __name__ == "__main__":
     Run_software_emulation(DEVICE=FPGA_target_name)
 
     Run_tapa_HLS(DEVICE=FPGA_target_name)
-    #d = utilparse.Parse_TAPA_Utilization('_x.tapa_HLS.xilinx_u200_xdma_201830_2/report.json')
-    d = utilparse.Parse_Autobridge_Utilization('_x.tapa_HLS.xilinx_u280_xdma_201920_3/autobridge/')
+    d = utilparse.Parse_TAPA_Utilization('_x.tapa_HLS.{FPGA_target_name}/report.json')
+    #d = utilparse.Parse_Autobridge_Utilization('_x.tapa_HLS.xilinx_u280_xdma_201920_3/autobridge/')
     design_choice_perf = '{:>4}, {:>4}, {:>4}, {:>10}, {:>7}, {:>7}, {:>7}, {:>7}, {:>7}'\
                          .format(D, Dist, K, bw_utilization, \
                                  d['BRAM'], d['DSP'], d['FF'], d['LUT'], d['URAM'])

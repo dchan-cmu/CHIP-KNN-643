@@ -189,7 +189,7 @@ void compute_KNN(   int debug_pe_idx,
         compute_to_sort_stream.write(dist_val_outer);
     }
 }
-#define swap(a, b, x, y) do { \
+#define KNN_SWAP(a, b, x, y) do { \
     DATA_TYPE _tmpdist_a = *(a); \
     DATA_TYPE _tmpdist_b = *(b); \
     *(b) = _tmpdist_a; \
@@ -274,7 +274,7 @@ void para_partial_sort(const int PE_idx,
         #pragma HLS DEPENDENCE variable="local_kNearstId" inter false
 
             if (local_kNearstDist[ii] < local_kNearstDist[ii+1]){
-                swap(&local_kNearstDist[ii], &local_kNearstDist[ii+1], 
+                KNN_SWAP(&local_kNearstDist[ii], &local_kNearstDist[ii+1], 
                           &local_kNearstId[ii], &local_kNearstId[ii+1]);
             }
 
@@ -288,7 +288,7 @@ void para_partial_sort(const int PE_idx,
         #pragma HLS DEPENDENCE variable="local_kNearstId" inter false
 
             if (local_kNearstDist[ii] > local_kNearstDist[ii-1]){
-                swap(&local_kNearstDist[ii], &local_kNearstDist[ii-1], 
+                KNN_SWAP(&local_kNearstDist[ii], &local_kNearstDist[ii-1], 
                           &local_kNearstId[ii], &local_kNearstId[ii-1]);
             }
 

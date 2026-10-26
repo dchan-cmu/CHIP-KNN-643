@@ -25,89 +25,89 @@ tapac \
       src/knn.cpp
 /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/autobridge/util.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   from pkg_resources import get_distribution
-I1025 22:44:19.909 tapa.util:184] logging level set to INFO
-I1025 22:44:19.909 tapa.tapac:396] Step 0: run_tapacc is enabled.
-W1025 22:44:19.909 tapa.tapac:398] Step 1: run_hls is *SKIPPED*.
-W1025 22:44:19.909 tapa.tapac:398] Step 2: generate_task_rtl is *SKIPPED*.
-W1025 22:44:19.909 tapa.tapac:398] Step 3: run_floorplanning is *SKIPPED*.
-W1025 22:44:19.909 tapa.tapac:398] Step 4: generate_top_rtl is *SKIPPED*.
-W1025 22:44:19.909 tapa.tapac:398] Step 5: pack_xo is *SKIPPED*.
-I1025 22:44:19.910 tapa.tapac:514] running translated command: `tapa --work-dir=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform analyze --input=src/knn.cpp --top=Knn --cflags=-U__SYNTHESIS__ --cflags=-w --cflags=-Wno-invalid-constexpr --cflags=-Wno-error=invalid-constexpr --cflags=-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src --cflags=-I/usr/bin/../lib/clang/20/include --cflags=-I/usr/include/c++/8 --cflags=-I/usr/include/c++/8/x86_64-redhat-linux --cflags=-I/usr/include --cflags=-I/usr/include/x86_64-linux-gnu --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include --cflags=-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include`
-I1025 22:44:19.911 tapa.util:184] logging level set to INFO
-I1025 22:44:19.911 tapa.tapa:54] tapa version: 0.0.20240825.1
-I1025 22:44:19.911 tapa.tapa:58] Python recursion limit set to 3000
-W1025 22:44:29.497 tapa.util:129] not adding vendor include paths; please update FRT
-I1025 22:44:29.497 tapa.steps.analyze:265] Running tapacc command: /scratch/643_vitis_dchan2/CHIP-KNN-643/.tapa/usr/bin/tapacc ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp -top Knn -- -U__SYNTHESIS__ -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/usr/bin/../lib/clang/20/include -I/usr/include/c++/8 -I/usr/include/c++/8/x86_64-redhat-linux -I/usr/include -I/usr/include/x86_64-linux-gnu -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -std=c++17 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -stdlib=libc++ -isystem /usr/lib/llvm-22/include/c++/v1/ -isystem /usr/include/clang/22/include/ -isystem /usr/lib/clang/22/include/
+I1025 22:51:44.233 tapa.util:184] logging level set to INFO
+I1025 22:51:44.234 tapa.tapac:396] Step 0: run_tapacc is enabled.
+W1025 22:51:44.234 tapa.tapac:398] Step 1: run_hls is *SKIPPED*.
+W1025 22:51:44.234 tapa.tapac:398] Step 2: generate_task_rtl is *SKIPPED*.
+W1025 22:51:44.234 tapa.tapac:398] Step 3: run_floorplanning is *SKIPPED*.
+W1025 22:51:44.234 tapa.tapac:398] Step 4: generate_top_rtl is *SKIPPED*.
+W1025 22:51:44.234 tapa.tapac:398] Step 5: pack_xo is *SKIPPED*.
+I1025 22:51:44.234 tapa.tapac:514] running translated command: `tapa --work-dir=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform analyze --input=src/knn.cpp --top=Knn --cflags=-U__SYNTHESIS__ --cflags=-w --cflags=-Wno-invalid-constexpr --cflags=-Wno-error=invalid-constexpr --cflags=-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src --cflags=-I/usr/bin/../lib/clang/20/include --cflags=-I/usr/include/c++/8 --cflags=-I/usr/include/c++/8/x86_64-redhat-linux --cflags=-I/usr/include --cflags=-I/usr/include/x86_64-linux-gnu --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include --cflags=-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include`
+I1025 22:51:44.236 tapa.util:184] logging level set to INFO
+I1025 22:51:44.236 tapa.tapa:54] tapa version: 0.0.20240825.1
+I1025 22:51:44.237 tapa.tapa:58] Python recursion limit set to 3000
+W1025 22:51:53.841 tapa.util:129] not adding vendor include paths; please update FRT
+I1025 22:51:53.842 tapa.steps.analyze:265] Running tapacc command: /scratch/643_vitis_dchan2/CHIP-KNN-643/.tapa/usr/bin/tapacc ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp -top Knn -- -U__SYNTHESIS__ -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/usr/bin/../lib/clang/20/include -I/usr/include/c++/8 -I/usr/include/c++/8/x86_64-redhat-linux -I/usr/include -I/usr/include/x86_64-linux-gnu -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -std=c++17 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -stdlib=libc++ -isystem /usr/lib/llvm-22/include/c++/v1/ -isystem /usr/include/clang/22/include/ -isystem /usr/lib/clang/22/include/
 Breakpoint 1 at 0xae5072
 Breakpoint 2 at 0xae8634
 warning: Loadable section ".note.gnu.property" outside of ELF segments
 [Thread debugging using libthread_db enabled]
 Using host libthread_db library "/lib64/libthread_db.so.1".
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136098:13: remark: '#pragma HLS inline' is vendor-specific; the portable TAPA form is the C++ `inline` keyword (tapacc emits the pragma from it)
- 136098 | #pragma HLS INLINE OFF
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136099:13: remark: '#pragma HLS inline' is vendor-specific; the portable TAPA form is the C++ `inline` keyword (tapacc emits the pragma from it)
+ 136099 | #pragma HLS INLINE OFF
         |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136103:13: remark: '#pragma HLS loop_tripcount' is vendor-specific; the portable TAPA form is [[tapa::tripcount(min, max)]]
- 136103 | #pragma HLS loop_tripcount min = ((INPUT_DIM - 1) / NUM_FEATURES_PER_READ + 1) \
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136104:13: remark: '#pragma HLS loop_tripcount' is vendor-specific; the portable TAPA form is [[tapa::tripcount(min, max)]]
+ 136104 | #pragma HLS loop_tripcount min = ((INPUT_DIM - 1) / NUM_FEATURES_PER_READ + 1) \
         |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136105:13: remark: '#pragma HLS pipeline' is vendor-specific; the portable TAPA form is [[tapa::pipeline(II)]]
- 136105 | #pragma HLS pipeline II = 1
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136106:13: remark: '#pragma HLS pipeline' is vendor-specific; the portable TAPA form is [[tapa::pipeline(II)]]
+ 136106 | #pragma HLS pipeline II = 1
         |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136137:13: remark: '#pragma HLS loop_tripcount' is vendor-specific; the portable TAPA form is [[tapa::tripcount(min, max)]]
- 136137 | #pragma HLS loop_tripcount min = PARTITION_LEN_IN_I max = PARTITION_LEN_IN_I
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136138:13: remark: '#pragma HLS loop_tripcount' is vendor-specific; the portable TAPA form is [[tapa::tripcount(min, max)]]
+ 136138 | #pragma HLS loop_tripcount min = PARTITION_LEN_IN_I max = PARTITION_LEN_IN_I
         |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136138:13: remark: '#pragma HLS pipeline' is vendor-specific; the portable TAPA form is [[tapa::pipeline(II)]]
- 136138 | #pragma HLS pipeline II = 1
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136139:13: remark: '#pragma HLS pipeline' is vendor-specific; the portable TAPA form is [[tapa::pipeline(II)]]
+ 136139 | #pragma HLS pipeline II = 1
         |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136186:13: remark: '#pragma HLS inline' is vendor-specific; the portable TAPA form is the C++ `inline` keyword (tapacc emits the pragma from it)
- 136186 | #pragma HLS INLINE OFF
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136187:13: remark: '#pragma HLS inline' is vendor-specific; the portable TAPA form is the C++ `inline` keyword (tapacc emits the pragma from it)
+ 136187 | #pragma HLS INLINE OFF
         |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136192:13: remark: '#pragma HLS array_partition' is vendor-specific; the portable TAPA form is [[tapa::partition(type, factor, dim)]]
- 136192 | #pragma HLS ARRAY_PARTITION variable = local_Query complete dim = 1
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136193:13: remark: '#pragma HLS array_partition' is vendor-specific; the portable TAPA form is [[tapa::partition(type, factor, dim)]]
+ 136193 | #pragma HLS ARRAY_PARTITION variable = local_Query complete dim = 1
         |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136214:13: remark: '#pragma HLS pipeline' is vendor-specific; the portable TAPA form is [[tapa::pipeline(II)]]
- 136214 | #pragma HLS PIPELINE II = 1
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136215:13: remark: '#pragma HLS pipeline' is vendor-specific; the portable TAPA form is [[tapa::pipeline(II)]]
+ 136215 | #pragma HLS PIPELINE II = 1
         |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136220:13: remark: '#pragma HLS unroll' is vendor-specific; the portable TAPA form is [[tapa::unroll(factor)]]
- 136220 | #pragma HLS UNROLL
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136221:13: remark: '#pragma HLS unroll' is vendor-specific; the portable TAPA form is [[tapa::unroll(factor)]]
+ 136221 | #pragma HLS UNROLL
         |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136266:13: remark: '#pragma HLS inline' is vendor-specific; the portable TAPA form is the C++ `inline` keyword (tapacc emits the pragma from it)
- 136266 | #pragma HLS INLINE OFF
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136267:13: remark: '#pragma HLS inline' is vendor-specific; the portable TAPA form is the C++ `inline` keyword (tapacc emits the pragma from it)
+ 136267 | #pragma HLS INLINE OFF
         |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136271:13: remark: '#pragma HLS array_partition' is vendor-specific; the portable TAPA form is [[tapa::partition(type, factor, dim)]]
- 136271 | #pragma HLS ARRAY_PARTITION variable = local_kNearstDist complete dim = 0
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136272:13: remark: '#pragma HLS array_partition' is vendor-specific; the portable TAPA form is [[tapa::partition(type, factor, dim)]]
+ 136272 | #pragma HLS ARRAY_PARTITION variable = local_kNearstDist complete dim = 0
         |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136273:13: remark: '#pragma HLS array_partition' is vendor-specific; the portable TAPA form is [[tapa::partition(type, factor, dim)]]
- 136273 | #pragma HLS ARRAY_PARTITION variable = local_kNearstId complete dim = 0
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136274:13: remark: '#pragma HLS array_partition' is vendor-specific; the portable TAPA form is [[tapa::partition(type, factor, dim)]]
+ 136274 | #pragma HLS ARRAY_PARTITION variable = local_kNearstId complete dim = 0
         |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136288:13: remark: '#pragma HLS pipeline' is vendor-specific; the portable TAPA form is [[tapa::pipeline(II)]]
- 136288 | #pragma HLS PIPELINE II = I2D_FACTOR_W
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136289:13: remark: '#pragma HLS pipeline' is vendor-specific; the portable TAPA form is [[tapa::pipeline(II)]]
+ 136289 | #pragma HLS PIPELINE II = I2D_FACTOR_W
         |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136311:13: remark: '#pragma HLS unroll' is vendor-specific; the portable TAPA form is [[tapa::unroll(factor)]]
- 136311 | #pragma HLS UNROLL
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136312:13: remark: '#pragma HLS dependence' is vendor-specific; the portable TAPA form is [[tapa::dependence(variable)]]
- 136312 | #pragma HLS DEPENDENCE variable = "local_kNearstDist" inter false
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136312:13: remark: '#pragma HLS unroll' is vendor-specific; the portable TAPA form is [[tapa::unroll(factor)]]
+ 136312 | #pragma HLS UNROLL
         |             ^
 /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136313:13: remark: '#pragma HLS dependence' is vendor-specific; the portable TAPA form is [[tapa::dependence(variable)]]
- 136313 | #pragma HLS DEPENDENCE variable = "local_kNearstId" inter false
+ 136313 | #pragma HLS DEPENDENCE variable = "local_kNearstDist" inter false
         |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136333:13: remark: '#pragma HLS unroll' is vendor-specific; the portable TAPA form is [[tapa::unroll(factor)]]
- 136333 | #pragma HLS UNROLL
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136314:13: remark: '#pragma HLS dependence' is vendor-specific; the portable TAPA form is [[tapa::dependence(variable)]]
+ 136314 | #pragma HLS DEPENDENCE variable = "local_kNearstId" inter false
         |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136334:13: remark: '#pragma HLS dependence' is vendor-specific; the portable TAPA form is [[tapa::dependence(variable)]]
- 136334 | #pragma HLS DEPENDENCE variable = "local_kNearstDist" inter false
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136334:13: remark: '#pragma HLS unroll' is vendor-specific; the portable TAPA form is [[tapa::unroll(factor)]]
+ 136334 | #pragma HLS UNROLL
         |             ^
 /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136335:13: remark: '#pragma HLS dependence' is vendor-specific; the portable TAPA form is [[tapa::dependence(variable)]]
- 136335 | #pragma HLS DEPENDENCE variable = "local_kNearstId" inter false
+ 136335 | #pragma HLS DEPENDENCE variable = "local_kNearstDist" inter false
         |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136357:13: remark: '#pragma HLS pipeline' is vendor-specific; the portable TAPA form is [[tapa::pipeline(II)]]
- 136357 | #pragma HLS PIPELINE II = 1
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136336:13: remark: '#pragma HLS dependence' is vendor-specific; the portable TAPA form is [[tapa::dependence(variable)]]
+ 136336 | #pragma HLS DEPENDENCE variable = "local_kNearstId" inter false
         |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136368:13: remark: '#pragma HLS unroll' is vendor-specific; the portable TAPA form is [[tapa::unroll(factor)]]
- 136368 | #pragma HLS UNROLL
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136358:13: remark: '#pragma HLS pipeline' is vendor-specific; the portable TAPA form is [[tapa::pipeline(II)]]
+ 136358 | #pragma HLS PIPELINE II = 1
         |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136386:13: remark: '#pragma HLS pipeline' is vendor-specific; the portable TAPA form is [[tapa::pipeline(II)]]
- 136386 | #pragma HLS pipeline II = 1
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136369:13: remark: '#pragma HLS unroll' is vendor-specific; the portable TAPA form is [[tapa::unroll(factor)]]
+ 136369 | #pragma HLS UNROLL
+        |             ^
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:136387:13: remark: '#pragma HLS pipeline' is vendor-specific; the portable TAPA form is [[tapa::pipeline(II)]]
+ 136387 | #pragma HLS pipeline II = 1
         |             ^
 
 Breakpoint 1, 0x0000555556039072 in tapa::cc::XilinxBackend::RewriteHelperFunc(clang::FunctionDecl const*, tapa::cc::EditSink&) const ()
@@ -46005,9 +46005,9 @@ Breakpoint 2, 0x000055555603c634 in tapa::cc::AddPragmaToBody(tapa::cc::EditSink
 Breakpoint 1, 0x0000555556039072 in tapa::cc::XilinxBackend::RewriteHelperFunc(clang::FunctionDecl const*, tapa::cc::EditSink&) const ()
 
 Breakpoint 2, 0x000055555603c634 in tapa::cc::AddPragmaToBody(tapa::cc::EditSink&, clang::Stmt const*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) ()
-[Inferior 1 (process 1648647) exited normally]
-I1025 22:45:06.300 tapa.steps.common:92] writing TAPA graph to json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/graph.json`.
-I1025 22:45:06.302 tapa.steps.common:92] writing TAPA settings to json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/settings.json`.
+[Inferior 1 (process 1654173) exited normally]
+I1025 22:52:28.167 tapa.steps.common:92] writing TAPA graph to json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/graph.json`.
+I1025 22:52:28.170 tapa.steps.common:92] writing TAPA settings to json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/settings.json`.
 python3 /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../clean_graph_cflags.py ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/graph.json
 [clean_graph_cflags] Updated ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/graph.json with clean cflags: ['-w', '-Wno-invalid-constexpr', '-Wno-error=invalid-constexpr', '-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src', '-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include', '-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include', '-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include', '-std=c++14', '-I', '/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src', '-D__SYNTHESIS__', '-DTAPA_TARGET_DEVICE_', '-DTAPA_TARGET_XILINX_HLS_']
 tapac \
@@ -46028,22 +46028,22 @@ tapac \
       src/knn.cpp
 /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/autobridge/util.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   from pkg_resources import get_distribution
-I1025 22:45:07.253 tapa.util:184] logging level set to INFO
-W1025 22:45:07.253 tapa.tapac:398] Step 0: run_tapacc is *SKIPPED*.
-I1025 22:45:07.253 tapa.tapac:396] Step 1: run_hls is enabled.
-I1025 22:45:07.253 tapa.tapac:396] Step 2: generate_task_rtl is enabled.
-W1025 22:45:07.253 tapa.tapac:398] Step 3: run_floorplanning is *SKIPPED*.
-I1025 22:45:07.254 tapa.tapac:396] Step 4: generate_top_rtl is enabled.
-I1025 22:45:07.254 tapa.tapac:396] Step 5: pack_xo is enabled.
-I1025 22:45:07.254 tapa.tapac:514] running translated command: `tapa --work-dir=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform synth --part-num=xczu3eg-sbva484-1-e --clock-period=5.00 link pack --output=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn.xo --bitstream-script=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn_generate_bitstream.sh`
-I1025 22:45:07.256 tapa.util:184] logging level set to INFO
-I1025 22:45:07.256 tapa.tapa:54] tapa version: 0.0.20240825.1
-I1025 22:45:07.256 tapa.tapa:58] Python recursion limit set to 3000
-I1025 22:45:07.258 tapa.steps.common:50] loading TAPA graph from json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/graph.json`.
-I1025 22:45:07.260 tapa.steps.common:50] loading TAPA graph from json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/settings.json`.
-I1025 22:45:07.261 tapa.core:181] extracting HLS C++ files
-I1025 22:45:07.804 tapa.core:213] running HLS
-I1025 22:45:07.811 tapa.core:258] spawn 24 workers for parallel HLS synthesis of the tasks
+I1025 22:52:29.167 tapa.util:184] logging level set to INFO
+W1025 22:52:29.168 tapa.tapac:398] Step 0: run_tapacc is *SKIPPED*.
+I1025 22:52:29.168 tapa.tapac:396] Step 1: run_hls is enabled.
+I1025 22:52:29.168 tapa.tapac:396] Step 2: generate_task_rtl is enabled.
+W1025 22:52:29.168 tapa.tapac:398] Step 3: run_floorplanning is *SKIPPED*.
+I1025 22:52:29.168 tapa.tapac:396] Step 4: generate_top_rtl is enabled.
+I1025 22:52:29.168 tapa.tapac:396] Step 5: pack_xo is enabled.
+I1025 22:52:29.168 tapa.tapac:514] running translated command: `tapa --work-dir=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform synth --part-num=xczu3eg-sbva484-1-e --clock-period=5.00 link pack --output=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn.xo --bitstream-script=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn_generate_bitstream.sh`
+I1025 22:52:29.169 tapa.util:184] logging level set to INFO
+I1025 22:52:29.170 tapa.tapa:54] tapa version: 0.0.20240825.1
+I1025 22:52:29.170 tapa.tapa:58] Python recursion limit set to 3000
+I1025 22:52:29.171 tapa.steps.common:50] loading TAPA graph from json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/graph.json`.
+I1025 22:52:29.173 tapa.steps.common:50] loading TAPA graph from json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/settings.json`.
+I1025 22:52:29.173 tapa.core:181] extracting HLS C++ files
+I1025 22:52:29.727 tapa.core:213] running HLS
+I1025 22:52:29.770 tapa.core:258] spawn 24 workers for parallel HLS synthesis of the tasks
 
 ****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.2 (64-bit)
   **** SW Build 4023990 on Oct 11 2023
@@ -46054,192 +46054,18 @@ I1025 22:45:07.811 tapa.core:258] spawn 24 workers for parallel HLS synthesis of
 
 source /afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/scripts/vitis_hls/hls.tcl -notrace
 INFO: [HLS 200-10] Running '/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/bin/unwrapped/lnx64.o/vitis_hls'
-INFO: [HLS 200-10] For user 'dchan2' on host 'ECE005.ece.local.cmu.edu' (Linux_x86_64 version 4.18.0-553.146.1.el8_10.x86_64) on Sun Oct 25 22:45:13 EDT 2026
+INFO: [HLS 200-10] For user 'dchan2' on host 'ECE005.ece.local.cmu.edu' (Linux_x86_64 version 4.18.0-553.146.1.el8_10.x86_64) on Sun Oct 25 22:52:51 EDT 2026
 INFO: [HLS 200-10] On os "Red Hat Enterprise Linux release 8.10 (Ootpa)"
-INFO: [HLS 200-10] In directory '/tmp/run-hls-para_partial_sort-5s_aqkda'
+INFO: [HLS 200-10] In directory '/tmp/run-hls-krnl_singlePE_Write_Outputs-uhpnsu65'
 INFO: [HLS 200-2053] The vitis_hls executable is being deprecated. Consider using vitis-run --mode hls --tcl
-Sourcing Tcl script '/tmp/run-hls-para_partial_sort-5s_aqkda/commands.tcl'
+Sourcing Tcl script '/tmp/run-hls-krnl_singlePE_Write_Outputs-uhpnsu65/commands.tcl'
 INFO: [HLS 200-1510] Running: open_project project 
-INFO: [HLS 200-10] Creating and opening project '/tmp/run-hls-para_partial_sort-5s_aqkda/project'.
-INFO: [HLS 200-1510] Running: set_top para_partial_sort 
-INFO: [HLS 200-1510] Running: add_files /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp -cflags -std=c++14 -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -std=c++14 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -D__SYNTHESIS__ -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -DTAPA_TARGET_=XILINX_HLS -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__SYNTHESIS__ 
-INFO: [HLS 200-10] Adding design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp' to the project
-INFO: [HLS 200-1510] Running: open_solution para_partial_sort 
-INFO: [HLS 200-10] Creating and opening solution '/tmp/run-hls-para_partial_sort-5s_aqkda/project/para_partial_sort'.
-INFO: [HLS 200-1505] Using default flow_target 'vivado'
-Resolution: For help on HLS 200-1505 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
-INFO: [HLS 200-1510] Running: set_part xczu3eg-sbva484-1-e 
-INFO: [HLS 200-1611] Setting target device to 'xczu3eg-sbva484-1-e'
-INFO: [HLS 200-1510] Running: create_clock -period 5.0 -name default 
-INFO: [SYN 201-201] Setting up clock 'default' with a period of 5ns.
-INFO: [HLS 200-1510] Running: config_compile -name_max_length 253 
-INFO: [XFORM 203-1161] The maximum of name length is set to 253.
-INFO: [HLS 200-1510] Running: config_interface -m_axi_addr64 
-INFO: [HLS 200-1510] Running: config_rtl -reset_level low -module_auto_prefix 
-INFO: [HLS 200-1510] Running: csynth_design 
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.11 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.14 seconds; current allocated memory: 283.676 MB.
-INFO: [HLS 200-10] Analyzing design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp' ... 
-WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/stream.h:14:1)
-WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/stream.h:15:1)
-WARNING: [HLS 207-5566] unexpected pragma argument 'float', expects identifier (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/util.h:58:22)
-ERROR: [HLS 207-3638] thread-local storage is not supported for the current target (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/mutex:650:10)
-ERROR: [HLS 207-3638] thread-local storage is not supported for the current target (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/mutex:651:10)
-WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/task.h:17:1)
-WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/task.h:18:1)
-ERROR: [HLS 207-3430] redefinition of 'IWIDTH' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:12:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp:10:11)
-ERROR: [HLS 207-3430] redefinition of 'INPUT_DIM' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:14:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp:12:11)
-ERROR: [HLS 207-3430] redefinition of 'TOP' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:15:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp:13:11)
-ERROR: [HLS 207-3430] redefinition of 'L2I_FACTOR_W' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:34:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp:32:11)
-ERROR: [HLS 207-3430] redefinition of 'D2L_FACTOR_W' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:36:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp:34:11)
-ERROR: [HLS 207-3430] redefinition of 'D2I_FACTOR_W' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:38:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp:36:11)
-ERROR: [HLS 207-3430] redefinition of 'I2D_FACTOR_W' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:40:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp:39:11)
-ERROR: [HLS 207-3430] redefinition of 'PARTITION_LEN_IN_I' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:50:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp:55:11)
-ERROR: [HLS 207-3430] redefinition of 'PARTITION_LEN_IN_D' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:51:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp:56:11)
-ERROR: [HLS 207-3430] redefinition of 'PARTITION_LEN_IN_L' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:52:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp:58:11)
-ERROR: [HLS 207-3430] redefinition of 'NUM_FEATURES_PER_READ' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:59:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp:66:11)
-ERROR: [HLS 207-3430] redefinition of 'QUERY_FEATURE_RESERVE' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:60:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp:67:11)
-ERROR: [HLS 207-2887] 'this' argument to member function 'empty' has type 'const hls::stream<internal::elem_t<ap_uint<128> > >', but function is not marked const (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/stream.h:26:9)
-INFO: [HLS 207-4526] in instantiation of member function 'tapa::tapa_stream<ap_uint<128> >::empty' requested here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp:105:32)
-INFO: [HLS 207-4436] 'empty' declared here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include/hls_stream.h:432:10)
-ERROR: [HLS 207-2887] 'this' argument to member function 'empty' has type 'const hls::stream<internal::elem_t<unsigned char> >', but function is not marked const (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/stream.h:26:9)
-INFO: [HLS 207-4526] in instantiation of member function 'tapa::tapa_stream<unsigned char>::empty' requested here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp:406:32)
-ERROR: [HLS 207-2866] non-const lvalue reference to type 'tapa::async_mmap<ap_uint<128> >' cannot bind to a value of unrelated type 'ap_uint<128> *' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/task.h:40:10)
-INFO: [HLS 207-4235] in instantiation of function template specialization 'tapa::task::invoke<tapa::internal::InvokeMode::kJoin, void (&)(int, tapa::async_mmap<ap_uint<128> > &, tapa::tapa_stream<ap_uint<128> > &), int, ap_uint<128> *&, tapa::tapa_stream<ap_uint<128> > &, 1>' requested here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/task.h:21:12)
-INFO: [HLS 207-4235] in instantiation of function template specialization 'tapa::task::invoke<void (&)(int, tapa::async_mmap<ap_uint<128> > &, tapa::tapa_stream<ap_uint<128> > &), int, ap_uint<128> *&, tapa::tapa_stream<ap_uint<128> > &>' requested here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp:432:8)
-ERROR: [HLS 207-2866] non-const lvalue reference to type 'tapa::async_mmap<ap_uint<32> >' cannot bind to a value of unrelated type 'ap_uint<32> *' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/task.h:40:10)
-INFO: [HLS 207-4235] in instantiation of function template specialization 'tapa::task::invoke<tapa::internal::InvokeMode::kJoin, void (&)(tapa::tapa_stream<ap_fixed<32, 12, AP_RND, AP_SAT, 0> > &, tapa::tapa_stream<int> &, tapa::async_mmap<ap_uint<32> > &), tapa::tapa_stream<ap_fixed<32, 12, AP_RND, AP_SAT, 0> > &, tapa::tapa_stream<int> &, ap_uint<32> *&, 1>' requested here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/task.h:21:12)
-INFO: [HLS 207-4235] in instantiation of function template specialization 'tapa::task::invoke<void (&)(tapa::tapa_stream<ap_fixed<32, 12, AP_RND, AP_SAT, 0> > &, tapa::tapa_stream<int> &, tapa::async_mmap<ap_uint<32> > &), tapa::tapa_stream<ap_fixed<32, 12, AP_RND, AP_SAT, 0> > &, tapa::tapa_stream<int> &, ap_uint<32> *&>' requested here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp:442:8)
-INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 2.42 seconds. CPU system time: 0.98 seconds. Elapsed time: 5.01 seconds; current allocated memory: 1.832 MB.
- 
-    while executing
-"source /tmp/run-hls-para_partial_sort-5s_aqkda/commands.tcl"
-    ("uplevel" body line 1)
-    invoked from within
-"uplevel \#0 [list source $tclfile] "
-
-INFO: [HLS 200-112] Total CPU user time: 6.7 seconds. Total CPU system time: 3.47 seconds. Total elapsed time: 13.05 seconds; peak allocated memory: 285.508 MB.
-INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 22:45:24 2026...
-
-****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.2 (64-bit)
-  **** SW Build 4023990 on Oct 11 2023
-  **** IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
-  **** SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
-    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
-
-source /afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/scripts/vitis_hls/hls.tcl -notrace
-INFO: [HLS 200-10] Running '/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/bin/unwrapped/lnx64.o/vitis_hls'
-INFO: [HLS 200-10] For user 'dchan2' on host 'ECE005.ece.local.cmu.edu' (Linux_x86_64 version 4.18.0-553.146.1.el8_10.x86_64) on Sun Oct 25 22:45:13 EDT 2026
-INFO: [HLS 200-10] On os "Red Hat Enterprise Linux release 8.10 (Ootpa)"
-INFO: [HLS 200-10] In directory '/tmp/run-hls-load_KNN-m2kwytsh'
-INFO: [HLS 200-2053] The vitis_hls executable is being deprecated. Consider using vitis-run --mode hls --tcl
-Sourcing Tcl script '/tmp/run-hls-load_KNN-m2kwytsh/commands.tcl'
-INFO: [HLS 200-1510] Running: open_project project 
-INFO: [HLS 200-10] Creating and opening project '/tmp/run-hls-load_KNN-m2kwytsh/project'.
-INFO: [HLS 200-1510] Running: set_top load_KNN 
-INFO: [HLS 200-1510] Running: add_files /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp -cflags -std=c++14 -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -std=c++14 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -D__SYNTHESIS__ -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -DTAPA_TARGET_=XILINX_HLS -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__SYNTHESIS__ 
-INFO: [HLS 200-10] Adding design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp' to the project
-INFO: [HLS 200-1510] Running: open_solution load_KNN 
-INFO: [HLS 200-10] Creating and opening solution '/tmp/run-hls-load_KNN-m2kwytsh/project/load_KNN'.
-INFO: [HLS 200-1505] Using default flow_target 'vivado'
-Resolution: For help on HLS 200-1505 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
-INFO: [HLS 200-1510] Running: set_part xczu3eg-sbva484-1-e 
-INFO: [HLS 200-1611] Setting target device to 'xczu3eg-sbva484-1-e'
-INFO: [HLS 200-1510] Running: create_clock -period 5.0 -name default 
-INFO: [SYN 201-201] Setting up clock 'default' with a period of 5ns.
-INFO: [HLS 200-1510] Running: config_compile -name_max_length 253 
-INFO: [XFORM 203-1161] The maximum of name length is set to 253.
-INFO: [HLS 200-1510] Running: config_interface -m_axi_addr64 
-INFO: [HLS 200-1510] Running: config_rtl -reset_level low -module_auto_prefix 
-INFO: [HLS 200-1510] Running: csynth_design 
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.19 seconds. CPU system time: 0.04 seconds. Elapsed time: 0.23 seconds; current allocated memory: 283.680 MB.
-INFO: [HLS 200-10] Analyzing design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp' ... 
-WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/stream.h:14:1)
-WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/stream.h:15:1)
-WARNING: [HLS 207-5566] unexpected pragma argument 'float', expects identifier (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/util.h:58:22)
-ERROR: [HLS 207-3638] thread-local storage is not supported for the current target (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/mutex:650:10)
-ERROR: [HLS 207-3638] thread-local storage is not supported for the current target (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/mutex:651:10)
-WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/task.h:17:1)
-WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/task.h:18:1)
-ERROR: [HLS 207-3430] redefinition of 'IWIDTH' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:12:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp:10:11)
-ERROR: [HLS 207-3430] redefinition of 'INPUT_DIM' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:14:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp:12:11)
-ERROR: [HLS 207-3430] redefinition of 'TOP' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:15:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp:13:11)
-ERROR: [HLS 207-3430] redefinition of 'L2I_FACTOR_W' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:34:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp:32:11)
-ERROR: [HLS 207-3430] redefinition of 'D2L_FACTOR_W' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:36:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp:34:11)
-ERROR: [HLS 207-3430] redefinition of 'D2I_FACTOR_W' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:38:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp:36:11)
-ERROR: [HLS 207-3430] redefinition of 'I2D_FACTOR_W' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:40:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp:39:11)
-ERROR: [HLS 207-3430] redefinition of 'PARTITION_LEN_IN_I' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:50:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp:55:11)
-ERROR: [HLS 207-3430] redefinition of 'PARTITION_LEN_IN_D' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:51:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp:56:11)
-ERROR: [HLS 207-3430] redefinition of 'PARTITION_LEN_IN_L' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:52:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp:58:11)
-ERROR: [HLS 207-3430] redefinition of 'NUM_FEATURES_PER_READ' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:59:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp:66:11)
-ERROR: [HLS 207-3430] redefinition of 'QUERY_FEATURE_RESERVE' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:60:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp:67:11)
-ERROR: [HLS 207-2887] 'this' argument to member function 'empty' has type 'const hls::stream<internal::elem_t<ap_uint<128> > >', but function is not marked const (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/stream.h:26:9)
-INFO: [HLS 207-4526] in instantiation of member function 'tapa::tapa_stream<ap_uint<128> >::empty' requested here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp:105:32)
-INFO: [HLS 207-4436] 'empty' declared here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include/hls_stream.h:432:10)
-ERROR: [HLS 207-2887] 'this' argument to member function 'empty' has type 'const hls::stream<internal::elem_t<unsigned char> >', but function is not marked const (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/stream.h:26:9)
-INFO: [HLS 207-4526] in instantiation of member function 'tapa::tapa_stream<unsigned char>::empty' requested here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp:406:32)
-ERROR: [HLS 207-2866] non-const lvalue reference to type 'tapa::async_mmap<ap_uint<128> >' cannot bind to a value of unrelated type 'ap_uint<128> *' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/task.h:40:10)
-INFO: [HLS 207-4235] in instantiation of function template specialization 'tapa::task::invoke<tapa::internal::InvokeMode::kJoin, void (&)(int, tapa::async_mmap<ap_uint<128> > &, tapa::tapa_stream<ap_uint<128> > &), int, ap_uint<128> *&, tapa::tapa_stream<ap_uint<128> > &, 1>' requested here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/task.h:21:12)
-INFO: [HLS 207-4235] in instantiation of function template specialization 'tapa::task::invoke<void (&)(int, tapa::async_mmap<ap_uint<128> > &, tapa::tapa_stream<ap_uint<128> > &), int, ap_uint<128> *&, tapa::tapa_stream<ap_uint<128> > &>' requested here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp:432:8)
-ERROR: [HLS 207-2866] non-const lvalue reference to type 'tapa::async_mmap<ap_uint<32> >' cannot bind to a value of unrelated type 'ap_uint<32> *' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/task.h:40:10)
-INFO: [HLS 207-4235] in instantiation of function template specialization 'tapa::task::invoke<tapa::internal::InvokeMode::kJoin, void (&)(tapa::tapa_stream<ap_fixed<32, 12, AP_RND, AP_SAT, 0> > &, tapa::tapa_stream<int> &, tapa::async_mmap<ap_uint<32> > &), tapa::tapa_stream<ap_fixed<32, 12, AP_RND, AP_SAT, 0> > &, tapa::tapa_stream<int> &, ap_uint<32> *&, 1>' requested here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/task.h:21:12)
-INFO: [HLS 207-4235] in instantiation of function template specialization 'tapa::task::invoke<void (&)(tapa::tapa_stream<ap_fixed<32, 12, AP_RND, AP_SAT, 0> > &, tapa::tapa_stream<int> &, tapa::async_mmap<ap_uint<32> > &), tapa::tapa_stream<ap_fixed<32, 12, AP_RND, AP_SAT, 0> > &, tapa::tapa_stream<int> &, ap_uint<32> *&>' requested here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp:442:8)
-INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 2.6 seconds. CPU system time: 0.82 seconds. Elapsed time: 5.09 seconds; current allocated memory: 1.812 MB.
- 
-    while executing
-"source /tmp/run-hls-load_KNN-m2kwytsh/commands.tcl"
-    ("uplevel" body line 1)
-    invoked from within
-"uplevel \#0 [list source $tclfile] "
-
-INFO: [HLS 200-112] Total CPU user time: 6.96 seconds. Total CPU system time: 3.66 seconds. Total elapsed time: 13.5 seconds; peak allocated memory: 285.492 MB.
-INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 22:45:24 2026...
-
-****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.2 (64-bit)
-  **** SW Build 4023990 on Oct 11 2023
-  **** IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
-  **** SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
-    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
-
-source /afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/scripts/vitis_hls/hls.tcl -notrace
-INFO: [HLS 200-10] Running '/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/bin/unwrapped/lnx64.o/vitis_hls'
-INFO: [HLS 200-10] For user 'dchan2' on host 'ECE005.ece.local.cmu.edu' (Linux_x86_64 version 4.18.0-553.146.1.el8_10.x86_64) on Sun Oct 25 22:45:13 EDT 2026
-INFO: [HLS 200-10] On os "Red Hat Enterprise Linux release 8.10 (Ootpa)"
-INFO: [HLS 200-10] In directory '/tmp/run-hls-krnl_singlePE_Write_Outputs-s3i05a7t'
-INFO: [HLS 200-2053] The vitis_hls executable is being deprecated. Consider using vitis-run --mode hls --tcl
-Sourcing Tcl script '/tmp/run-hls-krnl_singlePE_Write_Outputs-s3i05a7t/commands.tcl'
-INFO: [HLS 200-1510] Running: open_project project 
-INFO: [HLS 200-10] Creating and opening project '/tmp/run-hls-krnl_singlePE_Write_Outputs-s3i05a7t/project'.
+INFO: [HLS 200-10] Creating and opening project '/tmp/run-hls-krnl_singlePE_Write_Outputs-uhpnsu65/project'.
 INFO: [HLS 200-1510] Running: set_top krnl_singlePE_Write_Outputs 
 INFO: [HLS 200-1510] Running: add_files /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp -cflags -std=c++14 -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -std=c++14 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -D__SYNTHESIS__ -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -DTAPA_TARGET_=XILINX_HLS -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__SYNTHESIS__ 
 INFO: [HLS 200-10] Adding design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp' to the project
 INFO: [HLS 200-1510] Running: open_solution krnl_singlePE_Write_Outputs 
-INFO: [HLS 200-10] Creating and opening solution '/tmp/run-hls-krnl_singlePE_Write_Outputs-s3i05a7t/project/krnl_singlePE_Write_Outputs'.
+INFO: [HLS 200-10] Creating and opening solution '/tmp/run-hls-krnl_singlePE_Write_Outputs-uhpnsu65/project/krnl_singlePE_Write_Outputs'.
 INFO: [HLS 200-1505] Using default flow_target 'vivado'
 Resolution: For help on HLS 200-1505 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
 INFO: [HLS 200-1510] Running: set_part xczu3eg-sbva484-1-e 
@@ -46251,7 +46077,7 @@ INFO: [XFORM 203-1161] The maximum of name length is set to 253.
 INFO: [HLS 200-1510] Running: config_interface -m_axi_addr64 
 INFO: [HLS 200-1510] Running: config_rtl -reset_level low -module_auto_prefix 
 INFO: [HLS 200-1510] Running: csynth_design 
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.12 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.14 seconds; current allocated memory: 257.926 MB.
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.21 seconds. CPU system time: 0.04 seconds. Elapsed time: 0.25 seconds; current allocated memory: 257.922 MB.
 INFO: [HLS 200-10] Analyzing design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp' ... 
 WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/stream.h:14:1)
 WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/stream.h:15:1)
@@ -46260,51 +46086,40 @@ ERROR: [HLS 207-3638] thread-local storage is not supported for the current targ
 ERROR: [HLS 207-3638] thread-local storage is not supported for the current target (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/mutex:651:10)
 WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/task.h:17:1)
 WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/task.h:18:1)
-ERROR: [HLS 207-3430] redefinition of 'IWIDTH' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:12:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:10:11)
-ERROR: [HLS 207-3430] redefinition of 'INPUT_DIM' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:14:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:12:11)
-ERROR: [HLS 207-3430] redefinition of 'TOP' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:15:11)
+ERROR: [HLS 207-3430] redefinition of 'IWIDTH' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:13:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:11:11)
+ERROR: [HLS 207-3430] redefinition of 'INPUT_DIM' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:15:11)
 INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:13:11)
-ERROR: [HLS 207-3430] redefinition of 'L2I_FACTOR_W' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:34:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:32:11)
-ERROR: [HLS 207-3430] redefinition of 'D2L_FACTOR_W' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:36:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:34:11)
-ERROR: [HLS 207-3430] redefinition of 'D2I_FACTOR_W' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:38:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:36:11)
-ERROR: [HLS 207-3430] redefinition of 'I2D_FACTOR_W' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:40:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:39:11)
-ERROR: [HLS 207-3430] redefinition of 'PARTITION_LEN_IN_I' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:50:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:55:11)
-ERROR: [HLS 207-3430] redefinition of 'PARTITION_LEN_IN_D' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:51:11)
+ERROR: [HLS 207-3430] redefinition of 'TOP' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:16:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:14:11)
+ERROR: [HLS 207-3430] redefinition of 'L2I_FACTOR_W' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:35:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:33:11)
+ERROR: [HLS 207-3430] redefinition of 'D2L_FACTOR_W' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:37:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:35:11)
+ERROR: [HLS 207-3430] redefinition of 'D2I_FACTOR_W' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:39:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:37:11)
+ERROR: [HLS 207-3430] redefinition of 'I2D_FACTOR_W' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:41:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:40:11)
+ERROR: [HLS 207-3430] redefinition of 'PARTITION_LEN_IN_I' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:51:11)
 INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:56:11)
-ERROR: [HLS 207-3430] redefinition of 'PARTITION_LEN_IN_L' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:52:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:58:11)
-ERROR: [HLS 207-3430] redefinition of 'NUM_FEATURES_PER_READ' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:59:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:66:11)
-ERROR: [HLS 207-3430] redefinition of 'QUERY_FEATURE_RESERVE' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:60:11)
+ERROR: [HLS 207-3430] redefinition of 'PARTITION_LEN_IN_D' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:52:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:57:11)
+ERROR: [HLS 207-3430] redefinition of 'PARTITION_LEN_IN_L' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:53:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:59:11)
+ERROR: [HLS 207-3430] redefinition of 'NUM_FEATURES_PER_READ' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:60:11)
 INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:67:11)
-ERROR: [HLS 207-2887] 'this' argument to member function 'empty' has type 'const hls::stream<internal::elem_t<ap_uint<128> > >', but function is not marked const (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/stream.h:26:9)
-INFO: [HLS 207-4526] in instantiation of member function 'tapa::tapa_stream<ap_uint<128> >::empty' requested here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:105:32)
-INFO: [HLS 207-4436] 'empty' declared here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include/hls_stream.h:432:10)
-ERROR: [HLS 207-2887] 'this' argument to member function 'empty' has type 'const hls::stream<internal::elem_t<unsigned char> >', but function is not marked const (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/stream.h:26:9)
-INFO: [HLS 207-4526] in instantiation of member function 'tapa::tapa_stream<unsigned char>::empty' requested here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:406:32)
-ERROR: [HLS 207-2866] non-const lvalue reference to type 'tapa::async_mmap<ap_uint<128> >' cannot bind to a value of unrelated type 'ap_uint<128> *' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/task.h:40:10)
-INFO: [HLS 207-4235] in instantiation of function template specialization 'tapa::task::invoke<tapa::internal::InvokeMode::kJoin, void (&)(int, tapa::async_mmap<ap_uint<128> > &, tapa::tapa_stream<ap_uint<128> > &), int, ap_uint<128> *&, tapa::tapa_stream<ap_uint<128> > &, 1>' requested here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/task.h:21:12)
-INFO: [HLS 207-4235] in instantiation of function template specialization 'tapa::task::invoke<void (&)(int, tapa::async_mmap<ap_uint<128> > &, tapa::tapa_stream<ap_uint<128> > &), int, ap_uint<128> *&, tapa::tapa_stream<ap_uint<128> > &>' requested here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:432:8)
-ERROR: [HLS 207-2866] non-const lvalue reference to type 'tapa::async_mmap<ap_uint<32> >' cannot bind to a value of unrelated type 'ap_uint<32> *' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/task.h:40:10)
-INFO: [HLS 207-4235] in instantiation of function template specialization 'tapa::task::invoke<tapa::internal::InvokeMode::kJoin, void (&)(tapa::tapa_stream<ap_fixed<32, 12, AP_RND, AP_SAT, 0> > &, tapa::tapa_stream<int> &, tapa::async_mmap<ap_uint<32> > &), tapa::tapa_stream<ap_fixed<32, 12, AP_RND, AP_SAT, 0> > &, tapa::tapa_stream<int> &, ap_uint<32> *&, 1>' requested here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/task.h:21:12)
-INFO: [HLS 207-4235] in instantiation of function template specialization 'tapa::task::invoke<void (&)(tapa::tapa_stream<ap_fixed<32, 12, AP_RND, AP_SAT, 0> > &, tapa::tapa_stream<int> &, tapa::async_mmap<ap_uint<32> > &), tapa::tapa_stream<ap_fixed<32, 12, AP_RND, AP_SAT, 0> > &, tapa::tapa_stream<int> &, ap_uint<32> *&>' requested here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:442:8)
-INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 2.98 seconds. CPU system time: 1.12 seconds. Elapsed time: 5.82 seconds; current allocated memory: 1.848 MB.
+ERROR: [HLS 207-3430] redefinition of 'QUERY_FEATURE_RESERVE' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:61:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:68:11)
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 2.77 seconds. CPU system time: 1.33 seconds. Elapsed time: 11.35 seconds; current allocated memory: 1.676 MB.
  
     while executing
-"source /tmp/run-hls-krnl_singlePE_Write_Outputs-s3i05a7t/commands.tcl"
+"source /tmp/run-hls-krnl_singlePE_Write_Outputs-uhpnsu65/commands.tcl"
     ("uplevel" body line 1)
     invoked from within
 "uplevel \#0 [list source $tclfile] "
 
-INFO: [HLS 200-112] Total CPU user time: 7.09 seconds. Total CPU system time: 3.65 seconds. Total elapsed time: 13.63 seconds; peak allocated memory: 259.773 MB.
-INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 22:45:24 2026...
+INFO: [HLS 200-112] Total CPU user time: 8 seconds. Total CPU system time: 5.05 seconds. Total elapsed time: 31 seconds; peak allocated memory: 259.598 MB.
+INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 22:53:12 2026...
 
 ****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.2 (64-bit)
   **** SW Build 4023990 on Oct 11 2023
@@ -46315,18 +46130,18 @@ INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 22:45:24 2026...
 
 source /afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/scripts/vitis_hls/hls.tcl -notrace
 INFO: [HLS 200-10] Running '/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/bin/unwrapped/lnx64.o/vitis_hls'
-INFO: [HLS 200-10] For user 'dchan2' on host 'ECE005.ece.local.cmu.edu' (Linux_x86_64 version 4.18.0-553.146.1.el8_10.x86_64) on Sun Oct 25 22:45:13 EDT 2026
+INFO: [HLS 200-10] For user 'dchan2' on host 'ECE005.ece.local.cmu.edu' (Linux_x86_64 version 4.18.0-553.146.1.el8_10.x86_64) on Sun Oct 25 22:52:51 EDT 2026
 INFO: [HLS 200-10] On os "Red Hat Enterprise Linux release 8.10 (Ootpa)"
-INFO: [HLS 200-10] In directory '/tmp/run-hls-compute_KNN-k6b9n7y7'
+INFO: [HLS 200-10] In directory '/tmp/run-hls-load_KNN-rtzh16we'
 INFO: [HLS 200-2053] The vitis_hls executable is being deprecated. Consider using vitis-run --mode hls --tcl
-Sourcing Tcl script '/tmp/run-hls-compute_KNN-k6b9n7y7/commands.tcl'
+Sourcing Tcl script '/tmp/run-hls-load_KNN-rtzh16we/commands.tcl'
 INFO: [HLS 200-1510] Running: open_project project 
-INFO: [HLS 200-10] Creating and opening project '/tmp/run-hls-compute_KNN-k6b9n7y7/project'.
-INFO: [HLS 200-1510] Running: set_top compute_KNN 
-INFO: [HLS 200-1510] Running: add_files /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp -cflags -std=c++14 -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -std=c++14 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -D__SYNTHESIS__ -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -DTAPA_TARGET_=XILINX_HLS -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__SYNTHESIS__ 
-INFO: [HLS 200-10] Adding design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp' to the project
-INFO: [HLS 200-1510] Running: open_solution compute_KNN 
-INFO: [HLS 200-10] Creating and opening solution '/tmp/run-hls-compute_KNN-k6b9n7y7/project/compute_KNN'.
+INFO: [HLS 200-10] Creating and opening project '/tmp/run-hls-load_KNN-rtzh16we/project'.
+INFO: [HLS 200-1510] Running: set_top load_KNN 
+INFO: [HLS 200-1510] Running: add_files /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp -cflags -std=c++14 -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -std=c++14 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -D__SYNTHESIS__ -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -DTAPA_TARGET_=XILINX_HLS -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__SYNTHESIS__ 
+INFO: [HLS 200-10] Adding design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp' to the project
+INFO: [HLS 200-1510] Running: open_solution load_KNN 
+INFO: [HLS 200-10] Creating and opening solution '/tmp/run-hls-load_KNN-rtzh16we/project/load_KNN'.
 INFO: [HLS 200-1505] Using default flow_target 'vivado'
 Resolution: For help on HLS 200-1505 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
 INFO: [HLS 200-1510] Running: set_part xczu3eg-sbva484-1-e 
@@ -46338,7 +46153,159 @@ INFO: [XFORM 203-1161] The maximum of name length is set to 253.
 INFO: [HLS 200-1510] Running: config_interface -m_axi_addr64 
 INFO: [HLS 200-1510] Running: config_rtl -reset_level low -module_auto_prefix 
 INFO: [HLS 200-1510] Running: csynth_design 
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.11 seconds. CPU system time: 0.03 seconds. Elapsed time: 0.14 seconds; current allocated memory: 257.902 MB.
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.22 seconds. CPU system time: 0.05 seconds. Elapsed time: 0.27 seconds; current allocated memory: 292.582 MB.
+INFO: [HLS 200-10] Analyzing design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp' ... 
+WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/stream.h:14:1)
+WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/stream.h:15:1)
+WARNING: [HLS 207-5566] unexpected pragma argument 'float', expects identifier (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/util.h:58:22)
+ERROR: [HLS 207-3638] thread-local storage is not supported for the current target (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/mutex:650:10)
+ERROR: [HLS 207-3638] thread-local storage is not supported for the current target (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/mutex:651:10)
+WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/task.h:17:1)
+WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/task.h:18:1)
+ERROR: [HLS 207-3430] redefinition of 'IWIDTH' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:13:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp:11:11)
+ERROR: [HLS 207-3430] redefinition of 'INPUT_DIM' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:15:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp:13:11)
+ERROR: [HLS 207-3430] redefinition of 'TOP' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:16:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp:14:11)
+ERROR: [HLS 207-3430] redefinition of 'L2I_FACTOR_W' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:35:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp:33:11)
+ERROR: [HLS 207-3430] redefinition of 'D2L_FACTOR_W' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:37:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp:35:11)
+ERROR: [HLS 207-3430] redefinition of 'D2I_FACTOR_W' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:39:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp:37:11)
+ERROR: [HLS 207-3430] redefinition of 'I2D_FACTOR_W' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:41:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp:40:11)
+ERROR: [HLS 207-3430] redefinition of 'PARTITION_LEN_IN_I' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:51:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp:56:11)
+ERROR: [HLS 207-3430] redefinition of 'PARTITION_LEN_IN_D' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:52:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp:57:11)
+ERROR: [HLS 207-3430] redefinition of 'PARTITION_LEN_IN_L' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:53:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp:59:11)
+ERROR: [HLS 207-3430] redefinition of 'NUM_FEATURES_PER_READ' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:60:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp:67:11)
+ERROR: [HLS 207-3430] redefinition of 'QUERY_FEATURE_RESERVE' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:61:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp:68:11)
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 2.82 seconds. CPU system time: 1.39 seconds. Elapsed time: 11.07 seconds; current allocated memory: 1.707 MB.
+ 
+    while executing
+"source /tmp/run-hls-load_KNN-rtzh16we/commands.tcl"
+    ("uplevel" body line 1)
+    invoked from within
+"uplevel \#0 [list source $tclfile] "
+
+INFO: [HLS 200-112] Total CPU user time: 8.05 seconds. Total CPU system time: 5.16 seconds. Total elapsed time: 30.74 seconds; peak allocated memory: 294.289 MB.
+INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 22:53:11 2026...
+
+****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.2 (64-bit)
+  **** SW Build 4023990 on Oct 11 2023
+  **** IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+  **** SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source /afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/scripts/vitis_hls/hls.tcl -notrace
+INFO: [HLS 200-10] Running '/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/bin/unwrapped/lnx64.o/vitis_hls'
+INFO: [HLS 200-10] For user 'dchan2' on host 'ECE005.ece.local.cmu.edu' (Linux_x86_64 version 4.18.0-553.146.1.el8_10.x86_64) on Sun Oct 25 22:52:51 EDT 2026
+INFO: [HLS 200-10] On os "Red Hat Enterprise Linux release 8.10 (Ootpa)"
+INFO: [HLS 200-10] In directory '/tmp/run-hls-para_partial_sort-_odpms7z'
+INFO: [HLS 200-2053] The vitis_hls executable is being deprecated. Consider using vitis-run --mode hls --tcl
+Sourcing Tcl script '/tmp/run-hls-para_partial_sort-_odpms7z/commands.tcl'
+INFO: [HLS 200-1510] Running: open_project project 
+INFO: [HLS 200-10] Creating and opening project '/tmp/run-hls-para_partial_sort-_odpms7z/project'.
+INFO: [HLS 200-1510] Running: set_top para_partial_sort 
+INFO: [HLS 200-1510] Running: add_files /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp -cflags -std=c++14 -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -std=c++14 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -D__SYNTHESIS__ -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -DTAPA_TARGET_=XILINX_HLS -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__SYNTHESIS__ 
+INFO: [HLS 200-10] Adding design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp' to the project
+INFO: [HLS 200-1510] Running: open_solution para_partial_sort 
+INFO: [HLS 200-10] Creating and opening solution '/tmp/run-hls-para_partial_sort-_odpms7z/project/para_partial_sort'.
+INFO: [HLS 200-1505] Using default flow_target 'vivado'
+Resolution: For help on HLS 200-1505 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
+INFO: [HLS 200-1510] Running: set_part xczu3eg-sbva484-1-e 
+INFO: [HLS 200-1611] Setting target device to 'xczu3eg-sbva484-1-e'
+INFO: [HLS 200-1510] Running: create_clock -period 5.0 -name default 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 5ns.
+INFO: [HLS 200-1510] Running: config_compile -name_max_length 253 
+INFO: [XFORM 203-1161] The maximum of name length is set to 253.
+INFO: [HLS 200-1510] Running: config_interface -m_axi_addr64 
+INFO: [HLS 200-1510] Running: config_rtl -reset_level low -module_auto_prefix 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.22 seconds. CPU system time: 0.04 seconds. Elapsed time: 0.26 seconds; current allocated memory: 257.945 MB.
+INFO: [HLS 200-10] Analyzing design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp' ... 
+WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/stream.h:14:1)
+WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/stream.h:15:1)
+WARNING: [HLS 207-5566] unexpected pragma argument 'float', expects identifier (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/util.h:58:22)
+ERROR: [HLS 207-3638] thread-local storage is not supported for the current target (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/mutex:650:10)
+ERROR: [HLS 207-3638] thread-local storage is not supported for the current target (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/mutex:651:10)
+WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/task.h:17:1)
+WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/task.h:18:1)
+ERROR: [HLS 207-3430] redefinition of 'IWIDTH' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:13:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp:11:11)
+ERROR: [HLS 207-3430] redefinition of 'INPUT_DIM' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:15:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp:13:11)
+ERROR: [HLS 207-3430] redefinition of 'TOP' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:16:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp:14:11)
+ERROR: [HLS 207-3430] redefinition of 'L2I_FACTOR_W' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:35:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp:33:11)
+ERROR: [HLS 207-3430] redefinition of 'D2L_FACTOR_W' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:37:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp:35:11)
+ERROR: [HLS 207-3430] redefinition of 'D2I_FACTOR_W' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:39:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp:37:11)
+ERROR: [HLS 207-3430] redefinition of 'I2D_FACTOR_W' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:41:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp:40:11)
+ERROR: [HLS 207-3430] redefinition of 'PARTITION_LEN_IN_I' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:51:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp:56:11)
+ERROR: [HLS 207-3430] redefinition of 'PARTITION_LEN_IN_D' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:52:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp:57:11)
+ERROR: [HLS 207-3430] redefinition of 'PARTITION_LEN_IN_L' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:53:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp:59:11)
+ERROR: [HLS 207-3430] redefinition of 'NUM_FEATURES_PER_READ' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:60:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp:67:11)
+ERROR: [HLS 207-3430] redefinition of 'QUERY_FEATURE_RESERVE' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:61:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp:68:11)
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 2.76 seconds. CPU system time: 1.37 seconds. Elapsed time: 11.31 seconds; current allocated memory: 1.660 MB.
+ 
+    while executing
+"source /tmp/run-hls-para_partial_sort-_odpms7z/commands.tcl"
+    ("uplevel" body line 1)
+    invoked from within
+"uplevel \#0 [list source $tclfile] "
+
+INFO: [HLS 200-112] Total CPU user time: 7.25 seconds. Total CPU system time: 5.11 seconds. Total elapsed time: 30.87 seconds; peak allocated memory: 259.605 MB.
+INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 22:53:11 2026...
+
+****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.2 (64-bit)
+  **** SW Build 4023990 on Oct 11 2023
+  **** IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+  **** SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source /afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/scripts/vitis_hls/hls.tcl -notrace
+INFO: [HLS 200-10] Running '/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/bin/unwrapped/lnx64.o/vitis_hls'
+INFO: [HLS 200-10] For user 'dchan2' on host 'ECE005.ece.local.cmu.edu' (Linux_x86_64 version 4.18.0-553.146.1.el8_10.x86_64) on Sun Oct 25 22:52:51 EDT 2026
+INFO: [HLS 200-10] On os "Red Hat Enterprise Linux release 8.10 (Ootpa)"
+INFO: [HLS 200-10] In directory '/tmp/run-hls-compute_KNN-jfvevw8n'
+INFO: [HLS 200-2053] The vitis_hls executable is being deprecated. Consider using vitis-run --mode hls --tcl
+Sourcing Tcl script '/tmp/run-hls-compute_KNN-jfvevw8n/commands.tcl'
+INFO: [HLS 200-1510] Running: open_project project 
+INFO: [HLS 200-10] Creating and opening project '/tmp/run-hls-compute_KNN-jfvevw8n/project'.
+INFO: [HLS 200-1510] Running: set_top compute_KNN 
+INFO: [HLS 200-1510] Running: add_files /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp -cflags -std=c++14 -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -std=c++14 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -D__SYNTHESIS__ -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -DTAPA_TARGET_=XILINX_HLS -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__SYNTHESIS__ 
+INFO: [HLS 200-10] Adding design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp' to the project
+INFO: [HLS 200-1510] Running: open_solution compute_KNN 
+INFO: [HLS 200-10] Creating and opening solution '/tmp/run-hls-compute_KNN-jfvevw8n/project/compute_KNN'.
+INFO: [HLS 200-1505] Using default flow_target 'vivado'
+Resolution: For help on HLS 200-1505 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
+INFO: [HLS 200-1510] Running: set_part xczu3eg-sbva484-1-e 
+INFO: [HLS 200-1611] Setting target device to 'xczu3eg-sbva484-1-e'
+INFO: [HLS 200-1510] Running: create_clock -period 5.0 -name default 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 5ns.
+INFO: [HLS 200-1510] Running: config_compile -name_max_length 253 
+INFO: [XFORM 203-1161] The maximum of name length is set to 253.
+INFO: [HLS 200-1510] Running: config_interface -m_axi_addr64 
+INFO: [HLS 200-1510] Running: config_rtl -reset_level low -module_auto_prefix 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.23 seconds. CPU system time: 0.05 seconds. Elapsed time: 0.28 seconds; current allocated memory: 257.906 MB.
 INFO: [HLS 200-10] Analyzing design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp' ... 
 WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/stream.h:14:1)
 WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/stream.h:15:1)
@@ -46347,51 +46314,40 @@ ERROR: [HLS 207-3638] thread-local storage is not supported for the current targ
 ERROR: [HLS 207-3638] thread-local storage is not supported for the current target (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/mutex:651:10)
 WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/task.h:17:1)
 WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/task.h:18:1)
-ERROR: [HLS 207-3430] redefinition of 'IWIDTH' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:12:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp:10:11)
-ERROR: [HLS 207-3430] redefinition of 'INPUT_DIM' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:14:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp:12:11)
-ERROR: [HLS 207-3430] redefinition of 'TOP' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:15:11)
+ERROR: [HLS 207-3430] redefinition of 'IWIDTH' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:13:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp:11:11)
+ERROR: [HLS 207-3430] redefinition of 'INPUT_DIM' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:15:11)
 INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp:13:11)
-ERROR: [HLS 207-3430] redefinition of 'L2I_FACTOR_W' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:34:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp:32:11)
-ERROR: [HLS 207-3430] redefinition of 'D2L_FACTOR_W' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:36:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp:34:11)
-ERROR: [HLS 207-3430] redefinition of 'D2I_FACTOR_W' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:38:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp:36:11)
-ERROR: [HLS 207-3430] redefinition of 'I2D_FACTOR_W' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:40:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp:39:11)
-ERROR: [HLS 207-3430] redefinition of 'PARTITION_LEN_IN_I' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:50:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp:55:11)
-ERROR: [HLS 207-3430] redefinition of 'PARTITION_LEN_IN_D' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:51:11)
+ERROR: [HLS 207-3430] redefinition of 'TOP' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:16:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp:14:11)
+ERROR: [HLS 207-3430] redefinition of 'L2I_FACTOR_W' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:35:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp:33:11)
+ERROR: [HLS 207-3430] redefinition of 'D2L_FACTOR_W' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:37:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp:35:11)
+ERROR: [HLS 207-3430] redefinition of 'D2I_FACTOR_W' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:39:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp:37:11)
+ERROR: [HLS 207-3430] redefinition of 'I2D_FACTOR_W' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:41:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp:40:11)
+ERROR: [HLS 207-3430] redefinition of 'PARTITION_LEN_IN_I' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:51:11)
 INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp:56:11)
-ERROR: [HLS 207-3430] redefinition of 'PARTITION_LEN_IN_L' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:52:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp:58:11)
-ERROR: [HLS 207-3430] redefinition of 'NUM_FEATURES_PER_READ' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:59:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp:66:11)
-ERROR: [HLS 207-3430] redefinition of 'QUERY_FEATURE_RESERVE' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:60:11)
+ERROR: [HLS 207-3430] redefinition of 'PARTITION_LEN_IN_D' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:52:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp:57:11)
+ERROR: [HLS 207-3430] redefinition of 'PARTITION_LEN_IN_L' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:53:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp:59:11)
+ERROR: [HLS 207-3430] redefinition of 'NUM_FEATURES_PER_READ' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:60:11)
 INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp:67:11)
-ERROR: [HLS 207-2887] 'this' argument to member function 'empty' has type 'const hls::stream<internal::elem_t<ap_uint<128> > >', but function is not marked const (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/stream.h:26:9)
-INFO: [HLS 207-4526] in instantiation of member function 'tapa::tapa_stream<ap_uint<128> >::empty' requested here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp:105:32)
-INFO: [HLS 207-4436] 'empty' declared here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include/hls_stream.h:432:10)
-ERROR: [HLS 207-2887] 'this' argument to member function 'empty' has type 'const hls::stream<internal::elem_t<unsigned char> >', but function is not marked const (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/stream.h:26:9)
-INFO: [HLS 207-4526] in instantiation of member function 'tapa::tapa_stream<unsigned char>::empty' requested here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp:406:32)
-ERROR: [HLS 207-2866] non-const lvalue reference to type 'tapa::async_mmap<ap_uint<128> >' cannot bind to a value of unrelated type 'ap_uint<128> *' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/task.h:40:10)
-INFO: [HLS 207-4235] in instantiation of function template specialization 'tapa::task::invoke<tapa::internal::InvokeMode::kJoin, void (&)(int, tapa::async_mmap<ap_uint<128> > &, tapa::tapa_stream<ap_uint<128> > &), int, ap_uint<128> *&, tapa::tapa_stream<ap_uint<128> > &, 1>' requested here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/task.h:21:12)
-INFO: [HLS 207-4235] in instantiation of function template specialization 'tapa::task::invoke<void (&)(int, tapa::async_mmap<ap_uint<128> > &, tapa::tapa_stream<ap_uint<128> > &), int, ap_uint<128> *&, tapa::tapa_stream<ap_uint<128> > &>' requested here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp:432:8)
-ERROR: [HLS 207-2866] non-const lvalue reference to type 'tapa::async_mmap<ap_uint<32> >' cannot bind to a value of unrelated type 'ap_uint<32> *' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/task.h:40:10)
-INFO: [HLS 207-4235] in instantiation of function template specialization 'tapa::task::invoke<tapa::internal::InvokeMode::kJoin, void (&)(tapa::tapa_stream<ap_fixed<32, 12, AP_RND, AP_SAT, 0> > &, tapa::tapa_stream<int> &, tapa::async_mmap<ap_uint<32> > &), tapa::tapa_stream<ap_fixed<32, 12, AP_RND, AP_SAT, 0> > &, tapa::tapa_stream<int> &, ap_uint<32> *&, 1>' requested here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/task.h:21:12)
-INFO: [HLS 207-4235] in instantiation of function template specialization 'tapa::task::invoke<void (&)(tapa::tapa_stream<ap_fixed<32, 12, AP_RND, AP_SAT, 0> > &, tapa::tapa_stream<int> &, tapa::async_mmap<ap_uint<32> > &), tapa::tapa_stream<ap_fixed<32, 12, AP_RND, AP_SAT, 0> > &, tapa::tapa_stream<int> &, ap_uint<32> *&>' requested here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp:442:8)
-INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 2.48 seconds. CPU system time: 0.86 seconds. Elapsed time: 5.71 seconds; current allocated memory: 1.832 MB.
+ERROR: [HLS 207-3430] redefinition of 'QUERY_FEATURE_RESERVE' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:61:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp:68:11)
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 2.82 seconds. CPU system time: 1.29 seconds. Elapsed time: 10.92 seconds; current allocated memory: 1.660 MB.
  
     while executing
-"source /tmp/run-hls-compute_KNN-k6b9n7y7/commands.tcl"
+"source /tmp/run-hls-compute_KNN-jfvevw8n/commands.tcl"
     ("uplevel" body line 1)
     invoked from within
 "uplevel \#0 [list source $tclfile] "
 
-INFO: [HLS 200-112] Total CPU user time: 6.07 seconds. Total CPU system time: 3.54 seconds. Total elapsed time: 13.66 seconds; peak allocated memory: 259.734 MB.
-INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 22:45:24 2026...
+INFO: [HLS 200-112] Total CPU user time: 7.28 seconds. Total CPU system time: 5 seconds. Total elapsed time: 30.55 seconds; peak allocated memory: 259.566 MB.
+INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 22:53:11 2026...
 
 ****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.2 (64-bit)
   **** SW Build 4023990 on Oct 11 2023
@@ -46402,18 +46358,18 @@ INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 22:45:24 2026...
 
 source /afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/scripts/vitis_hls/hls.tcl -notrace
 INFO: [HLS 200-10] Running '/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/bin/unwrapped/lnx64.o/vitis_hls'
-INFO: [HLS 200-10] For user 'dchan2' on host 'ECE005.ece.local.cmu.edu' (Linux_x86_64 version 4.18.0-553.146.1.el8_10.x86_64) on Sun Oct 25 22:45:13 EDT 2026
+INFO: [HLS 200-10] For user 'dchan2' on host 'ECE005.ece.local.cmu.edu' (Linux_x86_64 version 4.18.0-553.146.1.el8_10.x86_64) on Sun Oct 25 22:52:51 EDT 2026
 INFO: [HLS 200-10] On os "Red Hat Enterprise Linux release 8.10 (Ootpa)"
-INFO: [HLS 200-10] In directory '/tmp/run-hls-Knn-_5sigbjx'
+INFO: [HLS 200-10] In directory '/tmp/run-hls-Knn-8wud2q7d'
 INFO: [HLS 200-2053] The vitis_hls executable is being deprecated. Consider using vitis-run --mode hls --tcl
-Sourcing Tcl script '/tmp/run-hls-Knn-_5sigbjx/commands.tcl'
+Sourcing Tcl script '/tmp/run-hls-Knn-8wud2q7d/commands.tcl'
 INFO: [HLS 200-1510] Running: open_project project 
-INFO: [HLS 200-10] Creating and opening project '/tmp/run-hls-Knn-_5sigbjx/project'.
+INFO: [HLS 200-10] Creating and opening project '/tmp/run-hls-Knn-8wud2q7d/project'.
 INFO: [HLS 200-1510] Running: set_top Knn 
 INFO: [HLS 200-1510] Running: add_files /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp -cflags -std=c++14 -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -std=c++14 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -D__SYNTHESIS__ -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -DTAPA_TARGET_=XILINX_HLS -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__SYNTHESIS__ 
 INFO: [HLS 200-10] Adding design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp' to the project
 INFO: [HLS 200-1510] Running: open_solution Knn 
-INFO: [HLS 200-10] Creating and opening solution '/tmp/run-hls-Knn-_5sigbjx/project/Knn'.
+INFO: [HLS 200-10] Creating and opening solution '/tmp/run-hls-Knn-8wud2q7d/project/Knn'.
 INFO: [HLS 200-1505] Using default flow_target 'vivado'
 Resolution: For help on HLS 200-1505 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
 INFO: [HLS 200-1510] Running: set_part xczu3eg-sbva484-1-e 
@@ -46425,7 +46381,7 @@ INFO: [XFORM 203-1161] The maximum of name length is set to 253.
 INFO: [HLS 200-1510] Running: config_interface -m_axi_addr64 
 INFO: [HLS 200-1510] Running: config_rtl -reset_level low -module_auto_prefix 
 INFO: [HLS 200-1510] Running: csynth_design 
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.11 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.13 seconds; current allocated memory: 283.637 MB.
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.22 seconds. CPU system time: 0.04 seconds. Elapsed time: 0.27 seconds; current allocated memory: 257.902 MB.
 INFO: [HLS 200-10] Analyzing design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp' ... 
 WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/stream.h:14:1)
 WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/stream.h:15:1)
@@ -46434,51 +46390,40 @@ ERROR: [HLS 207-3638] thread-local storage is not supported for the current targ
 ERROR: [HLS 207-3638] thread-local storage is not supported for the current target (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/mutex:651:10)
 WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/task.h:17:1)
 WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/task.h:18:1)
-ERROR: [HLS 207-3430] redefinition of 'IWIDTH' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:12:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:10:11)
-ERROR: [HLS 207-3430] redefinition of 'INPUT_DIM' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:14:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:12:11)
-ERROR: [HLS 207-3430] redefinition of 'TOP' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:15:11)
+ERROR: [HLS 207-3430] redefinition of 'IWIDTH' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:13:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:11:11)
+ERROR: [HLS 207-3430] redefinition of 'INPUT_DIM' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:15:11)
 INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:13:11)
-ERROR: [HLS 207-3430] redefinition of 'L2I_FACTOR_W' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:34:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:32:11)
-ERROR: [HLS 207-3430] redefinition of 'D2L_FACTOR_W' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:36:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:34:11)
-ERROR: [HLS 207-3430] redefinition of 'D2I_FACTOR_W' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:38:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:36:11)
-ERROR: [HLS 207-3430] redefinition of 'I2D_FACTOR_W' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:40:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:39:11)
-ERROR: [HLS 207-3430] redefinition of 'PARTITION_LEN_IN_I' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:50:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:55:11)
-ERROR: [HLS 207-3430] redefinition of 'PARTITION_LEN_IN_D' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:51:11)
+ERROR: [HLS 207-3430] redefinition of 'TOP' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:16:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:14:11)
+ERROR: [HLS 207-3430] redefinition of 'L2I_FACTOR_W' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:35:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:33:11)
+ERROR: [HLS 207-3430] redefinition of 'D2L_FACTOR_W' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:37:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:35:11)
+ERROR: [HLS 207-3430] redefinition of 'D2I_FACTOR_W' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:39:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:37:11)
+ERROR: [HLS 207-3430] redefinition of 'I2D_FACTOR_W' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:41:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:40:11)
+ERROR: [HLS 207-3430] redefinition of 'PARTITION_LEN_IN_I' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:51:11)
 INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:56:11)
-ERROR: [HLS 207-3430] redefinition of 'PARTITION_LEN_IN_L' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:52:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:58:11)
-ERROR: [HLS 207-3430] redefinition of 'NUM_FEATURES_PER_READ' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:59:11)
-INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:66:11)
-ERROR: [HLS 207-3430] redefinition of 'QUERY_FEATURE_RESERVE' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:60:11)
+ERROR: [HLS 207-3430] redefinition of 'PARTITION_LEN_IN_D' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:52:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:57:11)
+ERROR: [HLS 207-3430] redefinition of 'PARTITION_LEN_IN_L' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:53:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:59:11)
+ERROR: [HLS 207-3430] redefinition of 'NUM_FEATURES_PER_READ' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:60:11)
 INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:67:11)
-ERROR: [HLS 207-2887] 'this' argument to member function 'empty' has type 'const hls::stream<internal::elem_t<ap_uint<128> > >', but function is not marked const (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/stream.h:26:9)
-INFO: [HLS 207-4526] in instantiation of member function 'tapa::tapa_stream<ap_uint<128> >::empty' requested here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:105:32)
-INFO: [HLS 207-4436] 'empty' declared here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include/hls_stream.h:432:10)
-ERROR: [HLS 207-2887] 'this' argument to member function 'empty' has type 'const hls::stream<internal::elem_t<unsigned char> >', but function is not marked const (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/stream.h:26:9)
-INFO: [HLS 207-4526] in instantiation of member function 'tapa::tapa_stream<unsigned char>::empty' requested here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:406:32)
-ERROR: [HLS 207-2866] non-const lvalue reference to type 'tapa::async_mmap<ap_uint<128> >' cannot bind to a value of unrelated type 'ap_uint<128> *' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/task.h:40:10)
-INFO: [HLS 207-4235] in instantiation of function template specialization 'tapa::task::invoke<tapa::internal::InvokeMode::kJoin, void (&)(int, tapa::async_mmap<ap_uint<128> > &, tapa::tapa_stream<ap_uint<128> > &), int, ap_uint<128> *&, tapa::tapa_stream<ap_uint<128> > &, 1>' requested here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/task.h:21:12)
-INFO: [HLS 207-4235] in instantiation of function template specialization 'tapa::task::invoke<void (&)(int, tapa::async_mmap<ap_uint<128> > &, tapa::tapa_stream<ap_uint<128> > &), int, ap_uint<128> *&, tapa::tapa_stream<ap_uint<128> > &>' requested here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:432:8)
-ERROR: [HLS 207-2866] non-const lvalue reference to type 'tapa::async_mmap<ap_uint<32> >' cannot bind to a value of unrelated type 'ap_uint<32> *' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/task.h:40:10)
-INFO: [HLS 207-4235] in instantiation of function template specialization 'tapa::task::invoke<tapa::internal::InvokeMode::kJoin, void (&)(tapa::tapa_stream<ap_fixed<32, 12, AP_RND, AP_SAT, 0> > &, tapa::tapa_stream<int> &, tapa::async_mmap<ap_uint<32> > &), tapa::tapa_stream<ap_fixed<32, 12, AP_RND, AP_SAT, 0> > &, tapa::tapa_stream<int> &, ap_uint<32> *&, 1>' requested here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/task.h:21:12)
-INFO: [HLS 207-4235] in instantiation of function template specialization 'tapa::task::invoke<void (&)(tapa::tapa_stream<ap_fixed<32, 12, AP_RND, AP_SAT, 0> > &, tapa::tapa_stream<int> &, tapa::async_mmap<ap_uint<32> > &), tapa::tapa_stream<ap_fixed<32, 12, AP_RND, AP_SAT, 0> > &, tapa::tapa_stream<int> &, ap_uint<32> *&>' requested here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:442:8)
-INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 2.51 seconds. CPU system time: 1.04 seconds. Elapsed time: 5.85 seconds; current allocated memory: 1.848 MB.
+ERROR: [HLS 207-3430] redefinition of 'QUERY_FEATURE_RESERVE' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src/knn.h:61:11)
+INFO: [HLS 207-71] previous definition is here (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:68:11)
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 2.88 seconds. CPU system time: 1.35 seconds. Elapsed time: 11.26 seconds; current allocated memory: 1.676 MB.
  
     while executing
-"source /tmp/run-hls-Knn-_5sigbjx/commands.tcl"
+"source /tmp/run-hls-Knn-8wud2q7d/commands.tcl"
     ("uplevel" body line 1)
     invoked from within
 "uplevel \#0 [list source $tclfile] "
 
-INFO: [HLS 200-112] Total CPU user time: 6.54 seconds. Total CPU system time: 3.69 seconds. Total elapsed time: 13.71 seconds; peak allocated memory: 285.484 MB.
-INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 22:45:24 2026...
+INFO: [HLS 200-112] Total CPU user time: 7.84 seconds. Total CPU system time: 5.09 seconds. Total elapsed time: 30.86 seconds; peak allocated memory: 259.594 MB.
+INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 22:53:11 2026...
 Traceback (most recent call last):
   File "/afs/ece/usr/dchan2/miniconda3/bin/tapac", line 6, in <module>
     sys.exit(main())

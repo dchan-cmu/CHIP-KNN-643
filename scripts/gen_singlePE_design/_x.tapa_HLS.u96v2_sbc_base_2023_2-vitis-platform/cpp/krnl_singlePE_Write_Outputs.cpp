@@ -1,3 +1,4 @@
+#pragma once
 #include "ap_int.h"
 #include <tapa.h>
 #define printf(...) ((void)0)
@@ -419,7 +420,8 @@ void krnl_singlePE_Write_Outputs(tapa::istream<DATA_TYPE> &in_dist0,
   }
 }
 
-void Knn(tapa::mmap<INTERFACE_WIDTH> in_0, tapa::mmap<INT32> final_out) {
+void Knn(tapa::async_mmap<INTERFACE_WIDTH> &in_0,
+         tapa::async_mmap<INT32> &final_out) {
 
   // Streams, for the global merge:
   tapa::stream<DATA_TYPE, TOP> L0_out_dist_0;

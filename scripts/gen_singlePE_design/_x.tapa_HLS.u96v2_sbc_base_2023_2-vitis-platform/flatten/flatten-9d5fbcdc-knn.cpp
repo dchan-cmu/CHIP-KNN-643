@@ -1,3 +1,4 @@
+
 // Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 // Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 // 67d7842dbbe25473c3c32b93c0da8047785f30d78e8a024de1b57352245f9689
@@ -136409,7 +136410,8 @@ void krnl_singlePE_Write_Outputs(
     }
   }
 }
-void Knn(tapa::mmap<ap_uint<IWIDTH>> in_0, tapa::mmap<ap_uint<32>> final_out) {
+void Knn(tapa::async_mmap<ap_uint<IWIDTH>> &in_0,
+         tapa::async_mmap<ap_uint<32>> &final_out) {
   // Streams, for the global merge:
   tapa::stream<
       ap_fixed<32, 12 /* NOTE: This includes the sign bit, if applicable.*/,

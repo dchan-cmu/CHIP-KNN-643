@@ -103,6 +103,7 @@ $(TEMP_DIR)/knn.xo: $(KNN_SRC)
 	      -o $(TEMP_DIR)/knn.xo \
 	      --enable-synth-util \
           --cflags=-U__SYNTHESIS__ \
+          --cflags=-w \
           --cflags=-Wno-invalid-constexpr \
           --cflags=-Wno-error=invalid-constexpr \
           --cflags=-I$(CLANG_RES_INC) \

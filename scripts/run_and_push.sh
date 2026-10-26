@@ -38,7 +38,11 @@ fi
 
 GDB_PATCH="/tmp/tapacc_patch.gdb"
 cat << 'EOF_GDB' > "$GDB_PATCH"
+set breakpoint pending on
+set confirm off
+set pagination off
 handle SIGSEGV stop print nopass
+
 break *(_ZNK4tapa2cc13XilinxBackend17RewriteHelperFuncEPKN5clang12FunctionDeclERNS0_8EditSinkE + 296)
 commands
 if $rax == 0
@@ -47,14 +51,16 @@ if $rax == 0
 end
 continue
 end
+
 run
-quit
 EOF_GDB
 
-gdb -batch -return-child-result -x "$GDB_PATCH" --args "$DIR/tapacc.real" "${ARGS[@]}"
-RC=$?
+LOG_FILE="/tmp/tapacc_wrapper.log"
+gdb -batch -return-child-result -x "$GDB_PATCH" --args "$DIR/tapacc.real" "${ARGS[@]}" 2>&1 | tee "$LOG_FILE"
+RC=${PIPESTATUS[0]}
 if [ $RC -ne 0 ]; then
-    echo "=== tapacc.real failed with exit code $RC ===" >&2
+    echo "=== tapacc failed with exit code $RC ===" >&2
+    cat "$LOG_FILE" >&2
     exit $RC
 fi
 EOF_WRAP
@@ -68,12 +74,15 @@ EOF_WRAP
     if [ -f "gen_singlePE_design/tapa_HLS_output.log" ]; then
         cp "gen_singlePE_design/tapa_HLS_output.log" "$REPO_ROOT/tapa_HLS_output.log"
     fi
+    if [ -f "/tmp/tapacc_wrapper.log" ]; then
+        cp "/tmp/tapacc_wrapper.log" "$REPO_ROOT/tapacc_wrapper.log"
+    fi
 
     cd "$REPO_ROOT"
 
     echo "=== 4. Pushing Logs to GitHub (branch: debug-run) ==="
     git checkout -B debug-run
-    git add -f run_output.log tapa_HLS_output.log scripts/ 2>/dev/null || true
+    git add -f run_output.log tapa_HLS_output.log tapacc_wrapper.log scripts/ 2>/dev/null || true
     git commit -m "Auto-upload run logs: $(date -u +'%Y-%m-%d %H:%M:%S UTC')" || true
     git push -u origin debug-run --force
 

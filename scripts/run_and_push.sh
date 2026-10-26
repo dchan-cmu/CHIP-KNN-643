@@ -47,10 +47,10 @@ if [ $RC -ne 0 ]; then
             -ex "run" \
             -ex "bt full 20" \
             -ex "frame 1" \
-            -ex "info args" \
-            -ex "info locals" \
+            -ex "p ((const clang::NamedDecl*) \$r14)->getNameAsString()" \
+            -ex "call ((const clang::Decl*) \$r14)->dump()" \
+            -ex "x/s \$rdx" \
             -ex "disas \$rip-40,\$rip+15" \
-            -ex "info registers" \
             --args "$DIR/tapacc.real" "${ARGS[@]}" >&2
     fi
     exit $RC

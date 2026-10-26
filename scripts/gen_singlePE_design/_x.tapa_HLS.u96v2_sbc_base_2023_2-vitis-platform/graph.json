@@ -337,7 +337,7 @@
     "-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include",
     "-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include",
     "-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include",
-    "-std=c++14",
+    "-std=c++17",
     "-I",
     "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src",
     "-D__SYNTHESIS__"

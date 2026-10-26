@@ -44,30 +44,34 @@ if "\x27-DTAPA_TARGET_=XILINX_HLS\x27" in code and "TAPA_TARGET_DEVICE_" not in 
     )
     modified = True
 
-pattern = r"(\s+)(raise RuntimeError\(\x27HLS failed for \{\}\x27\.format\(task\.name\)\))"
-match = re.search(pattern, code)
-if match and "FULL VITIS HLS LOG FOR" not in code:
-    indent = match.group(1)
-    replacement_lines = [
-        "import glob, os",
-        "print(f\x27=== FULL VITIS HLS LOG FOR {task.name} ===\x27, flush=True)",
-        "for d in glob.glob(f\x27/tmp/run-hls-{task.name}*\x27):",
-        "    for root, dirs, files in os.walk(d):",
-        "        for file in files:",
-        "            if file.endswith((\x27.log\x27, \x27.rpt\x27, \x27.tcl\x27, \x27.xml\x27)):",
-        "                p = os.path.join(root, file)",
-        "                print(f\x27--- File: {p} ---\x27, flush=True)",
-        "                try:",
-        "                    with open(p, \x27r\x27, errors=\x27ignore\x27) as lf:",
-        "                        print(lf.read(), flush=True)",
-        "                except Exception as e:",
-        "                    print(f\x27Could not read {p}: {e}\x27, flush=True)",
-        "raise RuntimeError(\x27HLS failed for {}\x27.format(task.name))",
-    ]
-    replacement = "\n".join(indent + l for l in replacement_lines)
-    code = code[:match.start()] + replacement + code[match.end():]
+# Revert old broken patch if present on remote
+old_match = re.search(r"        import glob, os\n.*?raise RuntimeError\(\x27HLS failed for \{\}\x27\.format\(task\.name\)\)", code, re.DOTALL)
+if old_match:
+    code = code[:old_match.start()] + "        raise RuntimeError(\x27HLS failed for {}\x27.format(task.name))" + code[old_match.end():]
     modified = True
-    print(f"Injected detailed HLS log dumper into {core_file}!")
+    print(f"Reverted broken worker patch in {core_file}")
+
+# Inject in-context dumper inside with hls.RunHls(...) as proc: before temp directory is deleted
+target_comm = "          stdout, stderr = proc.communicate()"
+new_dumper = """          stdout, stderr = proc.communicate()
+          if proc.returncode != 0:
+            import glob as _glob
+            print(f"=== FULL VITIS HLS LOG FOR {task.name} ===", flush=True)
+            for d in _glob.glob(f"/tmp/run-hls-{task.name}*"):
+              for root, dirs, files in os.walk(d):
+                for file in files:
+                  if file.endswith((".log", ".rpt", ".tcl", ".xml", ".size")):
+                    p = os.path.join(root, file)
+                    print(f"--- File: {p} ---", flush=True)
+                    try:
+                      with open(p, "r", errors="ignore") as lf:
+                        print(lf.read(), flush=True)
+                    except Exception as e:
+                      print(f"Could not read {p}: {e}", flush=True)"""
+if "FULL VITIS HLS LOG FOR" not in code and target_comm in code:
+    code = code.replace(target_comm, new_dumper)
+    modified = True
+    print(f"Injected in-context HLS log dumper into {core_file}!")
 
 if modified:
     compile(code, core_file, "exec")

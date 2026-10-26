@@ -102,7 +102,7 @@ $(TEMP_DIR)/knn.xo: $(KNN_SRC)
 	      --clock-period 5.00 \
 	      -o $(TEMP_DIR)/knn.xo \
 	      --enable-synth-util \
-          --cflags=-D__SYNTHESIS__ \
+          --cflags=-U__SYNTHESIS__ \
           --cflags=-w \
           --cflags=-Wno-invalid-constexpr \
           --cflags=-Wno-error=invalid-constexpr \

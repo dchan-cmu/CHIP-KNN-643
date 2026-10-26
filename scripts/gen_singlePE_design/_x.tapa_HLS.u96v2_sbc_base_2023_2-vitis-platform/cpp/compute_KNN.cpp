@@ -27,12 +27,13 @@ LOAD_QUERY:
     // Think of addr as an array index.
     int addr = i_req;
     if (i_req < (INPUT_DIM - 1) / NUM_FEATURES_PER_READ + 1 &&
-        searchSpace.read_addr.try_write(addr)) {
+        !searchSpace.read_addr.full()) {
+      searchSpace.read_addr.write(addr * sizeof(INTERFACE_WIDTH));
       i_req++;
     }
 
     if (!searchSpace.read_data.empty()) {
-      loaded_value = searchSpace.read_data.read(nullptr);
+      loaded_value = searchSpace.read_data.read();
       i_resp++;
 
 // DEBUGGING:
@@ -62,11 +63,12 @@ LOAD_SEARCHSPACE:
 #pragma HLS pipeline II = 1
     // Think of addr as an array index.
     int addr = QUERY_DATA_RESERVE + i_req;
-    if (i_req < PARTITION_LEN_IN_I && searchSpace.read_addr.try_write(addr)) {
+    if (i_req < PARTITION_LEN_IN_I && !searchSpace.read_addr.full()) {
+      searchSpace.read_addr.write(addr * sizeof(INTERFACE_WIDTH));
       i_req++;
     }
     if (!searchSpace.read_data.empty()) {
-      loaded_value = searchSpace.read_data.read(nullptr);
+      loaded_value = searchSpace.read_data.read();
       i_resp++;
 
       //// DEBUGGING: Printing the loaded data:
@@ -328,22 +330,22 @@ void krnl_singlePE_Write_Outputs(tapa::istream<DATA_TYPE> &in_dist0,
         !output_knn.write_addr.full() && !output_knn.write_data.full()) {
       outval.range(DATA_TYPE_TOTAL_SZ - 1, 0) =
           cur_dist.range(DATA_TYPE_TOTAL_SZ - 1, 0);
-      output_knn.write_addr.try_write(i_req_output);
-      output_knn.write_data.try_write(outval);
+      output_knn.write_addr.write(i_req_output * sizeof(INT32));
+      output_knn.write_data.write(outval);
       --i_req_output;
     }
     if (!output_knn.write_resp.empty()) {
-      i_resp_output += (unsigned int)(output_knn.write_resp.read(nullptr)) + 1;
+      i_resp_output += (unsigned int)(output_knn.write_resp.read()) + 1;
     }
     if (i_req_output < 2 * TOP && i_req_output >= 0 &&
         !output_knn.write_addr.full() && !output_knn.write_data.full()) {
       outval = *(INT32 *)&cur_id;
-      output_knn.write_addr.try_write(i_req_output);
-      output_knn.write_data.try_write(outval);
+      output_knn.write_addr.write(i_req_output * sizeof(INT32));
+      output_knn.write_data.write(outval);
       --i_req_output;
     }
     if (!output_knn.write_resp.empty()) {
-      i_resp_output += (unsigned int)(output_knn.write_resp.read(nullptr)) + 1;
+      i_resp_output += (unsigned int)(output_knn.write_resp.read()) + 1;
     }
   }
 }

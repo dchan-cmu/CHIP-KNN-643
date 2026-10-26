@@ -55,106 +55,255 @@ import os
 
 repo = os.environ.get("REPO_ROOT", "/scratch/643_vitis_dchan2/CHIP-KNN-643")
 stream_h = os.path.join(repo, ".tapa/usr/include/tapa/xilinx/hls/stream.h")
-if os.path.isfile(stream_h):
-    content = open(stream_h).read()
-    if "mutable hls::stream<internal::elem_t<T>> _;" not in content:
-        content = content.replace("hls::stream<internal::elem_t<T>> _;", "mutable hls::stream<internal::elem_t<T>> _;")
+clean_stream_code = """#pragma once
 
-    # Replace read(std::nullptr_t) to call read() directly without read_nb
-    old_read_null = """  T read(std::nullptr_t) {
-#pragma HLS inline
-    internal::elem_t<T> elem;
-    _.read_nb(elem);
-    return elem.val;
-  }"""
-    new_read_null = """  T read(std::nullptr_t) {
-#pragma HLS inline
-    return read();
-  }"""
-    if old_read_null in content:
-        content = content.replace(old_read_null, new_read_null)
+#include "tapa/base/stream.h"
 
-    # Replace try_read to use !empty() and read()
-    old_try_read = """  bool try_read(T& value) {
+#include <cassert>
+#include <cstddef>
+#include <cstdint>
+
+#include <hls_stream.h>
+
+namespace tapa {
+
+template <typename T>
+class tapa_stream {
+ public:
+  tapa_stream() = default;
+  tapa_stream(const char* name) {}
+  tapa_stream(const tapa_stream&) = delete;
+
+  bool empty() const {
 #pragma HLS inline
-    internal::elem_t<T> elem;
-    const bool is_success = _.read_nb(elem);
-    value = elem.val;
-    return is_success;
-  }"""
-    new_try_read = """  bool try_read(T& value) {
+    return _.empty();
+  }
+
+  bool full() const {
+#pragma HLS inline
+    return _.full();
+  }
+
+  T read() {
+#pragma HLS inline
+    return _.read();
+  }
+
+  T read(std::nullptr_t) {
+#pragma HLS inline
+    return _.read();
+  }
+
+  bool try_read(T& value) {
 #pragma HLS inline
     if (!empty()) {
       value = read();
       return true;
     }
     return false;
-  }"""
-    if old_try_read in content:
-        content = content.replace(old_try_read, new_try_read)
+  }
 
-    # Replace read(bool& is_success)
-    old_read_succ = """  T read(bool& is_success) {
-#pragma HLS inline
-    internal::elem_t<T> elem;
-    is_success = _.read_nb(elem);
-    return elem.val;
-  }"""
-    new_read_succ = """  T read(bool& is_success) {
+  T read(bool& is_success) {
 #pragma HLS inline
     is_success = !empty();
     if (is_success) {
       return read();
     }
     return T{};
-  }"""
-    if old_read_succ in content:
-        content = content.replace(old_read_succ, new_read_succ)
+  }
 
-    # Replace try_write to use !full() and write()
-    old_try_write = """  bool try_write(const T& value) {
+  void write(const T& value) {
 #pragma HLS inline
-    return _.write_nb({value, false});
-  }"""
-    new_try_write = """  bool try_write(const T& value) {
+    _.write(value);
+  }
+
+  bool try_write(const T& value) {
 #pragma HLS inline
     if (!full()) {
       write(value);
       return true;
     }
     return false;
-  }"""
-    if old_try_write in content:
-        content = content.replace(old_try_write, new_try_write)
+  }
 
-    with open(stream_h, "w") as f:
-        f.write(content)
-    print("Successfully patched tapa stream.h!")
-
-mmap_h = os.path.join(repo, ".tapa/usr/include/tapa/xilinx/hls/mmap.h")
-if os.path.isfile(mmap_h):
-    content = open(mmap_h).read()
-    if "mutable hls::stream<addr_t> _;" not in content:
-        content = content.replace("hls::stream<addr_t> _;", "mutable hls::stream<addr_t> _;")
-
-    old_addr_try_write = """  bool try_write(const addr_t& value) {
+  tapa_stream& operator>>(T& value) {
 #pragma HLS inline
-    return _.write_nb(offset + value * sizeof(T));
-  }"""
-    new_addr_try_write = """  bool try_write(const addr_t& value) {
+    value = read();
+    return *this;
+  }
+
+  tapa_stream& operator<<(const T& value) {
+#pragma HLS inline
+    write(value);
+    return *this;
+  }
+
+  bool try_eot(bool& is_eot) const {
+#pragma HLS inline
+    is_eot = false;
+    return !empty();
+  }
+
+  bool eot(bool& is_success) const {
+#pragma HLS inline
+    is_success = false;
+    return false;
+  }
+
+  bool try_peek(T& value) const {
+#pragma HLS inline
+    return false;
+  }
+
+  T peek(bool& is_success) const {
+#pragma HLS inline
+    is_success = false;
+    return T{};
+  }
+
+  T peek(std::nullptr_t) const {
+#pragma HLS inline
+    return T{};
+  }
+
+  bool try_open() { return true; }
+  void open() {}
+  bool try_close() { return true; }
+  void close() {}
+
+  mutable hls::stream<T> _;
+};
+
+template <typename T>
+using istream = tapa_stream<T>;
+
+template <typename T>
+using ostream = tapa_stream<T>;
+
+template <typename T, uint64_t N = kStreamDefaultDepth,
+          uint64_t SimulationDepth = N>
+using stream = tapa_stream<T>;
+
+template <typename T, uint64_t S>
+using istreams = istream<T>[S];
+
+template <typename T, uint64_t S>
+using ostreams = ostream<T>[S];
+
+template <typename T, uint64_t S, uint64_t N = kStreamDefaultDepth,
+          uint64_t SimulationDepth = N>
+using streams = stream<T, N>[S];
+
+}  // namespace tapa
+"""
+stream_targets = [
+    os.path.join(repo, ".tapa/usr/include/tapa/xilinx/hls/stream.h"),
+]
+clean_mmap_code = """#pragma once
+
+#include <cstddef>
+#include <cstdint>
+#include <hls_stream.h>
+
+#include "tapa/xilinx/hls/stream.h"
+
+namespace tapa {
+namespace internal {
+
+template <typename addr_t, typename T>
+class addr_ostream {
+ public:
+  addr_ostream() : offset(0) {}
+  addr_ostream(addr_t off) : offset(off) {}
+
+  bool full() const {
+#pragma HLS inline
+    return _.full();
+  }
+
+  bool try_write(const addr_t& value) {
 #pragma HLS inline
     if (!full()) {
       write(value);
       return true;
     }
     return false;
-  }"""
-    if old_addr_try_write in content:
-        content = content.replace(old_addr_try_write, new_addr_try_write)
+  }
 
-    with open(mmap_h, "w") as f:
-        f.write(content)
-    print("Successfully patched tapa mmap.h!")
+  void write(const addr_t& value) {
+#pragma HLS inline
+    _.write(offset + value * sizeof(T));
+  }
+
+  addr_ostream& operator<<(const addr_t& value) {
+#pragma HLS inline
+    write(value);
+    return *this;
+  }
+
+  bool try_close() { return true; }
+
+  void close() {}
+
+  mutable hls::stream<addr_t> _;
+  const addr_t offset;
+};
+
+}  // namespace internal
+
+template <typename T>
+using mmap = T*;
+
+template <typename T>
+struct async_mmap {
+  using addr_t = int64_t;
+  using resp_t = uint8_t;
+
+  tapa::internal::addr_ostream<addr_t, T> read_addr;
+  tapa::istream<T> read_data;
+  tapa::internal::addr_ostream<addr_t, T> write_addr;
+  tapa::ostream<T> write_data;
+  tapa::istream<resp_t> write_resp;
+};
+
+template <typename T, uint64_t S>
+class mmaps;
+
+template <typename T, int chan_count, int64_t chan_size>
+class hmap;
+
+}  // namespace tapa
+"""
+mmap_targets = [
+    os.path.join(repo, ".tapa/usr/include/tapa/xilinx/hls/mmap.h"),
+]
+import glob
+for p in glob.glob("/scratch/643_vitis_dchan2/**/tapa/xilinx/hls/stream.h", recursive=True):
+    stream_targets.append(p)
+for p in glob.glob("/scratch/643_vitis_dchan2/**/tapa/xilinx/hls/mmap.h", recursive=True):
+    mmap_targets.append(p)
+for p in glob.glob("/afs/ece/usr/dchan2/miniconda3/**/tapa/xilinx/hls/stream.h", recursive=True):
+    stream_targets.append(p)
+for p in glob.glob("/afs/ece/usr/dchan2/miniconda3/**/tapa/xilinx/hls/mmap.h", recursive=True):
+    mmap_targets.append(p)
+
+for s in set(stream_targets):
+    try:
+        os.makedirs(os.path.dirname(s), exist_ok=True)
+        with open(s, "w") as f:
+            f.write(clean_stream_code)
+        print(f"Successfully wrote clean tapa stream.h to {s}")
+    except Exception as e:
+        print(f"Failed to write to {s}: {e}")
+
+for m in set(mmap_targets):
+    try:
+        os.makedirs(os.path.dirname(m), exist_ok=True)
+        with open(m, "w") as f:
+            f.write(clean_mmap_code)
+        print(f"Successfully wrote clean tapa mmap.h to {m}")
+    except Exception as e:
+        print(f"Failed to write to {m}: {e}")
 ' || true
 
     python3 -c '

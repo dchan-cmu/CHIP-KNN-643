@@ -1701,10 +1701,6 @@ using streams = stream<T, N>[S];
 
 
 --- tapa/xilinx/hls/task.h ---
-// Copyright (c) 2024 RapidStream Design Automation, Inc. and contributors.
-// All rights reserved. The contributor(s) of this file has/have agreed to the
-// RapidStream Contributor License Agreement.
-
 #pragma once
 
 #include <string>
@@ -1719,6 +1715,30 @@ struct executable {
 };
 
 struct task {
+#if defined(TAPA_TARGET_DEVICE_) || defined(TAPA_TARGET_XILINX_HLS_) || defined(__SYNTHESIS__)
+  template <typename Func, typename... Args>
+  task& invoke(Func&&, Args&&...) { return *this; }
+
+  template <internal::InvokeMode mode, typename Func, typename... Args>
+  task& invoke(Func&&, Args&&...) { return *this; }
+
+  template <typename Func, typename... Args, size_t name_size>
+  task& invoke(Func&&, const char (&)[name_size], Args&&...) { return *this; }
+
+  template <internal::InvokeMode mode, typename Func, typename... Args,
+            size_t name_size>
+  task& invoke(Func&&, const char (&)[name_size], Args&&...) { return *this; }
+
+  template <internal::InvokeMode mode, int n, typename Func, typename... Args>
+  task& invoke(Func&&, Args&&...) { return *this; }
+
+  template <internal::InvokeMode mode, int n, typename Func, typename... Args,
+            size_t name_size>
+  task& invoke(Func&&, const char (&)[name_size], Args&&...) { return *this; }
+
+  template <typename Func, typename... Args>
+  task& invoke(Func&&, executable, Args&&...) { return *this; }
+#else
   template <typename Func, typename... Args>
   task& invoke(Func&& func, Args&&... args) {
     return invoke<join>(std::forward<Func>(func), "",
@@ -1764,6 +1784,7 @@ struct task {
     return invoke<join>(std::forward<Func>(func), "",
                         std::forward<Args>(args)...);
   }
+#endif
 };
 
 }  // namespace tapa
@@ -1867,6 +1888,7 @@ tapa/host/mmap.h:13: #include "tapa/host/coroutine.h"
 tapa/host/stream.h:24: #include "tapa/host/coroutine.h"
 tapa/host/tapa.h:23: #include "tapa/host/coroutine.h"
 tapa/host/task.h:9: #include "tapa/host/coroutine.h"
+tapa/xilinx/hls/task.h:15: #if defined(TAPA_TARGET_DEVICE_) || defined(TAPA_TARGET_XILINX_HLS_) || defined(__SYNTHESIS__)
 tapa/xilinx/hls/vec.h:9: // are switched on by `TAPA_TARGET_XILINX_HLS_`, which the synthesis flow
 
 === GREP mutex in headers ===

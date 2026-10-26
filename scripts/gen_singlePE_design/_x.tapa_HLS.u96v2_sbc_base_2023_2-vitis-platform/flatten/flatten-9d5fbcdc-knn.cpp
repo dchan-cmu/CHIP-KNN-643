@@ -136412,8 +136412,7 @@ void krnl_singlePE_Write_Outputs(
     }
   }
 }
-void Knn(tapa::async_mmap<ap_uint<IWIDTH>> &in_0,
-         tapa::async_mmap<ap_uint<32>> &final_out) {
+void Knn(tapa::mmap<ap_uint<IWIDTH>> in_0, tapa::mmap<ap_uint<32>> final_out) {
   // Streams, for the global merge:
   tapa::stream<
       ap_fixed<32, 12 /* NOTE: This includes the sign bit, if applicable.*/,

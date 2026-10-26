@@ -30,17 +30,17 @@ tapac \
       src/knn.cpp
 /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/autobridge/util.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   from pkg_resources import get_distribution
-I1025 20:44:28.294 tapa.util:184] logging level set to INFO
-I1025 20:44:28.294 tapa.tapac:396] Step 0: run_tapacc is enabled.
-I1025 20:44:28.294 tapa.tapac:396] Step 1: run_hls is enabled.
-I1025 20:44:28.295 tapa.tapac:396] Step 2: generate_task_rtl is enabled.
-W1025 20:44:28.295 tapa.tapac:398] Step 3: run_floorplanning is *SKIPPED*.
-I1025 20:44:28.295 tapa.tapac:396] Step 4: generate_top_rtl is enabled.
-I1025 20:44:28.295 tapa.tapac:396] Step 5: pack_xo is enabled.
-I1025 20:44:28.295 tapa.tapac:514] running translated command: `tapa --work-dir=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform analyze --input=src/knn.cpp --top=Knn --cflags=-U__SYNTHESIS__ --cflags=-Wno-invalid-constexpr --cflags=-Wno-error=invalid-constexpr --cflags=-I/usr/bin/../lib/clang/20/include --cflags=-I/usr/include/c++/8 --cflags=-I/usr/include/c++/8/x86_64-redhat-linux --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include --cflags=-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include --cflags=-I/usr/include --cflags=-I/usr/include/x86_64-linux-gnu synth --part-num=xczu3eg-sbva484-1-e --clock-period=5.00 link pack --output=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn.xo --bitstream-script=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn_generate_bitstream.sh`
-I1025 20:44:28.298 tapa.util:184] logging level set to INFO
-I1025 20:44:28.298 tapa.tapa:54] tapa version: 0.0.20240825.1
-I1025 20:44:28.298 tapa.tapa:58] Python recursion limit set to 3000
+I1025 20:46:24.508 tapa.util:184] logging level set to INFO
+I1025 20:46:24.509 tapa.tapac:396] Step 0: run_tapacc is enabled.
+I1025 20:46:24.509 tapa.tapac:396] Step 1: run_hls is enabled.
+I1025 20:46:24.509 tapa.tapac:396] Step 2: generate_task_rtl is enabled.
+W1025 20:46:24.509 tapa.tapac:398] Step 3: run_floorplanning is *SKIPPED*.
+I1025 20:46:24.509 tapa.tapac:396] Step 4: generate_top_rtl is enabled.
+I1025 20:46:24.509 tapa.tapac:396] Step 5: pack_xo is enabled.
+I1025 20:46:24.510 tapa.tapac:514] running translated command: `tapa --work-dir=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform analyze --input=src/knn.cpp --top=Knn --cflags=-U__SYNTHESIS__ --cflags=-Wno-invalid-constexpr --cflags=-Wno-error=invalid-constexpr --cflags=-I/usr/bin/../lib/clang/20/include --cflags=-I/usr/include/c++/8 --cflags=-I/usr/include/c++/8/x86_64-redhat-linux --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include --cflags=-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include --cflags=-I/usr/include --cflags=-I/usr/include/x86_64-linux-gnu synth --part-num=xczu3eg-sbva484-1-e --clock-period=5.00 link pack --output=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn.xo --bitstream-script=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn_generate_bitstream.sh`
+I1025 20:46:24.512 tapa.util:184] logging level set to INFO
+I1025 20:46:24.512 tapa.tapa:54] tapa version: 0.0.20240825.1
+I1025 20:46:24.512 tapa.tapa:58] Python recursion limit set to 3000
 In file included from src/knn.cpp:1:
 In file included from src/knn.h:1:
 In file included from /afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include/ap_int.h:10:
@@ -55,10 +55,8 @@ In file included from /afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_
    24 | #pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
       |                                ^
 2 warnings generated.
-W1025 20:44:37.686 tapa.util:129] not adding vendor include paths; please update FRT
-I1025 20:44:37.686 tapa.steps.analyze:265] Running tapacc command: /scratch/643_vitis_dchan2/CHIP-KNN-643/.tapa/usr/bin/tapacc ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp -top Knn -- -U__SYNTHESIS__ -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/usr/bin/../lib/clang/20/include -I/usr/include/c++/8 -I/usr/include/c++/8/x86_64-redhat-linux -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -I/usr/include -I/usr/include/x86_64-linux-gnu -std=c++17 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -stdlib=libc++ -isystem /usr/lib/llvm-22/include/c++/v1/ -isystem /usr/include/clang/22/include/ -isystem /usr/lib/clang/22/include/
-=== Running tapacc.real under GDB ===
-warning: Loadable section ".note.gnu.property" outside of ELF segments
+W1025 20:46:33.889 tapa.util:129] not adding vendor include paths; please update FRT
+I1025 20:46:33.890 tapa.steps.analyze:265] Running tapacc command: /scratch/643_vitis_dchan2/CHIP-KNN-643/.tapa/usr/bin/tapacc ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp -top Knn -- -U__SYNTHESIS__ -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/usr/bin/../lib/clang/20/include -I/usr/include/c++/8 -I/usr/include/c++/8/x86_64-redhat-linux -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -I/usr/include -I/usr/include/x86_64-linux-gnu -std=c++17 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -stdlib=libc++ -isystem /usr/lib/llvm-22/include/c++/v1/ -isystem /usr/include/clang/22/include/ -isystem /usr/lib/clang/22/include/
 /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:4027:13: warning: inline namespace reopened as a non-inline namespace [-Winline-namespace-reopened-noninline]
  4027 |   namespace __cxx11 {
       |             ^
@@ -3965,9 +3963,8 @@ warning: Loadable section ".note.gnu.property" outside of ELF segments
  131586 |   memcpy(&val, bytes.data(), sizeof(val));
         |          ^
         |          (void*)
-No stack.
-E1025 20:44:49.637 tapa.steps.analyze:196] command ('/scratch/643_vitis_dchan2/CHIP-KNN-643/.tapa/usr/bin/tapacc', './_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp', '-top', 'Knn', '--', '-U__SYNTHESIS__', '-Wno-invalid-constexpr', '-Wno-error=invalid-constexpr', '-I/usr/bin/../lib/clang/20/include', '-I/usr/include/c++/8', '-I/usr/include/c++/8/x86_64-redhat-linux', '-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include', '-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include', '-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include', '-I/usr/include', '-I/usr/include/x86_64-linux-gnu', '-std=c++17', '-I', '/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src', '-stdlib=libc++', '-isystem', '/usr/lib/llvm-22/include/c++/v1/', '-isystem', '/usr/include/clang/22/include/', '-isystem', '/usr/lib/clang/22/include/') failed with exit code 1
-make: *** [Makefile:98: _x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn.xo] Error 1
+E1025 20:46:44.611 tapa.steps.analyze:196] command ('/scratch/643_vitis_dchan2/CHIP-KNN-643/.tapa/usr/bin/tapacc', './_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp', '-top', 'Knn', '--', '-U__SYNTHESIS__', '-Wno-invalid-constexpr', '-Wno-error=invalid-constexpr', '-I/usr/bin/../lib/clang/20/include', '-I/usr/include/c++/8', '-I/usr/include/c++/8/x86_64-redhat-linux', '-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include', '-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include', '-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include', '-I/usr/include', '-I/usr/include/x86_64-linux-gnu', '-std=c++17', '-I', '/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src', '-stdlib=libc++', '-isystem', '/usr/lib/llvm-22/include/c++/v1/', '-isystem', '/usr/include/clang/22/include/', '-isystem', '/usr/lib/clang/22/include/') failed with exit code -11
+make: *** [Makefile:98: _x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn.xo] Error 245
 Data type to use = signed fixed
 
 

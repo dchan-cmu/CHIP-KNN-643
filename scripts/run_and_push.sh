@@ -50,17 +50,112 @@ else:
     print("tapa.core already up to date.")
 ' || true
 
-    STREAM_H="$REPO_ROOT/.tapa/usr/include/tapa/xilinx/hls/stream.h"
-    if [ -f "$STREAM_H" ]; then
-        sed -i 's|hls::stream<internal::elem_t<T>> _;|mutable hls::stream<internal::elem_t<T>> _;|g' "$STREAM_H"
-        echo "=== [tapa stream patch] Patched stream.h for mutable _ ==="
-    fi
+    python3 -c '
+import os
 
-    MMAP_H="$REPO_ROOT/.tapa/usr/include/tapa/xilinx/hls/mmap.h"
-    if [ -f "$MMAP_H" ]; then
-        sed -i 's|hls::stream<addr_t> _;|mutable hls::stream<addr_t> _;|g' "$MMAP_H"
-        echo "=== [tapa mmap patch] Patched mmap.h for mutable _ ==="
-    fi
+repo = os.environ.get("REPO_ROOT", "/scratch/643_vitis_dchan2/CHIP-KNN-643")
+stream_h = os.path.join(repo, ".tapa/usr/include/tapa/xilinx/hls/stream.h")
+if os.path.isfile(stream_h):
+    content = open(stream_h).read()
+    if "mutable hls::stream<internal::elem_t<T>> _;" not in content:
+        content = content.replace("hls::stream<internal::elem_t<T>> _;", "mutable hls::stream<internal::elem_t<T>> _;")
+
+    # Replace read(std::nullptr_t) to call read() directly without read_nb
+    old_read_null = """  T read(std::nullptr_t) {
+#pragma HLS inline
+    internal::elem_t<T> elem;
+    _.read_nb(elem);
+    return elem.val;
+  }"""
+    new_read_null = """  T read(std::nullptr_t) {
+#pragma HLS inline
+    return read();
+  }"""
+    if old_read_null in content:
+        content = content.replace(old_read_null, new_read_null)
+
+    # Replace try_read to use !empty() and read()
+    old_try_read = """  bool try_read(T& value) {
+#pragma HLS inline
+    internal::elem_t<T> elem;
+    const bool is_success = _.read_nb(elem);
+    value = elem.val;
+    return is_success;
+  }"""
+    new_try_read = """  bool try_read(T& value) {
+#pragma HLS inline
+    if (!empty()) {
+      value = read();
+      return true;
+    }
+    return false;
+  }"""
+    if old_try_read in content:
+        content = content.replace(old_try_read, new_try_read)
+
+    # Replace read(bool& is_success)
+    old_read_succ = """  T read(bool& is_success) {
+#pragma HLS inline
+    internal::elem_t<T> elem;
+    is_success = _.read_nb(elem);
+    return elem.val;
+  }"""
+    new_read_succ = """  T read(bool& is_success) {
+#pragma HLS inline
+    is_success = !empty();
+    if (is_success) {
+      return read();
+    }
+    return T{};
+  }"""
+    if old_read_succ in content:
+        content = content.replace(old_read_succ, new_read_succ)
+
+    # Replace try_write to use !full() and write()
+    old_try_write = """  bool try_write(const T& value) {
+#pragma HLS inline
+    return _.write_nb({value, false});
+  }"""
+    new_try_write = """  bool try_write(const T& value) {
+#pragma HLS inline
+    if (!full()) {
+      write(value);
+      return true;
+    }
+    return false;
+  }"""
+    if old_try_write in content:
+        content = content.replace(old_try_write, new_try_write)
+
+    with open(stream_h, "w") as f:
+        f.write(content)
+    print("Successfully patched tapa stream.h!")
+
+mmap_h = os.path.join(repo, ".tapa/usr/include/tapa/xilinx/hls/mmap.h")
+if os.path.isfile(mmap_h):
+    content = open(mmap_h).read()
+    if "mutable hls::stream<addr_t> _;" not in content:
+        content = content.replace("hls::stream<addr_t> _;", "mutable hls::stream<addr_t> _;")
+
+    old_addr_try_write = """  bool try_write(const addr_t& value) {
+#pragma HLS inline
+    return _.write_nb(offset + value * sizeof(T));
+  }"""
+    new_addr_try_write = """  bool try_write(const addr_t& value) {
+#pragma HLS inline
+    if (!full()) {
+      write(value);
+      return true;
+    }
+    return false;
+  }"""
+    if old_addr_try_write in content:
+        content = content.replace(old_addr_try_write, new_addr_try_write)
+
+    with open(mmap_h, "w") as f:
+        f.write(content)
+    print("Successfully patched tapa mmap.h!")
+' || true
 
     python3 -c '
 import os, glob
@@ -131,7 +226,20 @@ for arg in "$@"; do
     fi
 done
 
-exec "$REAL_VITIS_HLS" "$@"
+"$REAL_VITIS_HLS" "$@"
+RET=$?
+if [ $RET -ne 0 ]; then
+    echo "=== [vitis_hls wrapper] Vitis HLS failed with exit code $RET ===" >&2
+    for d in /tmp/run-hls-*; do
+        if [ -d "$d" ]; then
+            for rpt in $(find "$d" -name "*.rpt" -o -name "*.log"); do
+                echo "=== LOG FILE: $rpt ===" >&2
+                tail -n 100 "$rpt" >&2
+            done
+        fi
+    done
+fi
+exit $RET
 EOF_VHLS
     chmod +x "$VITIS_HLS_WRAPPER"
 

@@ -1,0 +1,10 @@
+set breakpoint eval-thread off
+break *(_ZNK4tapa2cc13XilinxBackend17RewriteHelperFuncEPKN5clang12FunctionDeclERNS0_8EditSinkE + 296)
+  commands
+    if $rax == 0
+      printf "[tapacc patch] Bypassing null helper function body\n"
+      set $rip = *(_ZNK4tapa2cc13XilinxBackend17RewriteHelperFuncEPKN5clang12FunctionDeclERNS0_8EditSinkE + 418)
+    end
+    continue
+  end
+set breakpoint eval-thread on

@@ -417,13 +417,15 @@ if m:
         full_code = knn_cpp_content
 
         def extract_task_code(task_name, source_code):
-            preamble = '#include "knn.h"\n#define printf(...) ((void)0)\n#define absval(input) ((input) > 0 ? static_cast<DATA_TYPE>(input) : static_cast<DATA_TYPE>(-1 * (input)))\n#define SORT_TO_HIERMERGE_STREAM_ARGS(PE) L0_out_dist_##PE, L0_out_id_##PE\n#define INVOKE_PPS_UNITS_FOR_PE(PE) .invoke(para_partial_sort, PE, compute_to_sort_stream_##PE, SORT_TO_HIERMERGE_STREAM_ARGS(PE) )\n'
-            forward_decls = (
-                "void load_KNN(int debug_PE_ID, tapa::async_mmap<INTERFACE_WIDTH> & searchSpace, tapa::ostream<INTERFACE_WIDTH>& load_to_compute_stream);\n"
-                "void compute_KNN(int debug_pe_idx, int debug_start_idx, tapa::istream<INTERFACE_WIDTH>& load_to_compute_stream, tapa::ostream<DATA_TYPE>& compute_to_sort_stream);\n"
-                "void para_partial_sort(const int PE_idx, tapa::istream<INTERFACE_WIDTH>& compute_to_sort_stream_0, tapa::ostream<DATA_TYPE>& sort_to_hiermerge_dist_stream, tapa::ostream<int>& sort_to_hiermerge_id_stream);\n"
-                "void krnl_singlePE_Write_Outputs(tapa::istream<DATA_TYPE> &in_dist0, tapa::istream<int> &in_id0, tapa::async_mmap<INT32>& output_knn);\n"
-            )
+            preamble = '#include "knn.h"\n#define printf(...) ((void)0)\n#define absval(input) ((input) > 0 ? static_cast<DATA_TYPE>(input) : static_cast<DATA_TYPE>(-1 * (input)))\n'
+            if task_name == "Knn":
+                return preamble + '''
+void Knn(tapa::mmap<INTERFACE_WIDTH> in_0, tapa::mmap<INT32> final_out) {
+#pragma HLS interface m_axi port=in_0 offset=slave bundle=gmem0
+#pragma HLS interface m_axi port=final_out offset=slave bundle=gmem1
+#pragma HLS interface s_axilite port=return bundle=control
+}
+'''
             pattern = rf"(void\s+{re.escape(task_name)}\s*\([^)]*\)\s*\{{.*?^\}})"
             m_fn = re.search(pattern, source_code, re.DOTALL | re.MULTILINE)
             if not m_fn:
@@ -431,11 +433,24 @@ if m:
                 m_fn = re.search(pattern, source_code, re.DOTALL)
             if m_fn:
                 body = m_fn.group(1)
-                if task_name == "para_partial_sort":
+                idx = body.find("{") + 1
+                pragmas = "\n"
+                if task_name == "compute_KNN":
+                    pragmas += "#pragma HLS interface ap_fifo port=load_to_compute_stream\n#pragma HLS interface ap_fifo port=compute_to_sort_stream\n"
+                elif task_name == "para_partial_sort":
+                    pragmas += "#pragma HLS interface ap_fifo port=compute_to_sort_stream\n#pragma HLS interface ap_fifo port=sort_to_hiermerge_dist_stream\n#pragma HLS interface ap_fifo port=sort_to_hiermerge_id_stream\n"
                     swap_m = re.search(r"(#define\s+KNN_SWAP.*?\n(?=#define|void|\n\n))", source_code, re.DOTALL)
                     if swap_m:
-                        body = swap_m.group(1) + "\n" + body
-                return preamble + "\n" + forward_decls + "\n" + body
+                        preamble += "\n" + swap_m.group(1) + "\n"
+                    body = re.sub(r"#ifdef\s+__SYNTHESIS__\s*\n\s*static[^\n]*\n\s*#endif", "", body)
+                    body = body.replace("static DATA_TYPE local_kNearstDist", "DATA_TYPE local_kNearstDist")
+                    body = body.replace("static int local_kNearstId", "int local_kNearstId")
+                elif task_name == "load_KNN":
+                    pragmas += "#pragma HLS interface ap_fifo port=load_to_compute_stream\n#pragma HLS interface ap_fifo port=searchSpace.read_addr\n#pragma HLS interface ap_fifo port=searchSpace.read_data\n#pragma HLS interface ap_fifo port=searchSpace.write_addr\n#pragma HLS interface ap_fifo port=searchSpace.write_data\n#pragma HLS interface ap_fifo port=searchSpace.write_resp\n#pragma HLS disaggregate variable=searchSpace\n"
+                elif task_name == "krnl_singlePE_Write_Outputs":
+                    pragmas += "#pragma HLS interface ap_fifo port=in_dist0\n#pragma HLS interface ap_fifo port=in_id0\n#pragma HLS interface ap_fifo port=output_knn.read_addr\n#pragma HLS interface ap_fifo port=output_knn.read_data\n#pragma HLS interface ap_fifo port=output_knn.write_addr\n#pragma HLS interface ap_fifo port=output_knn.write_data\n#pragma HLS interface ap_fifo port=output_knn.write_resp\n#pragma HLS disaggregate variable=output_knn\n"
+                body = body[:idx] + pragmas + body[idx:]
+                return preamble + "\n" + body
             return preamble + "\n" + source_code
 
         for tname, tdict in data.get("tasks", {}).items():

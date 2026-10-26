@@ -139,3 +139,5 @@ dmypy.json
 *build_dir.hw*
 *_x.*
 *.prj*
+.tapa/
+install_tapa.sh

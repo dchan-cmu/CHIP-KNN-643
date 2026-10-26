@@ -42,7 +42,11 @@ if [ $RC -ne 0 ]; then
     echo "=== tapacc.real failed with exit code $RC ===" >&2
     if [ $RC -gt 128 ] || [ $RC -lt 0 ]; then
         echo "=== Crash detected ($RC), running GDB to obtain backtrace ===" >&2
-        gdb -batch -ex "run" -ex "bt 50" --args "$DIR/tapacc.real" "${ARGS[@]}" >&2
+        gdb -batch \
+            -ex "handle SIGSEGV stop print" \
+            -ex "run" \
+            -ex "bt 50" \
+            --args "$DIR/tapacc.real" "${ARGS[@]}" >&2
     fi
     exit $RC
 fi

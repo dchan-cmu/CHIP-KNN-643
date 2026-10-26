@@ -1,7 +1,5 @@
 #include "knn.h"
-static inline DATA_TYPE absval(DATA_TYPE input){
-    return (input > 0 ? input : static_cast<DATA_TYPE>(-1*input));
-}
+#define absval(input) ((input) > 0 ? (input) : static_cast<DATA_TYPE>(-1 * (input)))
 
 #define SORT_TO_HIERMERGE_STREAM_ARGS(PE) \
     L0_out_dist_##PE,  \
@@ -190,27 +188,17 @@ void compute_KNN(   int debug_pe_idx,
         compute_to_sort_stream.write(dist_val_outer);
     }
 }
-void swap(DATA_TYPE* a, DATA_TYPE* b, 
-               int* x, int* y)
-{
-#pragma HLS INLINE
+#define swap(a, b, x, y) do { \
+    DATA_TYPE _tmpdist_a = *(a); \
+    DATA_TYPE _tmpdist_b = *(b); \
+    *(b) = _tmpdist_a; \
+    *(a) = _tmpdist_b; \
+    int _tmpid_x = *(x); \
+    int _tmpid_y = *(y); \
+    *(x) = _tmpid_y; \
+    *(y) = _tmpid_x; \
+} while(0)
 
-    DATA_TYPE tmpdist_a;
-    DATA_TYPE tmpdist_b;
-
-    int tmpid_x;
-    int tmpid_y;
-
-    tmpdist_a = *a;
-    tmpdist_b = *b;
-    *b = tmpdist_a;
-    *a = tmpdist_b;
-
-    tmpid_x = *x;
-    tmpid_y = *y;
-    *x = tmpid_y;
-    *y = tmpid_x;
-}
 void para_partial_sort(const int PE_idx,
                        tapa::istream<DATA_TYPE>&     compute_to_sort_stream,
                        tapa::ostream<DATA_TYPE>&     sort_to_hiermerge_dist_stream,
@@ -337,59 +325,6 @@ void para_partial_sort(const int PE_idx,
 
 
 
-
-void write_out_mmap(
-                    tapa::async_mmap<INT32>&    output_knn,
-                    DATA_TYPE                   output_dist,
-                    int                         output_id,
-                    int&                        i_req_output, 
-                    int&                        i_resp_output
-) {
-#pragma HLS INLINE
-    INT32 outval = 0;
-
-    if (i_req_output < 2*TOP && i_req_output >= 0 && 
-        !output_knn.write_addr.full() && 
-        !output_knn.write_data.full()
-    ) {
-        outval.range(DATA_TYPE_TOTAL_SZ-1, 0) = output_dist.range(DATA_TYPE_TOTAL_SZ-1, 0);
-
-        //#ifndef __SYNTHESIS__
-        //printf("KDEBUG: i_req_output = %d. Outval = %f, output_dist = %f.\n",
-        //        i_req_output, outval.to_float(), output_dist.to_float());
-        //#endif
-
-        output_knn.write_addr.try_write(i_req_output);
-        output_knn.write_data.try_write(outval);
-        --i_req_output;
-    }
-
-    if (!output_knn.write_resp.empty()) {
-        i_resp_output += (unsigned int) (output_knn.write_resp.read(nullptr)) + 1;
-    }
-
-    if (i_req_output < 2*TOP && i_req_output >= 0 && 
-        !output_knn.write_addr.full() && 
-        !output_knn.write_data.full()
-    ) {
-        outval = * (INT32*) &output_id;
-
-        //#ifndef __SYNTHESIS__
-        //printf("KDEBUG: i_req_output = %d. Outval = %f, output_id = %d\n",
-        //        i_req_output, outval.to_float(), output_id);
-        //#endif
-
-        output_knn.write_addr.try_write(i_req_output);
-        output_knn.write_data.try_write(outval);
-        --i_req_output;
-    }
-
-    if (!output_knn.write_resp.empty()) {
-        i_resp_output += (unsigned int) (output_knn.write_resp.read(nullptr)) + 1;
-    }
-}
-
-
 void krnl_singlePE_Write_Outputs(
     tapa::istream<DATA_TYPE> &in_dist0,
     tapa::istream<int> &in_id0,
@@ -403,15 +338,25 @@ void krnl_singlePE_Write_Outputs(
         #pragma HLS pipeline II=1
         cur_dist = in_dist0.read();
         cur_id = in_id0.read();
-
-        write_out_mmap(
-            output_knn,
-            cur_dist,
-            cur_id,
-            i_req_output,
-            i_resp_output
-        );
-
+        INT32 outval = 0;
+        if (i_req_output < 2*TOP && i_req_output >= 0 && !output_knn.write_addr.full() && !output_knn.write_data.full()) {
+            outval.range(DATA_TYPE_TOTAL_SZ-1, 0) = cur_dist.range(DATA_TYPE_TOTAL_SZ-1, 0);
+            output_knn.write_addr.try_write(i_req_output);
+            output_knn.write_data.try_write(outval);
+            --i_req_output;
+        }
+        if (!output_knn.write_resp.empty()) {
+            i_resp_output += (unsigned int) (output_knn.write_resp.read(nullptr)) + 1;
+        }
+        if (i_req_output < 2*TOP && i_req_output >= 0 && !output_knn.write_addr.full() && !output_knn.write_data.full()) {
+            outval = * (INT32*) &cur_id;
+            output_knn.write_addr.try_write(i_req_output);
+            output_knn.write_data.try_write(outval);
+            --i_req_output;
+        }
+        if (!output_knn.write_resp.empty()) {
+            i_resp_output += (unsigned int) (output_knn.write_resp.read(nullptr)) + 1;
+        }
     }
 }
 

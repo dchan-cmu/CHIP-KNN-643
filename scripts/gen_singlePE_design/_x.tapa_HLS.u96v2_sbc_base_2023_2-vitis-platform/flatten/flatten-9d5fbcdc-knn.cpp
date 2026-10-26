@@ -138140,19 +138140,6 @@ const int PARTITION_LEN_IN_L =
 // #define STREAM_WIDTH ap_uint<SWIDTH>
 const int NUM_FEATURES_PER_READ = (IWIDTH / 32);
 const int QUERY_FEATURE_RESERVE = (128);
-static inline ap_fixed<32,
-                       12 /* NOTE: This includes the sign bit, if applicable.*/,
-                       AP_RND, AP_SAT>
-absval(ap_fixed<32, 12 /* NOTE: This includes the sign bit, if applicable.*/,
-                AP_RND, AP_SAT>
-           input) {
-  return (
-      input > 0
-          ? input
-          : static_cast<ap_fixed<
-                32, 12 /* NOTE: This includes the sign bit, if applicable.*/,
-                AP_RND, AP_SAT>>(-1 * input));
-}
 /*************************************************/
 /******************** LOADS: *********************/
 /*************************************************/
@@ -138291,7 +138278,15 @@ COMPUTE_DATA:
             cur_data.range(range_idx + (32 - 1), range_idx);
         ap_fixed<32, 12 /* NOTE: This includes the sign bit, if applicable.*/,
                  AP_RND, AP_SAT>
-            delta = absval(sp_dim_item_value - local_Query[querypt_idx]);
+            delta =
+                ((sp_dim_item_value - local_Query[querypt_idx]) > 0
+                     ? (sp_dim_item_value - local_Query[querypt_idx])
+                     : static_cast<ap_fixed<32, 12 /* NOTE: This includes the
+                                                      sign bit, if applicable.*/
+                                            ,
+                                            AP_RND, AP_SAT>>(
+                           -1 *
+                           (sp_dim_item_value - local_Query[querypt_idx])));
         dist_val_inner += delta;
       }
       dist_val_outer += dist_val_inner;
@@ -138305,29 +138300,6 @@ COMPUTE_DATA:
     // #endif
     compute_to_sort_stream.write(dist_val_outer);
   }
-}
-void swap(ap_fixed<32, 12 /* NOTE: This includes the sign bit, if applicable.*/,
-                   AP_RND, AP_SAT> *a,
-          ap_fixed<32, 12 /* NOTE: This includes the sign bit, if applicable.*/,
-                   AP_RND, AP_SAT> *b,
-          int *x, int *y) {
-#pragma HLS INLINE
-  ap_fixed<32, 12 /* NOTE: This includes the sign bit, if applicable.*/, AP_RND,
-           AP_SAT>
-      tmpdist_a;
-  ap_fixed<32, 12 /* NOTE: This includes the sign bit, if applicable.*/, AP_RND,
-           AP_SAT>
-      tmpdist_b;
-  int tmpid_x;
-  int tmpid_y;
-  tmpdist_a = *a;
-  tmpdist_b = *b;
-  *b = tmpdist_a;
-  *a = tmpdist_b;
-  tmpid_x = *x;
-  tmpid_y = *y;
-  *x = tmpid_y;
-  *y = tmpid_x;
 }
 void para_partial_sort(
     const int PE_idx,
@@ -138387,8 +138359,20 @@ SORT_LOOP:
 #pragma HLS DEPENDENCE variable = "local_kNearstDist" inter false
 #pragma HLS DEPENDENCE variable = "local_kNearstId" inter false
       if (local_kNearstDist[ii] < local_kNearstDist[ii + 1]) {
-        swap(&local_kNearstDist[ii], &local_kNearstDist[ii + 1],
-             &local_kNearstId[ii], &local_kNearstId[ii + 1]);
+        do {
+          ap_fixed<32, 12 /* NOTE: This includes the sign bit, if applicable.*/,
+                   AP_RND, AP_SAT>
+              _tmpdist_a = *(&local_kNearstDist[ii]);
+          ap_fixed<32, 12 /* NOTE: This includes the sign bit, if applicable.*/,
+                   AP_RND, AP_SAT>
+              _tmpdist_b = *(&local_kNearstDist[ii + 1]);
+          *(&local_kNearstDist[ii + 1]) = _tmpdist_a;
+          *(&local_kNearstDist[ii]) = _tmpdist_b;
+          int _tmpid_x = *(&local_kNearstId[ii]);
+          int _tmpid_y = *(&local_kNearstId[ii + 1]);
+          *(&local_kNearstId[ii]) = _tmpid_y;
+          *(&local_kNearstId[ii + 1]) = _tmpid_x;
+        } while (0);
       }
     }
     // compare and swap even
@@ -138397,8 +138381,20 @@ SORT_LOOP:
 #pragma HLS DEPENDENCE variable = "local_kNearstDist" inter false
 #pragma HLS DEPENDENCE variable = "local_kNearstId" inter false
       if (local_kNearstDist[ii] > local_kNearstDist[ii - 1]) {
-        swap(&local_kNearstDist[ii], &local_kNearstDist[ii - 1],
-             &local_kNearstId[ii], &local_kNearstId[ii - 1]);
+        do {
+          ap_fixed<32, 12 /* NOTE: This includes the sign bit, if applicable.*/,
+                   AP_RND, AP_SAT>
+              _tmpdist_a = *(&local_kNearstDist[ii]);
+          ap_fixed<32, 12 /* NOTE: This includes the sign bit, if applicable.*/,
+                   AP_RND, AP_SAT>
+              _tmpdist_b = *(&local_kNearstDist[ii - 1]);
+          *(&local_kNearstDist[ii - 1]) = _tmpdist_a;
+          *(&local_kNearstDist[ii]) = _tmpdist_b;
+          int _tmpid_x = *(&local_kNearstId[ii]);
+          int _tmpid_y = *(&local_kNearstId[ii - 1]);
+          *(&local_kNearstId[ii]) = _tmpid_y;
+          *(&local_kNearstId[ii - 1]) = _tmpid_x;
+        } while (0);
       }
     }
   }
@@ -138422,43 +138418,6 @@ REINITIALIZATION_LOOP:
     local_kNearstDist[j] = (2047.9999990463257);
   }
 }
-void write_out_mmap(
-    tapa::async_mmap<ap_uint<32>> &output_knn,
-    ap_fixed<32, 12 /* NOTE: This includes the sign bit, if applicable.*/,
-             AP_RND, AP_SAT>
-        output_dist,
-    int output_id, int &i_req_output, int &i_resp_output) {
-#pragma HLS INLINE
-  ap_uint<32> outval = 0;
-  if (i_req_output < 2 * TOP && i_req_output >= 0 &&
-      !output_knn.write_addr.full() && !output_knn.write_data.full()) {
-    outval.range(32 - 1, 0) = output_dist.range(32 - 1, 0);
-    // #ifndef __SYNTHESIS__
-    // printf("KDEBUG: i_req_output = %d. Outval = %f, output_dist = %f.\n",
-    //         i_req_output, outval.to_float(), output_dist.to_float());
-    // #endif
-    output_knn.write_addr.try_write(i_req_output);
-    output_knn.write_data.try_write(outval);
-    --i_req_output;
-  }
-  if (!output_knn.write_resp.empty()) {
-    i_resp_output += (unsigned int)(output_knn.write_resp.read(nullptr)) + 1;
-  }
-  if (i_req_output < 2 * TOP && i_req_output >= 0 &&
-      !output_knn.write_addr.full() && !output_knn.write_data.full()) {
-    outval = *(ap_uint<32> *)&output_id;
-    // #ifndef __SYNTHESIS__
-    // printf("KDEBUG: i_req_output = %d. Outval = %f, output_id = %d\n",
-    //         i_req_output, outval.to_float(), output_id);
-    // #endif
-    output_knn.write_addr.try_write(i_req_output);
-    output_knn.write_data.try_write(outval);
-    --i_req_output;
-  }
-  if (!output_knn.write_resp.empty()) {
-    i_resp_output += (unsigned int)(output_knn.write_resp.read(nullptr)) + 1;
-  }
-}
 void krnl_singlePE_Write_Outputs(
     tapa::istream<
         ap_fixed<32, 12 /* NOTE: This includes the sign bit, if applicable.*/,
@@ -138474,7 +138433,27 @@ void krnl_singlePE_Write_Outputs(
 #pragma HLS pipeline II = 1
     cur_dist = in_dist0.read();
     cur_id = in_id0.read();
-    write_out_mmap(output_knn, cur_dist, cur_id, i_req_output, i_resp_output);
+    ap_uint<32> outval = 0;
+    if (i_req_output < 2 * TOP && i_req_output >= 0 &&
+        !output_knn.write_addr.full() && !output_knn.write_data.full()) {
+      outval.range(32 - 1, 0) = cur_dist.range(32 - 1, 0);
+      output_knn.write_addr.try_write(i_req_output);
+      output_knn.write_data.try_write(outval);
+      --i_req_output;
+    }
+    if (!output_knn.write_resp.empty()) {
+      i_resp_output += (unsigned int)(output_knn.write_resp.read(nullptr)) + 1;
+    }
+    if (i_req_output < 2 * TOP && i_req_output >= 0 &&
+        !output_knn.write_addr.full() && !output_knn.write_data.full()) {
+      outval = *(ap_uint<32> *)&cur_id;
+      output_knn.write_addr.try_write(i_req_output);
+      output_knn.write_data.try_write(outval);
+      --i_req_output;
+    }
+    if (!output_knn.write_resp.empty()) {
+      i_resp_output += (unsigned int)(output_knn.write_resp.read(nullptr)) + 1;
+    }
   }
 }
 void Knn(tapa::mmap<ap_uint<IWIDTH>> in_0, tapa::mmap<ap_uint<32>> final_out) {

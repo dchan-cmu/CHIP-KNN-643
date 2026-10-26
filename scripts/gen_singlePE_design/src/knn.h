@@ -1,4 +1,3 @@
-#pragma once
 #include "ap_int.h" 
 #include <tapa.h>
 #define printf(...) ((void)0)

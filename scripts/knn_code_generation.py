@@ -344,9 +344,9 @@ def GeneratePartialKNN_Header(_core_krnl_file, _knn_config):
                 _core_krnl_file.append(',  \\' + "\n")
 
     elif (_knn_config.using_intra_pe_merge == 0):
-        _core_krnl_file.append('#define SORT_TO_HIERMERGE_STREAM_ARGS(PE) \\' + "\n")
-        _core_krnl_file.append('    L0_out_dist[PE],  \\' + "\n")
-        _core_krnl_file.append('    L0_out_id[PE]' + "\n")
+        _core_krnl_file.append('#define SORT_TO_HIERMERGE_STREAM_ARGS(PE) \\\n')
+        _core_krnl_file.append('    L0_out_dist_##PE,  \\\n')
+        _core_krnl_file.append('    L0_out_id_##PE\n')
 
     else:
         print("FATAL ERROR: In defining SORT_TO_HIERMERGE_STREAM_ARGS.")
@@ -395,8 +395,8 @@ def GeneratePartialKNN_Header(_core_krnl_file, _knn_config):
                     'sort_to_hiermerge_id_stream_##PE  [0], ' +
                     'sort_to_hiermerge_dist_stream_##PE[1], ' +
                     'sort_to_hiermerge_id_stream_##PE  [1], ' +
-                    'L0_out_dist[PE],'     +
-                    'L0_out_id[PE])'      + "\n")
+                    'L0_out_dist_##PE,'     +
+                    'L0_out_id_##PE)'      + "\n")
 
         else:
             _core_krnl_file.append('#define HIERMERGE_STREAM_DECLS(PE) \\' + "\n")
@@ -440,8 +440,8 @@ def GeneratePartialKNN_Header(_core_krnl_file, _knn_config):
                     'PE_##PE##_id_stage'      + str(total_num_hiermerge_layers-1) +  '[0], ' +
                     'PE_##PE##_dist_stage'    + str(total_num_hiermerge_layers-1) +  '[1], ' +
                     'PE_##PE##_id_stage'      + str(total_num_hiermerge_layers-1) +  '[1], ' +
-                    'L0_out_dist[PE],'     +
-                    'L0_out_id[PE])'      + "\n")
+                    'L0_out_dist_##PE,'     +
+                    'L0_out_id_##PE)'      + "\n")
 
         _core_krnl_file.append('' + "\n")
         _core_krnl_file.append('' + "\n")
@@ -2020,19 +2020,18 @@ def Generate_KNN_TopLevel(_core_krnl_file, _num_PE, _knn_config):
     
     _core_krnl_file.append('    // Streams, for the global merge:' + "\n")
     for (layer_idx, num_arr) in enumerate(num_arr_per_globalsort_layer):
-        if (layer_idx == 0):
-            _core_krnl_file.append('    tapa::streams<DATA_TYPE, ' + str(num_arr) + ', TOP> L' + str(layer_idx) + '_out_dist;' + "\n")
-            _core_krnl_file.append('    tapa::streams<int,       ' + str(num_arr) + ', TOP> L' + str(layer_idx) + '_out_id;' + "\n")
-        else:
-            _core_krnl_file.append('    tapa::streams<DATA_TYPE, ' + str(num_arr) + ', 2>   L' + str(layer_idx) + '_out_dist;' + "\n")
-            _core_krnl_file.append('    tapa::streams<int,       ' + str(num_arr) + ', 2>   L' + str(layer_idx) + '_out_id;' + "\n")
+        depth = "TOP" if layer_idx == 0 else "2"
+        for arr_idx in range(num_arr):
+            _core_krnl_file.append('    tapa::stream<DATA_TYPE, ' + depth + '> L' + str(layer_idx) + '_out_dist_' + str(arr_idx) + ';\n')
+            _core_krnl_file.append('    tapa::stream<int,       ' + depth + '> L' + str(layer_idx) + '_out_id_' + str(arr_idx) + ';\n')
 
 
     ###################################
     #### Generating the load/compute/sort/intraPEmerge
     #### Fully-task-parallel, streaming implementation:
     _core_krnl_file.append('    // Streams, for load->compute->sort:' + "\n")
-    _core_krnl_file.append('    tapa::streams<INTERFACE_WIDTH, NUM_PE, 2>           load_to_compute_stream;' + "\n")
+    for PE_idx in range(_num_PE):
+        _core_krnl_file.append('    tapa::stream<INTERFACE_WIDTH, 2>           load_to_compute_stream_' + str(PE_idx) + ';\n')
     for PE_idx in range(_num_PE):
         if (_knn_config.using_Ltypes == 1):
             _core_krnl_file.append('    tapa::streams<LOCAL_DIST_DTYPE, NUM_SEGMENTS, 2>    compute_to_sort_stream_' + str(PE_idx) + ';' + "\n")
@@ -2057,11 +2056,11 @@ def Generate_KNN_TopLevel(_core_krnl_file, _num_PE, _knn_config):
 
     _core_krnl_file.append('    tapa::task()' + "\n")
     for PE_idx in range(_num_PE):
-        _core_krnl_file.append('        .invoke( load_KNN, ' + str(PE_idx) + ', in_' + str(PE_idx) + ', load_to_compute_stream[' + str(PE_idx) + '])' + "\n")
+        _core_krnl_file.append('        .invoke( load_KNN, ' + str(PE_idx) + ', in_' + str(PE_idx) + ', load_to_compute_stream_' + str(PE_idx) + ')\n')
     _core_krnl_file.append('' + "\n")
     for PE_idx in range(_num_PE):
         _core_krnl_file.append('        .invoke( compute_KNN, ' + str(PE_idx) + ', NUM_SP_PTS_PER_KRNL_PADDED*' + str(PE_idx) +
-                                        ', load_to_compute_stream[' + str(PE_idx) + ' ], compute_to_sort_stream_' + str(PE_idx) + '  )' + "\n")
+                                        ', load_to_compute_stream_' + str(PE_idx) + ', compute_to_sort_stream_' + str(PE_idx) + '  )\n')
     _core_krnl_file.append('' + "\n")
     for PE_idx in range(_num_PE):
         _core_krnl_file.append('        INVOKE_PPS_UNITS_FOR_PE(' + str(PE_idx) + ')' + "\n")
@@ -2097,22 +2096,22 @@ def Generate_KNN_TopLevel(_core_krnl_file, _num_PE, _knn_config):
                 if (grouping == 3):
                     _core_krnl_file.append('        .invoke( merge_trio_streams' + FINAL_string + ', ')
                     _core_krnl_file.append('-1, ' + str(src_arr_idx) + ', ' + str(layer_idx-1) + ', ')
-                    _core_krnl_file.append('L' + str(layer_idx) + '_out_dist[' + str(src_arr_idx+0) + '], L' + str(layer_idx) + '_out_id[' + str(src_arr_idx+0) + '], ')
-                    _core_krnl_file.append('L' + str(layer_idx) + '_out_dist[' + str(src_arr_idx+1) + '], L' + str(layer_idx) + '_out_id[' + str(src_arr_idx+1) + '], ')
-                    _core_krnl_file.append('L' + str(layer_idx) + '_out_dist[' + str(src_arr_idx+2) + '], L' + str(layer_idx) + '_out_id[' + str(src_arr_idx+2) + '], ')
+                    _core_krnl_file.append('L' + str(layer_idx) + '_out_dist_' + str(src_arr_idx+0) + ', L' + str(layer_idx) + '_out_id_' + str(src_arr_idx+0) + ', ')
+                    _core_krnl_file.append('L' + str(layer_idx) + '_out_dist_' + str(src_arr_idx+1) + ', L' + str(layer_idx) + '_out_id_' + str(src_arr_idx+1) + ', ')
+                    _core_krnl_file.append('L' + str(layer_idx) + '_out_dist_' + str(src_arr_idx+2) + ', L' + str(layer_idx) + '_out_id_' + str(src_arr_idx+2) + ', ')
                     if (is_final_layer):
                         _core_krnl_file.append('final_out);' + "\n")
                     else:
-                        _core_krnl_file.append('L' + str(layer_idx+1) + '_out_dist[' + str(dst_arr_idx) + '], L' + str(layer_idx+1) + '_out_id[' + str(dst_arr_idx) + '] )' + "\n")
+                        _core_krnl_file.append('L' + str(layer_idx+1) + '_out_dist_' + str(dst_arr_idx) + ', L' + str(layer_idx+1) + '_out_id_' + str(dst_arr_idx) + ' )' + "\n")
                 elif (grouping == 2):
                     _core_krnl_file.append('        .invoke( merge_dual_streams' + FINAL_string + ', ')
                     _core_krnl_file.append('-1, ' + str(src_arr_idx) + ', ' + str(layer_idx-1) + ', ')
-                    _core_krnl_file.append('L' + str(layer_idx) + '_out_dist[' + str(src_arr_idx+0) + '], L' + str(layer_idx) + '_out_id[' + str(src_arr_idx+0) + '], ')
-                    _core_krnl_file.append('L' + str(layer_idx) + '_out_dist[' + str(src_arr_idx+1) + '], L' + str(layer_idx) + '_out_id[' + str(src_arr_idx+1) + '], ')
+                    _core_krnl_file.append('L' + str(layer_idx) + '_out_dist_' + str(src_arr_idx+0) + ', L' + str(layer_idx) + '_out_id_' + str(src_arr_idx+0) + ', ')
+                    _core_krnl_file.append('L' + str(layer_idx) + '_out_dist_' + str(src_arr_idx+1) + ', L' + str(layer_idx) + '_out_id_' + str(src_arr_idx+1) + ', ')
                     if (is_final_layer):
                         _core_krnl_file.append('final_out);' + "\n")
                     else:
-                        _core_krnl_file.append('L' + str(layer_idx+1) + '_out_dist[' + str(dst_arr_idx) + '], L' + str(layer_idx+1) + '_out_id[' + str(dst_arr_idx) + '] )' + "\n")
+                        _core_krnl_file.append('L' + str(layer_idx+1) + '_out_dist_' + str(dst_arr_idx) + ', L' + str(layer_idx+1) + '_out_id_' + str(dst_arr_idx) + '] )' + "\n")
                 else:
                     msg = "SOMETHING HAS GONE WRONG. Grouping = " + str(grouping)
                     print(msg)
@@ -2124,7 +2123,7 @@ def Generate_KNN_TopLevel(_core_krnl_file, _num_PE, _knn_config):
 
 
     if (not using_interPE_merge):
-        _core_krnl_file.append('        .invoke( krnl_singlePE_Write_Outputs,  L0_out_dist[0],  L0_out_id[0],' + "\n")
+        _core_krnl_file.append('        .invoke( krnl_singlePE_Write_Outputs,  L0_out_dist_0,  L0_out_id_0,\n')
         _core_krnl_file.append('                                               final_out);' + "\n")
 
     _core_krnl_file.append('}' + "\n")

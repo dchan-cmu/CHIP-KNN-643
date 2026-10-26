@@ -68,12 +68,25 @@ RAW_OUT=$(gdb -q -batch -return-child-result -x "$GDB_PATCH" --args "$DIR/tapacc
 RC=$?
 
 echo "$RAW_OUT" | python3 -c '
-import sys, re
+import sys, re, json, os, glob
 text = sys.stdin.read()
 m = re.search(r"(\{.*\"schema_version\".*\})", text, re.DOTALL)
 if m:
     sys.stderr.write(text[:m.start()] + text[m.end():])
-    sys.stdout.write(m.group(1))
+    try:
+        data = json.loads(m.group(1))
+        for tname, tdict in data.get("tasks", {}).items():
+            if "code" not in tdict:
+                emit_files = glob.glob(f"/tmp/tapa_emit/*{tname}*.cpp") + glob.glob(f"/tmp/tapa_emit/{tname}*")
+                if emit_files and os.path.isfile(emit_files[0]):
+                    with open(emit_files[0]) as ef:
+                        tdict["code"] = ef.read()
+                else:
+                    tdict["code"] = ""
+        sys.stdout.write(json.dumps(data))
+    except Exception as e:
+        sys.stderr.write(f"Error patching JSON: {e}\n")
+        sys.stdout.write(m.group(1))
     sys.exit(0)
 else:
     sys.stderr.write(text)

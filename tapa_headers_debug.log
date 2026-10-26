@@ -1611,13 +1611,11 @@ struct seq {
 
 
 --- tapa/xilinx/hls/mmap.h ---
-// Copyright (c) 2024 RapidStream Design Automation, Inc. and contributors.
-// All rights reserved. The contributor(s) of this file has/have agreed to the
-// RapidStream Contributor License Agreement.
-
 #pragma once
 
 #include <cstddef>
+#include <cstdint>
+#include <hls_stream.h>
 
 #include "tapa/xilinx/hls/stream.h"
 
@@ -1627,6 +1625,9 @@ namespace internal {
 template <typename addr_t, typename T>
 class addr_ostream {
  public:
+  addr_ostream() : offset(0) {}
+  addr_ostream(addr_t off) : offset(off) {}
+
   bool full() const {
 #pragma HLS inline
     return _.full();
@@ -1687,10 +1688,6 @@ class hmap;
 
 
 --- tapa/xilinx/hls/stream.h ---
-// Copyright (c) 2024 RapidStream Design Automation, Inc. and contributors.
-// All rights reserved. The contributor(s) of this file has/have agreed to the
-// RapidStream Contributor License Agreement.
-
 #pragma once
 
 #include "tapa/base/stream.h"
@@ -1715,59 +1712,19 @@ class tapa_stream {
     return _.empty();
   }
 
-  bool try_eot(bool& is_eot) const {
+  bool full() const {
 #pragma HLS inline
-    if (!empty()) {
-      internal::elem_t<T> elem;
-      _peek.read_nb(elem);
-      is_eot = elem.eot;
-      return true;
-    }
-    return false;
+    return _.full();
   }
 
-  bool eot(bool& is_success) const {
+  T read() {
 #pragma HLS inline
-    bool eot = false;
-    is_success = try_eot(eot);
-    return eot;
+    return _.read();
   }
 
-  bool try_peek(T& value) const {
+  T read(std::nullptr_t) {
 #pragma HLS inline
-    if (!empty()) {
-      internal::elem_t<T> elem;
-      _peek.read_nb(elem);
-      value = elem.val;
-      return true;
-    }
-    return false;
-  }
-
-  T peek(bool& is_success) const {
-#pragma HLS inline
-    T val;
-    is_success = try_peek(val);
-    return val;
-  }
-
-  T peek(std::nullptr_t) const {
-#pragma HLS inline
-    T val;
-    try_peek(val);
-    return val;
-  }
-
-  T peek(bool& is_success, bool& is_eot) const {
-#pragma HLS inline
-    internal::elem_t<T> peek_val;
-    is_success = !empty() && _peek.read_nb(peek_val);
-    if (is_success) {
-      is_eot = peek_val.eot;
-      return peek_val.val;
-    }
-    is_eot = false;
-    return T{};
+    return _.read();
   }
 
   bool try_read(T& value) {
@@ -1779,17 +1736,6 @@ class tapa_stream {
     return false;
   }
 
-  T read() {
-#pragma HLS inline
-    return _.read().val;
-  }
-
-  tapa_stream& operator>>(T& value) {
-#pragma HLS inline
-    value = read();
-    return *this;
-  }
-
   T read(bool& is_success) {
 #pragma HLS inline
     is_success = !empty();
@@ -1799,28 +1745,9 @@ class tapa_stream {
     return T{};
   }
 
-  T read(std::nullptr_t) {
+  void write(const T& value) {
 #pragma HLS inline
-    return read();
-  }
-
-  bool try_open() {
-#pragma HLS inline
-    internal::elem_t<T> elem;
-    const bool succeeded = _.read_nb(elem);
-    assert(!succeeded || elem.eot);
-    return succeeded;
-  }
-
-  void open() {
-#pragma HLS inline
-    const auto elem = _.read();
-    assert(elem.eot);
-  }
-
-  bool full() const {
-#pragma HLS inline
-    return _.full();
+    _.write(value);
   }
 
   bool try_write(const T& value) {
@@ -1832,9 +1759,10 @@ class tapa_stream {
     return false;
   }
 
-  void write(const T& value) {
+  tapa_stream& operator>>(T& value) {
 #pragma HLS inline
-    _.write({value, false});
+    value = read();
+    return *this;
   }
 
   tapa_stream& operator<<(const T& value) {
@@ -1843,23 +1771,40 @@ class tapa_stream {
     return *this;
   }
 
-  bool try_close() {
+  bool try_eot(bool& is_eot) const {
 #pragma HLS inline
-    internal::elem_t<T> elem;
-    elem.val = {};
-    elem.eot = true;
-    return _.write_nb(elem);
+    is_eot = false;
+    return !empty();
   }
 
-  void close() {
+  bool eot(bool& is_success) const {
 #pragma HLS inline
-    internal::elem_t<T> elem;
-    elem.eot = true;
-    _.write(elem);
+    is_success = false;
+    return false;
   }
 
-  mutable mutable hls::stream<internal::elem_t<T>> _;
-  mutable hls::stream<internal::elem_t<T>> _peek;
+  bool try_peek(T& value) const {
+#pragma HLS inline
+    return false;
+  }
+
+  T peek(bool& is_success) const {
+#pragma HLS inline
+    is_success = false;
+    return T{};
+  }
+
+  T peek(std::nullptr_t) const {
+#pragma HLS inline
+    return T{};
+  }
+
+  bool try_open() { return true; }
+  void open() {}
+  bool try_close() { return true; }
+  void close() {}
+
+  mutable hls::stream<T> _;
 };
 
 template <typename T>

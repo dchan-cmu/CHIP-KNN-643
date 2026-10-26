@@ -9,7 +9,35 @@
     echo "=== 1. Cleaning previous build artifacts ==="
     rm -rf gen_singlePE_design gen_multiPE_design
 
-    echo "=== 1b. Setting up tapacc wrapper with diagnostics ==="
+    echo "=== 1b. Setting up vitis_hls and tapacc wrappers with diagnostics ==="
+    mkdir -p "$REPO_ROOT/.tapa/usr/bin"
+    export PATH="$REPO_ROOT/.tapa/usr/bin:$PATH"
+
+    VITIS_HLS_WRAPPER="$REPO_ROOT/.tapa/usr/bin/vitis_hls"
+    cat << 'EOF_VHLS' > "$VITIS_HLS_WRAPPER"
+#!/bin/bash
+REAL_VITIS_HLS="/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/bin/vitis_hls"
+if [ ! -x "$REAL_VITIS_HLS" ] && [ -n "$XILINX_HLS" ]; then
+    REAL_VITIS_HLS="$XILINX_HLS/bin/vitis_hls"
+fi
+
+for arg in "$@"; do
+    if [ -f "$arg" ]; then
+        sed -i \
+            -e 's|-U__SYNTHESIS__|-D__SYNTHESIS__|g' \
+            -e 's|-I/usr/include/c++/[^ "]*||g' \
+            -e 's|-I/usr/include/x86_64-linux-gnu||g' \
+            -e 's|-I/usr/include||g' \
+            -e 's|-I/usr/bin/[^ "]*||g' \
+            "$arg"
+        echo "=== [vitis_hls wrapper] Filtered $arg ===" >&2
+    fi
+done
+
+exec "$REAL_VITIS_HLS" "$@"
+EOF_VHLS
+    chmod +x "$VITIS_HLS_WRAPPER"
+
     TAPACC_WRAPPER="$REPO_ROOT/.tapa/usr/bin/tapacc"
     if [ -f "$TAPACC_WRAPPER.real" ]; then
         cat << 'EOF_WRAP' > "$TAPACC_WRAPPER"
@@ -151,7 +179,7 @@ EOF_WRAP
 
     echo "=== 4. Pushing Logs to GitHub (branch: debug-run) ==="
     git checkout -B debug-run
-    git add -f run_output.log tapa_HLS_output.log tapacc_wrapper.log scripts/ 2>/dev/null || true
+    git add -f run_output.log tapa_HLS_output.log tapacc_wrapper.log tapa_internals.log scripts/ 2>/dev/null || true
     git commit -m "Auto-upload run logs: $(date -u +'%Y-%m-%d %H:%M:%S UTC')" || true
     git push -u origin debug-run --force
 

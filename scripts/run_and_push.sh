@@ -9,6 +9,38 @@
     echo "=== 1. Cleaning previous build artifacts ==="
     rm -rf gen_singlePE_design gen_multiPE_design
 
+    echo "=== 1b. Setting up tapacc wrapper with diagnostics ==="
+    TAPACC_WRAPPER="$REPO_ROOT/.tapa/usr/bin/tapacc"
+    if [ -f "$TAPACC_WRAPPER.real" ]; then
+        cat << 'EOF_WRAP' > "$TAPACC_WRAPPER"
+#!/bin/bash
+DIR="$(dirname "$(readlink -f "$0")")"
+EMIT_DIR="/tmp/tapa_emit"
+mkdir -p "$EMIT_DIR"
+
+ARGS=()
+INSERTED=0
+for arg in "$@"; do
+    if [ "$arg" = "--" ] && [ $INSERTED -eq 0 ]; then
+        ARGS+=("--emit-dir" "$EMIT_DIR")
+        INSERTED=1
+    fi
+    ARGS+=("$arg")
+done
+if [ $INSERTED -eq 0 ]; then
+    ARGS+=("--emit-dir" "$EMIT_DIR")
+fi
+
+if command -v gdb >/dev/null 2>&1; then
+    echo "=== Running tapacc.real under GDB ===" >&2
+    gdb -batch -return-child-result -ex "run" -ex "bt 50" --args "$DIR/tapacc.real" "${ARGS[@]}"
+else
+    exec "$DIR/tapacc.real" "${ARGS[@]}"
+fi
+EOF_WRAP
+        chmod +x "$TAPACC_WRAPPER"
+    fi
+
     echo "=== 2. Running Single-PE Exploration ==="
     python3 singlePE_design_exploration.py 2>&1 | tee "$REPO_ROOT/run_output.log" || true
 

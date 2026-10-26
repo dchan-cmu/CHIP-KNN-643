@@ -317,9 +317,7 @@ def Generate_Design_Configuration(_N, _D, _Dist, _K, _port_width, _memory_type, 
 
 def GeneratePartialKNN_Header(_core_krnl_file, _knn_config):
     _core_krnl_file.append('#include "knn.h"' + '\n')
-    _core_krnl_file.append('static inline DATA_TYPE absval(DATA_TYPE input){' + '\n')
-    _core_krnl_file.append('    return (input > 0 ? input : static_cast<DATA_TYPE>(-1*input));' + '\n')
-    _core_krnl_file.append('}' + '\n\n')
+    _core_krnl_file.append('#define absval(input) ((input) > 0 ? (input) : static_cast<DATA_TYPE>(-1 * (input)))\n\n')
 
 
     ########################################
@@ -841,28 +839,17 @@ def GeneratePartialKNN_Compute(_core_krnl_file, _knn_config):
 #############################################################
 
 def __GeneratePartialKNN_SortHelpers(_core_krnl_file, _knn_config):
-    ### Naive compare, naive swap
-    _core_krnl_file.append('void swap(DATA_TYPE* a, DATA_TYPE* b, ' + "\n")
-    _core_krnl_file.append('               int* x, int* y)' + "\n")
-    _core_krnl_file.append('{' + "\n")
-    _core_krnl_file.append('#pragma HLS INLINE' + "\n")
-    _core_krnl_file.append('' + "\n")
-    _core_krnl_file.append('    DATA_TYPE tmpdist_a;' + "\n")
-    _core_krnl_file.append('    DATA_TYPE tmpdist_b;' + "\n")
-    _core_krnl_file.append('' + "\n")
-    _core_krnl_file.append('    int tmpid_x;' + "\n")
-    _core_krnl_file.append('    int tmpid_y;' + "\n")
-    _core_krnl_file.append('' + "\n")
-    _core_krnl_file.append('    tmpdist_a = *a;' + "\n")
-    _core_krnl_file.append('    tmpdist_b = *b;' + "\n")
-    _core_krnl_file.append('    *b = tmpdist_a;' + "\n")
-    _core_krnl_file.append('    *a = tmpdist_b;' + "\n")
-    _core_krnl_file.append('' + "\n")
-    _core_krnl_file.append('    tmpid_x = *x;' + "\n")
-    _core_krnl_file.append('    tmpid_y = *y;' + "\n")
-    _core_krnl_file.append('    *x = tmpid_y;' + "\n")
-    _core_krnl_file.append('    *y = tmpid_x;' + "\n")
-    _core_krnl_file.append('}' + "\n")
+    ### Naive compare, naive swap as macro to avoid tapacc helper-func AST rewriting bugs
+    _core_krnl_file.append('#define swap(a, b, x, y) do { \\\n')
+    _core_krnl_file.append('    DATA_TYPE _tmpdist_a = *(a); \\\n')
+    _core_krnl_file.append('    DATA_TYPE _tmpdist_b = *(b); \\\n')
+    _core_krnl_file.append('    *(b) = _tmpdist_a; \\\n')
+    _core_krnl_file.append('    *(a) = _tmpdist_b; \\\n')
+    _core_krnl_file.append('    int _tmpid_x = *(x); \\\n')
+    _core_krnl_file.append('    int _tmpid_y = *(y); \\\n')
+    _core_krnl_file.append('    *(x) = _tmpid_y; \\\n')
+    _core_krnl_file.append('    *(y) = _tmpid_x; \\\n')
+    _core_krnl_file.append('} while(0)\n\n')
 
 
 def __GenerateSwapCalls(_core_krnl_file, _knn_config, indentation, use_D_idx):
@@ -1483,9 +1470,8 @@ def _generate_write_out_mmap(_core_krnl_file, _knn_config):
 
 
 def GeneratePartialKNN_HierMerge(_core_krnl_file, _knn_config):
-    _generate_write_out_mmap(_core_krnl_file, _knn_config)
-
     if ((_knn_config.num_PE > 1) or (_knn_config.using_segments == 1) or (_knn_config.using_Ltypes == 1)):
+        _generate_write_out_mmap(_core_krnl_file, _knn_config)
         _core_krnl_file.append('void merge_dual_streams(' + "\n")
         _core_krnl_file.append('                        int debug_PE_idx,' + "\n")
         _core_krnl_file.append('                        int debug_seg_d2l_idx,' + "\n")
@@ -1959,15 +1945,28 @@ def Generate_singlePE_output_function(_core_krnl_file, _knn_config):
     _core_krnl_file.append('        #pragma HLS pipeline II=1' + "\n")
     _core_krnl_file.append('        cur_dist = in_dist0.read();' + "\n")
     _core_krnl_file.append('        cur_id = in_id0.read();' + "\n")
-    _core_krnl_file.append('' + "\n")
-    _core_krnl_file.append('        write_out_mmap(' + "\n")
-    _core_krnl_file.append('            output_knn,' + "\n")
-    _core_krnl_file.append('            cur_dist,' + "\n")
-    _core_krnl_file.append('            cur_id,' + "\n")
-    _core_krnl_file.append('            i_req_output,' + "\n")
-    _core_krnl_file.append('            i_resp_output' + "\n")
-    _core_krnl_file.append('        );' + "\n")
-    _core_krnl_file.append('' + "\n")
+    _core_krnl_file.append('        INT32 outval = 0;' + "\n")
+    _core_krnl_file.append('        if (i_req_output < 2*TOP && i_req_output >= 0 && !output_knn.write_addr.full() && !output_knn.write_data.full()) {' + "\n")
+    if (_knn_config.using_float):
+        _core_krnl_file.append('            outval = *(INT32*) &cur_dist;' + "\n")
+    else:
+        _core_krnl_file.append('            outval.range(DATA_TYPE_TOTAL_SZ-1, 0) = cur_dist.range(DATA_TYPE_TOTAL_SZ-1, 0);' + "\n")
+    _core_krnl_file.append('            output_knn.write_addr.try_write(i_req_output);' + "\n")
+    _core_krnl_file.append('            output_knn.write_data.try_write(outval);' + "\n")
+    _core_krnl_file.append('            --i_req_output;' + "\n")
+    _core_krnl_file.append('        }' + "\n")
+    _core_krnl_file.append('        if (!output_knn.write_resp.empty()) {' + "\n")
+    _core_krnl_file.append('            i_resp_output += (unsigned int) (output_knn.write_resp.read(nullptr)) + 1;' + "\n")
+    _core_krnl_file.append('        }' + "\n")
+    _core_krnl_file.append('        if (i_req_output < 2*TOP && i_req_output >= 0 && !output_knn.write_addr.full() && !output_knn.write_data.full()) {' + "\n")
+    _core_krnl_file.append('            outval = * (INT32*) &cur_id;' + "\n")
+    _core_krnl_file.append('            output_knn.write_addr.try_write(i_req_output);' + "\n")
+    _core_krnl_file.append('            output_knn.write_data.try_write(outval);' + "\n")
+    _core_krnl_file.append('            --i_req_output;' + "\n")
+    _core_krnl_file.append('        }' + "\n")
+    _core_krnl_file.append('        if (!output_knn.write_resp.empty()) {' + "\n")
+    _core_krnl_file.append('            i_resp_output += (unsigned int) (output_knn.write_resp.read(nullptr)) + 1;' + "\n")
+    _core_krnl_file.append('        }' + "\n")
     _core_krnl_file.append('    }' + "\n")
     _core_krnl_file.append('}' + "\n")
 

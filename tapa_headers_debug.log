@@ -1634,7 +1634,11 @@ class addr_ostream {
 
   bool try_write(const addr_t& value) {
 #pragma HLS inline
-    return _.write_nb(offset + value * sizeof(T));
+    if (!full()) {
+      write(value);
+      return true;
+    }
+    return false;
   }
 
   void write(const addr_t& value) {
@@ -1768,10 +1772,11 @@ class tapa_stream {
 
   bool try_read(T& value) {
 #pragma HLS inline
-    internal::elem_t<T> elem;
-    const bool is_success = _.read_nb(elem);
-    value = elem.val;
-    return is_success;
+    if (!empty()) {
+      value = read();
+      return true;
+    }
+    return false;
   }
 
   T read() {
@@ -1787,16 +1792,16 @@ class tapa_stream {
 
   T read(bool& is_success) {
 #pragma HLS inline
-    internal::elem_t<T> elem;
-    is_success = _.read_nb(elem);
-    return elem.val;
+    is_success = !empty();
+    if (is_success) {
+      return read();
+    }
+    return T{};
   }
 
   T read(std::nullptr_t) {
 #pragma HLS inline
-    internal::elem_t<T> elem;
-    _.read_nb(elem);
-    return elem.val;
+    return read();
   }
 
   bool try_open() {
@@ -1820,7 +1825,11 @@ class tapa_stream {
 
   bool try_write(const T& value) {
 #pragma HLS inline
-    return _.write_nb({value, false});
+    if (!full()) {
+      write(value);
+      return true;
+    }
+    return false;
   }
 
   void write(const T& value) {

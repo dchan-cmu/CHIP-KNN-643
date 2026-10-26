@@ -25,19 +25,19 @@ tapac \
       src/knn.cpp
 /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/autobridge/util.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   from pkg_resources import get_distribution
-I1025 22:57:45.042 tapa.util:184] logging level set to INFO
-I1025 22:57:45.043 tapa.tapac:396] Step 0: run_tapacc is enabled.
-W1025 22:57:45.043 tapa.tapac:398] Step 1: run_hls is *SKIPPED*.
-W1025 22:57:45.043 tapa.tapac:398] Step 2: generate_task_rtl is *SKIPPED*.
-W1025 22:57:45.043 tapa.tapac:398] Step 3: run_floorplanning is *SKIPPED*.
-W1025 22:57:45.043 tapa.tapac:398] Step 4: generate_top_rtl is *SKIPPED*.
-W1025 22:57:45.043 tapa.tapac:398] Step 5: pack_xo is *SKIPPED*.
-I1025 22:57:45.044 tapa.tapac:514] running translated command: `tapa --work-dir=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform analyze --input=src/knn.cpp --top=Knn --cflags=-U__SYNTHESIS__ --cflags=-w --cflags=-Wno-invalid-constexpr --cflags=-Wno-error=invalid-constexpr --cflags=-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src --cflags=-I/usr/bin/../lib/clang/20/include --cflags=-I/usr/include/c++/8 --cflags=-I/usr/include/c++/8/x86_64-redhat-linux --cflags=-I/usr/include --cflags=-I/usr/include/x86_64-linux-gnu --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include --cflags=-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include`
-I1025 22:57:45.045 tapa.util:184] logging level set to INFO
-I1025 22:57:45.045 tapa.tapa:54] tapa version: 0.0.20240825.1
-I1025 22:57:45.046 tapa.tapa:58] Python recursion limit set to 3000
-W1025 22:57:55.673 tapa.util:129] not adding vendor include paths; please update FRT
-I1025 22:57:55.674 tapa.steps.analyze:265] Running tapacc command: /scratch/643_vitis_dchan2/CHIP-KNN-643/.tapa/usr/bin/tapacc ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp -top Knn -- -U__SYNTHESIS__ -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/usr/bin/../lib/clang/20/include -I/usr/include/c++/8 -I/usr/include/c++/8/x86_64-redhat-linux -I/usr/include -I/usr/include/x86_64-linux-gnu -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -std=c++17 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -stdlib=libc++ -isystem /usr/lib/llvm-22/include/c++/v1/ -isystem /usr/include/clang/22/include/ -isystem /usr/lib/clang/22/include/
+I1025 23:04:43.096 tapa.util:184] logging level set to INFO
+I1025 23:04:43.097 tapa.tapac:396] Step 0: run_tapacc is enabled.
+W1025 23:04:43.097 tapa.tapac:398] Step 1: run_hls is *SKIPPED*.
+W1025 23:04:43.097 tapa.tapac:398] Step 2: generate_task_rtl is *SKIPPED*.
+W1025 23:04:43.097 tapa.tapac:398] Step 3: run_floorplanning is *SKIPPED*.
+W1025 23:04:43.097 tapa.tapac:398] Step 4: generate_top_rtl is *SKIPPED*.
+W1025 23:04:43.097 tapa.tapac:398] Step 5: pack_xo is *SKIPPED*.
+I1025 23:04:43.097 tapa.tapac:514] running translated command: `tapa --work-dir=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform analyze --input=src/knn.cpp --top=Knn --cflags=-U__SYNTHESIS__ --cflags=-w --cflags=-Wno-invalid-constexpr --cflags=-Wno-error=invalid-constexpr --cflags=-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src --cflags=-I/usr/bin/../lib/clang/20/include --cflags=-I/usr/include/c++/8 --cflags=-I/usr/include/c++/8/x86_64-redhat-linux --cflags=-I/usr/include --cflags=-I/usr/include/x86_64-linux-gnu --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include --cflags=-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include`
+I1025 23:04:43.099 tapa.util:184] logging level set to INFO
+I1025 23:04:43.099 tapa.tapa:54] tapa version: 0.0.20240825.1
+I1025 23:04:43.099 tapa.tapa:58] Python recursion limit set to 3000
+W1025 23:04:52.888 tapa.util:129] not adding vendor include paths; please update FRT
+I1025 23:04:52.888 tapa.steps.analyze:265] Running tapacc command: /scratch/643_vitis_dchan2/CHIP-KNN-643/.tapa/usr/bin/tapacc ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp -top Knn -- -U__SYNTHESIS__ -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/usr/bin/../lib/clang/20/include -I/usr/include/c++/8 -I/usr/include/c++/8/x86_64-redhat-linux -I/usr/include -I/usr/include/x86_64-linux-gnu -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -std=c++17 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -stdlib=libc++ -isystem /usr/lib/llvm-22/include/c++/v1/ -isystem /usr/include/clang/22/include/ -isystem /usr/lib/clang/22/include/
 Breakpoint 1 at 0xae5072
 Breakpoint 2 at 0xae8634
 warning: Loadable section ".note.gnu.property" outside of ELF segments
@@ -46005,9 +46005,9 @@ Breakpoint 2, 0x000055555603c634 in tapa::cc::AddPragmaToBody(tapa::cc::EditSink
 Breakpoint 1, 0x0000555556039072 in tapa::cc::XilinxBackend::RewriteHelperFunc(clang::FunctionDecl const*, tapa::cc::EditSink&) const ()
 
 Breakpoint 2, 0x000055555603c634 in tapa::cc::AddPragmaToBody(tapa::cc::EditSink&, clang::Stmt const*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) ()
-[Inferior 1 (process 1658286) exited normally]
-I1025 22:58:31.540 tapa.steps.common:92] writing TAPA graph to json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/graph.json`.
-I1025 22:58:31.542 tapa.steps.common:92] writing TAPA settings to json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/settings.json`.
+[Inferior 1 (process 1698309) exited normally]
+I1025 23:05:35.308 tapa.steps.common:92] writing TAPA graph to json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/graph.json`.
+I1025 23:05:35.310 tapa.steps.common:92] writing TAPA settings to json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/settings.json`.
 python3 /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../clean_graph_cflags.py ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/graph.json
 [clean_graph_cflags] Updated ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/graph.json with clean cflags: ['-w', '-Wno-invalid-constexpr', '-Wno-error=invalid-constexpr', '-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src', '-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include', '-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include', '-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include', '-std=c++14', '-I', '/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src', '-D__SYNTHESIS__', '-DTAPA_TARGET_DEVICE_', '-DTAPA_TARGET_XILINX_HLS_', '-D__thread=', '-Dthread_local=']
 tapac \
@@ -46028,22 +46028,22 @@ tapac \
       src/knn.cpp
 /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/autobridge/util.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   from pkg_resources import get_distribution
-I1025 22:58:32.567 tapa.util:184] logging level set to INFO
-W1025 22:58:32.567 tapa.tapac:398] Step 0: run_tapacc is *SKIPPED*.
-I1025 22:58:32.567 tapa.tapac:396] Step 1: run_hls is enabled.
-I1025 22:58:32.567 tapa.tapac:396] Step 2: generate_task_rtl is enabled.
-W1025 22:58:32.567 tapa.tapac:398] Step 3: run_floorplanning is *SKIPPED*.
-I1025 22:58:32.567 tapa.tapac:396] Step 4: generate_top_rtl is enabled.
-I1025 22:58:32.567 tapa.tapac:396] Step 5: pack_xo is enabled.
-I1025 22:58:32.567 tapa.tapac:514] running translated command: `tapa --work-dir=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform synth --part-num=xczu3eg-sbva484-1-e --clock-period=5.00 link pack --output=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn.xo --bitstream-script=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn_generate_bitstream.sh`
-I1025 22:58:32.569 tapa.util:184] logging level set to INFO
-I1025 22:58:32.569 tapa.tapa:54] tapa version: 0.0.20240825.1
-I1025 22:58:32.569 tapa.tapa:58] Python recursion limit set to 3000
-I1025 22:58:32.570 tapa.steps.common:50] loading TAPA graph from json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/graph.json`.
-I1025 22:58:32.572 tapa.steps.common:50] loading TAPA graph from json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/settings.json`.
-I1025 22:58:32.572 tapa.core:181] extracting HLS C++ files
-I1025 22:58:33.055 tapa.core:213] running HLS
-I1025 22:58:33.062 tapa.core:258] spawn 24 workers for parallel HLS synthesis of the tasks
+I1025 23:05:36.458 tapa.util:184] logging level set to INFO
+W1025 23:05:36.458 tapa.tapac:398] Step 0: run_tapacc is *SKIPPED*.
+I1025 23:05:36.458 tapa.tapac:396] Step 1: run_hls is enabled.
+I1025 23:05:36.459 tapa.tapac:396] Step 2: generate_task_rtl is enabled.
+W1025 23:05:36.459 tapa.tapac:398] Step 3: run_floorplanning is *SKIPPED*.
+I1025 23:05:36.459 tapa.tapac:396] Step 4: generate_top_rtl is enabled.
+I1025 23:05:36.459 tapa.tapac:396] Step 5: pack_xo is enabled.
+I1025 23:05:36.459 tapa.tapac:514] running translated command: `tapa --work-dir=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform synth --part-num=xczu3eg-sbva484-1-e --clock-period=5.00 link pack --output=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn.xo --bitstream-script=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn_generate_bitstream.sh`
+I1025 23:05:36.460 tapa.util:184] logging level set to INFO
+I1025 23:05:36.461 tapa.tapa:54] tapa version: 0.0.20240825.1
+I1025 23:05:36.461 tapa.tapa:58] Python recursion limit set to 3000
+I1025 23:05:36.462 tapa.steps.common:50] loading TAPA graph from json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/graph.json`.
+I1025 23:05:36.464 tapa.steps.common:50] loading TAPA graph from json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/settings.json`.
+I1025 23:05:36.464 tapa.core:181] extracting HLS C++ files
+I1025 23:05:36.991 tapa.core:213] running HLS
+I1025 23:05:36.999 tapa.core:258] spawn 24 workers for parallel HLS synthesis of the tasks
 
 ****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.2 (64-bit)
   **** SW Build 4023990 on Oct 11 2023
@@ -46054,18 +46054,73 @@ I1025 22:58:33.062 tapa.core:258] spawn 24 workers for parallel HLS synthesis of
 
 source /afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/scripts/vitis_hls/hls.tcl -notrace
 INFO: [HLS 200-10] Running '/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/bin/unwrapped/lnx64.o/vitis_hls'
-INFO: [HLS 200-10] For user 'dchan2' on host 'ECE005.ece.local.cmu.edu' (Linux_x86_64 version 4.18.0-553.146.1.el8_10.x86_64) on Sun Oct 25 22:58:53 EDT 2026
+INFO: [HLS 200-10] For user 'dchan2' on host 'ECE005.ece.local.cmu.edu' (Linux_x86_64 version 4.18.0-553.146.1.el8_10.x86_64) on Sun Oct 25 23:05:59 EDT 2026
 INFO: [HLS 200-10] On os "Red Hat Enterprise Linux release 8.10 (Ootpa)"
-INFO: [HLS 200-10] In directory '/tmp/run-hls-compute_KNN-5n9xdurx'
+INFO: [HLS 200-10] In directory '/tmp/run-hls-para_partial_sort-kqrbua7l'
 INFO: [HLS 200-2053] The vitis_hls executable is being deprecated. Consider using vitis-run --mode hls --tcl
-Sourcing Tcl script '/tmp/run-hls-compute_KNN-5n9xdurx/commands.tcl'
+Sourcing Tcl script '/tmp/run-hls-para_partial_sort-kqrbua7l/commands.tcl'
 INFO: [HLS 200-1510] Running: open_project project 
-INFO: [HLS 200-10] Creating and opening project '/tmp/run-hls-compute_KNN-5n9xdurx/project'.
+INFO: [HLS 200-10] Creating and opening project '/tmp/run-hls-para_partial_sort-kqrbua7l/project'.
+INFO: [HLS 200-1510] Running: set_top para_partial_sort 
+INFO: [HLS 200-1510] Running: add_files /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp -cflags -std=c++14 -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -std=c++14 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -D__SYNTHESIS__ -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__thread= -Dthread_local= -DTAPA_TARGET_=XILINX_HLS -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__SYNTHESIS__ 
+INFO: [HLS 200-10] Adding design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp' to the project
+INFO: [HLS 200-1510] Running: open_solution para_partial_sort 
+INFO: [HLS 200-10] Creating and opening solution '/tmp/run-hls-para_partial_sort-kqrbua7l/project/para_partial_sort'.
+INFO: [HLS 200-1505] Using default flow_target 'vivado'
+Resolution: For help on HLS 200-1505 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
+INFO: [HLS 200-1510] Running: set_part xczu3eg-sbva484-1-e 
+INFO: [HLS 200-1611] Setting target device to 'xczu3eg-sbva484-1-e'
+INFO: [HLS 200-1510] Running: create_clock -period 5.0 -name default 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 5ns.
+INFO: [HLS 200-1510] Running: config_compile -name_max_length 253 
+INFO: [XFORM 203-1161] The maximum of name length is set to 253.
+INFO: [HLS 200-1510] Running: config_interface -m_axi_addr64 
+INFO: [HLS 200-1510] Running: config_rtl -reset_level low -module_auto_prefix 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.14 seconds. CPU system time: 0.03 seconds. Elapsed time: 0.16 seconds; current allocated memory: 257.934 MB.
+INFO: [HLS 200-10] Analyzing design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp' ... 
+WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/stream.h:14:1)
+WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/stream.h:15:1)
+WARNING: [HLS 207-5566] unexpected pragma argument 'float', expects identifier (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/util.h:58:22)
+WARNING: [HLS 207-3907] duplicate 'mutable' declaration specifier (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/stream.h:172:11)
+WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/task.h:17:1)
+WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/task.h:18:1)
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 15.18 seconds. CPU system time: 2.05 seconds. Elapsed time: 17.46 seconds; current allocated memory: 261.727 MB.
+INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
+INFO: [HLS 200-1995] There were 8,275 instructions in the design after the 'Compile/Link' phase of compilation. See the Design Size Report for more details: /tmp/run-hls-para_partial_sort-kqrbua7l/project/para_partial_sort/syn/report/csynth_design_size.rpt
+ERROR: [HLS 200-1715] Encountered problem during source synthesis
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 21.04 seconds. CPU system time: 2.99 seconds. Elapsed time: 28.16 seconds; current allocated memory: 4.227 MB.
+Pre-synthesis failed.
+    while executing
+"source /tmp/run-hls-para_partial_sort-kqrbua7l/commands.tcl"
+    ("uplevel" body line 1)
+    invoked from within
+"uplevel \#0 [list source $tclfile] "
+
+INFO: [HLS 200-112] Total CPU user time: 26.82 seconds. Total CPU system time: 7.74 seconds. Total elapsed time: 48.25 seconds; peak allocated memory: 262.160 MB.
+INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 23:06:37 2026...
+
+****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.2 (64-bit)
+  **** SW Build 4023990 on Oct 11 2023
+  **** IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+  **** SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source /afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/scripts/vitis_hls/hls.tcl -notrace
+INFO: [HLS 200-10] Running '/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/bin/unwrapped/lnx64.o/vitis_hls'
+INFO: [HLS 200-10] For user 'dchan2' on host 'ECE005.ece.local.cmu.edu' (Linux_x86_64 version 4.18.0-553.146.1.el8_10.x86_64) on Sun Oct 25 23:05:59 EDT 2026
+INFO: [HLS 200-10] On os "Red Hat Enterprise Linux release 8.10 (Ootpa)"
+INFO: [HLS 200-10] In directory '/tmp/run-hls-compute_KNN-1q0w1nk5'
+INFO: [HLS 200-2053] The vitis_hls executable is being deprecated. Consider using vitis-run --mode hls --tcl
+Sourcing Tcl script '/tmp/run-hls-compute_KNN-1q0w1nk5/commands.tcl'
+INFO: [HLS 200-1510] Running: open_project project 
+INFO: [HLS 200-10] Creating and opening project '/tmp/run-hls-compute_KNN-1q0w1nk5/project'.
 INFO: [HLS 200-1510] Running: set_top compute_KNN 
 INFO: [HLS 200-1510] Running: add_files /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp -cflags -std=c++14 -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -std=c++14 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -D__SYNTHESIS__ -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__thread= -Dthread_local= -DTAPA_TARGET_=XILINX_HLS -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__SYNTHESIS__ 
 INFO: [HLS 200-10] Adding design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp' to the project
 INFO: [HLS 200-1510] Running: open_solution compute_KNN 
-INFO: [HLS 200-10] Creating and opening solution '/tmp/run-hls-compute_KNN-5n9xdurx/project/compute_KNN'.
+INFO: [HLS 200-10] Creating and opening solution '/tmp/run-hls-compute_KNN-1q0w1nk5/project/compute_KNN'.
 INFO: [HLS 200-1505] Using default flow_target 'vivado'
 Resolution: For help on HLS 200-1505 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
 INFO: [HLS 200-1510] Running: set_part xczu3eg-sbva484-1-e 
@@ -46077,28 +46132,28 @@ INFO: [XFORM 203-1161] The maximum of name length is set to 253.
 INFO: [HLS 200-1510] Running: config_interface -m_axi_addr64 
 INFO: [HLS 200-1510] Running: config_rtl -reset_level low -module_auto_prefix 
 INFO: [HLS 200-1510] Running: csynth_design 
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.12 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.13 seconds; current allocated memory: 257.941 MB.
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.12 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.15 seconds; current allocated memory: 257.941 MB.
 INFO: [HLS 200-10] Analyzing design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp' ... 
 WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/stream.h:14:1)
 WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/stream.h:15:1)
 WARNING: [HLS 207-5566] unexpected pragma argument 'float', expects identifier (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/util.h:58:22)
-WARNING: [HLS 207-3907] duplicate 'mutable' declaration specifier (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/stream.h:167:11)
+WARNING: [HLS 207-3907] duplicate 'mutable' declaration specifier (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/stream.h:172:11)
 WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/task.h:17:1)
 WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/task.h:18:1)
-INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 15.28 seconds. CPU system time: 2.15 seconds. Elapsed time: 22.03 seconds; current allocated memory: 261.695 MB.
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 15.63 seconds. CPU system time: 1.86 seconds. Elapsed time: 17.84 seconds; current allocated memory: 261.695 MB.
 INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
-INFO: [HLS 200-1995] There were 8,228 instructions in the design after the 'Compile/Link' phase of compilation. See the Design Size Report for more details: /tmp/run-hls-compute_KNN-5n9xdurx/project/compute_KNN/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 8,228 instructions in the design after the 'Compile/Link' phase of compilation. See the Design Size Report for more details: /tmp/run-hls-compute_KNN-1q0w1nk5/project/compute_KNN/syn/report/csynth_design_size.rpt
 ERROR: [HLS 200-1715] Encountered problem during source synthesis
-INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 22.19 seconds. CPU system time: 3.33 seconds. Elapsed time: 40.38 seconds; current allocated memory: 4.668 MB.
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 21.93 seconds. CPU system time: 2.75 seconds. Elapsed time: 28.77 seconds; current allocated memory: 4.668 MB.
 Pre-synthesis failed.
     while executing
-"source /tmp/run-hls-compute_KNN-5n9xdurx/commands.tcl"
+"source /tmp/run-hls-compute_KNN-1q0w1nk5/commands.tcl"
     ("uplevel" body line 1)
     invoked from within
 "uplevel \#0 [list source $tclfile] "
 
-INFO: [HLS 200-112] Total CPU user time: 26.88 seconds. Total CPU system time: 6.9 seconds. Total elapsed time: 57.71 seconds; peak allocated memory: 262.609 MB.
-INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 22:59:40 2026...
+INFO: [HLS 200-112] Total CPU user time: 27.73 seconds. Total CPU system time: 7.35 seconds. Total elapsed time: 48.76 seconds; peak allocated memory: 262.609 MB.
+INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 23:06:37 2026...
 
 ****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.2 (64-bit)
   **** SW Build 4023990 on Oct 11 2023
@@ -46109,73 +46164,18 @@ INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 22:59:40 2026...
 
 source /afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/scripts/vitis_hls/hls.tcl -notrace
 INFO: [HLS 200-10] Running '/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/bin/unwrapped/lnx64.o/vitis_hls'
-INFO: [HLS 200-10] For user 'dchan2' on host 'ECE005.ece.local.cmu.edu' (Linux_x86_64 version 4.18.0-553.146.1.el8_10.x86_64) on Sun Oct 25 22:58:53 EDT 2026
+INFO: [HLS 200-10] For user 'dchan2' on host 'ECE005.ece.local.cmu.edu' (Linux_x86_64 version 4.18.0-553.146.1.el8_10.x86_64) on Sun Oct 25 23:05:59 EDT 2026
 INFO: [HLS 200-10] On os "Red Hat Enterprise Linux release 8.10 (Ootpa)"
-INFO: [HLS 200-10] In directory '/tmp/run-hls-load_KNN-vld92t8y'
+INFO: [HLS 200-10] In directory '/tmp/run-hls-krnl_singlePE_Write_Outputs-2eae270w'
 INFO: [HLS 200-2053] The vitis_hls executable is being deprecated. Consider using vitis-run --mode hls --tcl
-Sourcing Tcl script '/tmp/run-hls-load_KNN-vld92t8y/commands.tcl'
+Sourcing Tcl script '/tmp/run-hls-krnl_singlePE_Write_Outputs-2eae270w/commands.tcl'
 INFO: [HLS 200-1510] Running: open_project project 
-INFO: [HLS 200-10] Creating and opening project '/tmp/run-hls-load_KNN-vld92t8y/project'.
-INFO: [HLS 200-1510] Running: set_top load_KNN 
-INFO: [HLS 200-1510] Running: add_files /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp -cflags -std=c++14 -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -std=c++14 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -D__SYNTHESIS__ -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__thread= -Dthread_local= -DTAPA_TARGET_=XILINX_HLS -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__SYNTHESIS__ 
-INFO: [HLS 200-10] Adding design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp' to the project
-INFO: [HLS 200-1510] Running: open_solution load_KNN 
-INFO: [HLS 200-10] Creating and opening solution '/tmp/run-hls-load_KNN-vld92t8y/project/load_KNN'.
-INFO: [HLS 200-1505] Using default flow_target 'vivado'
-Resolution: For help on HLS 200-1505 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
-INFO: [HLS 200-1510] Running: set_part xczu3eg-sbva484-1-e 
-INFO: [HLS 200-1611] Setting target device to 'xczu3eg-sbva484-1-e'
-INFO: [HLS 200-1510] Running: create_clock -period 5.0 -name default 
-INFO: [SYN 201-201] Setting up clock 'default' with a period of 5ns.
-INFO: [HLS 200-1510] Running: config_compile -name_max_length 253 
-INFO: [XFORM 203-1161] The maximum of name length is set to 253.
-INFO: [HLS 200-1510] Running: config_interface -m_axi_addr64 
-INFO: [HLS 200-1510] Running: config_rtl -reset_level low -module_auto_prefix 
-INFO: [HLS 200-1510] Running: csynth_design 
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.11 seconds. CPU system time: 0.03 seconds. Elapsed time: 0.14 seconds; current allocated memory: 257.926 MB.
-INFO: [HLS 200-10] Analyzing design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp' ... 
-WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/stream.h:14:1)
-WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/stream.h:15:1)
-WARNING: [HLS 207-5566] unexpected pragma argument 'float', expects identifier (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/util.h:58:22)
-WARNING: [HLS 207-3907] duplicate 'mutable' declaration specifier (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/stream.h:167:11)
-WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/task.h:17:1)
-WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/task.h:18:1)
-INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 15.64 seconds. CPU system time: 2.07 seconds. Elapsed time: 22 seconds; current allocated memory: 261.637 MB.
-INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
-INFO: [HLS 200-1995] There were 13,989 instructions in the design after the 'Compile/Link' phase of compilation. See the Design Size Report for more details: /tmp/run-hls-load_KNN-vld92t8y/project/load_KNN/syn/report/csynth_design_size.rpt
-ERROR: [HLS 200-1715] Encountered problem during source synthesis
-INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 22.12 seconds. CPU system time: 3.36 seconds. Elapsed time: 40.42 seconds; current allocated memory: 4.793 MB.
-Pre-synthesis failed.
-    while executing
-"source /tmp/run-hls-load_KNN-vld92t8y/commands.tcl"
-    ("uplevel" body line 1)
-    invoked from within
-"uplevel \#0 [list source $tclfile] "
-
-INFO: [HLS 200-112] Total CPU user time: 26.95 seconds. Total CPU system time: 6.98 seconds. Total elapsed time: 57.79 seconds; peak allocated memory: 262.719 MB.
-INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 22:59:40 2026...
-
-****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.2 (64-bit)
-  **** SW Build 4023990 on Oct 11 2023
-  **** IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
-  **** SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
-    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
-
-source /afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/scripts/vitis_hls/hls.tcl -notrace
-INFO: [HLS 200-10] Running '/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/bin/unwrapped/lnx64.o/vitis_hls'
-INFO: [HLS 200-10] For user 'dchan2' on host 'ECE005.ece.local.cmu.edu' (Linux_x86_64 version 4.18.0-553.146.1.el8_10.x86_64) on Sun Oct 25 22:58:53 EDT 2026
-INFO: [HLS 200-10] On os "Red Hat Enterprise Linux release 8.10 (Ootpa)"
-INFO: [HLS 200-10] In directory '/tmp/run-hls-krnl_singlePE_Write_Outputs-v4o5m4x6'
-INFO: [HLS 200-2053] The vitis_hls executable is being deprecated. Consider using vitis-run --mode hls --tcl
-Sourcing Tcl script '/tmp/run-hls-krnl_singlePE_Write_Outputs-v4o5m4x6/commands.tcl'
-INFO: [HLS 200-1510] Running: open_project project 
-INFO: [HLS 200-10] Creating and opening project '/tmp/run-hls-krnl_singlePE_Write_Outputs-v4o5m4x6/project'.
+INFO: [HLS 200-10] Creating and opening project '/tmp/run-hls-krnl_singlePE_Write_Outputs-2eae270w/project'.
 INFO: [HLS 200-1510] Running: set_top krnl_singlePE_Write_Outputs 
 INFO: [HLS 200-1510] Running: add_files /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp -cflags -std=c++14 -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -std=c++14 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -D__SYNTHESIS__ -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__thread= -Dthread_local= -DTAPA_TARGET_=XILINX_HLS -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__SYNTHESIS__ 
 INFO: [HLS 200-10] Adding design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp' to the project
 INFO: [HLS 200-1510] Running: open_solution krnl_singlePE_Write_Outputs 
-INFO: [HLS 200-10] Creating and opening solution '/tmp/run-hls-krnl_singlePE_Write_Outputs-v4o5m4x6/project/krnl_singlePE_Write_Outputs'.
+INFO: [HLS 200-10] Creating and opening solution '/tmp/run-hls-krnl_singlePE_Write_Outputs-2eae270w/project/krnl_singlePE_Write_Outputs'.
 INFO: [HLS 200-1505] Using default flow_target 'vivado'
 Resolution: For help on HLS 200-1505 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
 INFO: [HLS 200-1510] Running: set_part xczu3eg-sbva484-1-e 
@@ -46187,20 +46187,25 @@ INFO: [XFORM 203-1161] The maximum of name length is set to 253.
 INFO: [HLS 200-1510] Running: config_interface -m_axi_addr64 
 INFO: [HLS 200-1510] Running: config_rtl -reset_level low -module_auto_prefix 
 INFO: [HLS 200-1510] Running: csynth_design 
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.12 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.14 seconds; current allocated memory: 257.934 MB.
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.11 seconds. CPU system time: 0.03 seconds. Elapsed time: 0.14 seconds; current allocated memory: 257.934 MB.
 INFO: [HLS 200-10] Analyzing design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp' ... 
 WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/stream.h:14:1)
 WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/stream.h:15:1)
 WARNING: [HLS 207-5566] unexpected pragma argument 'float', expects identifier (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/util.h:58:22)
-WARNING: [HLS 207-3907] duplicate 'mutable' declaration specifier (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/stream.h:167:11)
+WARNING: [HLS 207-3907] duplicate 'mutable' declaration specifier (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/stream.h:172:11)
 WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/task.h:17:1)
 WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/task.h:18:1)
-INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 16.32 seconds. CPU system time: 1.84 seconds. Elapsed time: 22.02 seconds; current allocated memory: 261.906 MB.
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 15.84 seconds. CPU system time: 1.78 seconds. Elapsed time: 17.85 seconds; current allocated memory: 261.906 MB.
 INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
-INFO: [HLS 200-1995] There were 17,258 instructions in the design after the 'Compile/Link' phase of compilation. See the Design Size Report for more details: /tmp/run-hls-krnl_singlePE_Write_Outputs-v4o5m4x6/project/krnl_singlePE_Write_Outputs/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 17,434 instructions in the design after the 'Compile/Link' phase of compilation. See the Design Size Report for more details: /tmp/run-hls-krnl_singlePE_Write_Outputs-2eae270w/project/krnl_singlePE_Write_Outputs/syn/report/csynth_design_size.rpt
 INFO: [HLS 214-131] Inlining function 'std::atomic_flag::test_and_set(std::memory_order)' into 'hls::stream_globals::start_threads()' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include/hls_stream.h:90:20)
 INFO: [HLS 214-131] Inlining function 'std::__atomic_base<int>::load(std::memory_order) const' into 'std::__atomic_base<int>::operator int() const' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/atomic_base.h:259:16)
 INFO: [HLS 214-131] Inlining function 'std::__atomic_base<int>::store(int, std::memory_order)' into 'std::__atomic_base<int>::operator=(int)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/atomic_base.h:267:2)
+INFO: [HLS 214-131] Inlining function 'tapa::internal::addr_ostream<long, ap_uint<32> >::full() const' into 'tapa::internal::addr_ostream<long, ap_uint<32> >::try_write(long const&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/mmap.h:24:7)
+INFO: [HLS 214-131] Inlining function 'tapa::internal::addr_ostream<long, ap_uint<32> >::write(long const&)' into 'tapa::internal::addr_ostream<long, ap_uint<32> >::try_write(long const&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/mmap.h:25:7)
+INFO: [HLS 214-131] Inlining function 'tapa::tapa_stream<ap_uint<32> >::full() const' into 'tapa::tapa_stream<ap_uint<32> >::try_write(ap_uint<32> const&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/stream.h:139:7)
+INFO: [HLS 214-131] Inlining function 'tapa::tapa_stream<ap_uint<32> >::write(ap_uint<32> const&)' into 'tapa::tapa_stream<ap_uint<32> >::try_write(ap_uint<32> const&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/stream.h:140:7)
+INFO: [HLS 214-131] Inlining function 'tapa::tapa_stream<unsigned char>::read()' into 'tapa::tapa_stream<unsigned char>::read(std::nullptr_t)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/stream.h:115:9)
 INFO: [HLS 214-131] Inlining function 'tapa::tapa_stream<ap_fixed<32, 12, (ap_q_mode)0, (ap_o_mode)0, 0> >::read()' into 'krnl_singlePE_Write_Outputs(tapa::tapa_stream<ap_fixed<32, 12, (ap_q_mode)0, (ap_o_mode)0, 0> >&, tapa::tapa_stream<int>&, tapa::async_mmap<ap_uint<32> >&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:324:22)
 INFO: [HLS 214-131] Inlining function 'tapa::tapa_stream<int>::read()' into 'krnl_singlePE_Write_Outputs(tapa::tapa_stream<ap_fixed<32, 12, (ap_q_mode)0, (ap_o_mode)0, 0> >&, tapa::tapa_stream<int>&, tapa::async_mmap<ap_uint<32> >&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:325:21)
 INFO: [HLS 214-131] Inlining function 'tapa::tapa_stream<unsigned char>::read(std::nullptr_t)' into 'krnl_singlePE_Write_Outputs(tapa::tapa_stream<ap_fixed<32, 12, (ap_q_mode)0, (ap_o_mode)0, 0> >&, tapa::tapa_stream<int>&, tapa::async_mmap<ap_uint<32> >&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:346:61)
@@ -46208,13 +46213,13 @@ INFO: [HLS 214-131] Inlining function 'tapa::internal::addr_ostream<long, ap_uin
 INFO: [HLS 214-131] Inlining function 'tapa::tapa_stream<ap_uint<32> >::full() const' into 'krnl_singlePE_Write_Outputs(tapa::tapa_stream<ap_fixed<32, 12, (ap_q_mode)0, (ap_o_mode)0, 0> >&, tapa::tapa_stream<int>&, tapa::async_mmap<ap_uint<32> >&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:328:65)
 INFO: [HLS 214-131] Inlining function 'tapa::tapa_stream<unsigned char>::empty() const' into 'krnl_singlePE_Write_Outputs(tapa::tapa_stream<ap_fixed<32, 12, (ap_q_mode)0, (ap_o_mode)0, 0> >&, tapa::tapa_stream<int>&, tapa::async_mmap<ap_uint<32> >&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:345:32)
 INFO: [HLS 214-131] Inlining function 'tapa::tapa_stream<ap_uint<32> >::try_write(ap_uint<32> const&)' into 'krnl_singlePE_Write_Outputs(tapa::tapa_stream<ap_fixed<32, 12, (ap_q_mode)0, (ap_o_mode)0, 0> >&, tapa::tapa_stream<int>&, tapa::async_mmap<ap_uint<32> >&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:342:29)
-INFO: [HLS 214-131] Inlining function 'tapa::internal::addr_ostream<long, ap_uint<32> >::try_write(long const&)' into 'krnl_singlePE_Write_Outputs(tapa::tapa_stream<ap_fixed<32, 12, (ap_q_mode)0, (ap_o_mode)0, 0> >&, tapa::tapa_stream<int>&, tapa::async_mmap<ap_uint<32> >&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:341:29)
 INFO: [HLS 214-131] Inlining function 'tapa::internal::addr_ostream<long, ap_uint<32> >::try_write(long const&)' into 'krnl_singlePE_Write_Outputs(tapa::tapa_stream<ap_fixed<32, 12, (ap_q_mode)0, (ap_o_mode)0, 0> >&, tapa::tapa_stream<int>&, tapa::async_mmap<ap_uint<32> >&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:331:29)
 INFO: [HLS 214-131] Inlining function 'tapa::tapa_stream<ap_uint<32> >::try_write(ap_uint<32> const&)' into 'krnl_singlePE_Write_Outputs(tapa::tapa_stream<ap_fixed<32, 12, (ap_q_mode)0, (ap_o_mode)0, 0> >&, tapa::tapa_stream<int>&, tapa::async_mmap<ap_uint<32> >&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:332:29)
 INFO: [HLS 214-131] Inlining function 'tapa::tapa_stream<unsigned char>::empty() const' into 'krnl_singlePE_Write_Outputs(tapa::tapa_stream<ap_fixed<32, 12, (ap_q_mode)0, (ap_o_mode)0, 0> >&, tapa::tapa_stream<int>&, tapa::async_mmap<ap_uint<32> >&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:335:32)
 INFO: [HLS 214-131] Inlining function 'tapa::tapa_stream<unsigned char>::read(std::nullptr_t)' into 'krnl_singlePE_Write_Outputs(tapa::tapa_stream<ap_fixed<32, 12, (ap_q_mode)0, (ap_o_mode)0, 0> >&, tapa::tapa_stream<int>&, tapa::async_mmap<ap_uint<32> >&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:336:61)
 INFO: [HLS 214-131] Inlining function 'tapa::internal::addr_ostream<long, ap_uint<32> >::full() const' into 'krnl_singlePE_Write_Outputs(tapa::tapa_stream<ap_fixed<32, 12, (ap_q_mode)0, (ap_o_mode)0, 0> >&, tapa::tapa_stream<int>&, tapa::async_mmap<ap_uint<32> >&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:339:32)
 INFO: [HLS 214-131] Inlining function 'tapa::tapa_stream<ap_uint<32> >::full() const' into 'krnl_singlePE_Write_Outputs(tapa::tapa_stream<ap_fixed<32, 12, (ap_q_mode)0, (ap_o_mode)0, 0> >&, tapa::tapa_stream<int>&, tapa::async_mmap<ap_uint<32> >&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:339:65)
+INFO: [HLS 214-131] Inlining function 'tapa::internal::addr_ostream<long, ap_uint<32> >::try_write(long const&)' into 'krnl_singlePE_Write_Outputs(tapa::tapa_stream<ap_fixed<32, 12, (ap_q_mode)0, (ap_o_mode)0, 0> >&, tapa::tapa_stream<int>&, tapa::async_mmap<ap_uint<32> >&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:341:29)
 INFO: [HLS 214-377] Adding 'output_knn' into disaggregation list because there's hls::stream object inside the struct
 INFO: [HLS 214-377] Adding 'in_id0' into disaggregation list because there's hls::stream object inside the struct
 INFO: [HLS 214-377] Adding 'in_dist0' into disaggregation list because there's hls::stream object inside the struct
@@ -46232,21 +46237,23 @@ INFO: [HLS 214-178] Inlining function 'std::__detail::_Map_base<void*, std::pair
 INFO: [HLS 214-178] Inlining function 'std::unordered_map<void*, hls::stream_entity<5ul>, std::hash<void*>, std::equal_to<void*>, std::allocator<std::pair<void* const, hls::stream_entity<5ul> > > >::operator[](void* const&)' into 'hls::stream_map<5ul>::get_entity(void*)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include/hls_stream.h:301:0)
 INFO: [HLS 214-178] Inlining function 'std::_Deque_iterator<std::array<char, 5ul>, std::array<char, 5ul>&, std::array<char, 5ul>*>::_Deque_iterator(std::_Deque_iterator<std::array<char, 5ul>, std::array<char, 5ul>&, std::array<char, 5ul>*> const&)' into 'std::deque<std::array<char, 5ul>, std::allocator<std::array<char, 5ul> > >::begin()' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/stl_deque.h:1177:0)
 INFO: [HLS 214-178] Inlining function 'std::deque<std::array<char, 5ul>, std::allocator<std::array<char, 5ul> > >::begin()' into 'std::deque<std::array<char, 5ul>, std::allocator<std::array<char, 5ul> > >::front()' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/stl_deque.h:1462:0)
-INFO: [HLS 214-178] Inlining function 'std::unique_lock<std::mutex>::unique_lock(std::mutex&) (.38)' into 'hls::stream_entity<5ul>::read(void*)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include/hls_stream.h:175:0)
+INFO: [HLS 214-178] Inlining function 'std::unique_lock<std::mutex>::unique_lock(std::mutex&) (.39)' into 'hls::stream_entity<5ul>::read(void*)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include/hls_stream.h:175:0)
 INFO: [HLS 214-178] Inlining function 'std::_Deque_iterator<std::array<char, 8ul>, std::array<char, 8ul>&, std::array<char, 8ul>*>::_M_set_node(std::array<char, 8ul>**)' into 'std::_Deque_base<std::array<char, 8ul>, std::allocator<std::array<char, 8ul> > >::_M_initialize_map(unsigned long)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/stl_deque.h:684:0)
 INFO: [HLS 214-178] Inlining function 'std::_Deque_iterator<std::array<char, 8ul>, std::array<char, 8ul>&, std::array<char, 8ul>*>::_M_set_node(std::array<char, 8ul>**)' into 'std::deque<std::array<char, 8ul>, std::allocator<std::array<char, 8ul> > >::_M_reallocate_map(unsigned long, bool)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/deque.tcc:920:0)
 INFO: [HLS 214-178] Inlining function 'std::_Deque_iterator<std::array<char, 8ul>, std::array<char, 8ul>&, std::array<char, 8ul>*>::_M_set_node(std::array<char, 8ul>**)' into 'void std::deque<std::array<char, 8ul>, std::allocator<std::array<char, 8ul> > >::_M_push_back_aux<std::array<char, 8ul> const&>(std::array<char, 8ul> const&)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/deque.tcc:486:0)
 INFO: [HLS 214-178] Inlining function 'std::__detail::_Map_base<void*, std::pair<void* const, hls::stream_entity<8ul> >, std::allocator<std::pair<void* const, hls::stream_entity<8ul> > >, std::__detail::_Select1st, std::equal_to<void*>, std::hash<void*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true>, true>::operator[](void* const&)' into 'std::unordered_map<void*, hls::stream_entity<8ul>, std::hash<void*>, std::equal_to<void*>, std::allocator<std::pair<void* const, hls::stream_entity<8ul> > > >::operator[](void* const&)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/unordered_map.h:974:0)
 INFO: [HLS 214-178] Inlining function 'std::unordered_map<void*, hls::stream_entity<8ul>, std::hash<void*>, std::equal_to<void*>, std::allocator<std::pair<void* const, hls::stream_entity<8ul> > > >::operator[](void* const&)' into 'hls::stream_map<8ul>::get_entity(void*)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include/hls_stream.h:301:0)
-INFO: [HLS 214-178] Inlining function 'std::unique_lock<std::mutex>::unique_lock(std::mutex&) (.38)' into 'hls::stream_entity<8ul>::write(void const*)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include/hls_stream.h:212:0)
-INFO: [HLS 214-178] Inlining function 'std::unique_lock<std::mutex>::unique_lock(std::mutex&)' into 'hls::stream_entity<5ul>::write(void const*)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include/hls_stream.h:212:0)
+INFO: [HLS 214-178] Inlining function 'std::unique_lock<std::mutex>::unique_lock(std::mutex&) (.39)' into 'hls::stream_entity<8ul>::write(void const*)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include/hls_stream.h:212:0)
+INFO: [HLS 214-178] Inlining function 'std::unique_lock<std::mutex>::unique_lock(std::mutex&) (.39)' into 'hls::stream_entity<5ul>::write(void const*)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include/hls_stream.h:212:0)
 INFO: [HLS 214-178] Inlining function 'std::_Deque_iterator<std::array<char, 2ul>, std::array<char, 2ul>&, std::array<char, 2ul>*>::_M_set_node(std::array<char, 2ul>**)' into 'std::_Deque_base<std::array<char, 2ul>, std::allocator<std::array<char, 2ul> > >::_M_initialize_map(unsigned long)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/stl_deque.h:684:0)
 INFO: [HLS 214-178] Inlining function 'std::_Deque_iterator<std::array<char, 2ul>, std::array<char, 2ul>&, std::array<char, 2ul>*>::_M_set_node(std::array<char, 2ul>**)' into 'std::deque<std::array<char, 2ul>, std::allocator<std::array<char, 2ul> > >::_M_pop_front_aux()' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/deque.tcc:565:0)
 INFO: [HLS 214-178] Inlining function 'std::__detail::_Map_base<void*, std::pair<void* const, hls::stream_entity<2ul> >, std::allocator<std::pair<void* const, hls::stream_entity<2ul> > >, std::__detail::_Select1st, std::equal_to<void*>, std::hash<void*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true>, true>::operator[](void* const&)' into 'std::unordered_map<void*, hls::stream_entity<2ul>, std::hash<void*>, std::equal_to<void*>, std::allocator<std::pair<void* const, hls::stream_entity<2ul> > > >::operator[](void* const&)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/unordered_map.h:974:0)
 INFO: [HLS 214-178] Inlining function 'std::unordered_map<void*, hls::stream_entity<2ul>, std::hash<void*>, std::equal_to<void*>, std::allocator<std::pair<void* const, hls::stream_entity<2ul> > > >::operator[](void* const&)' into 'hls::stream_map<2ul>::get_entity(void*)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include/hls_stream.h:301:0)
 INFO: [HLS 214-178] Inlining function 'std::_Deque_iterator<std::array<char, 2ul>, std::array<char, 2ul>&, std::array<char, 2ul>*>::_Deque_iterator(std::_Deque_iterator<std::array<char, 2ul>, std::array<char, 2ul>&, std::array<char, 2ul>*> const&)' into 'std::deque<std::array<char, 2ul>, std::allocator<std::array<char, 2ul> > >::begin()' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/stl_deque.h:1177:0)
 INFO: [HLS 214-178] Inlining function 'std::deque<std::array<char, 2ul>, std::allocator<std::array<char, 2ul> > >::begin()' into 'std::deque<std::array<char, 2ul>, std::allocator<std::array<char, 2ul> > >::front()' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/stl_deque.h:1462:0)
-ERROR: [HLS 214-211] in function 'hls::stream_entity<2ul>::read_nb(void*)': Detected illegal out-of-bounds access on variable 'elem' which is struct 'tapa::internal::elem_t<unsigned char>' field 0
+INFO: [HLS 214-178] Inlining function 'std::unique_lock<std::mutex>::unique_lock(std::mutex&)' into 'hls::stream_entity<2ul>::read(void*)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include/hls_stream.h:175:0)
+ERROR: [HLS 214-211] in function 'hls::stream_entity<2ul>::read(void*)': Detected illegal out-of-bounds access on variable 'ref.tmp.i.i' which is struct 'tapa::internal::elem_t<unsigned char>' field 0
+ERROR: [HLS 214-211] in function 'hls::stream_entity<2ul>::read(void*)': Detected illegal out-of-bounds access on variable 'ref.tmp.i.i34' which is struct 'tapa::internal::elem_t<unsigned char>' field 0
 INFO: [HLS 214-210] Disaggregating variable 'in_dist0' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:317:0)
 Resolution: For help on HLS 214-210 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=214-210.html
 INFO: [HLS 214-210] Disaggregating variable 'in_id0' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:317:0)
@@ -46264,16 +46271,16 @@ Resolution: For help on HLS 214-210 see docs.xilinx.com/access/sources/dita/topi
 INFO: [HLS 214-210] Disaggregating variable 'output_knn_read_addr' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp:317:0)
 Resolution: For help on HLS 214-210 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=214-210.html
 ERROR: [HLS 200-1715] Encountered problem during source synthesis
-INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 24.61 seconds. CPU system time: 3.06 seconds. Elapsed time: 42.14 seconds; current allocated memory: 5.664 MB.
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 22.76 seconds. CPU system time: 2.72 seconds. Elapsed time: 29.81 seconds; current allocated memory: 5.727 MB.
 Pre-synthesis failed.
     while executing
-"source /tmp/run-hls-krnl_singlePE_Write_Outputs-v4o5m4x6/commands.tcl"
+"source /tmp/run-hls-krnl_singlePE_Write_Outputs-2eae270w/commands.tcl"
     ("uplevel" body line 1)
     invoked from within
 "uplevel \#0 [list source $tclfile] "
 
-INFO: [HLS 200-112] Total CPU user time: 28.92 seconds. Total CPU system time: 6.69 seconds. Total elapsed time: 59.49 seconds; peak allocated memory: 263.598 MB.
-INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 22:59:42 2026...
+INFO: [HLS 200-112] Total CPU user time: 28.29 seconds. Total CPU system time: 7.53 seconds. Total elapsed time: 49.81 seconds; peak allocated memory: 263.660 MB.
+INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 23:06:38 2026...
 
 ****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.2 (64-bit)
   **** SW Build 4023990 on Oct 11 2023
@@ -46284,18 +46291,18 @@ INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 22:59:42 2026...
 
 source /afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/scripts/vitis_hls/hls.tcl -notrace
 INFO: [HLS 200-10] Running '/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/bin/unwrapped/lnx64.o/vitis_hls'
-INFO: [HLS 200-10] For user 'dchan2' on host 'ECE005.ece.local.cmu.edu' (Linux_x86_64 version 4.18.0-553.146.1.el8_10.x86_64) on Sun Oct 25 22:58:53 EDT 2026
+INFO: [HLS 200-10] For user 'dchan2' on host 'ECE005.ece.local.cmu.edu' (Linux_x86_64 version 4.18.0-553.146.1.el8_10.x86_64) on Sun Oct 25 23:05:59 EDT 2026
 INFO: [HLS 200-10] On os "Red Hat Enterprise Linux release 8.10 (Ootpa)"
-INFO: [HLS 200-10] In directory '/tmp/run-hls-Knn-cznq5qdf'
+INFO: [HLS 200-10] In directory '/tmp/run-hls-load_KNN-5s4xxyrm'
 INFO: [HLS 200-2053] The vitis_hls executable is being deprecated. Consider using vitis-run --mode hls --tcl
-Sourcing Tcl script '/tmp/run-hls-Knn-cznq5qdf/commands.tcl'
+Sourcing Tcl script '/tmp/run-hls-load_KNN-5s4xxyrm/commands.tcl'
 INFO: [HLS 200-1510] Running: open_project project 
-INFO: [HLS 200-10] Creating and opening project '/tmp/run-hls-Knn-cznq5qdf/project'.
-INFO: [HLS 200-1510] Running: set_top Knn 
-INFO: [HLS 200-1510] Running: add_files /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp -cflags -std=c++14 -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -std=c++14 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -D__SYNTHESIS__ -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__thread= -Dthread_local= -DTAPA_TARGET_=XILINX_HLS -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__SYNTHESIS__ 
-INFO: [HLS 200-10] Adding design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp' to the project
-INFO: [HLS 200-1510] Running: open_solution Knn 
-INFO: [HLS 200-10] Creating and opening solution '/tmp/run-hls-Knn-cznq5qdf/project/Knn'.
+INFO: [HLS 200-10] Creating and opening project '/tmp/run-hls-load_KNN-5s4xxyrm/project'.
+INFO: [HLS 200-1510] Running: set_top load_KNN 
+INFO: [HLS 200-1510] Running: add_files /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp -cflags -std=c++14 -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -std=c++14 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -D__SYNTHESIS__ -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__thread= -Dthread_local= -DTAPA_TARGET_=XILINX_HLS -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__SYNTHESIS__ 
+INFO: [HLS 200-10] Adding design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp' to the project
+INFO: [HLS 200-1510] Running: open_solution load_KNN 
+INFO: [HLS 200-10] Creating and opening solution '/tmp/run-hls-load_KNN-5s4xxyrm/project/load_KNN'.
 INFO: [HLS 200-1505] Using default flow_target 'vivado'
 Resolution: For help on HLS 200-1505 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
 INFO: [HLS 200-1510] Running: set_part xczu3eg-sbva484-1-e 
@@ -46307,20 +46314,78 @@ INFO: [XFORM 203-1161] The maximum of name length is set to 253.
 INFO: [HLS 200-1510] Running: config_interface -m_axi_addr64 
 INFO: [HLS 200-1510] Running: config_rtl -reset_level low -module_auto_prefix 
 INFO: [HLS 200-1510] Running: csynth_design 
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.14 seconds. CPU system time: 0.03 seconds. Elapsed time: 0.17 seconds; current allocated memory: 257.906 MB.
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.23 seconds. CPU system time: 0.04 seconds. Elapsed time: 0.27 seconds; current allocated memory: 257.926 MB.
+INFO: [HLS 200-10] Analyzing design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp' ... 
+WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/stream.h:14:1)
+WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/stream.h:15:1)
+WARNING: [HLS 207-5566] unexpected pragma argument 'float', expects identifier (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/util.h:58:22)
+WARNING: [HLS 207-3907] duplicate 'mutable' declaration specifier (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/stream.h:172:11)
+WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/task.h:17:1)
+WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/task.h:18:1)
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 16.54 seconds. CPU system time: 1.86 seconds. Elapsed time: 18.67 seconds; current allocated memory: 261.637 MB.
+INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
+INFO: [HLS 200-1995] There were 14,153 instructions in the design after the 'Compile/Link' phase of compilation. See the Design Size Report for more details: /tmp/run-hls-load_KNN-5s4xxyrm/project/load_KNN/syn/report/csynth_design_size.rpt
+ERROR: [HLS 200-1715] Encountered problem during source synthesis
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 23.25 seconds. CPU system time: 2.84 seconds. Elapsed time: 29.93 seconds; current allocated memory: 4.859 MB.
+Pre-synthesis failed.
+    while executing
+"source /tmp/run-hls-load_KNN-5s4xxyrm/commands.tcl"
+    ("uplevel" body line 1)
+    invoked from within
+"uplevel \#0 [list source $tclfile] "
+
+INFO: [HLS 200-112] Total CPU user time: 28.87 seconds. Total CPU system time: 7.48 seconds. Total elapsed time: 49.97 seconds; peak allocated memory: 262.785 MB.
+INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 23:06:38 2026...
+
+****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.2 (64-bit)
+  **** SW Build 4023990 on Oct 11 2023
+  **** IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+  **** SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source /afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/scripts/vitis_hls/hls.tcl -notrace
+INFO: [HLS 200-10] Running '/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/bin/unwrapped/lnx64.o/vitis_hls'
+INFO: [HLS 200-10] For user 'dchan2' on host 'ECE005.ece.local.cmu.edu' (Linux_x86_64 version 4.18.0-553.146.1.el8_10.x86_64) on Sun Oct 25 23:05:59 EDT 2026
+INFO: [HLS 200-10] On os "Red Hat Enterprise Linux release 8.10 (Ootpa)"
+INFO: [HLS 200-10] In directory '/tmp/run-hls-Knn-ymoq9sne'
+INFO: [HLS 200-2053] The vitis_hls executable is being deprecated. Consider using vitis-run --mode hls --tcl
+Sourcing Tcl script '/tmp/run-hls-Knn-ymoq9sne/commands.tcl'
+INFO: [HLS 200-1510] Running: open_project project 
+INFO: [HLS 200-10] Creating and opening project '/tmp/run-hls-Knn-ymoq9sne/project'.
+INFO: [HLS 200-1510] Running: set_top Knn 
+INFO: [HLS 200-1510] Running: add_files /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp -cflags -std=c++14 -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -std=c++14 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -D__SYNTHESIS__ -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__thread= -Dthread_local= -DTAPA_TARGET_=XILINX_HLS -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__SYNTHESIS__ 
+INFO: [HLS 200-10] Adding design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp' to the project
+INFO: [HLS 200-1510] Running: open_solution Knn 
+INFO: [HLS 200-10] Creating and opening solution '/tmp/run-hls-Knn-ymoq9sne/project/Knn'.
+INFO: [HLS 200-1505] Using default flow_target 'vivado'
+Resolution: For help on HLS 200-1505 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
+INFO: [HLS 200-1510] Running: set_part xczu3eg-sbva484-1-e 
+INFO: [HLS 200-1611] Setting target device to 'xczu3eg-sbva484-1-e'
+INFO: [HLS 200-1510] Running: create_clock -period 5.0 -name default 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 5ns.
+INFO: [HLS 200-1510] Running: config_compile -name_max_length 253 
+INFO: [XFORM 203-1161] The maximum of name length is set to 253.
+INFO: [HLS 200-1510] Running: config_interface -m_axi_addr64 
+INFO: [HLS 200-1510] Running: config_rtl -reset_level low -module_auto_prefix 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.22 seconds. CPU system time: 0.03 seconds. Elapsed time: 0.25 seconds; current allocated memory: 257.906 MB.
 INFO: [HLS 200-10] Analyzing design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp' ... 
 WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/stream.h:14:1)
 WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/stream.h:15:1)
 WARNING: [HLS 207-5566] unexpected pragma argument 'float', expects identifier (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/util.h:58:22)
-WARNING: [HLS 207-3907] duplicate 'mutable' declaration specifier (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/stream.h:167:11)
+WARNING: [HLS 207-3907] duplicate 'mutable' declaration specifier (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/stream.h:172:11)
 WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/task.h:17:1)
 WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/task.h:18:1)
-INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 15.45 seconds. CPU system time: 1.97 seconds. Elapsed time: 21.7 seconds; current allocated memory: 261.598 MB.
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 16.52 seconds. CPU system time: 2.06 seconds. Elapsed time: 18.8 seconds; current allocated memory: 261.598 MB.
 INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
-INFO: [HLS 200-1995] There were 47,186 instructions in the design after the 'Compile/Link' phase of compilation. See the Design Size Report for more details: /tmp/run-hls-Knn-cznq5qdf/project/Knn/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 47,186 instructions in the design after the 'Compile/Link' phase of compilation. See the Design Size Report for more details: /tmp/run-hls-Knn-ymoq9sne/project/Knn/syn/report/csynth_design_size.rpt
 INFO: [HLS 214-131] Inlining function 'std::atomic_flag::test_and_set(std::memory_order)' into 'hls::stream_globals::start_threads()' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include/hls_stream.h:90:20)
 INFO: [HLS 214-131] Inlining function 'std::__atomic_base<int>::load(std::memory_order) const' into 'std::__atomic_base<int>::operator int() const' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/atomic_base.h:259:16)
 INFO: [HLS 214-131] Inlining function 'std::__atomic_base<int>::store(int, std::memory_order)' into 'std::__atomic_base<int>::operator=(int)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/atomic_base.h:267:2)
+INFO: [HLS 214-131] Inlining function 'tapa::internal::addr_ostream<long, ap_uint<128> >::full() const' into 'tapa::internal::addr_ostream<long, ap_uint<128> >::try_write(long const&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/mmap.h:24:7)
+INFO: [HLS 214-131] Inlining function 'tapa::internal::addr_ostream<long, ap_uint<128> >::write(long const&)' into 'tapa::internal::addr_ostream<long, ap_uint<128> >::try_write(long const&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/mmap.h:25:7)
+INFO: [HLS 214-131] Inlining function 'tapa::tapa_stream<ap_uint<128> >::read()' into 'tapa::tapa_stream<ap_uint<128> >::read(std::nullptr_t)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/stream.h:115:9)
 INFO: [HLS 214-131] Inlining function 'tapa::tapa_stream<ap_uint<128> >::write(ap_uint<128> const&)' into 'load_KNN(int, tapa::async_mmap<ap_uint<128> >&, tapa::tapa_stream<ap_uint<128> >&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:100:30)
 INFO: [HLS 214-131] Inlining function 'tapa::internal::addr_ostream<long, ap_uint<128> >::try_write(long const&)' into 'load_KNN(int, tapa::async_mmap<ap_uint<128> >&, tapa::tapa_stream<ap_uint<128> >&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:30:31)
 INFO: [HLS 214-131] Inlining function 'tapa::tapa_stream<ap_uint<128> >::empty() const' into 'load_KNN(int, tapa::async_mmap<ap_uint<128> >&, tapa::tapa_stream<ap_uint<128> >&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:34:32)
@@ -46335,6 +46400,11 @@ INFO: [HLS 214-131] Inlining function 'tapa::tapa_stream<ap_uint<128> >::read()'
 INFO: [HLS 214-131] Inlining function 'tapa::tapa_stream<ap_fixed<32, 12, (ap_q_mode)0, (ap_o_mode)0, 0> >::read()' into 'para_partial_sort(int, tapa::tapa_stream<ap_fixed<32, 12, (ap_q_mode)0, (ap_o_mode)0, 0> >&, tapa::tapa_stream<ap_fixed<32, 12, (ap_q_mode)0, (ap_o_mode)0, 0> >&, tapa::tapa_stream<int>&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:253:41)
 INFO: [HLS 214-131] Inlining function 'tapa::tapa_stream<int>::write(int const&)' into 'para_partial_sort(int, tapa::tapa_stream<ap_fixed<32, 12, (ap_q_mode)0, (ap_o_mode)0, 0> >&, tapa::tapa_stream<ap_fixed<32, 12, (ap_q_mode)0, (ap_o_mode)0, 0> >&, tapa::tapa_stream<int>&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:295:33)
 INFO: [HLS 214-131] Inlining function 'tapa::tapa_stream<ap_fixed<32, 12, (ap_q_mode)0, (ap_o_mode)0, 0> >::write(ap_fixed<32, 12, (ap_q_mode)0, (ap_o_mode)0, 0> const&)' into 'para_partial_sort(int, tapa::tapa_stream<ap_fixed<32, 12, (ap_q_mode)0, (ap_o_mode)0, 0> >&, tapa::tapa_stream<ap_fixed<32, 12, (ap_q_mode)0, (ap_o_mode)0, 0> >&, tapa::tapa_stream<int>&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:294:32)
+INFO: [HLS 214-131] Inlining function 'tapa::internal::addr_ostream<long, ap_uint<32> >::full() const' into 'tapa::internal::addr_ostream<long, ap_uint<32> >::try_write(long const&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/mmap.h:24:7)
+INFO: [HLS 214-131] Inlining function 'tapa::internal::addr_ostream<long, ap_uint<32> >::write(long const&)' into 'tapa::internal::addr_ostream<long, ap_uint<32> >::try_write(long const&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/mmap.h:25:7)
+INFO: [HLS 214-131] Inlining function 'tapa::tapa_stream<ap_uint<32> >::full() const' into 'tapa::tapa_stream<ap_uint<32> >::try_write(ap_uint<32> const&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/stream.h:139:7)
+INFO: [HLS 214-131] Inlining function 'tapa::tapa_stream<ap_uint<32> >::write(ap_uint<32> const&)' into 'tapa::tapa_stream<ap_uint<32> >::try_write(ap_uint<32> const&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/stream.h:140:7)
+INFO: [HLS 214-131] Inlining function 'tapa::tapa_stream<unsigned char>::read()' into 'tapa::tapa_stream<unsigned char>::read(std::nullptr_t)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/stream.h:115:9)
 INFO: [HLS 214-131] Inlining function 'tapa::tapa_stream<ap_fixed<32, 12, (ap_q_mode)0, (ap_o_mode)0, 0> >::read()' into 'krnl_singlePE_Write_Outputs(tapa::tapa_stream<ap_fixed<32, 12, (ap_q_mode)0, (ap_o_mode)0, 0> >&, tapa::tapa_stream<int>&, tapa::async_mmap<ap_uint<32> >&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:324:22)
 INFO: [HLS 214-131] Inlining function 'tapa::tapa_stream<int>::read()' into 'krnl_singlePE_Write_Outputs(tapa::tapa_stream<ap_fixed<32, 12, (ap_q_mode)0, (ap_o_mode)0, 0> >&, tapa::tapa_stream<int>&, tapa::async_mmap<ap_uint<32> >&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:325:21)
 INFO: [HLS 214-131] Inlining function 'tapa::tapa_stream<unsigned char>::read(std::nullptr_t)' into 'krnl_singlePE_Write_Outputs(tapa::tapa_stream<ap_fixed<32, 12, (ap_q_mode)0, (ap_o_mode)0, 0> >&, tapa::tapa_stream<int>&, tapa::async_mmap<ap_uint<32> >&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:346:61)
@@ -46342,13 +46412,13 @@ INFO: [HLS 214-131] Inlining function 'tapa::internal::addr_ostream<long, ap_uin
 INFO: [HLS 214-131] Inlining function 'tapa::tapa_stream<ap_uint<32> >::full() const' into 'krnl_singlePE_Write_Outputs(tapa::tapa_stream<ap_fixed<32, 12, (ap_q_mode)0, (ap_o_mode)0, 0> >&, tapa::tapa_stream<int>&, tapa::async_mmap<ap_uint<32> >&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:328:65)
 INFO: [HLS 214-131] Inlining function 'tapa::tapa_stream<unsigned char>::empty() const' into 'krnl_singlePE_Write_Outputs(tapa::tapa_stream<ap_fixed<32, 12, (ap_q_mode)0, (ap_o_mode)0, 0> >&, tapa::tapa_stream<int>&, tapa::async_mmap<ap_uint<32> >&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:345:32)
 INFO: [HLS 214-131] Inlining function 'tapa::tapa_stream<ap_uint<32> >::try_write(ap_uint<32> const&)' into 'krnl_singlePE_Write_Outputs(tapa::tapa_stream<ap_fixed<32, 12, (ap_q_mode)0, (ap_o_mode)0, 0> >&, tapa::tapa_stream<int>&, tapa::async_mmap<ap_uint<32> >&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:342:29)
-INFO: [HLS 214-131] Inlining function 'tapa::internal::addr_ostream<long, ap_uint<32> >::try_write(long const&)' into 'krnl_singlePE_Write_Outputs(tapa::tapa_stream<ap_fixed<32, 12, (ap_q_mode)0, (ap_o_mode)0, 0> >&, tapa::tapa_stream<int>&, tapa::async_mmap<ap_uint<32> >&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:341:29)
 INFO: [HLS 214-131] Inlining function 'tapa::internal::addr_ostream<long, ap_uint<32> >::try_write(long const&)' into 'krnl_singlePE_Write_Outputs(tapa::tapa_stream<ap_fixed<32, 12, (ap_q_mode)0, (ap_o_mode)0, 0> >&, tapa::tapa_stream<int>&, tapa::async_mmap<ap_uint<32> >&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:331:29)
 INFO: [HLS 214-131] Inlining function 'tapa::tapa_stream<ap_uint<32> >::try_write(ap_uint<32> const&)' into 'krnl_singlePE_Write_Outputs(tapa::tapa_stream<ap_fixed<32, 12, (ap_q_mode)0, (ap_o_mode)0, 0> >&, tapa::tapa_stream<int>&, tapa::async_mmap<ap_uint<32> >&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:332:29)
 INFO: [HLS 214-131] Inlining function 'tapa::tapa_stream<unsigned char>::empty() const' into 'krnl_singlePE_Write_Outputs(tapa::tapa_stream<ap_fixed<32, 12, (ap_q_mode)0, (ap_o_mode)0, 0> >&, tapa::tapa_stream<int>&, tapa::async_mmap<ap_uint<32> >&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:335:32)
 INFO: [HLS 214-131] Inlining function 'tapa::tapa_stream<unsigned char>::read(std::nullptr_t)' into 'krnl_singlePE_Write_Outputs(tapa::tapa_stream<ap_fixed<32, 12, (ap_q_mode)0, (ap_o_mode)0, 0> >&, tapa::tapa_stream<int>&, tapa::async_mmap<ap_uint<32> >&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:336:61)
 INFO: [HLS 214-131] Inlining function 'tapa::internal::addr_ostream<long, ap_uint<32> >::full() const' into 'krnl_singlePE_Write_Outputs(tapa::tapa_stream<ap_fixed<32, 12, (ap_q_mode)0, (ap_o_mode)0, 0> >&, tapa::tapa_stream<int>&, tapa::async_mmap<ap_uint<32> >&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:339:32)
 INFO: [HLS 214-131] Inlining function 'tapa::tapa_stream<ap_uint<32> >::full() const' into 'krnl_singlePE_Write_Outputs(tapa::tapa_stream<ap_fixed<32, 12, (ap_q_mode)0, (ap_o_mode)0, 0> >&, tapa::tapa_stream<int>&, tapa::async_mmap<ap_uint<32> >&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:339:65)
+INFO: [HLS 214-131] Inlining function 'tapa::internal::addr_ostream<long, ap_uint<32> >::try_write(long const&)' into 'krnl_singlePE_Write_Outputs(tapa::tapa_stream<ap_fixed<32, 12, (ap_q_mode)0, (ap_o_mode)0, 0> >&, tapa::tapa_stream<int>&, tapa::async_mmap<ap_uint<32> >&)' (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp:341:29)
 INFO: [HLS 214-131] Inlining function 'std::__atomic_base<unsigned int>::fetch_add(unsigned int, std::memory_order)' into 'std::__atomic_base<unsigned int>::operator++(int)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/atomic_base.h:280:16)
 INFO: [HLS 214-377] Adding 'final_out' into disaggregation list because there's hls::stream object inside the struct
 INFO: [HLS 214-377] Adding 'in_0' into disaggregation list because there's hls::stream object inside the struct
@@ -46364,7 +46434,7 @@ INFO: [HLS 214-178] Inlining function 'std::_Deque_iterator<std::array<char, 8ul
 INFO: [HLS 214-178] Inlining function 'std::_Deque_iterator<std::array<char, 8ul>, std::array<char, 8ul>&, std::array<char, 8ul>*>::_M_set_node(std::array<char, 8ul>**)' into 'void std::deque<std::array<char, 8ul>, std::allocator<std::array<char, 8ul> > >::_M_push_back_aux<std::array<char, 8ul> const&>(std::array<char, 8ul> const&)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/deque.tcc:486:0)
 INFO: [HLS 214-178] Inlining function 'std::__detail::_Map_base<void*, std::pair<void* const, hls::stream_entity<8ul> >, std::allocator<std::pair<void* const, hls::stream_entity<8ul> > >, std::__detail::_Select1st, std::equal_to<void*>, std::hash<void*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true>, true>::operator[](void* const&)' into 'std::unordered_map<void*, hls::stream_entity<8ul>, std::hash<void*>, std::equal_to<void*>, std::allocator<std::pair<void* const, hls::stream_entity<8ul> > > >::operator[](void* const&)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/unordered_map.h:974:0)
 INFO: [HLS 214-178] Inlining function 'std::unordered_map<void*, hls::stream_entity<8ul>, std::hash<void*>, std::equal_to<void*>, std::allocator<std::pair<void* const, hls::stream_entity<8ul> > > >::operator[](void* const&)' into 'hls::stream_map<8ul>::get_entity(void*)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include/hls_stream.h:301:0)
-INFO: [HLS 214-178] Inlining function 'std::unique_lock<std::mutex>::unique_lock(std::mutex&) (.40)' into 'hls::stream_entity<8ul>::write(void const*)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include/hls_stream.h:212:0)
+INFO: [HLS 214-178] Inlining function 'std::unique_lock<std::mutex>::unique_lock(std::mutex&) (.41)' into 'hls::stream_entity<8ul>::write(void const*)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include/hls_stream.h:212:0)
 INFO: [HLS 214-178] Inlining function 'std::_Deque_iterator<std::array<char, 17ul>, std::array<char, 17ul>&, std::array<char, 17ul>*>::_M_set_node(std::array<char, 17ul>**)' into 'std::deque<std::array<char, 17ul>, std::allocator<std::array<char, 17ul> > >::_M_pop_front_aux()' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/deque.tcc:565:0)
 INFO: [HLS 214-178] Inlining function 'std::_Deque_iterator<std::array<char, 17ul>, std::array<char, 17ul>&, std::array<char, 17ul>*>::_M_set_node(std::array<char, 17ul>**)' into 'std::_Deque_base<std::array<char, 17ul>, std::allocator<std::array<char, 17ul> > >::_M_initialize_map(unsigned long)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/stl_deque.h:684:0)
 INFO: [HLS 214-178] Inlining function 'std::_Deque_iterator<std::array<char, 17ul>, std::array<char, 17ul>&, std::array<char, 17ul>*>::_M_set_node(std::array<char, 17ul>**)' into 'std::deque<std::array<char, 17ul>, std::allocator<std::array<char, 17ul> > >::_M_reallocate_map(unsigned long, bool)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/deque.tcc:920:0)
@@ -46372,10 +46442,10 @@ INFO: [HLS 214-178] Inlining function 'std::_Deque_iterator<std::array<char, 17u
 INFO: [HLS 214-178] Inlining function 'std::__detail::_Map_base<void*, std::pair<void* const, hls::stream_entity<17ul> >, std::allocator<std::pair<void* const, hls::stream_entity<17ul> > >, std::__detail::_Select1st, std::equal_to<void*>, std::hash<void*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true>, true>::operator[](void* const&)' into 'std::unordered_map<void*, hls::stream_entity<17ul>, std::hash<void*>, std::equal_to<void*>, std::allocator<std::pair<void* const, hls::stream_entity<17ul> > > >::operator[](void* const&)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/unordered_map.h:974:0)
 INFO: [HLS 214-178] Inlining function 'std::unordered_map<void*, hls::stream_entity<17ul>, std::hash<void*>, std::equal_to<void*>, std::allocator<std::pair<void* const, hls::stream_entity<17ul> > > >::operator[](void* const&)' into 'hls::stream_map<17ul>::insert(void*)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include/hls_stream.h:292:0)
 INFO: [HLS 214-178] Inlining function 'std::unordered_map<void*, hls::stream_entity<17ul>, std::hash<void*>, std::equal_to<void*>, std::allocator<std::pair<void* const, hls::stream_entity<17ul> > > >::operator[](void* const&)' into 'hls::stream_map<17ul>::get_entity(void*)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include/hls_stream.h:301:0)
-INFO: [HLS 214-178] Inlining function 'std::_Deque_iterator<std::array<char, 17ul>, std::array<char, 17ul>&, std::array<char, 17ul>*>::_Deque_iterator(std::_Deque_iterator<std::array<char, 17ul>, std::array<char, 17ul>&, std::array<char, 17ul>*> const&) (.75)' into 'std::deque<std::array<char, 17ul>, std::allocator<std::array<char, 17ul> > >::begin() (.72)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/stl_deque.h:1177:0)
-INFO: [HLS 214-178] Inlining function 'std::deque<std::array<char, 17ul>, std::allocator<std::array<char, 17ul> > >::begin() (.72)' into 'std::deque<std::array<char, 17ul>, std::allocator<std::array<char, 17ul> > >::front()' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/stl_deque.h:1462:0)
-INFO: [HLS 214-178] Inlining function 'std::unique_lock<std::mutex>::unique_lock(std::mutex&) (.40)' into 'hls::stream_entity<17ul>::write(void const*)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include/hls_stream.h:212:0)
-INFO: [HLS 214-178] Inlining function 'std::unique_lock<std::mutex>::unique_lock(std::mutex&) (.40)' into 'hls::stream_entity<17ul>::read(void*)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include/hls_stream.h:175:0)
+INFO: [HLS 214-178] Inlining function 'std::_Deque_iterator<std::array<char, 17ul>, std::array<char, 17ul>&, std::array<char, 17ul>*>::_Deque_iterator(std::_Deque_iterator<std::array<char, 17ul>, std::array<char, 17ul>&, std::array<char, 17ul>*> const&) (.76)' into 'std::deque<std::array<char, 17ul>, std::allocator<std::array<char, 17ul> > >::begin() (.73)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/stl_deque.h:1177:0)
+INFO: [HLS 214-178] Inlining function 'std::deque<std::array<char, 17ul>, std::allocator<std::array<char, 17ul> > >::begin() (.73)' into 'std::deque<std::array<char, 17ul>, std::allocator<std::array<char, 17ul> > >::front()' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/stl_deque.h:1462:0)
+INFO: [HLS 214-178] Inlining function 'std::unique_lock<std::mutex>::unique_lock(std::mutex&) (.41)' into 'hls::stream_entity<17ul>::read(void*)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include/hls_stream.h:175:0)
+INFO: [HLS 214-178] Inlining function 'std::unique_lock<std::mutex>::unique_lock(std::mutex&) (.41)' into 'hls::stream_entity<17ul>::write(void const*)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include/hls_stream.h:212:0)
 INFO: [HLS 214-178] Inlining function 'std::_Deque_iterator<std::array<char, 5ul>, std::array<char, 5ul>&, std::array<char, 5ul>*>::_M_set_node(std::array<char, 5ul>**)' into 'std::deque<std::array<char, 5ul>, std::allocator<std::array<char, 5ul> > >::_M_pop_front_aux()' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/deque.tcc:565:0)
 INFO: [HLS 214-178] Inlining function 'std::_Deque_iterator<std::array<char, 5ul>, std::array<char, 5ul>&, std::array<char, 5ul>*>::_M_set_node(std::array<char, 5ul>**)' into 'std::_Deque_base<std::array<char, 5ul>, std::allocator<std::array<char, 5ul> > >::_M_initialize_map(unsigned long)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/stl_deque.h:684:0)
 INFO: [HLS 214-178] Inlining function 'std::_Deque_iterator<std::array<char, 5ul>, std::array<char, 5ul>&, std::array<char, 5ul>*>::_M_set_node(std::array<char, 5ul>**)' into 'std::deque<std::array<char, 5ul>, std::allocator<std::array<char, 5ul> > >::_M_reallocate_map(unsigned long, bool)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/deque.tcc:920:0)
@@ -46383,91 +46453,38 @@ INFO: [HLS 214-178] Inlining function 'std::_Deque_iterator<std::array<char, 5ul
 INFO: [HLS 214-178] Inlining function 'std::__detail::_Map_base<void*, std::pair<void* const, hls::stream_entity<5ul> >, std::allocator<std::pair<void* const, hls::stream_entity<5ul> > >, std::__detail::_Select1st, std::equal_to<void*>, std::hash<void*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true>, true>::operator[](void* const&)' into 'std::unordered_map<void*, hls::stream_entity<5ul>, std::hash<void*>, std::equal_to<void*>, std::allocator<std::pair<void* const, hls::stream_entity<5ul> > > >::operator[](void* const&)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/unordered_map.h:974:0)
 INFO: [HLS 214-178] Inlining function 'std::unordered_map<void*, hls::stream_entity<5ul>, std::hash<void*>, std::equal_to<void*>, std::allocator<std::pair<void* const, hls::stream_entity<5ul> > > >::operator[](void* const&)' into 'hls::stream_map<5ul>::insert(void*)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include/hls_stream.h:292:0)
 INFO: [HLS 214-178] Inlining function 'std::unordered_map<void*, hls::stream_entity<5ul>, std::hash<void*>, std::equal_to<void*>, std::allocator<std::pair<void* const, hls::stream_entity<5ul> > > >::operator[](void* const&)' into 'hls::stream_map<5ul>::get_entity(void*)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include/hls_stream.h:301:0)
-INFO: [HLS 214-178] Inlining function 'std::unique_lock<std::mutex>::unique_lock(std::mutex&) (.40)' into 'hls::stream_entity<5ul>::write(void const*)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include/hls_stream.h:212:0)
-INFO: [HLS 214-178] Inlining function 'std::_Deque_iterator<std::array<char, 5ul>, std::array<char, 5ul>&, std::array<char, 5ul>*>::_Deque_iterator(std::_Deque_iterator<std::array<char, 5ul>, std::array<char, 5ul>&, std::array<char, 5ul>*> const&) (.111)' into 'std::deque<std::array<char, 5ul>, std::allocator<std::array<char, 5ul> > >::begin() (.108)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/stl_deque.h:1177:0)
-INFO: [HLS 214-178] Inlining function 'std::deque<std::array<char, 5ul>, std::allocator<std::array<char, 5ul> > >::begin() (.108)' into 'std::deque<std::array<char, 5ul>, std::allocator<std::array<char, 5ul> > >::front()' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/stl_deque.h:1462:0)
-INFO: [HLS 214-178] Inlining function 'std::unique_lock<std::mutex>::unique_lock(std::mutex&) (.40)' into 'hls::stream_entity<5ul>::read(void*)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include/hls_stream.h:175:0)
+INFO: [HLS 214-178] Inlining function 'std::unique_lock<std::mutex>::unique_lock(std::mutex&) (.41)' into 'hls::stream_entity<5ul>::write(void const*)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include/hls_stream.h:212:0)
+INFO: [HLS 214-178] Inlining function 'std::_Deque_iterator<std::array<char, 5ul>, std::array<char, 5ul>&, std::array<char, 5ul>*>::_Deque_iterator(std::_Deque_iterator<std::array<char, 5ul>, std::array<char, 5ul>&, std::array<char, 5ul>*> const&) (.104)' into 'std::deque<std::array<char, 5ul>, std::allocator<std::array<char, 5ul> > >::begin() (.101)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/stl_deque.h:1177:0)
+INFO: [HLS 214-178] Inlining function 'std::deque<std::array<char, 5ul>, std::allocator<std::array<char, 5ul> > >::begin() (.101)' into 'std::deque<std::array<char, 5ul>, std::allocator<std::array<char, 5ul> > >::front()' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/stl_deque.h:1462:0)
+INFO: [HLS 214-178] Inlining function 'std::unique_lock<std::mutex>::unique_lock(std::mutex&) (.41)' into 'hls::stream_entity<5ul>::read(void*)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include/hls_stream.h:175:0)
 INFO: [HLS 214-178] Inlining function 'std::_Deque_iterator<std::array<char, 2ul>, std::array<char, 2ul>&, std::array<char, 2ul>*>::_M_set_node(std::array<char, 2ul>**)' into 'std::_Deque_base<std::array<char, 2ul>, std::allocator<std::array<char, 2ul> > >::_M_initialize_map(unsigned long)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/stl_deque.h:684:0)
 INFO: [HLS 214-178] Inlining function 'std::_Deque_iterator<std::array<char, 2ul>, std::array<char, 2ul>&, std::array<char, 2ul>*>::_M_set_node(std::array<char, 2ul>**)' into 'std::deque<std::array<char, 2ul>, std::allocator<std::array<char, 2ul> > >::_M_pop_front_aux()' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/deque.tcc:565:0)
 INFO: [HLS 214-178] Inlining function 'std::__detail::_Map_base<void*, std::pair<void* const, hls::stream_entity<2ul> >, std::allocator<std::pair<void* const, hls::stream_entity<2ul> > >, std::__detail::_Select1st, std::equal_to<void*>, std::hash<void*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true>, true>::operator[](void* const&)' into 'std::unordered_map<void*, hls::stream_entity<2ul>, std::hash<void*>, std::equal_to<void*>, std::allocator<std::pair<void* const, hls::stream_entity<2ul> > > >::operator[](void* const&)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/unordered_map.h:974:0)
 INFO: [HLS 214-178] Inlining function 'std::unordered_map<void*, hls::stream_entity<2ul>, std::hash<void*>, std::equal_to<void*>, std::allocator<std::pair<void* const, hls::stream_entity<2ul> > > >::operator[](void* const&)' into 'hls::stream_map<2ul>::get_entity(void*)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include/hls_stream.h:301:0)
 INFO: [HLS 214-178] Inlining function 'std::_Deque_iterator<std::array<char, 2ul>, std::array<char, 2ul>&, std::array<char, 2ul>*>::_Deque_iterator(std::_Deque_iterator<std::array<char, 2ul>, std::array<char, 2ul>&, std::array<char, 2ul>*> const&)' into 'std::deque<std::array<char, 2ul>, std::allocator<std::array<char, 2ul> > >::begin()' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/stl_deque.h:1177:0)
 INFO: [HLS 214-178] Inlining function 'std::deque<std::array<char, 2ul>, std::allocator<std::array<char, 2ul> > >::begin()' into 'std::deque<std::array<char, 2ul>, std::allocator<std::array<char, 2ul> > >::front()' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/stl_deque.h:1462:0)
-ERROR: [HLS 214-211] in function 'hls::stream_entity<2ul>::read_nb(void*)': Detected illegal out-of-bounds access on variable 'elem' which is struct 'tapa::internal::elem_t<unsigned char>' field 0
+INFO: [HLS 214-178] Inlining function 'std::unique_lock<std::mutex>::unique_lock(std::mutex&) (.41)' into 'hls::stream_entity<2ul>::read(void*)' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include/hls_stream.h:175:0)
+ERROR: [HLS 214-211] in function 'hls::stream_entity<2ul>::read(void*)': Detected illegal out-of-bounds access on variable 'ref.tmp.i.i' which is struct 'tapa::internal::elem_t<unsigned char>' field 0
+ERROR: [HLS 214-211] in function 'hls::stream_entity<2ul>::read(void*)': Detected illegal out-of-bounds access on variable 'ref.tmp.i.i34' which is struct 'tapa::internal::elem_t<unsigned char>' field 0
 INFO: [HLS 214-178] Inlining function 'std::deque<std::array<char, 5ul>, std::allocator<std::array<char, 5ul> > >::begin()' into 'std::deque<std::array<char, 5ul>, std::allocator<std::array<char, 5ul> > >::~deque()' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/stl_deque.h:1055:0)
-INFO: [HLS 214-178] Inlining function 'std::_Deque_iterator<std::array<char, 5ul>, std::array<char, 5ul>&, std::array<char, 5ul>*>::_Deque_iterator(std::_Deque_iterator<std::array<char, 5ul>, std::array<char, 5ul>&, std::array<char, 5ul>*> const&) (.111)' into 'std::deque<std::array<char, 5ul>, std::allocator<std::array<char, 5ul> > >::end()' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/stl_deque.h:1194:0)
+INFO: [HLS 214-178] Inlining function 'std::_Deque_iterator<std::array<char, 5ul>, std::array<char, 5ul>&, std::array<char, 5ul>*>::_Deque_iterator(std::_Deque_iterator<std::array<char, 5ul>, std::array<char, 5ul>&, std::array<char, 5ul>*> const&) (.104)' into 'std::deque<std::array<char, 5ul>, std::allocator<std::array<char, 5ul> > >::end()' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/stl_deque.h:1194:0)
 INFO: [HLS 214-178] Inlining function 'std::deque<std::array<char, 5ul>, std::allocator<std::array<char, 5ul> > >::end()' into 'std::deque<std::array<char, 5ul>, std::allocator<std::array<char, 5ul> > >::~deque()' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/stl_deque.h:1055:0)
-INFO: [HLS 214-178] Inlining function 'std::unique_lock<std::mutex>::unique_lock(std::mutex&) (.40)' into 'hls::stream_entity<5ul>::~stream_entity()' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include/hls_stream.h:168:0)
+INFO: [HLS 214-178] Inlining function 'std::unique_lock<std::mutex>::unique_lock(std::mutex&) (.41)' into 'hls::stream_entity<5ul>::~stream_entity()' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include/hls_stream.h:168:0)
 INFO: [HLS 214-178] Inlining function 'std::deque<std::array<char, 17ul>, std::allocator<std::array<char, 17ul> > >::begin()' into 'std::deque<std::array<char, 17ul>, std::allocator<std::array<char, 17ul> > >::~deque()' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/stl_deque.h:1055:0)
-INFO: [HLS 214-178] Inlining function 'std::_Deque_iterator<std::array<char, 17ul>, std::array<char, 17ul>&, std::array<char, 17ul>*>::_Deque_iterator(std::_Deque_iterator<std::array<char, 17ul>, std::array<char, 17ul>&, std::array<char, 17ul>*> const&) (.75)' into 'std::deque<std::array<char, 17ul>, std::allocator<std::array<char, 17ul> > >::end()' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/stl_deque.h:1194:0)
+INFO: [HLS 214-178] Inlining function 'std::_Deque_iterator<std::array<char, 17ul>, std::array<char, 17ul>&, std::array<char, 17ul>*>::_Deque_iterator(std::_Deque_iterator<std::array<char, 17ul>, std::array<char, 17ul>&, std::array<char, 17ul>*> const&) (.76)' into 'std::deque<std::array<char, 17ul>, std::allocator<std::array<char, 17ul> > >::end()' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/stl_deque.h:1194:0)
 INFO: [HLS 214-178] Inlining function 'std::deque<std::array<char, 17ul>, std::allocator<std::array<char, 17ul> > >::end()' into 'std::deque<std::array<char, 17ul>, std::allocator<std::array<char, 17ul> > >::~deque()' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/stl_deque.h:1055:0)
 INFO: [HLS 214-178] Inlining function 'std::unique_lock<std::mutex>::unique_lock(std::mutex&)' into 'hls::stream_entity<17ul>::~stream_entity()' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include/hls_stream.h:168:0)
 ERROR: [HLS 200-1715] Encountered problem during source synthesis
-INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 24.79 seconds. CPU system time: 3.18 seconds. Elapsed time: 42.9 seconds; current allocated memory: 6.996 MB.
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 25.93 seconds. CPU system time: 3.1 seconds. Elapsed time: 32.9 seconds; current allocated memory: 7.070 MB.
 Pre-synthesis failed.
     while executing
-"source /tmp/run-hls-Knn-cznq5qdf/commands.tcl"
+"source /tmp/run-hls-Knn-ymoq9sne/commands.tcl"
     ("uplevel" body line 1)
     invoked from within
 "uplevel \#0 [list source $tclfile] "
 
-INFO: [HLS 200-112] Total CPU user time: 29.37 seconds. Total CPU system time: 6.96 seconds. Total elapsed time: 60.53 seconds; peak allocated memory: 264.902 MB.
-INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 22:59:43 2026...
-
-****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.2 (64-bit)
-  **** SW Build 4023990 on Oct 11 2023
-  **** IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
-  **** SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
-    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
-
-source /afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/scripts/vitis_hls/hls.tcl -notrace
-INFO: [HLS 200-10] Running '/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/bin/unwrapped/lnx64.o/vitis_hls'
-INFO: [HLS 200-10] For user 'dchan2' on host 'ECE005.ece.local.cmu.edu' (Linux_x86_64 version 4.18.0-553.146.1.el8_10.x86_64) on Sun Oct 25 22:58:53 EDT 2026
-INFO: [HLS 200-10] On os "Red Hat Enterprise Linux release 8.10 (Ootpa)"
-INFO: [HLS 200-10] In directory '/tmp/run-hls-para_partial_sort-p2l4xk97'
-INFO: [HLS 200-2053] The vitis_hls executable is being deprecated. Consider using vitis-run --mode hls --tcl
-Sourcing Tcl script '/tmp/run-hls-para_partial_sort-p2l4xk97/commands.tcl'
-INFO: [HLS 200-1510] Running: open_project project 
-INFO: [HLS 200-10] Creating and opening project '/tmp/run-hls-para_partial_sort-p2l4xk97/project'.
-INFO: [HLS 200-1510] Running: set_top para_partial_sort 
-INFO: [HLS 200-1510] Running: add_files /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp -cflags -std=c++14 -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -std=c++14 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -D__SYNTHESIS__ -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__thread= -Dthread_local= -DTAPA_TARGET_=XILINX_HLS -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__SYNTHESIS__ 
-INFO: [HLS 200-10] Adding design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp' to the project
-INFO: [HLS 200-1510] Running: open_solution para_partial_sort 
-INFO: [HLS 200-10] Creating and opening solution '/tmp/run-hls-para_partial_sort-p2l4xk97/project/para_partial_sort'.
-INFO: [HLS 200-1505] Using default flow_target 'vivado'
-Resolution: For help on HLS 200-1505 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
-INFO: [HLS 200-1510] Running: set_part xczu3eg-sbva484-1-e 
-INFO: [HLS 200-1611] Setting target device to 'xczu3eg-sbva484-1-e'
-INFO: [HLS 200-1510] Running: create_clock -period 5.0 -name default 
-INFO: [SYN 201-201] Setting up clock 'default' with a period of 5ns.
-INFO: [HLS 200-1510] Running: config_compile -name_max_length 253 
-INFO: [XFORM 203-1161] The maximum of name length is set to 253.
-INFO: [HLS 200-1510] Running: config_interface -m_axi_addr64 
-INFO: [HLS 200-1510] Running: config_rtl -reset_level low -module_auto_prefix 
-INFO: [HLS 200-1510] Running: csynth_design 
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.11 seconds. CPU system time: 0.03 seconds. Elapsed time: 0.14 seconds; current allocated memory: 257.934 MB.
-INFO: [HLS 200-10] Analyzing design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp' ... 
-WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/stream.h:14:1)
-WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/stream.h:15:1)
-WARNING: [HLS 207-5566] unexpected pragma argument 'float', expects identifier (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/util.h:58:22)
-WARNING: [HLS 207-3907] duplicate 'mutable' declaration specifier (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/stream.h:167:11)
-WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/task.h:17:1)
-WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/task.h:18:1)
-INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 14.38 seconds. CPU system time: 1.92 seconds. Elapsed time: 21.97 seconds; current allocated memory: 261.727 MB.
-INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
-INFO: [HLS 200-1995] There were 8,275 instructions in the design after the 'Compile/Link' phase of compilation. See the Design Size Report for more details: /tmp/run-hls-para_partial_sort-p2l4xk97/project/para_partial_sort/syn/report/csynth_design_size.rpt
-ERROR: [HLS 200-1715] Encountered problem during source synthesis
-INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 20.76 seconds. CPU system time: 3.19 seconds. Elapsed time: 45.27 seconds; current allocated memory: 4.207 MB.
-Pre-synthesis failed.
-    while executing
-"source /tmp/run-hls-para_partial_sort-p2l4xk97/commands.tcl"
-    ("uplevel" body line 1)
-    invoked from within
-"uplevel \#0 [list source $tclfile] "
-
-INFO: [HLS 200-112] Total CPU user time: 25.55 seconds. Total CPU system time: 6.81 seconds. Total elapsed time: 62.67 seconds; peak allocated memory: 262.141 MB.
-INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 22:59:45 2026...
+INFO: [HLS 200-112] Total CPU user time: 31.68 seconds. Total CPU system time: 7.71 seconds. Total elapsed time: 53.02 seconds; peak allocated memory: 264.977 MB.
+INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 23:06:42 2026...
 Traceback (most recent call last):
   File "/afs/ece/usr/dchan2/miniconda3/bin/tapac", line 6, in <module>
     sys.exit(main())

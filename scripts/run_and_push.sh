@@ -36,12 +36,7 @@ if [ $INSERTED -eq 0 ]; then
     ARGS+=("--emit-dir" "$EMIT_DIR")
 fi
 
-if command -v gdb >/dev/null 2>&1; then
-    echo "=== Running tapacc.real under GDB ===" >&2
-    gdb -batch -return-child-result -ex "run" -ex "bt 50" --args "$DIR/tapacc.real" "${ARGS[@]}"
-else
-    exec "$DIR/tapacc.real" "${ARGS[@]}"
-fi
+exec "$DIR/tapacc.real" "${ARGS[@]}"
 EOF_WRAP
         chmod +x "$TAPACC_WRAPPER"
     fi

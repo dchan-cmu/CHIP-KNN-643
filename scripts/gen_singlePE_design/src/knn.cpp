@@ -426,7 +426,7 @@ void Knn(
     tapa::stream<int,       TOP> L0_out_id_0;
     // Streams, for load->compute->sort:
     tapa::stream<INTERFACE_WIDTH, 2>           load_to_compute_stream_0;
-    tapa::streams<DATA_TYPE, NUM_SEGMENTS, 2>           compute_to_sort_stream_0;
+    tapa::stream<DATA_TYPE, 2>           compute_to_sort_stream_0;
 
 
     tapa::task()

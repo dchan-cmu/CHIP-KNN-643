@@ -30,17 +30,17 @@ tapac \
       src/knn.cpp
 /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/autobridge/util.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   from pkg_resources import get_distribution
-I1025 20:35:27.342 tapa.util:184] logging level set to INFO
-I1025 20:35:27.343 tapa.tapac:396] Step 0: run_tapacc is enabled.
-I1025 20:35:27.343 tapa.tapac:396] Step 1: run_hls is enabled.
-I1025 20:35:27.343 tapa.tapac:396] Step 2: generate_task_rtl is enabled.
-W1025 20:35:27.343 tapa.tapac:398] Step 3: run_floorplanning is *SKIPPED*.
-I1025 20:35:27.343 tapa.tapac:396] Step 4: generate_top_rtl is enabled.
-I1025 20:35:27.343 tapa.tapac:396] Step 5: pack_xo is enabled.
-I1025 20:35:27.344 tapa.tapac:514] running translated command: `tapa --work-dir=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform analyze --input=src/knn.cpp --top=Knn --cflags=-U__SYNTHESIS__ --cflags=-Wno-invalid-constexpr --cflags=-Wno-error=invalid-constexpr --cflags=-I/usr/bin/../lib/clang/20/include --cflags=-I/usr/include/c++/8 --cflags=-I/usr/include/c++/8/x86_64-redhat-linux --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include --cflags=-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include --cflags=-I/usr/include --cflags=-I/usr/include/x86_64-linux-gnu synth --part-num=xczu3eg-sbva484-1-e --clock-period=5.00 link pack --output=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn.xo --bitstream-script=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn_generate_bitstream.sh`
-I1025 20:35:27.346 tapa.util:184] logging level set to INFO
-I1025 20:35:27.346 tapa.tapa:54] tapa version: 0.0.20240825.1
-I1025 20:35:27.346 tapa.tapa:58] Python recursion limit set to 3000
+I1025 20:39:12.513 tapa.util:184] logging level set to INFO
+I1025 20:39:12.513 tapa.tapac:396] Step 0: run_tapacc is enabled.
+I1025 20:39:12.513 tapa.tapac:396] Step 1: run_hls is enabled.
+I1025 20:39:12.513 tapa.tapac:396] Step 2: generate_task_rtl is enabled.
+W1025 20:39:12.513 tapa.tapac:398] Step 3: run_floorplanning is *SKIPPED*.
+I1025 20:39:12.513 tapa.tapac:396] Step 4: generate_top_rtl is enabled.
+I1025 20:39:12.513 tapa.tapac:396] Step 5: pack_xo is enabled.
+I1025 20:39:12.514 tapa.tapac:514] running translated command: `tapa --work-dir=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform analyze --input=src/knn.cpp --top=Knn --cflags=-U__SYNTHESIS__ --cflags=-Wno-invalid-constexpr --cflags=-Wno-error=invalid-constexpr --cflags=-I/usr/bin/../lib/clang/20/include --cflags=-I/usr/include/c++/8 --cflags=-I/usr/include/c++/8/x86_64-redhat-linux --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include --cflags=-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include --cflags=-I/usr/include --cflags=-I/usr/include/x86_64-linux-gnu synth --part-num=xczu3eg-sbva484-1-e --clock-period=5.00 link pack --output=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn.xo --bitstream-script=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn_generate_bitstream.sh`
+I1025 20:39:12.515 tapa.util:184] logging level set to INFO
+I1025 20:39:12.515 tapa.tapa:54] tapa version: 0.0.20240825.1
+I1025 20:39:12.515 tapa.tapa:58] Python recursion limit set to 3000
 In file included from src/knn.cpp:1:
 In file included from src/knn.h:1:
 In file included from /afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include/ap_int.h:10:
@@ -55,8 +55,8 @@ In file included from /afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_
    24 | #pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
       |                                ^
 2 warnings generated.
-W1025 20:35:37.314 tapa.util:129] not adding vendor include paths; please update FRT
-I1025 20:35:37.314 tapa.steps.analyze:265] Running tapacc command: /scratch/643_vitis_dchan2/CHIP-KNN-643/.tapa/usr/bin/tapacc ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp -top Knn -- -U__SYNTHESIS__ -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/usr/bin/../lib/clang/20/include -I/usr/include/c++/8 -I/usr/include/c++/8/x86_64-redhat-linux -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -I/usr/include -I/usr/include/x86_64-linux-gnu -std=c++17 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -stdlib=libc++ -isystem /usr/lib/llvm-22/include/c++/v1/ -isystem /usr/include/clang/22/include/ -isystem /usr/lib/clang/22/include/
+W1025 20:39:21.897 tapa.util:129] not adding vendor include paths; please update FRT
+I1025 20:39:21.898 tapa.steps.analyze:265] Running tapacc command: /scratch/643_vitis_dchan2/CHIP-KNN-643/.tapa/usr/bin/tapacc ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp -top Knn -- -U__SYNTHESIS__ -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/usr/bin/../lib/clang/20/include -I/usr/include/c++/8 -I/usr/include/c++/8/x86_64-redhat-linux -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -I/usr/include -I/usr/include/x86_64-linux-gnu -std=c++17 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -stdlib=libc++ -isystem /usr/lib/llvm-22/include/c++/v1/ -isystem /usr/include/clang/22/include/ -isystem /usr/lib/clang/22/include/
 /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:4027:13: warning: inline namespace reopened as a non-inline namespace [-Winline-namespace-reopened-noninline]
  4027 |   namespace __cxx11 {
       |             ^
@@ -1524,75 +1524,6 @@ I1025 20:35:37.314 tapa.steps.analyze:265] Running tapacc command: /scratch/643_
 /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:106092:18: warning: '_M_dispose' overrides a member function but is not marked 'override' [-Winconsistent-missing-override]
  106092 |     virtual void _M_dispose() noexcept {
         |                  ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:106171:16: note: in instantiation of template class 'std::_Sp_counted_ptr_inplace<tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t, std::allocator<tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t>, __gnu_cxx::_S_atomic>' requested here
- 106171 |       typename _Sp_cp_type::__allocator_type __a2(__a._M_a);
-        |                ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:106603:21: note: in instantiation of function template specialization 'std::__shared_count<>::__shared_count<tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t, std::allocator<tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t>, const char (&)[1], int>' requested here
- 106603 |         : _M_ptr(), _M_refcount(_M_ptr, __tag, std::forward<_Args>(__args)...) {
-        |                     ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:107224:11: note: in instantiation of function template specialization 'std::__shared_ptr<tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t>::__shared_ptr<std::allocator<tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t>, const char (&)[1], int>' requested here
- 107224 |         : __shared_ptr<_Tp>(__tag, std::forward<_Args>(__args)...) {}
-        |           ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:107472:12: note: in instantiation of function template specialization 'std::shared_ptr<tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t>::shared_ptr<std::allocator<tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t>, const char (&)[1], int>' requested here
- 107472 |     return shared_ptr<_Tp>(_Sp_alloc_shared_tag<_Alloc>{__a},
-        |            ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:107485:17: note: in instantiation of function template specialization 'std::allocate_shared<tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t, std::allocator<tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t>, const char (&)[1], int>' requested here
- 107485 |     return std::allocate_shared<_Tp>(std::allocator<_Tp_nc>(),
-        |                 ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:134378:18: note: in instantiation of function template specialization 'std::make_shared<tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t, const char (&)[1], int>' requested here
- 134378 |             std::make_shared<typename internal::basic_streams<T>::metadata_t>(
-        |                  ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138494:7: note: in instantiation of member function 'tapa::streams<ap_fixed<32, 12, AP_RND, AP_SAT>, 1>::streams' requested here
- 138494 |       compute_to_sort_stream_0;
-        |       ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:105827:18: note: overridden virtual function is here
- 105827 |     virtual void _M_dispose() noexcept = 0;
-        |                  ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:106096:18: warning: '_M_destroy' overrides a member function but is not marked 'override' [-Winconsistent-missing-override]
- 106096 |     virtual void _M_destroy() noexcept {
-        |                  ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:105829:18: note: overridden virtual function is here
- 105829 |     virtual void _M_destroy() noexcept { delete this; }
-        |                  ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:90345:23: warning: builtin __has_trivial_destructor is deprecated; use __is_trivially_destructible instead [-Wdeprecated-builtins]
- 90345 |     std::_Destroy_aux<__has_trivial_destructor(_Value_type)>::__destroy(__first,
-       |                       ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:90394:5: note: in instantiation of function template specialization 'std::_Destroy<tapa::internal::basic_stream<ap_fixed<32, 12, AP_RND, AP_SAT>> *>' requested here
- 90394 |     _Destroy(__first, __last);
-       |     ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:93805:12: note: in instantiation of function template specialization 'std::_Destroy<tapa::internal::basic_stream<ap_fixed<32, 12, AP_RND, AP_SAT>> *, tapa::internal::basic_stream<ap_fixed<32, 12, AP_RND, AP_SAT>>>' requested here
- 93805 |       std::_Destroy(this->_M_impl._M_start, this->_M_impl._M_finish,
-       |            ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:133916:5: note: in instantiation of member function 'std::vector<tapa::internal::basic_stream<ap_fixed<32, 12, AP_RND, AP_SAT>>>::~vector' requested here
- 133916 |     metadata_t(const std::string &name, int pos) : name(name), pos(pos) {}
-        |     ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:14715:27: note: in instantiation of member function 'tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t::metadata_t' requested here
- 14715 |       ::new ((void *)__p) _Up(std::forward<_Args>(__args)...);
-       |                           ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:16910:11: note: in instantiation of function template specialization '__gnu_cxx::new_allocator<tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t>::construct<tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t, const char (&)[1], int>' requested here
- 16910 |       __a.construct(__p, std::forward<_Args>(__args)...);
-       |           ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:106087:33: note: (skipping 3 contexts in backtrace; use -ftemplate-backtrace-limit=0 to see all)
- 106087 |       allocator_traits<_Alloc>::construct(
-        |                                 ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:107224:11: note: in instantiation of function template specialization 'std::__shared_ptr<tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t>::__shared_ptr<std::allocator<tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t>, const char (&)[1], int>' requested here
- 107224 |         : __shared_ptr<_Tp>(__tag, std::forward<_Args>(__args)...) {}
-        |           ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:107472:12: note: in instantiation of function template specialization 'std::shared_ptr<tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t>::shared_ptr<std::allocator<tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t>, const char (&)[1], int>' requested here
- 107472 |     return shared_ptr<_Tp>(_Sp_alloc_shared_tag<_Alloc>{__a},
-        |            ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:107485:17: note: in instantiation of function template specialization 'std::allocate_shared<tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t, std::allocator<tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t>, const char (&)[1], int>' requested here
- 107485 |     return std::allocate_shared<_Tp>(std::allocator<_Tp_nc>(),
-        |                 ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:134378:18: note: in instantiation of function template specialization 'std::make_shared<tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t, const char (&)[1], int>' requested here
- 134378 |             std::make_shared<typename internal::basic_streams<T>::metadata_t>(
-        |                  ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138494:7: note: in instantiation of member function 'tapa::streams<ap_fixed<32, 12, AP_RND, AP_SAT>, 1>::streams' requested here
- 138494 |       compute_to_sort_stream_0;
-        |       ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:106092:18: warning: '_M_dispose' overrides a member function but is not marked 'override' [-Winconsistent-missing-override]
- 106092 |     virtual void _M_dispose() noexcept {
-        |                  ^
 /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:106171:16: note: in instantiation of template class 'std::_Sp_counted_ptr_inplace<tapa::internal::locked_queue<tapa::internal::elem_t<long>>, std::allocator<tapa::internal::locked_queue<tapa::internal::elem_t<long>>>, __gnu_cxx::_S_atomic>' requested here
  106171 |       typename _Sp_cp_type::__allocator_type __a2(__a._M_a);
         |                ^
@@ -2116,7 +2047,7 @@ I1025 20:35:37.314 tapa.steps.analyze:265] Running tapacc command: /scratch/643_
  131586 |   memcpy(&val, bytes.data(), sizeof(val));
         |          ^
         |          (void*)
-168 warnings generated.
+165 warnings generated.
 /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:4027:13: warning: inline namespace reopened as a non-inline namespace [-Winline-namespace-reopened-noninline]
  4027 |   namespace __cxx11 {
       |             ^
@@ -3509,75 +3440,6 @@ I1025 20:35:37.314 tapa.steps.analyze:265] Running tapacc command: /scratch/643_
 /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:106092:18: warning: '_M_dispose' overrides a member function but is not marked 'override' [-Winconsistent-missing-override]
  106092 |     virtual void _M_dispose() noexcept {
         |                  ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:106171:16: note: in instantiation of template class 'std::_Sp_counted_ptr_inplace<tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t, std::allocator<tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t>, __gnu_cxx::_S_atomic>' requested here
- 106171 |       typename _Sp_cp_type::__allocator_type __a2(__a._M_a);
-        |                ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:106603:21: note: in instantiation of function template specialization 'std::__shared_count<>::__shared_count<tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t, std::allocator<tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t>, const char (&)[1], int>' requested here
- 106603 |         : _M_ptr(), _M_refcount(_M_ptr, __tag, std::forward<_Args>(__args)...) {
-        |                     ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:107224:11: note: in instantiation of function template specialization 'std::__shared_ptr<tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t>::__shared_ptr<std::allocator<tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t>, const char (&)[1], int>' requested here
- 107224 |         : __shared_ptr<_Tp>(__tag, std::forward<_Args>(__args)...) {}
-        |           ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:107472:12: note: in instantiation of function template specialization 'std::shared_ptr<tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t>::shared_ptr<std::allocator<tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t>, const char (&)[1], int>' requested here
- 107472 |     return shared_ptr<_Tp>(_Sp_alloc_shared_tag<_Alloc>{__a},
-        |            ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:107485:17: note: in instantiation of function template specialization 'std::allocate_shared<tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t, std::allocator<tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t>, const char (&)[1], int>' requested here
- 107485 |     return std::allocate_shared<_Tp>(std::allocator<_Tp_nc>(),
-        |                 ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:134378:18: note: in instantiation of function template specialization 'std::make_shared<tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t, const char (&)[1], int>' requested here
- 134378 |             std::make_shared<typename internal::basic_streams<T>::metadata_t>(
-        |                  ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138494:7: note: in instantiation of member function 'tapa::streams<ap_fixed<32, 12, AP_RND, AP_SAT>, 1>::streams' requested here
- 138494 |       compute_to_sort_stream_0;
-        |       ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:105827:18: note: overridden virtual function is here
- 105827 |     virtual void _M_dispose() noexcept = 0;
-        |                  ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:106096:18: warning: '_M_destroy' overrides a member function but is not marked 'override' [-Winconsistent-missing-override]
- 106096 |     virtual void _M_destroy() noexcept {
-        |                  ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:105829:18: note: overridden virtual function is here
- 105829 |     virtual void _M_destroy() noexcept { delete this; }
-        |                  ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:90345:23: warning: builtin __has_trivial_destructor is deprecated; use __is_trivially_destructible instead [-Wdeprecated-builtins]
- 90345 |     std::_Destroy_aux<__has_trivial_destructor(_Value_type)>::__destroy(__first,
-       |                       ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:90394:5: note: in instantiation of function template specialization 'std::_Destroy<tapa::internal::basic_stream<ap_fixed<32, 12, AP_RND, AP_SAT>> *>' requested here
- 90394 |     _Destroy(__first, __last);
-       |     ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:93805:12: note: in instantiation of function template specialization 'std::_Destroy<tapa::internal::basic_stream<ap_fixed<32, 12, AP_RND, AP_SAT>> *, tapa::internal::basic_stream<ap_fixed<32, 12, AP_RND, AP_SAT>>>' requested here
- 93805 |       std::_Destroy(this->_M_impl._M_start, this->_M_impl._M_finish,
-       |            ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:133916:5: note: in instantiation of member function 'std::vector<tapa::internal::basic_stream<ap_fixed<32, 12, AP_RND, AP_SAT>>>::~vector' requested here
- 133916 |     metadata_t(const std::string &name, int pos) : name(name), pos(pos) {}
-        |     ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:14715:27: note: in instantiation of member function 'tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t::metadata_t' requested here
- 14715 |       ::new ((void *)__p) _Up(std::forward<_Args>(__args)...);
-       |                           ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:16910:11: note: in instantiation of function template specialization '__gnu_cxx::new_allocator<tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t>::construct<tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t, const char (&)[1], int>' requested here
- 16910 |       __a.construct(__p, std::forward<_Args>(__args)...);
-       |           ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:106087:33: note: (skipping 3 contexts in backtrace; use -ftemplate-backtrace-limit=0 to see all)
- 106087 |       allocator_traits<_Alloc>::construct(
-        |                                 ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:107224:11: note: in instantiation of function template specialization 'std::__shared_ptr<tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t>::__shared_ptr<std::allocator<tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t>, const char (&)[1], int>' requested here
- 107224 |         : __shared_ptr<_Tp>(__tag, std::forward<_Args>(__args)...) {}
-        |           ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:107472:12: note: in instantiation of function template specialization 'std::shared_ptr<tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t>::shared_ptr<std::allocator<tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t>, const char (&)[1], int>' requested here
- 107472 |     return shared_ptr<_Tp>(_Sp_alloc_shared_tag<_Alloc>{__a},
-        |            ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:107485:17: note: in instantiation of function template specialization 'std::allocate_shared<tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t, std::allocator<tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t>, const char (&)[1], int>' requested here
- 107485 |     return std::allocate_shared<_Tp>(std::allocator<_Tp_nc>(),
-        |                 ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:134378:18: note: in instantiation of function template specialization 'std::make_shared<tapa::internal::basic_streams<ap_fixed<32, 12, AP_RND, AP_SAT>>::metadata_t, const char (&)[1], int>' requested here
- 134378 |             std::make_shared<typename internal::basic_streams<T>::metadata_t>(
-        |                  ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138494:7: note: in instantiation of member function 'tapa::streams<ap_fixed<32, 12, AP_RND, AP_SAT>, 1>::streams' requested here
- 138494 |       compute_to_sort_stream_0;
-        |       ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:106092:18: warning: '_M_dispose' overrides a member function but is not marked 'override' [-Winconsistent-missing-override]
- 106092 |     virtual void _M_dispose() noexcept {
-        |                  ^
 /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:106171:16: note: in instantiation of template class 'std::_Sp_counted_ptr_inplace<tapa::internal::locked_queue<tapa::internal::elem_t<long>>, std::allocator<tapa::internal::locked_queue<tapa::internal::elem_t<long>>>, __gnu_cxx::_S_atomic>' requested here
  106171 |       typename _Sp_cp_type::__allocator_type __a2(__a._M_a);
         |                ^
@@ -4101,5 +3963,5 @@ I1025 20:35:37.314 tapa.steps.analyze:265] Running tapacc command: /scratch/643_
  131586 |   memcpy(&val, bytes.data(), sizeof(val));
         |          ^
         |          (void*)
-E1025 20:35:49.154 tapa.steps.analyze:196] command ('/scratch/643_vitis_dchan2/CHIP-KNN-643/.tapa/usr/bin/tapacc', './_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp', '-top', 'Knn', '--', '-U__SYNTHESIS__', '-Wno-invalid-constexpr', '-Wno-error=invalid-constexpr', '-I/usr/bin/../lib/clang/20/include', '-I/usr/include/c++/8', '-I/usr/include/c++/8/x86_64-redhat-linux', '-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include', '-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include', '-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include', '-I/usr/include', '-I/usr/include/x86_64-linux-gnu', '-std=c++17', '-I', '/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src', '-stdlib=libc++', '-isystem', '/usr/lib/llvm-22/include/c++/v1/', '-isystem', '/usr/include/clang/22/include/', '-isystem', '/usr/lib/clang/22/include/') failed with exit code -11
+E1025 20:39:32.538 tapa.steps.analyze:196] command ('/scratch/643_vitis_dchan2/CHIP-KNN-643/.tapa/usr/bin/tapacc', './_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp', '-top', 'Knn', '--', '-U__SYNTHESIS__', '-Wno-invalid-constexpr', '-Wno-error=invalid-constexpr', '-I/usr/bin/../lib/clang/20/include', '-I/usr/include/c++/8', '-I/usr/include/c++/8/x86_64-redhat-linux', '-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include', '-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include', '-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include', '-I/usr/include', '-I/usr/include/x86_64-linux-gnu', '-std=c++17', '-I', '/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src', '-stdlib=libc++', '-isystem', '/usr/lib/llvm-22/include/c++/v1/', '-isystem', '/usr/include/clang/22/include/', '-isystem', '/usr/lib/clang/22/include/') failed with exit code -11
 make: *** [Makefile:98: _x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn.xo] Error 245

@@ -138487,10 +138487,10 @@ void Knn(tapa::mmap<ap_uint<IWIDTH>> in_0, tapa::mmap<ap_uint<32>> final_out) {
   tapa::stream<int, TOP> L0_out_id_0;
   // Streams, for load->compute->sort:
   tapa::stream<ap_uint<IWIDTH>, 2> load_to_compute_stream_0;
-  tapa::streams<
+  tapa::stream<
       ap_fixed<32, 12 /* NOTE: This includes the sign bit, if applicable.*/,
                AP_RND, AP_SAT>,
-      (1), 2>
+      2>
       compute_to_sort_stream_0;
   tapa::task()
       .invoke(load_KNN, 0, in_0, load_to_compute_stream_0)

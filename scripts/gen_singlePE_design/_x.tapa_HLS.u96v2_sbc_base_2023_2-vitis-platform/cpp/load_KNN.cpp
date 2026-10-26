@@ -265,8 +265,8 @@ SORT_LOOP:
     // compare and swap odd
     for (int ii = 1; ii < TOP; ii += 2) {
 #pragma HLS UNROLL
-#pragma HLS DEPENDENCE variable = "local_kNearstDist" inter false
-#pragma HLS DEPENDENCE variable = "local_kNearstId" inter false
+#pragma HLS DEPENDENCE variable = local_kNearstDist inter false
+#pragma HLS DEPENDENCE variable = local_kNearstId inter false
 
       if (local_kNearstDist[ii] < local_kNearstDist[ii + 1]) {
         KNN_SWAP(&local_kNearstDist[ii], &local_kNearstDist[ii + 1],
@@ -277,8 +277,8 @@ SORT_LOOP:
     // compare and swap even
     for (int ii = 1; ii < TOP + 1; ii += 2) {
 #pragma HLS UNROLL
-#pragma HLS DEPENDENCE variable = "local_kNearstDist" inter false
-#pragma HLS DEPENDENCE variable = "local_kNearstId" inter false
+#pragma HLS DEPENDENCE variable = local_kNearstDist inter false
+#pragma HLS DEPENDENCE variable = local_kNearstId inter false
 
       if (local_kNearstDist[ii] > local_kNearstDist[ii - 1]) {
         KNN_SWAP(&local_kNearstDist[ii], &local_kNearstDist[ii - 1],

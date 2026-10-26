@@ -242,6 +242,20 @@ class Program:
             other_configs=other_configs,
         ) as proc:
           stdout, stderr = proc.communicate()
+          if proc.returncode != 0:
+            import glob as _glob
+            print(f"=== FULL VITIS HLS LOG FOR {task.name} ===", flush=True)
+            for d in _glob.glob(f"/tmp/run-hls-{task.name}*"):
+              for root, dirs, files in os.walk(d):
+                for file in files:
+                  if file.endswith((".log", ".rpt", ".tcl", ".xml", ".size")):
+                    p = os.path.join(root, file)
+                    print(f"--- File: {p} ---", flush=True)
+                    try:
+                      with open(p, "r", errors="ignore") as lf:
+                        print(lf.read(), flush=True)
+                    except Exception as e:
+                      print(f"Could not read {p}: {e}", flush=True)
       if proc.returncode != 0:
         if b'Pre-synthesis failed.' in stdout and b'\nERROR:' not in stdout:
           _logger.error(
@@ -252,32 +266,6 @@ class Program:
           return
         sys.stdout.write(stdout.decode('utf-8'))
         sys.stderr.write(stderr.decode('utf-8'))
-        import glob, os
-
-        print(f'=== FULL VITIS HLS LOG FOR {task.name} ===', flush=True)
-
-        for d in glob.glob(f'/tmp/run-hls-{task.name}*'):
-
-            for root, dirs, files in os.walk(d):
-
-                for file in files:
-
-                    if file.endswith(('.log', '.rpt', '.tcl', '.xml')):
-
-                        p = os.path.join(root, file)
-
-                        print(f'--- File: {p} ---', flush=True)
-
-                        try:
-
-                            with open(p, 'r', errors='ignore') as lf:
-
-                                print(lf.read(), flush=True)
-
-                        except Exception as e:
-
-                            print(f'Could not read {p}: {e}', flush=True)
-
         raise RuntimeError('HLS failed for {}'.format(task.name))
 
     worker_num = util.nproc()

@@ -9,7 +9,7 @@
     echo "=== 1. Cleaning previous build artifacts ==="
     rm -rf gen_singlePE_design gen_multiPE_design
 
-    echo "=== 1a. Patching TAPA core to remove obsolete gcc-6.2.0 include path ==="
+    echo "=== 1a. Patching TAPA core to remove obsolete gcc-6.2.0 path and use C++14 for HLS ==="
     python3 -c '
 import tapa.core, re
 
@@ -17,15 +17,29 @@ core_file = tapa.core.__file__
 with open(core_file, "r") as f:
     code = f.read()
 
+modified = False
 if "gcc-6.2.0" in code:
     print(f"Patching {core_file} to remove obsolete gcc-6.2.0 path...")
-    new_code = re.sub(r"\*\([^\)]*gcc-6\.2\.0.*?for x in util\.get_vendor_include_paths\(\)\),?", "", code, flags=re.DOTALL)
-    compile(new_code, core_file, "exec")
+    code = re.sub(r"\*\([^\)]*gcc-6\.2\.0.*?for x in util\.get_vendor_include_paths\(\)\),?", "", code, flags=re.DOTALL)
+    modified = True
+
+if "std=\x27c++17\x27" in code:
+    print(f"Patching {core_file} to use std=c++14 for HLS...")
+    code = code.replace("std=\x27c++17\x27", "std=\x27c++14\x27")
+    modified = True
+
+if "std=\"c++17\"" in code:
+    print(f"Patching {core_file} to use std=c++14 for HLS...")
+    code = code.replace("std=\"c++17\"", "std=\"c++14\"")
+    modified = True
+
+if modified:
+    compile(code, core_file, "exec")
     with open(core_file, "w") as f:
-        f.write(new_code)
+        f.write(code)
     print("Successfully patched tapa.core!")
 else:
-    print("tapa.core already patched or gcc-6.2.0 not present.")
+    print("tapa.core already up to date.")
 ' || true
 
     echo "=== 1b. Setting up vitis_hls and tapacc wrappers with diagnostics ==="

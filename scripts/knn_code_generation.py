@@ -317,7 +317,7 @@ def Generate_Design_Configuration(_N, _D, _Dist, _K, _port_width, _memory_type, 
 
 def GeneratePartialKNN_Header(_core_krnl_file, _knn_config):
     _core_krnl_file.append('#include "knn.h"' + '\n')
-    _core_krnl_file.append('#define absval(input) ((input) > 0 ? (input) : static_cast<DATA_TYPE>(-1 * (input)))\n\n')
+    _core_krnl_file.append('#define absval(input) ((input) > 0 ? static_cast<DATA_TYPE>(input) : static_cast<DATA_TYPE>(-1 * (input)))\n\n')
 
 
     ########################################

@@ -15,6 +15,11 @@
         cat << 'EOF_WRAP' > "$TAPACC_WRAPPER"
 #!/bin/bash
 DIR="$(dirname "$(readlink -f "$0")")"
+
+if [ "$1" = "--version" ] || [ "$1" = "-version" ] || [ "$1" = "-v" ] || [ "$1" = "--help" ] || [ "$1" = "-help" ]; then
+    exec "$DIR/tapacc.real" "$@"
+fi
+
 EMIT_DIR="/tmp/tapa_emit"
 mkdir -p "$EMIT_DIR"
 

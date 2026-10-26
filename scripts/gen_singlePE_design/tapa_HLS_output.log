@@ -25,19 +25,19 @@ tapac \
       src/knn.cpp
 /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/autobridge/util.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   from pkg_resources import get_distribution
-I1025 23:14:37.328 tapa.util:184] logging level set to INFO
-I1025 23:14:37.329 tapa.tapac:396] Step 0: run_tapacc is enabled.
-W1025 23:14:37.329 tapa.tapac:398] Step 1: run_hls is *SKIPPED*.
-W1025 23:14:37.329 tapa.tapac:398] Step 2: generate_task_rtl is *SKIPPED*.
-W1025 23:14:37.329 tapa.tapac:398] Step 3: run_floorplanning is *SKIPPED*.
-W1025 23:14:37.329 tapa.tapac:398] Step 4: generate_top_rtl is *SKIPPED*.
-W1025 23:14:37.329 tapa.tapac:398] Step 5: pack_xo is *SKIPPED*.
-I1025 23:14:37.330 tapa.tapac:514] running translated command: `tapa --work-dir=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform analyze --input=src/knn.cpp --top=Knn --cflags=-U__SYNTHESIS__ --cflags=-w --cflags=-Wno-invalid-constexpr --cflags=-Wno-error=invalid-constexpr --cflags=-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src --cflags=-I/usr/bin/../lib/clang/20/include --cflags=-I/usr/include/c++/8 --cflags=-I/usr/include/c++/8/x86_64-redhat-linux --cflags=-I/usr/include --cflags=-I/usr/include/x86_64-linux-gnu --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include --cflags=-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include`
-I1025 23:14:37.332 tapa.util:184] logging level set to INFO
-I1025 23:14:37.332 tapa.tapa:54] tapa version: 0.0.20240825.1
-I1025 23:14:37.333 tapa.tapa:58] Python recursion limit set to 3000
-W1025 23:14:47.124 tapa.util:129] not adding vendor include paths; please update FRT
-I1025 23:14:47.125 tapa.steps.analyze:265] Running tapacc command: /scratch/643_vitis_dchan2/CHIP-KNN-643/.tapa/usr/bin/tapacc ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp -top Knn -- -U__SYNTHESIS__ -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/usr/bin/../lib/clang/20/include -I/usr/include/c++/8 -I/usr/include/c++/8/x86_64-redhat-linux -I/usr/include -I/usr/include/x86_64-linux-gnu -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -std=c++17 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -stdlib=libc++ -isystem /usr/lib/llvm-22/include/c++/v1/ -isystem /usr/include/clang/22/include/ -isystem /usr/lib/clang/22/include/
+I1025 23:23:11.105 tapa.util:184] logging level set to INFO
+I1025 23:23:11.106 tapa.tapac:396] Step 0: run_tapacc is enabled.
+W1025 23:23:11.106 tapa.tapac:398] Step 1: run_hls is *SKIPPED*.
+W1025 23:23:11.106 tapa.tapac:398] Step 2: generate_task_rtl is *SKIPPED*.
+W1025 23:23:11.106 tapa.tapac:398] Step 3: run_floorplanning is *SKIPPED*.
+W1025 23:23:11.106 tapa.tapac:398] Step 4: generate_top_rtl is *SKIPPED*.
+W1025 23:23:11.106 tapa.tapac:398] Step 5: pack_xo is *SKIPPED*.
+I1025 23:23:11.107 tapa.tapac:514] running translated command: `tapa --work-dir=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform analyze --input=src/knn.cpp --top=Knn --cflags=-U__SYNTHESIS__ --cflags=-w --cflags=-Wno-invalid-constexpr --cflags=-Wno-error=invalid-constexpr --cflags=-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src --cflags=-I/usr/bin/../lib/clang/20/include --cflags=-I/usr/include/c++/8 --cflags=-I/usr/include/c++/8/x86_64-redhat-linux --cflags=-I/usr/include --cflags=-I/usr/include/x86_64-linux-gnu --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include --cflags=-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include`
+I1025 23:23:11.108 tapa.util:184] logging level set to INFO
+I1025 23:23:11.108 tapa.tapa:54] tapa version: 0.0.20240825.1
+I1025 23:23:11.109 tapa.tapa:58] Python recursion limit set to 3000
+W1025 23:23:20.420 tapa.util:129] not adding vendor include paths; please update FRT
+I1025 23:23:20.420 tapa.steps.analyze:265] Running tapacc command: /scratch/643_vitis_dchan2/CHIP-KNN-643/.tapa/usr/bin/tapacc ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp -top Knn -- -U__SYNTHESIS__ -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/usr/bin/../lib/clang/20/include -I/usr/include/c++/8 -I/usr/include/c++/8/x86_64-redhat-linux -I/usr/include -I/usr/include/x86_64-linux-gnu -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -std=c++17 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -stdlib=libc++ -isystem /usr/lib/llvm-22/include/c++/v1/ -isystem /usr/include/clang/22/include/ -isystem /usr/lib/clang/22/include/
 Breakpoint 1 at 0xae5072
 Breakpoint 2 at 0xae8634
 warning: Loadable section ".note.gnu.property" outside of ELF segments
@@ -46005,9 +46005,9 @@ Breakpoint 2, 0x000055555603c634 in tapa::cc::AddPragmaToBody(tapa::cc::EditSink
 Breakpoint 1, 0x0000555556039072 in tapa::cc::XilinxBackend::RewriteHelperFunc(clang::FunctionDecl const*, tapa::cc::EditSink&) const ()
 
 Breakpoint 2, 0x000055555603c634 in tapa::cc::AddPragmaToBody(tapa::cc::EditSink&, clang::Stmt const*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) ()
-[Inferior 1 (process 1790767) exited normally]
-I1025 23:15:31.677 tapa.steps.common:92] writing TAPA graph to json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/graph.json`.
-I1025 23:15:31.679 tapa.steps.common:92] writing TAPA settings to json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/settings.json`.
+[Inferior 1 (process 1824004) exited normally]
+I1025 23:24:00.150 tapa.steps.common:92] writing TAPA graph to json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/graph.json`.
+I1025 23:24:00.153 tapa.steps.common:92] writing TAPA settings to json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/settings.json`.
 python3 /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../clean_graph_cflags.py ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/graph.json
 [clean_graph_cflags] Updated ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/graph.json with clean cflags: ['-w', '-Wno-invalid-constexpr', '-Wno-error=invalid-constexpr', '-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src', '-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include', '-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include', '-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include', '-std=c++14', '-I', '/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src', '-D__SYNTHESIS__', '-DTAPA_TARGET_DEVICE_', '-DTAPA_TARGET_XILINX_HLS_', '-D__thread=', '-Dthread_local=']
 tapac \
@@ -46028,292 +46028,22 @@ tapac \
       src/knn.cpp
 /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/autobridge/util.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   from pkg_resources import get_distribution
-I1025 23:15:32.733 tapa.util:184] logging level set to INFO
-W1025 23:15:32.733 tapa.tapac:398] Step 0: run_tapacc is *SKIPPED*.
-I1025 23:15:32.733 tapa.tapac:396] Step 1: run_hls is enabled.
-I1025 23:15:32.733 tapa.tapac:396] Step 2: generate_task_rtl is enabled.
-W1025 23:15:32.734 tapa.tapac:398] Step 3: run_floorplanning is *SKIPPED*.
-I1025 23:15:32.734 tapa.tapac:396] Step 4: generate_top_rtl is enabled.
-I1025 23:15:32.734 tapa.tapac:396] Step 5: pack_xo is enabled.
-I1025 23:15:32.734 tapa.tapac:514] running translated command: `tapa --work-dir=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform synth --part-num=xczu3eg-sbva484-1-e --clock-period=5.00 link pack --output=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn.xo --bitstream-script=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn_generate_bitstream.sh`
-I1025 23:15:32.736 tapa.util:184] logging level set to INFO
-I1025 23:15:32.737 tapa.tapa:54] tapa version: 0.0.20240825.1
-I1025 23:15:32.737 tapa.tapa:58] Python recursion limit set to 3000
-I1025 23:15:32.739 tapa.steps.common:50] loading TAPA graph from json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/graph.json`.
-I1025 23:15:32.741 tapa.steps.common:50] loading TAPA graph from json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/settings.json`.
-I1025 23:15:32.741 tapa.core:181] extracting HLS C++ files
-I1025 23:15:33.221 tapa.core:213] running HLS
-I1025 23:15:33.227 tapa.core:258] spawn 24 workers for parallel HLS synthesis of the tasks
-
-****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.2 (64-bit)
-  **** SW Build 4023990 on Oct 11 2023
-  **** IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
-  **** SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
-    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
-
-source /afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/scripts/vitis_hls/hls.tcl -notrace
-INFO: [HLS 200-10] Running '/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/bin/unwrapped/lnx64.o/vitis_hls'
-INFO: [HLS 200-10] For user 'dchan2' on host 'ECE005.ece.local.cmu.edu' (Linux_x86_64 version 4.18.0-553.146.1.el8_10.x86_64) on Sun Oct 25 23:15:56 EDT 2026
-INFO: [HLS 200-10] On os "Red Hat Enterprise Linux release 8.10 (Ootpa)"
-INFO: [HLS 200-10] In directory '/tmp/run-hls-compute_KNN-nlkhhx7i'
-INFO: [HLS 200-2053] The vitis_hls executable is being deprecated. Consider using vitis-run --mode hls --tcl
-Sourcing Tcl script '/tmp/run-hls-compute_KNN-nlkhhx7i/commands.tcl'
-INFO: [HLS 200-1510] Running: open_project project 
-INFO: [HLS 200-10] Creating and opening project '/tmp/run-hls-compute_KNN-nlkhhx7i/project'.
-INFO: [HLS 200-1510] Running: set_top compute_KNN 
-INFO: [HLS 200-1510] Running: add_files /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp -cflags -std=c++14 -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -std=c++14 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -D__SYNTHESIS__ -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__thread= -Dthread_local= -DTAPA_TARGET_=XILINX_HLS -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__SYNTHESIS__ 
-INFO: [HLS 200-10] Adding design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp' to the project
-INFO: [HLS 200-1510] Running: open_solution compute_KNN 
-INFO: [HLS 200-10] Creating and opening solution '/tmp/run-hls-compute_KNN-nlkhhx7i/project/compute_KNN'.
-INFO: [HLS 200-1505] Using default flow_target 'vivado'
-Resolution: For help on HLS 200-1505 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
-INFO: [HLS 200-1510] Running: set_part xczu3eg-sbva484-1-e 
-INFO: [HLS 200-1611] Setting target device to 'xczu3eg-sbva484-1-e'
-INFO: [HLS 200-1510] Running: create_clock -period 5.0 -name default 
-INFO: [SYN 201-201] Setting up clock 'default' with a period of 5ns.
-INFO: [HLS 200-1510] Running: config_compile -name_max_length 253 
-INFO: [XFORM 203-1161] The maximum of name length is set to 253.
-INFO: [HLS 200-1510] Running: config_interface -m_axi_addr64 
-INFO: [HLS 200-1510] Running: config_rtl -reset_level low -module_auto_prefix 
-INFO: [HLS 200-1510] Running: csynth_design 
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.2 seconds. CPU system time: 0.03 seconds. Elapsed time: 0.23 seconds; current allocated memory: 257.941 MB.
-INFO: [HLS 200-10] Analyzing design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp' ... 
-WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/stream.h:14:1)
-WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/stream.h:15:1)
-WARNING: [HLS 207-5566] unexpected pragma argument 'float', expects identifier (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/util.h:58:22)
-WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/task.h:17:1)
-WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/task.h:18:1)
-INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 14.83 seconds. CPU system time: 2.55 seconds. Elapsed time: 27.2 seconds; current allocated memory: 261.676 MB.
-INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
-INFO: [HLS 200-1995] There were 8,198 instructions in the design after the 'Compile/Link' phase of compilation. See the Design Size Report for more details: /tmp/run-hls-compute_KNN-nlkhhx7i/project/compute_KNN/syn/report/csynth_design_size.rpt
-ERROR: [HLS 200-1715] Encountered problem during source synthesis
-INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 21.9 seconds. CPU system time: 3.65 seconds. Elapsed time: 38.96 seconds; current allocated memory: 4.629 MB.
-Pre-synthesis failed.
-    while executing
-"source /tmp/run-hls-compute_KNN-nlkhhx7i/commands.tcl"
-    ("uplevel" body line 1)
-    invoked from within
-"uplevel \#0 [list source $tclfile] "
-
-INFO: [HLS 200-112] Total CPU user time: 27.45 seconds. Total CPU system time: 8.52 seconds. Total elapsed time: 61.82 seconds; peak allocated memory: 262.570 MB.
-INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 23:16:46 2026...
-
-****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.2 (64-bit)
-  **** SW Build 4023990 on Oct 11 2023
-  **** IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
-  **** SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
-    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
-
-source /afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/scripts/vitis_hls/hls.tcl -notrace
-INFO: [HLS 200-10] Running '/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/bin/unwrapped/lnx64.o/vitis_hls'
-INFO: [HLS 200-10] For user 'dchan2' on host 'ECE005.ece.local.cmu.edu' (Linux_x86_64 version 4.18.0-553.146.1.el8_10.x86_64) on Sun Oct 25 23:15:56 EDT 2026
-INFO: [HLS 200-10] On os "Red Hat Enterprise Linux release 8.10 (Ootpa)"
-INFO: [HLS 200-10] In directory '/tmp/run-hls-para_partial_sort-akqg5pm9'
-INFO: [HLS 200-2053] The vitis_hls executable is being deprecated. Consider using vitis-run --mode hls --tcl
-Sourcing Tcl script '/tmp/run-hls-para_partial_sort-akqg5pm9/commands.tcl'
-INFO: [HLS 200-1510] Running: open_project project 
-INFO: [HLS 200-10] Creating and opening project '/tmp/run-hls-para_partial_sort-akqg5pm9/project'.
-INFO: [HLS 200-1510] Running: set_top para_partial_sort 
-INFO: [HLS 200-1510] Running: add_files /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp -cflags -std=c++14 -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -std=c++14 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -D__SYNTHESIS__ -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__thread= -Dthread_local= -DTAPA_TARGET_=XILINX_HLS -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__SYNTHESIS__ 
-INFO: [HLS 200-10] Adding design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp' to the project
-INFO: [HLS 200-1510] Running: open_solution para_partial_sort 
-INFO: [HLS 200-10] Creating and opening solution '/tmp/run-hls-para_partial_sort-akqg5pm9/project/para_partial_sort'.
-INFO: [HLS 200-1505] Using default flow_target 'vivado'
-Resolution: For help on HLS 200-1505 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
-INFO: [HLS 200-1510] Running: set_part xczu3eg-sbva484-1-e 
-INFO: [HLS 200-1611] Setting target device to 'xczu3eg-sbva484-1-e'
-INFO: [HLS 200-1510] Running: create_clock -period 5.0 -name default 
-INFO: [SYN 201-201] Setting up clock 'default' with a period of 5ns.
-INFO: [HLS 200-1510] Running: config_compile -name_max_length 253 
-INFO: [XFORM 203-1161] The maximum of name length is set to 253.
-INFO: [HLS 200-1510] Running: config_interface -m_axi_addr64 
-INFO: [HLS 200-1510] Running: config_rtl -reset_level low -module_auto_prefix 
-INFO: [HLS 200-1510] Running: csynth_design 
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.16 seconds. CPU system time: 0.03 seconds. Elapsed time: 0.19 seconds; current allocated memory: 257.934 MB.
-INFO: [HLS 200-10] Analyzing design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp' ... 
-WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/stream.h:14:1)
-WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/stream.h:15:1)
-WARNING: [HLS 207-5566] unexpected pragma argument 'float', expects identifier (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/util.h:58:22)
-WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/task.h:17:1)
-WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/task.h:18:1)
-INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 14.76 seconds. CPU system time: 2.51 seconds. Elapsed time: 27.25 seconds; current allocated memory: 261.746 MB.
-INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
-INFO: [HLS 200-1995] There were 8,241 instructions in the design after the 'Compile/Link' phase of compilation. See the Design Size Report for more details: /tmp/run-hls-para_partial_sort-akqg5pm9/project/para_partial_sort/syn/report/csynth_design_size.rpt
-ERROR: [HLS 200-1715] Encountered problem during source synthesis
-INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 20.43 seconds. CPU system time: 3.44 seconds. Elapsed time: 37.56 seconds; current allocated memory: 4.207 MB.
-Pre-synthesis failed.
-    while executing
-"source /tmp/run-hls-para_partial_sort-akqg5pm9/commands.tcl"
-    ("uplevel" body line 1)
-    invoked from within
-"uplevel \#0 [list source $tclfile] "
-
-INFO: [HLS 200-112] Total CPU user time: 26.12 seconds. Total CPU system time: 8.16 seconds. Total elapsed time: 60.37 seconds; peak allocated memory: 262.141 MB.
-INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 23:16:44 2026...
-
-****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.2 (64-bit)
-  **** SW Build 4023990 on Oct 11 2023
-  **** IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
-  **** SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
-    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
-
-source /afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/scripts/vitis_hls/hls.tcl -notrace
-INFO: [HLS 200-10] Running '/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/bin/unwrapped/lnx64.o/vitis_hls'
-INFO: [HLS 200-10] For user 'dchan2' on host 'ECE005.ece.local.cmu.edu' (Linux_x86_64 version 4.18.0-553.146.1.el8_10.x86_64) on Sun Oct 25 23:15:56 EDT 2026
-INFO: [HLS 200-10] On os "Red Hat Enterprise Linux release 8.10 (Ootpa)"
-INFO: [HLS 200-10] In directory '/tmp/run-hls-Knn-qw8qr9u9'
-INFO: [HLS 200-2053] The vitis_hls executable is being deprecated. Consider using vitis-run --mode hls --tcl
-Sourcing Tcl script '/tmp/run-hls-Knn-qw8qr9u9/commands.tcl'
-INFO: [HLS 200-1510] Running: open_project project 
-INFO: [HLS 200-10] Creating and opening project '/tmp/run-hls-Knn-qw8qr9u9/project'.
-INFO: [HLS 200-1510] Running: set_top Knn 
-INFO: [HLS 200-1510] Running: add_files /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp -cflags -std=c++14 -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -std=c++14 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -D__SYNTHESIS__ -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__thread= -Dthread_local= -DTAPA_TARGET_=XILINX_HLS -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__SYNTHESIS__ 
-INFO: [HLS 200-10] Adding design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp' to the project
-INFO: [HLS 200-1510] Running: open_solution Knn 
-INFO: [HLS 200-10] Creating and opening solution '/tmp/run-hls-Knn-qw8qr9u9/project/Knn'.
-INFO: [HLS 200-1505] Using default flow_target 'vivado'
-Resolution: For help on HLS 200-1505 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
-INFO: [HLS 200-1510] Running: set_part xczu3eg-sbva484-1-e 
-INFO: [HLS 200-1611] Setting target device to 'xczu3eg-sbva484-1-e'
-INFO: [HLS 200-1510] Running: create_clock -period 5.0 -name default 
-INFO: [SYN 201-201] Setting up clock 'default' with a period of 5ns.
-INFO: [HLS 200-1510] Running: config_compile -name_max_length 253 
-INFO: [XFORM 203-1161] The maximum of name length is set to 253.
-INFO: [HLS 200-1510] Running: config_interface -m_axi_addr64 
-INFO: [HLS 200-1510] Running: config_rtl -reset_level low -module_auto_prefix 
-INFO: [HLS 200-1510] Running: csynth_design 
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.19 seconds. CPU system time: 0.04 seconds. Elapsed time: 0.24 seconds; current allocated memory: 257.906 MB.
-INFO: [HLS 200-10] Analyzing design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp' ... 
-WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/stream.h:14:1)
-WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/stream.h:15:1)
-WARNING: [HLS 207-5566] unexpected pragma argument 'float', expects identifier (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/util.h:58:22)
-WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/task.h:17:1)
-WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/task.h:18:1)
-INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 15.26 seconds. CPU system time: 2.55 seconds. Elapsed time: 27.52 seconds; current allocated memory: 261.582 MB.
-INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
-INFO: [HLS 200-1995] There were 23,673 instructions in the design after the 'Compile/Link' phase of compilation. See the Design Size Report for more details: /tmp/run-hls-Knn-qw8qr9u9/project/Knn/syn/report/csynth_design_size.rpt
-ERROR: [HLS 200-1715] Encountered problem during source synthesis
-INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 23.42 seconds. CPU system time: 3.57 seconds. Elapsed time: 39.87 seconds; current allocated memory: 6.656 MB.
-Pre-synthesis failed.
-    while executing
-"source /tmp/run-hls-Knn-qw8qr9u9/commands.tcl"
-    ("uplevel" body line 1)
-    invoked from within
-"uplevel \#0 [list source $tclfile] "
-
-INFO: [HLS 200-112] Total CPU user time: 29.1 seconds. Total CPU system time: 8.34 seconds. Total elapsed time: 62.72 seconds; peak allocated memory: 264.562 MB.
-INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 23:16:47 2026...
-
-****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.2 (64-bit)
-  **** SW Build 4023990 on Oct 11 2023
-  **** IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
-  **** SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
-    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
-
-source /afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/scripts/vitis_hls/hls.tcl -notrace
-INFO: [HLS 200-10] Running '/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/bin/unwrapped/lnx64.o/vitis_hls'
-INFO: [HLS 200-10] For user 'dchan2' on host 'ECE005.ece.local.cmu.edu' (Linux_x86_64 version 4.18.0-553.146.1.el8_10.x86_64) on Sun Oct 25 23:15:56 EDT 2026
-INFO: [HLS 200-10] On os "Red Hat Enterprise Linux release 8.10 (Ootpa)"
-INFO: [HLS 200-10] In directory '/tmp/run-hls-load_KNN-67w2mvky'
-INFO: [HLS 200-2053] The vitis_hls executable is being deprecated. Consider using vitis-run --mode hls --tcl
-Sourcing Tcl script '/tmp/run-hls-load_KNN-67w2mvky/commands.tcl'
-INFO: [HLS 200-1510] Running: open_project project 
-INFO: [HLS 200-10] Creating and opening project '/tmp/run-hls-load_KNN-67w2mvky/project'.
-INFO: [HLS 200-1510] Running: set_top load_KNN 
-INFO: [HLS 200-1510] Running: add_files /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp -cflags -std=c++14 -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -std=c++14 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -D__SYNTHESIS__ -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__thread= -Dthread_local= -DTAPA_TARGET_=XILINX_HLS -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__SYNTHESIS__ 
-INFO: [HLS 200-10] Adding design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp' to the project
-INFO: [HLS 200-1510] Running: open_solution load_KNN 
-INFO: [HLS 200-10] Creating and opening solution '/tmp/run-hls-load_KNN-67w2mvky/project/load_KNN'.
-INFO: [HLS 200-1505] Using default flow_target 'vivado'
-Resolution: For help on HLS 200-1505 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
-INFO: [HLS 200-1510] Running: set_part xczu3eg-sbva484-1-e 
-INFO: [HLS 200-1611] Setting target device to 'xczu3eg-sbva484-1-e'
-INFO: [HLS 200-1510] Running: create_clock -period 5.0 -name default 
-INFO: [SYN 201-201] Setting up clock 'default' with a period of 5ns.
-INFO: [HLS 200-1510] Running: config_compile -name_max_length 253 
-INFO: [XFORM 203-1161] The maximum of name length is set to 253.
-INFO: [HLS 200-1510] Running: config_interface -m_axi_addr64 
-INFO: [HLS 200-1510] Running: config_rtl -reset_level low -module_auto_prefix 
-INFO: [HLS 200-1510] Running: csynth_design 
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.15 seconds. CPU system time: 0.03 seconds. Elapsed time: 0.18 seconds; current allocated memory: 257.926 MB.
-INFO: [HLS 200-10] Analyzing design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp' ... 
-WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/stream.h:14:1)
-WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/stream.h:15:1)
-WARNING: [HLS 207-5566] unexpected pragma argument 'float', expects identifier (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/util.h:58:22)
-WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/task.h:17:1)
-WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/task.h:18:1)
-INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 16.25 seconds. CPU system time: 2.64 seconds. Elapsed time: 28.74 seconds; current allocated memory: 261.660 MB.
-INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
-INFO: [HLS 200-1995] There were 14,105 instructions in the design after the 'Compile/Link' phase of compilation. See the Design Size Report for more details: /tmp/run-hls-load_KNN-67w2mvky/project/load_KNN/syn/report/csynth_design_size.rpt
-ERROR: [HLS 200-1715] Encountered problem during source synthesis
-INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 22.96 seconds. CPU system time: 3.63 seconds. Elapsed time: 40.48 seconds; current allocated memory: 4.863 MB.
-Pre-synthesis failed.
-    while executing
-"source /tmp/run-hls-load_KNN-67w2mvky/commands.tcl"
-    ("uplevel" body line 1)
-    invoked from within
-"uplevel \#0 [list source $tclfile] "
-
-INFO: [HLS 200-112] Total CPU user time: 28.95 seconds. Total CPU system time: 8.39 seconds. Total elapsed time: 63.34 seconds; peak allocated memory: 262.789 MB.
-INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 23:16:47 2026...
-
-****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.2 (64-bit)
-  **** SW Build 4023990 on Oct 11 2023
-  **** IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
-  **** SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
-    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
-
-source /afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/scripts/vitis_hls/hls.tcl -notrace
-INFO: [HLS 200-10] Running '/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/bin/unwrapped/lnx64.o/vitis_hls'
-INFO: [HLS 200-10] For user 'dchan2' on host 'ECE005.ece.local.cmu.edu' (Linux_x86_64 version 4.18.0-553.146.1.el8_10.x86_64) on Sun Oct 25 23:15:56 EDT 2026
-INFO: [HLS 200-10] On os "Red Hat Enterprise Linux release 8.10 (Ootpa)"
-INFO: [HLS 200-10] In directory '/tmp/run-hls-krnl_singlePE_Write_Outputs-lvk5kb4a'
-INFO: [HLS 200-2053] The vitis_hls executable is being deprecated. Consider using vitis-run --mode hls --tcl
-Sourcing Tcl script '/tmp/run-hls-krnl_singlePE_Write_Outputs-lvk5kb4a/commands.tcl'
-INFO: [HLS 200-1510] Running: open_project project 
-INFO: [HLS 200-10] Creating and opening project '/tmp/run-hls-krnl_singlePE_Write_Outputs-lvk5kb4a/project'.
-INFO: [HLS 200-1510] Running: set_top krnl_singlePE_Write_Outputs 
-INFO: [HLS 200-1510] Running: add_files /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp -cflags -std=c++14 -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -std=c++14 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -D__SYNTHESIS__ -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__thread= -Dthread_local= -DTAPA_TARGET_=XILINX_HLS -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__SYNTHESIS__ 
-INFO: [HLS 200-10] Adding design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp' to the project
-INFO: [HLS 200-1510] Running: open_solution krnl_singlePE_Write_Outputs 
-INFO: [HLS 200-10] Creating and opening solution '/tmp/run-hls-krnl_singlePE_Write_Outputs-lvk5kb4a/project/krnl_singlePE_Write_Outputs'.
-INFO: [HLS 200-1505] Using default flow_target 'vivado'
-Resolution: For help on HLS 200-1505 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
-INFO: [HLS 200-1510] Running: set_part xczu3eg-sbva484-1-e 
-INFO: [HLS 200-1611] Setting target device to 'xczu3eg-sbva484-1-e'
-INFO: [HLS 200-1510] Running: create_clock -period 5.0 -name default 
-INFO: [SYN 201-201] Setting up clock 'default' with a period of 5ns.
-INFO: [HLS 200-1510] Running: config_compile -name_max_length 253 
-INFO: [XFORM 203-1161] The maximum of name length is set to 253.
-INFO: [HLS 200-1510] Running: config_interface -m_axi_addr64 
-INFO: [HLS 200-1510] Running: config_rtl -reset_level low -module_auto_prefix 
-INFO: [HLS 200-1510] Running: csynth_design 
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.15 seconds. CPU system time: 0.03 seconds. Elapsed time: 0.19 seconds; current allocated memory: 257.934 MB.
-INFO: [HLS 200-10] Analyzing design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp' ... 
-WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/stream.h:14:1)
-WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/stream.h:15:1)
-WARNING: [HLS 207-5566] unexpected pragma argument 'float', expects identifier (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/xilinx/hls/util.h:58:22)
-WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/task.h:17:1)
-WARNING: [HLS 207-3957] inline variables are a C++17 extension (/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include/tapa/base/task.h:18:1)
-INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 16.74 seconds. CPU system time: 2.62 seconds. Elapsed time: 29.02 seconds; current allocated memory: 261.926 MB.
-INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
-INFO: [HLS 200-1995] There were 17,351 instructions in the design after the 'Compile/Link' phase of compilation. See the Design Size Report for more details: /tmp/run-hls-krnl_singlePE_Write_Outputs-lvk5kb4a/project/krnl_singlePE_Write_Outputs/syn/report/csynth_design_size.rpt
-ERROR: [HLS 200-1715] Encountered problem during source synthesis
-INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 23.89 seconds. CPU system time: 3.62 seconds. Elapsed time: 40.85 seconds; current allocated memory: 5.555 MB.
-Pre-synthesis failed.
-    while executing
-"source /tmp/run-hls-krnl_singlePE_Write_Outputs-lvk5kb4a/commands.tcl"
-    ("uplevel" body line 1)
-    invoked from within
-"uplevel \#0 [list source $tclfile] "
-
-INFO: [HLS 200-112] Total CPU user time: 29.66 seconds. Total CPU system time: 8.38 seconds. Total elapsed time: 63.75 seconds; peak allocated memory: 263.488 MB.
-INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 23:16:48 2026...
+I1025 23:24:01.310 tapa.util:184] logging level set to INFO
+W1025 23:24:01.310 tapa.tapac:398] Step 0: run_tapacc is *SKIPPED*.
+I1025 23:24:01.310 tapa.tapac:396] Step 1: run_hls is enabled.
+I1025 23:24:01.311 tapa.tapac:396] Step 2: generate_task_rtl is enabled.
+W1025 23:24:01.311 tapa.tapac:398] Step 3: run_floorplanning is *SKIPPED*.
+I1025 23:24:01.311 tapa.tapac:396] Step 4: generate_top_rtl is enabled.
+I1025 23:24:01.311 tapa.tapac:396] Step 5: pack_xo is enabled.
+I1025 23:24:01.311 tapa.tapac:514] running translated command: `tapa --work-dir=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform synth --part-num=xczu3eg-sbva484-1-e --clock-period=5.00 link pack --output=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn.xo --bitstream-script=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn_generate_bitstream.sh`
+I1025 23:24:01.313 tapa.util:184] logging level set to INFO
+I1025 23:24:01.314 tapa.tapa:54] tapa version: 0.0.20240825.1
+I1025 23:24:01.314 tapa.tapa:58] Python recursion limit set to 3000
+I1025 23:24:01.316 tapa.steps.common:50] loading TAPA graph from json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/graph.json`.
+I1025 23:24:01.318 tapa.steps.common:50] loading TAPA graph from json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/settings.json`.
+I1025 23:24:01.319 tapa.core:181] extracting HLS C++ files
+I1025 23:24:01.822 tapa.core:213] running HLS
+I1025 23:24:01.874 tapa.core:284] spawn 24 workers for parallel HLS synthesis of the tasks
 Traceback (most recent call last):
   File "/afs/ece/usr/dchan2/miniconda3/bin/tapac", line 6, in <module>
     sys.exit(main())
@@ -46352,7 +46082,7 @@ Traceback (most recent call last):
         ^^^^^^^^^^^^^^^^^^
     )
     ^
-  File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/core.py", line 263, in run_hls
+  File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/core.py", line 289, in run_hls
     any(executor.map(worker, self._tasks.values(), itertools.count(0)))
     ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/concurrent/futures/_base.py", line 619, in result_iterator
@@ -46361,14 +46091,15 @@ Traceback (most recent call last):
   File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/concurrent/futures/_base.py", line 317, in _result_or_cancel
     return fut.result(timeout)
            ~~~~~~~~~~^^^^^^^^^
-  File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/concurrent/futures/_base.py", line 456, in result
+  File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/concurrent/futures/_base.py", line 449, in result
     return self.__get_result()
            ~~~~~~~~~~~~~~~~~^^
   File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/concurrent/futures/_base.py", line 401, in __get_result
     raise self._exception
   File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/concurrent/futures/thread.py", line 59, in run
     result = self.fn(*self.args, **self.kwargs)
-  File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/core.py", line 255, in worker
-    raise RuntimeError('HLS failed for {}'.format(task.name))
-RuntimeError: HLS failed for compute_KNN
+  File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/core.py", line 216, in worker
+    os.nice(idx % 19)
+    ^^
+UnboundLocalError: cannot access local variable 'os' where it is not associated with a value
 make: *** [Makefile:100: _x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn.xo] Error 1

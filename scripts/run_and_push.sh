@@ -46,8 +46,17 @@ handle SIGSEGV stop print nopass
 break *(_ZNK4tapa2cc13XilinxBackend17RewriteHelperFuncEPKN5clang12FunctionDeclERNS0_8EditSinkE + 296)
 commands
 if $rax == 0
-  printf "[tapacc patch] Bypassing null helper function body\n"
-  set $rip = *(_ZNK4tapa2cc13XilinxBackend17RewriteHelperFuncEPKN5clang12FunctionDeclERNS0_8EditSinkE + 418)
+  printf "[tapacc patch] Bypassing null helper function body by returning\n"
+  return
+end
+continue
+end
+
+break tapa::cc::AddPragmaToBody
+commands
+if $rsi == 0
+  printf "[tapacc patch] Bypassing AddPragmaToBody with null Stmt by returning\n"
+  return
 end
 continue
 end

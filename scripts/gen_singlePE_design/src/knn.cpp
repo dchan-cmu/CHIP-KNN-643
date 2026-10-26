@@ -4,8 +4,8 @@ static inline DATA_TYPE absval(DATA_TYPE input){
 }
 
 #define SORT_TO_HIERMERGE_STREAM_ARGS(PE) \
-    L0_out_dist[PE],  \
-    L0_out_id[PE]
+    L0_out_dist_##PE,  \
+    L0_out_id_##PE
 
 
 
@@ -422,17 +422,17 @@ void Knn(
 ) {
 
     // Streams, for the global merge:
-    tapa::streams<DATA_TYPE, 1, TOP> L0_out_dist;
-    tapa::streams<int,       1, TOP> L0_out_id;
+    tapa::stream<DATA_TYPE, TOP> L0_out_dist_0;
+    tapa::stream<int,       TOP> L0_out_id_0;
     // Streams, for load->compute->sort:
-    tapa::streams<INTERFACE_WIDTH, NUM_PE, 2>           load_to_compute_stream;
+    tapa::stream<INTERFACE_WIDTH, 2>           load_to_compute_stream_0;
     tapa::streams<DATA_TYPE, NUM_SEGMENTS, 2>           compute_to_sort_stream_0;
 
 
     tapa::task()
-        .invoke( load_KNN, 0, in_0, load_to_compute_stream[0])
+        .invoke( load_KNN, 0, in_0, load_to_compute_stream_0)
 
-        .invoke( compute_KNN, 0, NUM_SP_PTS_PER_KRNL_PADDED*0, load_to_compute_stream[0 ], compute_to_sort_stream_0  )
+        .invoke( compute_KNN, 0, NUM_SP_PTS_PER_KRNL_PADDED*0, load_to_compute_stream_0, compute_to_sort_stream_0  )
 
         INVOKE_PPS_UNITS_FOR_PE(0)
 
@@ -441,6 +441,6 @@ void Knn(
 
 
         // INTER-PE HIERMERGE:
-        .invoke( krnl_singlePE_Write_Outputs,  L0_out_dist[0],  L0_out_id[0],
+        .invoke( krnl_singlePE_Write_Outputs,  L0_out_dist_0,  L0_out_id_0,
                                                final_out);
 }

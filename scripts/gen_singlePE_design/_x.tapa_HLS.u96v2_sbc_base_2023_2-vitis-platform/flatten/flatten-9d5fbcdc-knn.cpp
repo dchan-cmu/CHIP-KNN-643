@@ -138479,30 +138479,30 @@ void krnl_singlePE_Write_Outputs(
 }
 void Knn(tapa::mmap<ap_uint<IWIDTH>> in_0, tapa::mmap<ap_uint<32>> final_out) {
   // Streams, for the global merge:
-  tapa::streams<
+  tapa::stream<
       ap_fixed<32, 12 /* NOTE: This includes the sign bit, if applicable.*/,
                AP_RND, AP_SAT>,
-      1, TOP>
-      L0_out_dist;
-  tapa::streams<int, 1, TOP> L0_out_id;
+      TOP>
+      L0_out_dist_0;
+  tapa::stream<int, TOP> L0_out_id_0;
   // Streams, for load->compute->sort:
-  tapa::streams<ap_uint<IWIDTH>, (1), 2> load_to_compute_stream;
+  tapa::stream<ap_uint<IWIDTH>, 2> load_to_compute_stream_0;
   tapa::streams<
       ap_fixed<32, 12 /* NOTE: This includes the sign bit, if applicable.*/,
                AP_RND, AP_SAT>,
       (1), 2>
       compute_to_sort_stream_0;
   tapa::task()
-      .invoke(load_KNN, 0, in_0, load_to_compute_stream[0])
+      .invoke(load_KNN, 0, in_0, load_to_compute_stream_0)
       .invoke(compute_KNN, 0,
               ((((((131072) - 1) / (1) + 1) - 1) / ((1) * D2I_FACTOR_W) + 1) *
                ((1) * D2I_FACTOR_W)) *
                   0,
-              load_to_compute_stream[0], compute_to_sort_stream_0)
-      .invoke(para_partial_sort, 0, compute_to_sort_stream_0, L0_out_dist[0],
-              L0_out_id[0])
+              load_to_compute_stream_0, compute_to_sort_stream_0)
+      .invoke(para_partial_sort, 0, compute_to_sort_stream_0, L0_out_dist_0,
+              L0_out_id_0)
       ////////// MERGING LOGIC
       // INTER-PE HIERMERGE:
-      .invoke(krnl_singlePE_Write_Outputs, L0_out_dist[0], L0_out_id[0],
+      .invoke(krnl_singlePE_Write_Outputs, L0_out_dist_0, L0_out_id_0,
               final_out);
 }

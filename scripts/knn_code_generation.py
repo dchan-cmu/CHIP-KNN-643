@@ -96,6 +96,7 @@ def Generate_Design_Configuration(_N, _D, _Dist, _K, _port_width, _memory_type, 
     ### Begin writing stuff to the file.
     #########################################################
 
+    new_file.append("#pragma once\n")
     new_file.append("#include \"ap_int.h\" " + "\n")
     new_file.append("#include <tapa.h>" + "\n")
     new_file.append("#define printf(...) ((void)0)" + "\n")
@@ -2011,8 +2012,8 @@ def Generate_KNN_TopLevel(_core_krnl_file, _num_PE, _knn_config):
     _core_krnl_file.append('' + "\n")
     _core_krnl_file.append('void Knn(' + "\n")
     for PE_idx in range(_num_PE):
-        _core_krnl_file.append('    tapa::mmap<INTERFACE_WIDTH> in_' + str(int(PE_idx)) + ',' + "\n")
-    _core_krnl_file.append('    tapa::mmap<INT32> final_out' + "\n")
+        _core_krnl_file.append('    tapa::async_mmap<INTERFACE_WIDTH>& in_' + str(int(PE_idx)) + ',' + "\n")
+    _core_krnl_file.append('    tapa::async_mmap<INT32>& final_out' + "\n")
     _core_krnl_file.append(') {' + "\n")
     _core_krnl_file.append('' + "\n")
     

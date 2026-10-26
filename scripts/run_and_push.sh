@@ -50,6 +50,12 @@ else:
     print("tapa.core already up to date.")
 ' || true
 
+    STREAM_H="$REPO_ROOT/.tapa/usr/include/tapa/xilinx/hls/stream.h"
+    if [ -f "$STREAM_H" ]; then
+        sed -i 's|hls::stream<internal::elem_t<T>> _;|mutable hls::stream<internal::elem_t<T>> _;|g' "$STREAM_H"
+        echo "=== [tapa stream patch] Patched stream.h for mutable _ ==="
+    fi
+
     python3 -c '
 import os, glob
 
@@ -61,7 +67,7 @@ for root, dirs, files in os.walk(inc_base):
     for f in files:
         p = os.path.join(root, f)
         rel = os.path.relpath(p, inc_base)
-        if rel in ["tapa.h", "tapa/base/stream.h", "tapa/base/task.h", "tapa/base/int.h", "tapa/xilinx/hls/tapa.h", "tapa/xilinx/hls/stream.h"]:
+        if rel in ["tapa.h", "tapa/base/stream.h", "tapa/base/task.h", "tapa/base/int.h", "tapa/xilinx/hls/tapa.h", "tapa/xilinx/hls/stream.h", "tapa/xilinx/hls/mmap.h", "tapa/xilinx/hls/task.h"]:
             print(f"\n--- {rel} ---")
             with open(p, errors="ignore") as fp:
                 print(fp.read())

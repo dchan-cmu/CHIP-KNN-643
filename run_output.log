@@ -22,29 +22,22 @@ tapac \
           --cflags=-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include \
       --max-parallel-synth-jobs 12 \
       --run-tapacc \
-      --run-hls \
-      --generate-task-rtl \
-      --generate-top-rtl \
-      --pack-xo \
-      --connectivity src/knn.ini \
-      --read-only-args in_.* \
-      --write-only-args final_out\
       src/knn.cpp
 /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/autobridge/util.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   from pkg_resources import get_distribution
-I1025 22:14:52.101 tapa.util:184] logging level set to INFO
-I1025 22:14:52.101 tapa.tapac:396] Step 0: run_tapacc is enabled.
-I1025 22:14:52.102 tapa.tapac:396] Step 1: run_hls is enabled.
-I1025 22:14:52.102 tapa.tapac:396] Step 2: generate_task_rtl is enabled.
-W1025 22:14:52.102 tapa.tapac:398] Step 3: run_floorplanning is *SKIPPED*.
-I1025 22:14:52.102 tapa.tapac:396] Step 4: generate_top_rtl is enabled.
-I1025 22:14:52.102 tapa.tapac:396] Step 5: pack_xo is enabled.
-I1025 22:14:52.102 tapa.tapac:514] running translated command: `tapa --work-dir=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform analyze --input=src/knn.cpp --top=Knn --cflags=-U__SYNTHESIS__ --cflags=-w --cflags=-Wno-invalid-constexpr --cflags=-Wno-error=invalid-constexpr --cflags=-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src --cflags=-I/usr/bin/../lib/clang/20/include --cflags=-I/usr/include/c++/8 --cflags=-I/usr/include/c++/8/x86_64-redhat-linux --cflags=-I/usr/include --cflags=-I/usr/include/x86_64-linux-gnu --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include --cflags=-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include synth --part-num=xczu3eg-sbva484-1-e --clock-period=5.00 link pack --output=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn.xo --bitstream-script=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn_generate_bitstream.sh`
-I1025 22:14:52.104 tapa.util:184] logging level set to INFO
-I1025 22:14:52.105 tapa.tapa:54] tapa version: 0.0.20240825.1
-I1025 22:14:52.105 tapa.tapa:58] Python recursion limit set to 3000
-W1025 22:15:01.461 tapa.util:129] not adding vendor include paths; please update FRT
-I1025 22:15:01.461 tapa.steps.analyze:265] Running tapacc command: /scratch/643_vitis_dchan2/CHIP-KNN-643/.tapa/usr/bin/tapacc ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp -top Knn -- -U__SYNTHESIS__ -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/usr/bin/../lib/clang/20/include -I/usr/include/c++/8 -I/usr/include/c++/8/x86_64-redhat-linux -I/usr/include -I/usr/include/x86_64-linux-gnu -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -std=c++17 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -stdlib=libc++ -isystem /usr/lib/llvm-22/include/c++/v1/ -isystem /usr/include/clang/22/include/ -isystem /usr/lib/clang/22/include/
+I1025 22:20:28.483 tapa.util:184] logging level set to INFO
+I1025 22:20:28.483 tapa.tapac:396] Step 0: run_tapacc is enabled.
+W1025 22:20:28.484 tapa.tapac:398] Step 1: run_hls is *SKIPPED*.
+W1025 22:20:28.484 tapa.tapac:398] Step 2: generate_task_rtl is *SKIPPED*.
+W1025 22:20:28.484 tapa.tapac:398] Step 3: run_floorplanning is *SKIPPED*.
+W1025 22:20:28.484 tapa.tapac:398] Step 4: generate_top_rtl is *SKIPPED*.
+W1025 22:20:28.484 tapa.tapac:398] Step 5: pack_xo is *SKIPPED*.
+I1025 22:20:28.484 tapa.tapac:514] running translated command: `tapa --work-dir=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform analyze --input=src/knn.cpp --top=Knn --cflags=-U__SYNTHESIS__ --cflags=-w --cflags=-Wno-invalid-constexpr --cflags=-Wno-error=invalid-constexpr --cflags=-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src --cflags=-I/usr/bin/../lib/clang/20/include --cflags=-I/usr/include/c++/8 --cflags=-I/usr/include/c++/8/x86_64-redhat-linux --cflags=-I/usr/include --cflags=-I/usr/include/x86_64-linux-gnu --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include --cflags=-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include`
+I1025 22:20:28.486 tapa.util:184] logging level set to INFO
+I1025 22:20:28.487 tapa.tapa:54] tapa version: 0.0.20240825.1
+I1025 22:20:28.487 tapa.tapa:58] Python recursion limit set to 3000
+W1025 22:20:38.022 tapa.util:129] not adding vendor include paths; please update FRT
+I1025 22:20:38.022 tapa.steps.analyze:265] Running tapacc command: /scratch/643_vitis_dchan2/CHIP-KNN-643/.tapa/usr/bin/tapacc ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp -top Knn -- -U__SYNTHESIS__ -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/usr/bin/../lib/clang/20/include -I/usr/include/c++/8 -I/usr/include/c++/8/x86_64-redhat-linux -I/usr/include -I/usr/include/x86_64-linux-gnu -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -std=c++17 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -stdlib=libc++ -isystem /usr/lib/llvm-22/include/c++/v1/ -isystem /usr/include/clang/22/include/ -isystem /usr/lib/clang/22/include/
 Breakpoint 1 at 0xae5072
 Breakpoint 2 at 0xae8634
 warning: Loadable section ".note.gnu.property" outside of ELF segments
@@ -46012,18 +46005,50 @@ Breakpoint 2, 0x000055555603c634 in tapa::cc::AddPragmaToBody(tapa::cc::EditSink
 Breakpoint 1, 0x0000555556039072 in tapa::cc::XilinxBackend::RewriteHelperFunc(clang::FunctionDecl const*, tapa::cc::EditSink&) const ()
 
 Breakpoint 2, 0x000055555603c634 in tapa::cc::AddPragmaToBody(tapa::cc::EditSink&, clang::Stmt const*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) ()
-[Inferior 1 (process 1633953) exited normally]
-I1025 22:15:37.454 tapa.steps.common:92] writing TAPA graph to json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/graph.json`.
-I1025 22:15:37.456 tapa.steps.common:92] writing TAPA settings to json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/settings.json`.
-I1025 22:15:37.457 tapa.steps.common:46] reusing TAPA settings from upstream flows.
-I1025 22:15:37.458 tapa.core:181] extracting HLS C++ files
-I1025 22:15:38.012 tapa.core:213] running HLS
-I1025 22:15:38.020 tapa.core:259] spawn 24 workers for parallel HLS synthesis of the tasks
-W1025 22:15:38.031 tapa.util:129] not adding vendor include paths; please update FRT
-W1025 22:15:38.032 tapa.util:129] not adding vendor include paths; please update FRT
-W1025 22:15:38.033 tapa.util:129] not adding vendor include paths; please update FRT
-W1025 22:15:38.035 tapa.util:129] not adding vendor include paths; please update FRT
-W1025 22:15:38.035 tapa.util:129] not adding vendor include paths; please update FRT
+[Inferior 1 (process 1637312) exited normally]
+I1025 22:21:13.622 tapa.steps.common:92] writing TAPA graph to json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/graph.json`.
+I1025 22:21:13.624 tapa.steps.common:92] writing TAPA settings to json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/settings.json`.
+python3 /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../clean_graph_cflags.py ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/graph.json
+[clean_graph_cflags] Updated ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/graph.json with clean cflags: ['-w', '-Wno-invalid-constexpr', '-Wno-error=invalid-constexpr', '-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src', '-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include', '-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include', '-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include', '-std=c++17', '-I', '/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src', '-D__SYNTHESIS__']
+tapac \
+      --work-dir ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform \
+      --top Knn \
+      --part-num xczu3eg-sbva484-1-e \
+      --clock-period 5.00 \
+      -o ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn.xo \
+      --enable-synth-util \
+      --max-parallel-synth-jobs 12 \
+      --run-hls \
+      --generate-task-rtl \
+      --generate-top-rtl \
+      --pack-xo \
+      --connectivity src/knn.ini \
+      --read-only-args in_.* \
+      --write-only-args final_out\
+      src/knn.cpp
+/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/autobridge/util.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import get_distribution
+I1025 22:21:14.591 tapa.util:184] logging level set to INFO
+W1025 22:21:14.591 tapa.tapac:398] Step 0: run_tapacc is *SKIPPED*.
+I1025 22:21:14.591 tapa.tapac:396] Step 1: run_hls is enabled.
+I1025 22:21:14.591 tapa.tapac:396] Step 2: generate_task_rtl is enabled.
+W1025 22:21:14.592 tapa.tapac:398] Step 3: run_floorplanning is *SKIPPED*.
+I1025 22:21:14.592 tapa.tapac:396] Step 4: generate_top_rtl is enabled.
+I1025 22:21:14.592 tapa.tapac:396] Step 5: pack_xo is enabled.
+I1025 22:21:14.592 tapa.tapac:514] running translated command: `tapa --work-dir=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform synth --part-num=xczu3eg-sbva484-1-e --clock-period=5.00 link pack --output=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn.xo --bitstream-script=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn_generate_bitstream.sh`
+I1025 22:21:14.593 tapa.util:184] logging level set to INFO
+I1025 22:21:14.593 tapa.tapa:54] tapa version: 0.0.20240825.1
+I1025 22:21:14.594 tapa.tapa:58] Python recursion limit set to 3000
+I1025 22:21:14.595 tapa.steps.common:50] loading TAPA graph from json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/graph.json`.
+I1025 22:21:14.596 tapa.steps.common:50] loading TAPA graph from json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/settings.json`.
+I1025 22:21:14.597 tapa.core:181] extracting HLS C++ files
+I1025 22:21:15.133 tapa.core:213] running HLS
+I1025 22:21:15.140 tapa.core:259] spawn 24 workers for parallel HLS synthesis of the tasks
+W1025 22:21:15.150 tapa.util:129] not adding vendor include paths; please update FRT
+W1025 22:21:15.153 tapa.util:129] not adding vendor include paths; please update FRT
+W1025 22:21:15.154 tapa.util:129] not adding vendor include paths; please update FRT
+W1025 22:21:15.155 tapa.util:129] not adding vendor include paths; please update FRT
+W1025 22:21:15.157 tapa.util:129] not adding vendor include paths; please update FRT
 
 ****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.2 (64-bit)
   **** SW Build 4023990 on Oct 11 2023
@@ -46034,83 +46059,18 @@ W1025 22:15:38.035 tapa.util:129] not adding vendor include paths; please update
 
 source /afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/scripts/vitis_hls/hls.tcl -notrace
 INFO: [HLS 200-10] Running '/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/bin/unwrapped/lnx64.o/vitis_hls'
-INFO: [HLS 200-10] For user 'dchan2' on host 'ECE005.ece.local.cmu.edu' (Linux_x86_64 version 4.18.0-553.146.1.el8_10.x86_64) on Sun Oct 25 22:15:59 EDT 2026
+INFO: [HLS 200-10] For user 'dchan2' on host 'ECE005.ece.local.cmu.edu' (Linux_x86_64 version 4.18.0-553.146.1.el8_10.x86_64) on Sun Oct 25 22:21:40 EDT 2026
 INFO: [HLS 200-10] On os "Red Hat Enterprise Linux release 8.10 (Ootpa)"
-INFO: [HLS 200-10] In directory '/tmp/run-hls-load_KNN-7pt0cqdt'
+INFO: [HLS 200-10] In directory '/tmp/run-hls-para_partial_sort-ndzg3bq7'
 INFO: [HLS 200-2053] The vitis_hls executable is being deprecated. Consider using vitis-run --mode hls --tcl
-Sourcing Tcl script '/tmp/run-hls-load_KNN-7pt0cqdt/commands.tcl'
+Sourcing Tcl script '/tmp/run-hls-para_partial_sort-ndzg3bq7/commands.tcl'
 INFO: [HLS 200-1510] Running: open_project project 
-INFO: [HLS 200-10] Creating and opening project '/tmp/run-hls-load_KNN-7pt0cqdt/project'.
-INFO: [HLS 200-1510] Running: set_top load_KNN 
-INFO: [HLS 200-1510] Running: add_files /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp -cflags -std=c++17 -U__SYNTHESIS__ -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/usr/bin/../lib/clang/20/include -I/usr/include/c++/8 -I/usr/include/c++/8/x86_64-redhat-linux -I/usr/include -I/usr/include/x86_64-linux-gnu -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -std=c++17 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -DTAPA_TARGET_=XILINX_HLS 
-INFO: [HLS 200-10] Adding design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp' to the project
-INFO: [HLS 200-1510] Running: open_solution load_KNN 
-INFO: [HLS 200-10] Creating and opening solution '/tmp/run-hls-load_KNN-7pt0cqdt/project/load_KNN'.
-INFO: [HLS 200-1505] Using default flow_target 'vivado'
-Resolution: For help on HLS 200-1505 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
-INFO: [HLS 200-1510] Running: set_part xczu3eg-sbva484-1-e 
-INFO: [HLS 200-1611] Setting target device to 'xczu3eg-sbva484-1-e'
-INFO: [HLS 200-1510] Running: create_clock -period 5.0 -name default 
-INFO: [SYN 201-201] Setting up clock 'default' with a period of 5ns.
-INFO: [HLS 200-1510] Running: config_compile -name_max_length 253 
-INFO: [XFORM 203-1161] The maximum of name length is set to 253.
-INFO: [HLS 200-1510] Running: config_interface -m_axi_addr64 
-INFO: [HLS 200-1510] Running: config_rtl -reset_level low -module_auto_prefix 
-INFO: [HLS 200-1510] Running: csynth_design 
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.21 seconds. CPU system time: 0.04 seconds. Elapsed time: 0.25 seconds; current allocated memory: 257.941 MB.
-INFO: [HLS 200-10] Analyzing design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp' ... 
-ERROR: [HLS 207-2972] no member named 'int8_t' in the global namespace (/usr/include/c++/8/cstdint:48:11)
-ERROR: [HLS 207-2972] no member named 'int16_t' in the global namespace (/usr/include/c++/8/cstdint:49:11)
-ERROR: [HLS 207-2972] no member named 'int32_t' in the global namespace (/usr/include/c++/8/cstdint:50:11)
-ERROR: [HLS 207-2972] no member named 'int64_t' in the global namespace (/usr/include/c++/8/cstdint:51:11)
-ERROR: [HLS 207-2972] no member named 'int_fast8_t' in the global namespace (/usr/include/c++/8/cstdint:53:11)
-ERROR: [HLS 207-2972] no member named 'int_fast16_t' in the global namespace (/usr/include/c++/8/cstdint:54:11)
-ERROR: [HLS 207-2972] no member named 'int_fast32_t' in the global namespace (/usr/include/c++/8/cstdint:55:11)
-ERROR: [HLS 207-2972] no member named 'int_fast64_t' in the global namespace (/usr/include/c++/8/cstdint:56:11)
-ERROR: [HLS 207-2972] no member named 'int_least8_t' in the global namespace (/usr/include/c++/8/cstdint:58:11)
-ERROR: [HLS 207-2972] no member named 'int_least16_t' in the global namespace (/usr/include/c++/8/cstdint:59:11)
-ERROR: [HLS 207-2972] no member named 'int_least32_t' in the global namespace (/usr/include/c++/8/cstdint:60:11)
-ERROR: [HLS 207-2972] no member named 'int_least64_t' in the global namespace (/usr/include/c++/8/cstdint:61:11)
-ERROR: [HLS 207-2972] no member named 'intmax_t' in the global namespace (/usr/include/c++/8/cstdint:63:11)
-ERROR: [HLS 207-2972] no member named 'intptr_t' in the global namespace (/usr/include/c++/8/cstdint:64:11)
-ERROR: [HLS 207-2972] no member named 'uint8_t' in the global namespace (/usr/include/c++/8/cstdint:66:11)
-ERROR: [HLS 207-2972] no member named 'uint16_t' in the global namespace (/usr/include/c++/8/cstdint:67:11)
-ERROR: [HLS 207-2972] no member named 'uint32_t' in the global namespace (/usr/include/c++/8/cstdint:68:11)
-ERROR: [HLS 207-2972] no member named 'uint64_t' in the global namespace (/usr/include/c++/8/cstdint:69:11)
-ERROR: [HLS 207-2972] no member named 'uint_fast8_t' in the global namespace (/usr/include/c++/8/cstdint:71:11)
-ERROR: [HLS 207-59] too many errors emitted, stopping now
-INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 2.26 seconds. CPU system time: 0.87 seconds. Elapsed time: 3.81 seconds; current allocated memory: 1.508 MB.
- 
-    while executing
-"source /tmp/run-hls-load_KNN-7pt0cqdt/commands.tcl"
-    ("uplevel" body line 1)
-    invoked from within
-"uplevel \#0 [list source $tclfile] "
-
-INFO: [HLS 200-112] Total CPU user time: 7.08 seconds. Total CPU system time: 4.32 seconds. Total elapsed time: 21.2 seconds; peak allocated memory: 259.449 MB.
-INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 22:16:10 2026...
-
-****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.2 (64-bit)
-  **** SW Build 4023990 on Oct 11 2023
-  **** IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
-  **** SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
-    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
-
-source /afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/scripts/vitis_hls/hls.tcl -notrace
-INFO: [HLS 200-10] Running '/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/bin/unwrapped/lnx64.o/vitis_hls'
-INFO: [HLS 200-10] For user 'dchan2' on host 'ECE005.ece.local.cmu.edu' (Linux_x86_64 version 4.18.0-553.146.1.el8_10.x86_64) on Sun Oct 25 22:15:59 EDT 2026
-INFO: [HLS 200-10] On os "Red Hat Enterprise Linux release 8.10 (Ootpa)"
-INFO: [HLS 200-10] In directory '/tmp/run-hls-para_partial_sort-cjxw3fht'
-INFO: [HLS 200-2053] The vitis_hls executable is being deprecated. Consider using vitis-run --mode hls --tcl
-Sourcing Tcl script '/tmp/run-hls-para_partial_sort-cjxw3fht/commands.tcl'
-INFO: [HLS 200-1510] Running: open_project project 
-INFO: [HLS 200-10] Creating and opening project '/tmp/run-hls-para_partial_sort-cjxw3fht/project'.
+INFO: [HLS 200-10] Creating and opening project '/tmp/run-hls-para_partial_sort-ndzg3bq7/project'.
 INFO: [HLS 200-1510] Running: set_top para_partial_sort 
-INFO: [HLS 200-1510] Running: add_files /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp -cflags -std=c++17 -U__SYNTHESIS__ -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/usr/bin/../lib/clang/20/include -I/usr/include/c++/8 -I/usr/include/c++/8/x86_64-redhat-linux -I/usr/include -I/usr/include/x86_64-linux-gnu -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -std=c++17 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -DTAPA_TARGET_=XILINX_HLS 
+INFO: [HLS 200-1510] Running: add_files /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp -cflags -std=c++17 -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -std=c++17 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -D__SYNTHESIS__ -DTAPA_TARGET_=XILINX_HLS 
 INFO: [HLS 200-10] Adding design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp' to the project
 INFO: [HLS 200-1510] Running: open_solution para_partial_sort 
-INFO: [HLS 200-10] Creating and opening solution '/tmp/run-hls-para_partial_sort-cjxw3fht/project/para_partial_sort'.
+INFO: [HLS 200-10] Creating and opening solution '/tmp/run-hls-para_partial_sort-ndzg3bq7/project/para_partial_sort'.
 INFO: [HLS 200-1505] Using default flow_target 'vivado'
 Resolution: For help on HLS 200-1505 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
 INFO: [HLS 200-1510] Running: set_part xczu3eg-sbva484-1-e 
@@ -46122,38 +46082,47 @@ INFO: [XFORM 203-1161] The maximum of name length is set to 253.
 INFO: [HLS 200-1510] Running: config_interface -m_axi_addr64 
 INFO: [HLS 200-1510] Running: config_rtl -reset_level low -module_auto_prefix 
 INFO: [HLS 200-1510] Running: csynth_design 
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.15 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.17 seconds; current allocated memory: 257.941 MB.
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.13 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.14 seconds; current allocated memory: 257.934 MB.
 INFO: [HLS 200-10] Analyzing design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/para_partial_sort.cpp' ... 
-ERROR: [HLS 207-2972] no member named 'int8_t' in the global namespace (/usr/include/c++/8/cstdint:48:11)
-ERROR: [HLS 207-2972] no member named 'int16_t' in the global namespace (/usr/include/c++/8/cstdint:49:11)
-ERROR: [HLS 207-2972] no member named 'int32_t' in the global namespace (/usr/include/c++/8/cstdint:50:11)
-ERROR: [HLS 207-2972] no member named 'int64_t' in the global namespace (/usr/include/c++/8/cstdint:51:11)
-ERROR: [HLS 207-2972] no member named 'int_fast8_t' in the global namespace (/usr/include/c++/8/cstdint:53:11)
-ERROR: [HLS 207-2972] no member named 'int_fast16_t' in the global namespace (/usr/include/c++/8/cstdint:54:11)
-ERROR: [HLS 207-2972] no member named 'int_fast32_t' in the global namespace (/usr/include/c++/8/cstdint:55:11)
-ERROR: [HLS 207-2972] no member named 'int_fast64_t' in the global namespace (/usr/include/c++/8/cstdint:56:11)
-ERROR: [HLS 207-2972] no member named 'int_least8_t' in the global namespace (/usr/include/c++/8/cstdint:58:11)
-ERROR: [HLS 207-2972] no member named 'int_least16_t' in the global namespace (/usr/include/c++/8/cstdint:59:11)
-ERROR: [HLS 207-2972] no member named 'int_least32_t' in the global namespace (/usr/include/c++/8/cstdint:60:11)
-ERROR: [HLS 207-2972] no member named 'int_least64_t' in the global namespace (/usr/include/c++/8/cstdint:61:11)
-ERROR: [HLS 207-2972] no member named 'intmax_t' in the global namespace (/usr/include/c++/8/cstdint:63:11)
-ERROR: [HLS 207-2972] no member named 'intptr_t' in the global namespace (/usr/include/c++/8/cstdint:64:11)
-ERROR: [HLS 207-2972] no member named 'uint8_t' in the global namespace (/usr/include/c++/8/cstdint:66:11)
-ERROR: [HLS 207-2972] no member named 'uint16_t' in the global namespace (/usr/include/c++/8/cstdint:67:11)
-ERROR: [HLS 207-2972] no member named 'uint32_t' in the global namespace (/usr/include/c++/8/cstdint:68:11)
-ERROR: [HLS 207-2972] no member named 'uint64_t' in the global namespace (/usr/include/c++/8/cstdint:69:11)
-ERROR: [HLS 207-2972] no member named 'uint_fast8_t' in the global namespace (/usr/include/c++/8/cstdint:71:11)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/stl_pair.h:442:40)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/basic_string.h:5896:5)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/basic_string.h:5904:5)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/basic_string.h:5910:5)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/array:244:5)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/tuple:877:5)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/tuple:879:5)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/tuple:881:5)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/tuple:883:5)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/tuple:885:5)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes...) noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:102:72)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:97:72)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes..., ...) noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:102:283)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:97:275)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes...) const noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:102:497)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:97:481)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes..., ...) const noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:102:720)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:97:696)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes...) volatile noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:102:946)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:97:914)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes..., ...) volatile noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:102:1175)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:97:1135)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes...) const volatile noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:102:1407)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:97:1359)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes..., ...) const volatile noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:102:1648)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:97:1592)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes...) & noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:103:72)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:98:72)
 ERROR: [HLS 207-59] too many errors emitted, stopping now
-INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 2.12 seconds. CPU system time: 0.76 seconds. Elapsed time: 4.06 seconds; current allocated memory: 1.488 MB.
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 2.3 seconds. CPU system time: 1.21 seconds. Elapsed time: 8.73 seconds; current allocated memory: 1.660 MB.
  
     while executing
-"source /tmp/run-hls-para_partial_sort-cjxw3fht/commands.tcl"
+"source /tmp/run-hls-para_partial_sort-ndzg3bq7/commands.tcl"
     ("uplevel" body line 1)
     invoked from within
 "uplevel \#0 [list source $tclfile] "
 
-INFO: [HLS 200-112] Total CPU user time: 6.85 seconds. Total CPU system time: 4.39 seconds. Total elapsed time: 21.66 seconds; peak allocated memory: 259.430 MB.
-INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 22:16:10 2026...
+INFO: [HLS 200-112] Total CPU user time: 7.25 seconds. Total CPU system time: 5.06 seconds. Total elapsed time: 30.52 seconds; peak allocated memory: 259.609 MB.
+INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 22:21:56 2026...
 
 ****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.2 (64-bit)
   **** SW Build 4023990 on Oct 11 2023
@@ -46164,18 +46133,18 @@ INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 22:16:10 2026...
 
 source /afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/scripts/vitis_hls/hls.tcl -notrace
 INFO: [HLS 200-10] Running '/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/bin/unwrapped/lnx64.o/vitis_hls'
-INFO: [HLS 200-10] For user 'dchan2' on host 'ECE005.ece.local.cmu.edu' (Linux_x86_64 version 4.18.0-553.146.1.el8_10.x86_64) on Sun Oct 25 22:15:59 EDT 2026
+INFO: [HLS 200-10] For user 'dchan2' on host 'ECE005.ece.local.cmu.edu' (Linux_x86_64 version 4.18.0-553.146.1.el8_10.x86_64) on Sun Oct 25 22:21:40 EDT 2026
 INFO: [HLS 200-10] On os "Red Hat Enterprise Linux release 8.10 (Ootpa)"
-INFO: [HLS 200-10] In directory '/tmp/run-hls-krnl_singlePE_Write_Outputs-k4boz2la'
+INFO: [HLS 200-10] In directory '/tmp/run-hls-krnl_singlePE_Write_Outputs-v0u5e8g3'
 INFO: [HLS 200-2053] The vitis_hls executable is being deprecated. Consider using vitis-run --mode hls --tcl
-Sourcing Tcl script '/tmp/run-hls-krnl_singlePE_Write_Outputs-k4boz2la/commands.tcl'
+Sourcing Tcl script '/tmp/run-hls-krnl_singlePE_Write_Outputs-v0u5e8g3/commands.tcl'
 INFO: [HLS 200-1510] Running: open_project project 
-INFO: [HLS 200-10] Creating and opening project '/tmp/run-hls-krnl_singlePE_Write_Outputs-k4boz2la/project'.
+INFO: [HLS 200-10] Creating and opening project '/tmp/run-hls-krnl_singlePE_Write_Outputs-v0u5e8g3/project'.
 INFO: [HLS 200-1510] Running: set_top krnl_singlePE_Write_Outputs 
-INFO: [HLS 200-1510] Running: add_files /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp -cflags -std=c++17 -U__SYNTHESIS__ -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/usr/bin/../lib/clang/20/include -I/usr/include/c++/8 -I/usr/include/c++/8/x86_64-redhat-linux -I/usr/include -I/usr/include/x86_64-linux-gnu -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -std=c++17 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -DTAPA_TARGET_=XILINX_HLS 
+INFO: [HLS 200-1510] Running: add_files /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp -cflags -std=c++17 -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -std=c++17 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -D__SYNTHESIS__ -DTAPA_TARGET_=XILINX_HLS 
 INFO: [HLS 200-10] Adding design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp' to the project
 INFO: [HLS 200-1510] Running: open_solution krnl_singlePE_Write_Outputs 
-INFO: [HLS 200-10] Creating and opening solution '/tmp/run-hls-krnl_singlePE_Write_Outputs-k4boz2la/project/krnl_singlePE_Write_Outputs'.
+INFO: [HLS 200-10] Creating and opening solution '/tmp/run-hls-krnl_singlePE_Write_Outputs-v0u5e8g3/project/krnl_singlePE_Write_Outputs'.
 INFO: [HLS 200-1505] Using default flow_target 'vivado'
 Resolution: For help on HLS 200-1505 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
 INFO: [HLS 200-1510] Running: set_part xczu3eg-sbva484-1-e 
@@ -46187,38 +46156,47 @@ INFO: [XFORM 203-1161] The maximum of name length is set to 253.
 INFO: [HLS 200-1510] Running: config_interface -m_axi_addr64 
 INFO: [HLS 200-1510] Running: config_rtl -reset_level low -module_auto_prefix 
 INFO: [HLS 200-1510] Running: csynth_design 
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.12 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.14 seconds; current allocated memory: 257.934 MB.
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.13 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.16 seconds; current allocated memory: 257.887 MB.
 INFO: [HLS 200-10] Analyzing design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/krnl_singlePE_Write_Outputs.cpp' ... 
-ERROR: [HLS 207-2972] no member named 'int8_t' in the global namespace (/usr/include/c++/8/cstdint:48:11)
-ERROR: [HLS 207-2972] no member named 'int16_t' in the global namespace (/usr/include/c++/8/cstdint:49:11)
-ERROR: [HLS 207-2972] no member named 'int32_t' in the global namespace (/usr/include/c++/8/cstdint:50:11)
-ERROR: [HLS 207-2972] no member named 'int64_t' in the global namespace (/usr/include/c++/8/cstdint:51:11)
-ERROR: [HLS 207-2972] no member named 'int_fast8_t' in the global namespace (/usr/include/c++/8/cstdint:53:11)
-ERROR: [HLS 207-2972] no member named 'int_fast16_t' in the global namespace (/usr/include/c++/8/cstdint:54:11)
-ERROR: [HLS 207-2972] no member named 'int_fast32_t' in the global namespace (/usr/include/c++/8/cstdint:55:11)
-ERROR: [HLS 207-2972] no member named 'int_fast64_t' in the global namespace (/usr/include/c++/8/cstdint:56:11)
-ERROR: [HLS 207-2972] no member named 'int_least8_t' in the global namespace (/usr/include/c++/8/cstdint:58:11)
-ERROR: [HLS 207-2972] no member named 'int_least16_t' in the global namespace (/usr/include/c++/8/cstdint:59:11)
-ERROR: [HLS 207-2972] no member named 'int_least32_t' in the global namespace (/usr/include/c++/8/cstdint:60:11)
-ERROR: [HLS 207-2972] no member named 'int_least64_t' in the global namespace (/usr/include/c++/8/cstdint:61:11)
-ERROR: [HLS 207-2972] no member named 'intmax_t' in the global namespace (/usr/include/c++/8/cstdint:63:11)
-ERROR: [HLS 207-2972] no member named 'intptr_t' in the global namespace (/usr/include/c++/8/cstdint:64:11)
-ERROR: [HLS 207-2972] no member named 'uint8_t' in the global namespace (/usr/include/c++/8/cstdint:66:11)
-ERROR: [HLS 207-2972] no member named 'uint16_t' in the global namespace (/usr/include/c++/8/cstdint:67:11)
-ERROR: [HLS 207-2972] no member named 'uint32_t' in the global namespace (/usr/include/c++/8/cstdint:68:11)
-ERROR: [HLS 207-2972] no member named 'uint64_t' in the global namespace (/usr/include/c++/8/cstdint:69:11)
-ERROR: [HLS 207-2972] no member named 'uint_fast8_t' in the global namespace (/usr/include/c++/8/cstdint:71:11)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/stl_pair.h:442:40)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/basic_string.h:5896:5)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/basic_string.h:5904:5)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/basic_string.h:5910:5)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/array:244:5)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/tuple:877:5)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/tuple:879:5)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/tuple:881:5)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/tuple:883:5)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/tuple:885:5)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes...) noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:102:72)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:97:72)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes..., ...) noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:102:283)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:97:275)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes...) const noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:102:497)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:97:481)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes..., ...) const noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:102:720)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:97:696)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes...) volatile noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:102:946)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:97:914)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes..., ...) volatile noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:102:1175)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:97:1135)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes...) const volatile noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:102:1407)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:97:1359)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes..., ...) const volatile noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:102:1648)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:97:1592)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes...) & noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:103:72)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:98:72)
 ERROR: [HLS 207-59] too many errors emitted, stopping now
-INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 2.13 seconds. CPU system time: 0.83 seconds. Elapsed time: 3.88 seconds; current allocated memory: 1.504 MB.
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 2.36 seconds. CPU system time: 1.22 seconds. Elapsed time: 9.4 seconds; current allocated memory: 1.691 MB.
  
     while executing
-"source /tmp/run-hls-krnl_singlePE_Write_Outputs-k4boz2la/commands.tcl"
+"source /tmp/run-hls-krnl_singlePE_Write_Outputs-v0u5e8g3/commands.tcl"
     ("uplevel" body line 1)
     invoked from within
 "uplevel \#0 [list source $tclfile] "
 
-INFO: [HLS 200-112] Total CPU user time: 6.45 seconds. Total CPU system time: 4.53 seconds. Total elapsed time: 21.62 seconds; peak allocated memory: 259.438 MB.
-INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 22:16:10 2026...
+INFO: [HLS 200-112] Total CPU user time: 7.43 seconds. Total CPU system time: 5.02 seconds. Total elapsed time: 31.22 seconds; peak allocated memory: 259.594 MB.
+INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 22:21:57 2026...
 
 ****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.2 (64-bit)
   **** SW Build 4023990 on Oct 11 2023
@@ -46229,83 +46207,18 @@ INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 22:16:10 2026...
 
 source /afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/scripts/vitis_hls/hls.tcl -notrace
 INFO: [HLS 200-10] Running '/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/bin/unwrapped/lnx64.o/vitis_hls'
-INFO: [HLS 200-10] For user 'dchan2' on host 'ECE005.ece.local.cmu.edu' (Linux_x86_64 version 4.18.0-553.146.1.el8_10.x86_64) on Sun Oct 25 22:15:59 EDT 2026
+INFO: [HLS 200-10] For user 'dchan2' on host 'ECE005.ece.local.cmu.edu' (Linux_x86_64 version 4.18.0-553.146.1.el8_10.x86_64) on Sun Oct 25 22:21:40 EDT 2026
 INFO: [HLS 200-10] On os "Red Hat Enterprise Linux release 8.10 (Ootpa)"
-INFO: [HLS 200-10] In directory '/tmp/run-hls-Knn-hj2kmq39'
+INFO: [HLS 200-10] In directory '/tmp/run-hls-compute_KNN-305don7p'
 INFO: [HLS 200-2053] The vitis_hls executable is being deprecated. Consider using vitis-run --mode hls --tcl
-Sourcing Tcl script '/tmp/run-hls-Knn-hj2kmq39/commands.tcl'
+Sourcing Tcl script '/tmp/run-hls-compute_KNN-305don7p/commands.tcl'
 INFO: [HLS 200-1510] Running: open_project project 
-INFO: [HLS 200-10] Creating and opening project '/tmp/run-hls-Knn-hj2kmq39/project'.
-INFO: [HLS 200-1510] Running: set_top Knn 
-INFO: [HLS 200-1510] Running: add_files /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp -cflags -std=c++17 -U__SYNTHESIS__ -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/usr/bin/../lib/clang/20/include -I/usr/include/c++/8 -I/usr/include/c++/8/x86_64-redhat-linux -I/usr/include -I/usr/include/x86_64-linux-gnu -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -std=c++17 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -DTAPA_TARGET_=XILINX_HLS 
-INFO: [HLS 200-10] Adding design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp' to the project
-INFO: [HLS 200-1510] Running: open_solution Knn 
-INFO: [HLS 200-10] Creating and opening solution '/tmp/run-hls-Knn-hj2kmq39/project/Knn'.
-INFO: [HLS 200-1505] Using default flow_target 'vivado'
-Resolution: For help on HLS 200-1505 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
-INFO: [HLS 200-1510] Running: set_part xczu3eg-sbva484-1-e 
-INFO: [HLS 200-1611] Setting target device to 'xczu3eg-sbva484-1-e'
-INFO: [HLS 200-1510] Running: create_clock -period 5.0 -name default 
-INFO: [SYN 201-201] Setting up clock 'default' with a period of 5ns.
-INFO: [HLS 200-1510] Running: config_compile -name_max_length 253 
-INFO: [XFORM 203-1161] The maximum of name length is set to 253.
-INFO: [HLS 200-1510] Running: config_interface -m_axi_addr64 
-INFO: [HLS 200-1510] Running: config_rtl -reset_level low -module_auto_prefix 
-INFO: [HLS 200-1510] Running: csynth_design 
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.1 seconds. CPU system time: 0.03 seconds. Elapsed time: 0.14 seconds; current allocated memory: 257.898 MB.
-INFO: [HLS 200-10] Analyzing design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp' ... 
-ERROR: [HLS 207-2972] no member named 'int8_t' in the global namespace (/usr/include/c++/8/cstdint:48:11)
-ERROR: [HLS 207-2972] no member named 'int16_t' in the global namespace (/usr/include/c++/8/cstdint:49:11)
-ERROR: [HLS 207-2972] no member named 'int32_t' in the global namespace (/usr/include/c++/8/cstdint:50:11)
-ERROR: [HLS 207-2972] no member named 'int64_t' in the global namespace (/usr/include/c++/8/cstdint:51:11)
-ERROR: [HLS 207-2972] no member named 'int_fast8_t' in the global namespace (/usr/include/c++/8/cstdint:53:11)
-ERROR: [HLS 207-2972] no member named 'int_fast16_t' in the global namespace (/usr/include/c++/8/cstdint:54:11)
-ERROR: [HLS 207-2972] no member named 'int_fast32_t' in the global namespace (/usr/include/c++/8/cstdint:55:11)
-ERROR: [HLS 207-2972] no member named 'int_fast64_t' in the global namespace (/usr/include/c++/8/cstdint:56:11)
-ERROR: [HLS 207-2972] no member named 'int_least8_t' in the global namespace (/usr/include/c++/8/cstdint:58:11)
-ERROR: [HLS 207-2972] no member named 'int_least16_t' in the global namespace (/usr/include/c++/8/cstdint:59:11)
-ERROR: [HLS 207-2972] no member named 'int_least32_t' in the global namespace (/usr/include/c++/8/cstdint:60:11)
-ERROR: [HLS 207-2972] no member named 'int_least64_t' in the global namespace (/usr/include/c++/8/cstdint:61:11)
-ERROR: [HLS 207-2972] no member named 'intmax_t' in the global namespace (/usr/include/c++/8/cstdint:63:11)
-ERROR: [HLS 207-2972] no member named 'intptr_t' in the global namespace (/usr/include/c++/8/cstdint:64:11)
-ERROR: [HLS 207-2972] no member named 'uint8_t' in the global namespace (/usr/include/c++/8/cstdint:66:11)
-ERROR: [HLS 207-2972] no member named 'uint16_t' in the global namespace (/usr/include/c++/8/cstdint:67:11)
-ERROR: [HLS 207-2972] no member named 'uint32_t' in the global namespace (/usr/include/c++/8/cstdint:68:11)
-ERROR: [HLS 207-2972] no member named 'uint64_t' in the global namespace (/usr/include/c++/8/cstdint:69:11)
-ERROR: [HLS 207-2972] no member named 'uint_fast8_t' in the global namespace (/usr/include/c++/8/cstdint:71:11)
-ERROR: [HLS 207-59] too many errors emitted, stopping now
-INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 1.79 seconds. CPU system time: 0.57 seconds. Elapsed time: 3.48 seconds; current allocated memory: 1.523 MB.
- 
-    while executing
-"source /tmp/run-hls-Knn-hj2kmq39/commands.tcl"
-    ("uplevel" body line 1)
-    invoked from within
-"uplevel \#0 [list source $tclfile] "
-
-INFO: [HLS 200-112] Total CPU user time: 6.53 seconds. Total CPU system time: 4.04 seconds. Total elapsed time: 20.96 seconds; peak allocated memory: 259.422 MB.
-INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 22:16:09 2026...
-
-****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.2 (64-bit)
-  **** SW Build 4023990 on Oct 11 2023
-  **** IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
-  **** SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
-    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
-
-source /afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/scripts/vitis_hls/hls.tcl -notrace
-INFO: [HLS 200-10] Running '/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/bin/unwrapped/lnx64.o/vitis_hls'
-INFO: [HLS 200-10] For user 'dchan2' on host 'ECE005.ece.local.cmu.edu' (Linux_x86_64 version 4.18.0-553.146.1.el8_10.x86_64) on Sun Oct 25 22:15:59 EDT 2026
-INFO: [HLS 200-10] On os "Red Hat Enterprise Linux release 8.10 (Ootpa)"
-INFO: [HLS 200-10] In directory '/tmp/run-hls-compute_KNN-te_ibmqz'
-INFO: [HLS 200-2053] The vitis_hls executable is being deprecated. Consider using vitis-run --mode hls --tcl
-Sourcing Tcl script '/tmp/run-hls-compute_KNN-te_ibmqz/commands.tcl'
-INFO: [HLS 200-1510] Running: open_project project 
-INFO: [HLS 200-10] Creating and opening project '/tmp/run-hls-compute_KNN-te_ibmqz/project'.
+INFO: [HLS 200-10] Creating and opening project '/tmp/run-hls-compute_KNN-305don7p/project'.
 INFO: [HLS 200-1510] Running: set_top compute_KNN 
-INFO: [HLS 200-1510] Running: add_files /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp -cflags -std=c++17 -U__SYNTHESIS__ -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/usr/bin/../lib/clang/20/include -I/usr/include/c++/8 -I/usr/include/c++/8/x86_64-redhat-linux -I/usr/include -I/usr/include/x86_64-linux-gnu -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -std=c++17 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -DTAPA_TARGET_=XILINX_HLS 
+INFO: [HLS 200-1510] Running: add_files /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp -cflags -std=c++17 -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -std=c++17 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -D__SYNTHESIS__ -DTAPA_TARGET_=XILINX_HLS 
 INFO: [HLS 200-10] Adding design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp' to the project
 INFO: [HLS 200-1510] Running: open_solution compute_KNN 
-INFO: [HLS 200-10] Creating and opening solution '/tmp/run-hls-compute_KNN-te_ibmqz/project/compute_KNN'.
+INFO: [HLS 200-10] Creating and opening solution '/tmp/run-hls-compute_KNN-305don7p/project/compute_KNN'.
 INFO: [HLS 200-1505] Using default flow_target 'vivado'
 Resolution: For help on HLS 200-1505 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
 INFO: [HLS 200-1510] Running: set_part xczu3eg-sbva484-1-e 
@@ -46317,38 +46230,195 @@ INFO: [XFORM 203-1161] The maximum of name length is set to 253.
 INFO: [HLS 200-1510] Running: config_interface -m_axi_addr64 
 INFO: [HLS 200-1510] Running: config_rtl -reset_level low -module_auto_prefix 
 INFO: [HLS 200-1510] Running: csynth_design 
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.14 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.16 seconds; current allocated memory: 257.902 MB.
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.12 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.14 seconds; current allocated memory: 257.914 MB.
 INFO: [HLS 200-10] Analyzing design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp' ... 
-ERROR: [HLS 207-2972] no member named 'int8_t' in the global namespace (/usr/include/c++/8/cstdint:48:11)
-ERROR: [HLS 207-2972] no member named 'int16_t' in the global namespace (/usr/include/c++/8/cstdint:49:11)
-ERROR: [HLS 207-2972] no member named 'int32_t' in the global namespace (/usr/include/c++/8/cstdint:50:11)
-ERROR: [HLS 207-2972] no member named 'int64_t' in the global namespace (/usr/include/c++/8/cstdint:51:11)
-ERROR: [HLS 207-2972] no member named 'int_fast8_t' in the global namespace (/usr/include/c++/8/cstdint:53:11)
-ERROR: [HLS 207-2972] no member named 'int_fast16_t' in the global namespace (/usr/include/c++/8/cstdint:54:11)
-ERROR: [HLS 207-2972] no member named 'int_fast32_t' in the global namespace (/usr/include/c++/8/cstdint:55:11)
-ERROR: [HLS 207-2972] no member named 'int_fast64_t' in the global namespace (/usr/include/c++/8/cstdint:56:11)
-ERROR: [HLS 207-2972] no member named 'int_least8_t' in the global namespace (/usr/include/c++/8/cstdint:58:11)
-ERROR: [HLS 207-2972] no member named 'int_least16_t' in the global namespace (/usr/include/c++/8/cstdint:59:11)
-ERROR: [HLS 207-2972] no member named 'int_least32_t' in the global namespace (/usr/include/c++/8/cstdint:60:11)
-ERROR: [HLS 207-2972] no member named 'int_least64_t' in the global namespace (/usr/include/c++/8/cstdint:61:11)
-ERROR: [HLS 207-2972] no member named 'intmax_t' in the global namespace (/usr/include/c++/8/cstdint:63:11)
-ERROR: [HLS 207-2972] no member named 'intptr_t' in the global namespace (/usr/include/c++/8/cstdint:64:11)
-ERROR: [HLS 207-2972] no member named 'uint8_t' in the global namespace (/usr/include/c++/8/cstdint:66:11)
-ERROR: [HLS 207-2972] no member named 'uint16_t' in the global namespace (/usr/include/c++/8/cstdint:67:11)
-ERROR: [HLS 207-2972] no member named 'uint32_t' in the global namespace (/usr/include/c++/8/cstdint:68:11)
-ERROR: [HLS 207-2972] no member named 'uint64_t' in the global namespace (/usr/include/c++/8/cstdint:69:11)
-ERROR: [HLS 207-2972] no member named 'uint_fast8_t' in the global namespace (/usr/include/c++/8/cstdint:71:11)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/stl_pair.h:442:40)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/basic_string.h:5896:5)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/basic_string.h:5904:5)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/basic_string.h:5910:5)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/array:244:5)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/tuple:877:5)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/tuple:879:5)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/tuple:881:5)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/tuple:883:5)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/tuple:885:5)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes...) noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:102:72)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:97:72)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes..., ...) noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:102:283)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:97:275)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes...) const noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:102:497)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:97:481)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes..., ...) const noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:102:720)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:97:696)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes...) volatile noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:102:946)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:97:914)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes..., ...) volatile noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:102:1175)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:97:1135)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes...) const volatile noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:102:1407)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:97:1359)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes..., ...) const volatile noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:102:1648)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:97:1592)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes...) & noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:103:72)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:98:72)
 ERROR: [HLS 207-59] too many errors emitted, stopping now
-INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 1.83 seconds. CPU system time: 0.68 seconds. Elapsed time: 3.53 seconds; current allocated memory: 1.504 MB.
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 2.29 seconds. CPU system time: 1.11 seconds. Elapsed time: 9.22 seconds; current allocated memory: 1.691 MB.
  
     while executing
-"source /tmp/run-hls-compute_KNN-te_ibmqz/commands.tcl"
+"source /tmp/run-hls-compute_KNN-305don7p/commands.tcl"
     ("uplevel" body line 1)
     invoked from within
 "uplevel \#0 [list source $tclfile] "
 
-INFO: [HLS 200-112] Total CPU user time: 6.19 seconds. Total CPU system time: 4.29 seconds. Total elapsed time: 20.96 seconds; peak allocated memory: 259.406 MB.
-INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 22:16:09 2026...
+INFO: [HLS 200-112] Total CPU user time: 6.94 seconds. Total CPU system time: 4.89 seconds. Total elapsed time: 31.01 seconds; peak allocated memory: 259.621 MB.
+INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 22:21:57 2026...
+
+****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.2 (64-bit)
+  **** SW Build 4023990 on Oct 11 2023
+  **** IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+  **** SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source /afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/scripts/vitis_hls/hls.tcl -notrace
+INFO: [HLS 200-10] Running '/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/bin/unwrapped/lnx64.o/vitis_hls'
+INFO: [HLS 200-10] For user 'dchan2' on host 'ECE005.ece.local.cmu.edu' (Linux_x86_64 version 4.18.0-553.146.1.el8_10.x86_64) on Sun Oct 25 22:21:40 EDT 2026
+INFO: [HLS 200-10] On os "Red Hat Enterprise Linux release 8.10 (Ootpa)"
+INFO: [HLS 200-10] In directory '/tmp/run-hls-Knn-4n05bctb'
+INFO: [HLS 200-2053] The vitis_hls executable is being deprecated. Consider using vitis-run --mode hls --tcl
+Sourcing Tcl script '/tmp/run-hls-Knn-4n05bctb/commands.tcl'
+INFO: [HLS 200-1510] Running: open_project project 
+INFO: [HLS 200-10] Creating and opening project '/tmp/run-hls-Knn-4n05bctb/project'.
+INFO: [HLS 200-1510] Running: set_top Knn 
+INFO: [HLS 200-1510] Running: add_files /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp -cflags -std=c++17 -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -std=c++17 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -D__SYNTHESIS__ -DTAPA_TARGET_=XILINX_HLS 
+INFO: [HLS 200-10] Adding design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp' to the project
+INFO: [HLS 200-1510] Running: open_solution Knn 
+INFO: [HLS 200-10] Creating and opening solution '/tmp/run-hls-Knn-4n05bctb/project/Knn'.
+INFO: [HLS 200-1505] Using default flow_target 'vivado'
+Resolution: For help on HLS 200-1505 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
+INFO: [HLS 200-1510] Running: set_part xczu3eg-sbva484-1-e 
+INFO: [HLS 200-1611] Setting target device to 'xczu3eg-sbva484-1-e'
+INFO: [HLS 200-1510] Running: create_clock -period 5.0 -name default 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 5ns.
+INFO: [HLS 200-1510] Running: config_compile -name_max_length 253 
+INFO: [XFORM 203-1161] The maximum of name length is set to 253.
+INFO: [HLS 200-1510] Running: config_interface -m_axi_addr64 
+INFO: [HLS 200-1510] Running: config_rtl -reset_level low -module_auto_prefix 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.14 seconds. CPU system time: 0.03 seconds. Elapsed time: 0.17 seconds; current allocated memory: 292.617 MB.
+INFO: [HLS 200-10] Analyzing design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/Knn.cpp' ... 
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/stl_pair.h:442:40)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/basic_string.h:5896:5)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/basic_string.h:5904:5)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/basic_string.h:5910:5)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/array:244:5)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/tuple:877:5)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/tuple:879:5)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/tuple:881:5)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/tuple:883:5)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/tuple:885:5)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes...) noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:102:72)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:97:72)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes..., ...) noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:102:283)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:97:275)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes...) const noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:102:497)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:97:481)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes..., ...) const noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:102:720)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:97:696)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes...) volatile noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:102:946)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:97:914)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes..., ...) volatile noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:102:1175)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:97:1135)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes...) const volatile noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:102:1407)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:97:1359)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes..., ...) const volatile noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:102:1648)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:97:1592)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes...) & noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:103:72)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:98:72)
+ERROR: [HLS 207-59] too many errors emitted, stopping now
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 2.55 seconds. CPU system time: 1.17 seconds. Elapsed time: 9.16 seconds; current allocated memory: 1.660 MB.
+ 
+    while executing
+"source /tmp/run-hls-Knn-4n05bctb/commands.tcl"
+    ("uplevel" body line 1)
+    invoked from within
+"uplevel \#0 [list source $tclfile] "
+
+INFO: [HLS 200-112] Total CPU user time: 7.64 seconds. Total CPU system time: 4.99 seconds. Total elapsed time: 31.12 seconds; peak allocated memory: 294.293 MB.
+INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 22:21:57 2026...
+
+****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.2 (64-bit)
+  **** SW Build 4023990 on Oct 11 2023
+  **** IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+  **** SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source /afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/scripts/vitis_hls/hls.tcl -notrace
+INFO: [HLS 200-10] Running '/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/bin/unwrapped/lnx64.o/vitis_hls'
+INFO: [HLS 200-10] For user 'dchan2' on host 'ECE005.ece.local.cmu.edu' (Linux_x86_64 version 4.18.0-553.146.1.el8_10.x86_64) on Sun Oct 25 22:21:40 EDT 2026
+INFO: [HLS 200-10] On os "Red Hat Enterprise Linux release 8.10 (Ootpa)"
+INFO: [HLS 200-10] In directory '/tmp/run-hls-load_KNN-1kykggdy'
+INFO: [HLS 200-2053] The vitis_hls executable is being deprecated. Consider using vitis-run --mode hls --tcl
+Sourcing Tcl script '/tmp/run-hls-load_KNN-1kykggdy/commands.tcl'
+INFO: [HLS 200-1510] Running: open_project project 
+INFO: [HLS 200-10] Creating and opening project '/tmp/run-hls-load_KNN-1kykggdy/project'.
+INFO: [HLS 200-1510] Running: set_top load_KNN 
+INFO: [HLS 200-1510] Running: add_files /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp -cflags -std=c++17 -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -std=c++17 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -D__SYNTHESIS__ -DTAPA_TARGET_=XILINX_HLS 
+INFO: [HLS 200-10] Adding design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp' to the project
+INFO: [HLS 200-1510] Running: open_solution load_KNN 
+INFO: [HLS 200-10] Creating and opening solution '/tmp/run-hls-load_KNN-1kykggdy/project/load_KNN'.
+INFO: [HLS 200-1505] Using default flow_target 'vivado'
+Resolution: For help on HLS 200-1505 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
+INFO: [HLS 200-1510] Running: set_part xczu3eg-sbva484-1-e 
+INFO: [HLS 200-1611] Setting target device to 'xczu3eg-sbva484-1-e'
+INFO: [HLS 200-1510] Running: create_clock -period 5.0 -name default 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 5ns.
+INFO: [HLS 200-1510] Running: config_compile -name_max_length 253 
+INFO: [XFORM 203-1161] The maximum of name length is set to 253.
+INFO: [HLS 200-1510] Running: config_interface -m_axi_addr64 
+INFO: [HLS 200-1510] Running: config_rtl -reset_level low -module_auto_prefix 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.13 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.15 seconds; current allocated memory: 292.508 MB.
+INFO: [HLS 200-10] Analyzing design file '/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/load_KNN.cpp' ... 
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/stl_pair.h:442:40)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/basic_string.h:5896:5)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/basic_string.h:5904:5)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/basic_string.h:5910:5)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/array:244:5)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/tuple:877:5)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/tuple:879:5)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/tuple:881:5)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/tuple:883:5)
+ERROR: [HLS 207-2916] C++ requires a type specifier for all declarations (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/tuple:885:5)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes...) noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:102:72)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:97:72)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes..., ...) noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:102:283)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:97:275)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes...) const noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:102:497)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:97:481)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes..., ...) const noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:102:720)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:97:696)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes...) volatile noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:102:946)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:97:914)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes..., ...) volatile noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:102:1175)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:97:1135)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes...) const volatile noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:102:1407)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:97:1359)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes..., ...) const volatile noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:102:1648)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:97:1592)
+ERROR: [HLS 207-3430] redefinition of '_Mem_fn_traits<_Res (_Class::*)(_ArgTypes...) & noexcept>' (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:103:72)
+INFO: [HLS 207-71] previous definition is here (/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/bits/refwrap.h:98:72)
+ERROR: [HLS 207-59] too many errors emitted, stopping now
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 2.31 seconds. CPU system time: 1.2 seconds. Elapsed time: 8.97 seconds; current allocated memory: 1.676 MB.
+ 
+    while executing
+"source /tmp/run-hls-load_KNN-1kykggdy/commands.tcl"
+    ("uplevel" body line 1)
+    invoked from within
+"uplevel \#0 [list source $tclfile] "
+
+INFO: [HLS 200-112] Total CPU user time: 7.04 seconds. Total CPU system time: 5.01 seconds. Total elapsed time: 30.84 seconds; peak allocated memory: 294.199 MB.
+INFO: [Common 17-206] Exiting vitis_hls at Sun Oct 25 22:21:57 2026...
 Traceback (most recent call last):
   File "/afs/ece/usr/dchan2/miniconda3/bin/tapac", line 6, in <module>
     sys.exit(main())
@@ -46406,7 +46476,7 @@ Traceback (most recent call last):
   File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/core.py", line 256, in worker
     raise RuntimeError('HLS failed for {}'.format(task.name))
 RuntimeError: HLS failed for compute_KNN
-make: *** [Makefile:98: _x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn.xo] Error 1
+make: *** [Makefile:100: _x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn.xo] Error 1
 Data type to use = signed fixed
 
 

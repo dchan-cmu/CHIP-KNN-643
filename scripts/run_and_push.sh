@@ -17,6 +17,9 @@ core_file = tapa.core.__file__
 with open(core_file, "r") as f:
     code = f.read()
 
+with open("tapa_core_debug.log", "w") as df:
+    df.write(code)
+
 modified = False
 if "gcc-6.2.0" in code:
     print(f"Patching {core_file} to remove obsolete gcc-6.2.0 path...")
@@ -40,6 +43,31 @@ if "\x27-DTAPA_TARGET_=XILINX_HLS\x27" in code and "TAPA_TARGET_DEVICE_" not in 
         "\x27-DTAPA_TARGET_=XILINX_HLS\x27, \x27-DTAPA_TARGET_DEVICE_\x27, \x27-DTAPA_TARGET_XILINX_HLS_\x27, \x27-D__SYNTHESIS__\x27"
     )
     modified = True
+
+pattern = r"(\s+)(raise RuntimeError\(\x27HLS failed for \{\}\x27\.format\(task\.name\)\))"
+match = re.search(pattern, code)
+if match and "FULL VITIS HLS LOG FOR" not in code:
+    indent = match.group(1)
+    replacement_lines = [
+        "import glob, os",
+        "print(f\x27=== FULL VITIS HLS LOG FOR {task.name} ===\x27, flush=True)",
+        "for d in glob.glob(f\x27/tmp/run-hls-{task.name}*\x27):",
+        "    for root, dirs, files in os.walk(d):",
+        "        for file in files:",
+        "            if file.endswith((\x27.log\x27, \x27.rpt\x27, \x27.tcl\x27, \x27.xml\x27)):",
+        "                p = os.path.join(root, file)",
+        "                print(f\x27--- File: {p} ---\x27, flush=True)",
+        "                try:",
+        "                    with open(p, \x27r\x27, errors=\x27ignore\x27) as lf:",
+        "                        print(lf.read(), flush=True)",
+        "                except Exception as e:",
+        "                    print(f\x27Could not read {p}: {e}\x27, flush=True)",
+        "raise RuntimeError(\x27HLS failed for {}\x27.format(task.name))",
+    ]
+    replacement = "\n".join(indent + l for l in replacement_lines)
+    code = code[:match.start()] + replacement + code[match.end():]
+    modified = True
+    print(f"Injected detailed HLS log dumper into {core_file}!")
 
 if modified:
     compile(code, core_file, "exec")
@@ -304,6 +332,23 @@ for m in set(mmap_targets):
         print(f"Successfully wrote clean tapa mmap.h to {m}")
     except Exception as e:
         print(f"Failed to write to {m}: {e}")
+
+util_targets = []
+for p in glob.glob("/scratch/643_vitis_dchan2/**/tapa/xilinx/hls/util.h", recursive=True):
+    util_targets.append(p)
+for p in glob.glob("/afs/ece/usr/dchan2/miniconda3/**/tapa/xilinx/hls/util.h", recursive=True):
+    util_targets.append(p)
+for u in set(util_targets):
+    try:
+        with open(u, "r") as uf:
+            uc = uf.read()
+        if "#pragma HLS protocol float" in uc:
+            uc = uc.replace("#pragma HLS protocol float", "// #pragma HLS protocol float")
+            with open(u, "w") as uf:
+                uf.write(uc)
+            print(f"Patched {u} to remove invalid pragma!")
+    except Exception as e:
+        print(f"Failed to patch {u}: {e}")
 ' || true
 
     python3 -c '

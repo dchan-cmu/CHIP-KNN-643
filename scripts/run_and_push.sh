@@ -36,11 +36,15 @@ if [ $INSERTED -eq 0 ]; then
     ARGS+=("--emit-dir" "$EMIT_DIR")
 fi
 
-if command -v gdb >/dev/null 2>&1; then
-    echo "=== Running tapacc.real under GDB on compilation ===" >&2
-    gdb -batch -return-child-result -ex "run" -ex "bt 50" --args "$DIR/tapacc.real" "${ARGS[@]}"
-else
-    exec "$DIR/tapacc.real" "${ARGS[@]}"
+"$DIR/tapacc.real" "${ARGS[@]}"
+RC=$?
+if [ $RC -ne 0 ]; then
+    echo "=== tapacc.real failed with exit code $RC ===" >&2
+    if [ $RC -gt 128 ] || [ $RC -lt 0 ]; then
+        echo "=== Crash detected ($RC), running GDB to obtain backtrace ===" >&2
+        gdb -batch -ex "run" -ex "bt 50" --args "$DIR/tapacc.real" "${ARGS[@]}" >&2
+    fi
+    exit $RC
 fi
 EOF_WRAP
         chmod +x "$TAPACC_WRAPPER"

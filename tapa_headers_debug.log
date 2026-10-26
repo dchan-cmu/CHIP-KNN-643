@@ -29,6 +29,27 @@
 #include "tapa/compat.h"  // IWYU pragma: export
 
 
+--- tapa/compat.h ---
+// Copyright (c) 2024 RapidStream Design Automation, Inc. and contributors.
+// All rights reserved. The contributor(s) of this file has/have agreed to the
+// RapidStream Contributor License Agreement.
+
+#pragma once
+
+#include <cstdint>
+
+#include "tapa.h"
+
+namespace tapa {
+namespace hls {
+
+template <typename T, uint64_t N = kStreamDefaultDepth>
+using stream = ::tapa::stream<T, N, kStreamInfiniteDepth>;
+
+}  // namespace hls
+}  // namespace tapa
+
+
 --- tapa/base/int.h ---
 // Self-implemented arbitrary-width integers, tapa::u<W> (unsigned) and
 // tapa::i<W> (signed), for vendor-agnostic CPU simulation. Semantics mirror
@@ -1631,7 +1652,7 @@ class addr_ostream {
 
   void close() {}
 
-  hls::stream<addr_t> _;
+  mutable hls::stream<addr_t> _;
   const addr_t offset;
 };
 
@@ -1828,7 +1849,7 @@ class tapa_stream {
     _.write(elem);
   }
 
-  mutable hls::stream<internal::elem_t<T>> _;
+  mutable mutable hls::stream<internal::elem_t<T>> _;
   mutable hls::stream<internal::elem_t<T>> _peek;
 };
 
@@ -1943,6 +1964,85 @@ struct task {
 }  // namespace tapa
 
 
+--- tapa/xilinx/hls/util.h ---
+// Copyright (c) 2024 RapidStream Design Automation, Inc. and contributors.
+// All rights reserved. The contributor(s) of this file has/have agreed to the
+// RapidStream Contributor License Agreement.
+
+#pragma once
+
+#include "tapa/base/util.h"
+
+#if __has_include("ap_utils.h")
+#include "ap_utils.h"
+#else
+#include "etc/ap_utils.h"
+#endif
+
+#include "ap_int.h"
+
+#include <cstring>
+#include <type_traits>
+
+namespace tapa {
+
+inline void wait() noexcept { ap_wait(); }
+inline void wait(int n) noexcept { ap_wait_n(n); }
+
+namespace internal {
+template <typename T>
+inline constexpr int ap_data_bits(T) {
+  return 0;
+}
+template <int width>
+inline constexpr int ap_data_bits(const ap_int<width>&&) {
+  return width;
+}
+template <int width>
+inline constexpr int ap_data_bits(const ap_uint<width>&&) {
+  return width;
+}
+}  // namespace internal
+
+template <typename To, typename From>
+inline typename std::enable_if<sizeof(To) == sizeof(From), To>::type  //
+bit_cast(From from) noexcept {
+#pragma HLS inline
+  To to;
+  std::memcpy(&to, &from, sizeof(To));
+  return to;
+}
+
+template <size_t Depth>
+struct DepthTag {};
+
+template <typename T, size_t Depth>
+T __attribute__((noinline)) reg_impl(T x, DepthTag<Depth>) {
+#pragma HLS inline off
+#pragma HLS pipeline II = 1
+  volatile T data = reg_impl<T>(x, DepthTag<Depth - 1>{});
+  {
+#pragma HLS protocol float
+    ap_wait();
+    return *((T*)&data);
+  }
+}
+
+template <typename T>
+inline T reg_impl(T x, DepthTag<0>) {
+#pragma HLS inline
+  return x;
+}
+
+template <typename T, size_t Depth = 1>
+inline T reg(T x) {
+#pragma HLS inline
+  return reg_impl(x, DepthTag<Depth>{});
+}
+
+}  // namespace tapa
+
+
 === GREP coroutine.h & TAPA_TARGET ===
 tapa.h:7: #if !defined(TAPA_TARGET_DEVICE_)
 tapa.h:11: #elif defined(TAPA_TARGET_XILINX_HLS_)
@@ -1963,3 +2063,59 @@ tapa/host/stream.h:24: #include "tapa/host/coroutine.h"
 tapa/host/tapa.h:23: #include "tapa/host/coroutine.h"
 tapa/host/task.h:9: #include "tapa/host/coroutine.h"
 tapa/xilinx/hls/vec.h:9: // are switched on by `TAPA_TARGET_XILINX_HLS_`, which the synthesis flow
+
+=== GREP mutex in headers ===
+glog/logging.h:32: // This file contains #include information about logging-related stuff.
+glog/logging.h:33: // Pretty much everybody needs to #include this file so that they can
+glog/logging.h:39: #include <cerrno>
+glog/logging.h:40: #include <cstddef>
+glog/logging.h:41: #include <cstring>
+glog/logging.h:42: #include <ctime>
+glog/logging.h:43: #include <iosfwd>
+glog/logging.h:44: #include <ostream>
+glog/logging.h:45: #include <sstream>
+glog/logging.h:46: #include <string>
+glog/logging.h:48: # include <unistd.h>
+glog/logging.h:50: #include <vector>
+glog/logging.h:62: #include "glog/export.h"
+glog/logging.h:81: #include <stdint.h>             // the normal place uint16_t is defined
+glog/logging.h:84: #include <sys/types.h>          // the normal place u_int16_t is defined
+glog/logging.h:87: #include <inttypes.h>           // a third place for uint16_t or u_int16_t
+glog/logging.h:99: #include <gflags/gflags.h>
+glog/logging.h:103: #include <atomic>
+glog/logging.h:105: #include <Windows.h>
+glog/logging.h:584: #include "glog/log_severity.h"
+glog/logging.h:585: #include "glog/vlog_is_on.h"
+glog/logging.h:831: // file is included).  Save the current meaning now and use it
+glog/logging.h:1185: // Users may include windows.h after logging.h without
+glog/logging.h:1471: // Must be called without the log_mutex held.  (L < log_mutex)
+glog/logging.h:1493: static int64 num_messages_[NUM_SEVERITIES];  // under log_mutex
+glog/logging.h:1639: // This method can't use LOG() or CHECK() as logging system mutex(s) are held
+tapa/host/stream.h:7: #include <array>
+tapa/host/stream.h:8: #include <atomic>
+tapa/host/stream.h:9: #include <cstddef>
+tapa/host/stream.h:10: #include <cstdint>
+tapa/host/stream.h:11: #include <deque>
+tapa/host/stream.h:12: #include <fstream>
+tapa/host/stream.h:13: #include <iomanip>
+tapa/host/stream.h:14: #include <memory>
+tapa/host/stream.h:15: #include <mutex>
+tapa/host/stream.h:16: #include <string>
+tapa/host/stream.h:17: #include <string_view>
+tapa/host/stream.h:18: #include <thread>
+tapa/host/stream.h:19: #include <vector>
+tapa/host/stream.h:21: #include <glog/logging.h>
+tapa/host/stream.h:23: #include "tapa/base/stream.h"
+tapa/host/stream.h:24: #include "tapa/host/coroutine.h"
+tapa/host/stream.h:25: #include "tapa/host/frt/instance.h"
+tapa/host/stream.h:26: #include "tapa/host/frt/stream.h"
+tapa/host/stream.h:27: #include "tapa/host/util.h"
+tapa/host/stream.h:70: std::mutex mtx;
+tapa/host/stream.h:83: std::unique_lock<std::mutex> lock(this->log->mtx);
+tapa/host/stream.h:113: mutable std::mutex mtx;
+tapa/host/stream.h:121: std::unique_lock<std::mutex> lock(this->mtx);
+tapa/host/stream.h:125: std::unique_lock<std::mutex> lock(this->mtx);
+tapa/host/stream.h:129: std::unique_lock<std::mutex> lock(this->mtx);
+tapa/host/stream.h:133: std::unique_lock<std::mutex> lock(this->mtx);
+tapa/host/stream.h:139: std::unique_lock<std::mutex> lock(this->mtx);
+tapa/host/stream.h:765: // `static_assert(false)`, but the staging matrix includes compilers too

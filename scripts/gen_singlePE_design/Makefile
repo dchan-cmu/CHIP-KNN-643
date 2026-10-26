@@ -117,6 +117,16 @@ $(TEMP_DIR)/knn.xo: $(KNN_SRC)
           --cflags=-I$(shell pwd)/../../.tapa/usr/include \
 	      --max-parallel-synth-jobs 12 \
 	      --run-tapacc \
+	      $(KNN_SRC)
+	python3 $(shell pwd)/../clean_graph_cflags.py $(TEMP_DIR)/graph.json
+	tapac \
+	      --work-dir $(TEMP_DIR) \
+	      --top Knn \
+	      --part-num xczu3eg-sbva484-1-e \
+	      --clock-period 5.00 \
+	      -o $(TEMP_DIR)/knn.xo \
+	      --enable-synth-util \
+	      --max-parallel-synth-jobs 12 \
 	      --run-hls \
 	      --generate-task-rtl \
 	      --generate-top-rtl \

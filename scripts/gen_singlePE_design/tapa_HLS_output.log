@@ -7,7 +7,7 @@ tapac \
       --clock-period 5.00 \
       -o ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn.xo \
       --enable-synth-util \
-          --cflags=-U__SYNTHESIS__ \
+          --cflags=-D__SYNTHESIS__ \
           --cflags=-w \
           --cflags=-Wno-invalid-constexpr \
           --cflags=-Wno-error=invalid-constexpr \
@@ -31,187 +31,92 @@ tapac \
       src/knn.cpp
 /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/autobridge/util.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   from pkg_resources import get_distribution
-I1025 21:09:25.312 tapa.util:184] logging level set to INFO
-I1025 21:09:25.312 tapa.tapac:396] Step 0: run_tapacc is enabled.
-I1025 21:09:25.313 tapa.tapac:396] Step 1: run_hls is enabled.
-I1025 21:09:25.313 tapa.tapac:396] Step 2: generate_task_rtl is enabled.
-W1025 21:09:25.313 tapa.tapac:398] Step 3: run_floorplanning is *SKIPPED*.
-I1025 21:09:25.313 tapa.tapac:396] Step 4: generate_top_rtl is enabled.
-I1025 21:09:25.313 tapa.tapac:396] Step 5: pack_xo is enabled.
-I1025 21:09:25.313 tapa.tapac:514] running translated command: `tapa --work-dir=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform analyze --input=src/knn.cpp --top=Knn --cflags=-U__SYNTHESIS__ --cflags=-w --cflags=-Wno-invalid-constexpr --cflags=-Wno-error=invalid-constexpr --cflags=-I/usr/bin/../lib/clang/20/include --cflags=-I/usr/include/c++/8 --cflags=-I/usr/include/c++/8/x86_64-redhat-linux --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include --cflags=-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include --cflags=-I/usr/include --cflags=-I/usr/include/x86_64-linux-gnu synth --part-num=xczu3eg-sbva484-1-e --clock-period=5.00 link pack --output=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn.xo --bitstream-script=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn_generate_bitstream.sh`
-I1025 21:09:25.316 tapa.util:184] logging level set to INFO
-I1025 21:09:25.316 tapa.tapa:54] tapa version: 0.0.20240825.1
-I1025 21:09:25.316 tapa.tapa:58] Python recursion limit set to 3000
-W1025 21:09:34.840 tapa.util:129] not adding vendor include paths; please update FRT
-I1025 21:09:34.840 tapa.steps.analyze:265] Running tapacc command: /scratch/643_vitis_dchan2/CHIP-KNN-643/.tapa/usr/bin/tapacc ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp -top Knn -- -U__SYNTHESIS__ -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/usr/bin/../lib/clang/20/include -I/usr/include/c++/8 -I/usr/include/c++/8/x86_64-redhat-linux -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -I/usr/include -I/usr/include/x86_64-linux-gnu -std=c++17 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -stdlib=libc++ -isystem /usr/lib/llvm-22/include/c++/v1/ -isystem /usr/include/clang/22/include/ -isystem /usr/lib/clang/22/include/
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:111784:13: remark: '#pragma HLS inline' is vendor-specific; the portable TAPA form is the C++ `inline` keyword (tapacc emits the pragma from it)
- 111784 | #pragma HLS inline
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138148:13: remark: '#pragma HLS inline' is vendor-specific; the portable TAPA form is the C++ `inline` keyword (tapacc emits the pragma from it)
- 138148 | #pragma HLS INLINE OFF
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138153:13: remark: '#pragma HLS loop_tripcount' is vendor-specific; the portable TAPA form is [[tapa::tripcount(min, max)]]
- 138153 | #pragma HLS loop_tripcount min = ((INPUT_DIM - 1) / NUM_FEATURES_PER_READ + 1) \
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138155:13: remark: '#pragma HLS pipeline' is vendor-specific; the portable TAPA form is [[tapa::pipeline(II)]]
- 138155 | #pragma HLS pipeline II = 1
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138188:13: remark: '#pragma HLS loop_tripcount' is vendor-specific; the portable TAPA form is [[tapa::tripcount(min, max)]]
- 138188 | #pragma HLS loop_tripcount min = PARTITION_LEN_IN_I max = PARTITION_LEN_IN_I
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138189:13: remark: '#pragma HLS pipeline' is vendor-specific; the portable TAPA form is [[tapa::pipeline(II)]]
- 138189 | #pragma HLS pipeline II = 1
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138237:13: remark: '#pragma HLS inline' is vendor-specific; the portable TAPA form is the C++ `inline` keyword (tapacc emits the pragma from it)
- 138237 | #pragma HLS INLINE OFF
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138243:13: remark: '#pragma HLS array_partition' is vendor-specific; the portable TAPA form is [[tapa::partition(type, factor, dim)]]
- 138243 | #pragma HLS ARRAY_PARTITION variable = local_Query complete dim = 1
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138265:13: remark: '#pragma HLS pipeline' is vendor-specific; the portable TAPA form is [[tapa::pipeline(II)]]
- 138265 | #pragma HLS PIPELINE II = 1
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138271:13: remark: '#pragma HLS unroll' is vendor-specific; the portable TAPA form is [[tapa::unroll(factor)]]
- 138271 | #pragma HLS UNROLL
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138317:13: remark: '#pragma HLS inline' is vendor-specific; the portable TAPA form is the C++ `inline` keyword (tapacc emits the pragma from it)
- 138317 | #pragma HLS INLINE OFF
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138322:13: remark: '#pragma HLS array_partition' is vendor-specific; the portable TAPA form is [[tapa::partition(type, factor, dim)]]
- 138322 | #pragma HLS ARRAY_PARTITION variable = local_kNearstDist complete dim = 0
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138324:13: remark: '#pragma HLS array_partition' is vendor-specific; the portable TAPA form is [[tapa::partition(type, factor, dim)]]
- 138324 | #pragma HLS ARRAY_PARTITION variable = local_kNearstId complete dim = 0
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138339:13: remark: '#pragma HLS pipeline' is vendor-specific; the portable TAPA form is [[tapa::pipeline(II)]]
- 138339 | #pragma HLS PIPELINE II = I2D_FACTOR_W
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138362:13: remark: '#pragma HLS unroll' is vendor-specific; the portable TAPA form is [[tapa::unroll(factor)]]
- 138362 | #pragma HLS UNROLL
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138363:13: remark: '#pragma HLS dependence' is vendor-specific; the portable TAPA form is [[tapa::dependence(variable)]]
- 138363 | #pragma HLS DEPENDENCE variable = "local_kNearstDist" inter false
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138364:13: remark: '#pragma HLS dependence' is vendor-specific; the portable TAPA form is [[tapa::dependence(variable)]]
- 138364 | #pragma HLS DEPENDENCE variable = "local_kNearstId" inter false
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138384:13: remark: '#pragma HLS unroll' is vendor-specific; the portable TAPA form is [[tapa::unroll(factor)]]
- 138384 | #pragma HLS UNROLL
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138385:13: remark: '#pragma HLS dependence' is vendor-specific; the portable TAPA form is [[tapa::dependence(variable)]]
- 138385 | #pragma HLS DEPENDENCE variable = "local_kNearstDist" inter false
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138386:13: remark: '#pragma HLS dependence' is vendor-specific; the portable TAPA form is [[tapa::dependence(variable)]]
- 138386 | #pragma HLS DEPENDENCE variable = "local_kNearstId" inter false
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138408:13: remark: '#pragma HLS pipeline' is vendor-specific; the portable TAPA form is [[tapa::pipeline(II)]]
- 138408 | #pragma HLS PIPELINE II = 1
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138419:13: remark: '#pragma HLS unroll' is vendor-specific; the portable TAPA form is [[tapa::unroll(factor)]]
- 138419 | #pragma HLS UNROLL
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138437:13: remark: '#pragma HLS pipeline' is vendor-specific; the portable TAPA form is [[tapa::pipeline(II)]]
- 138437 | #pragma HLS pipeline II = 1
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/.tapa/usr/bin/tapacc: line 24: 1534317 Segmentation fault      (core dumped) "$DIR/tapacc.real" "${ARGS[@]}"
-=== tapacc.real failed with exit code 139 ===
-=== Crash detected (139), running GDB to obtain backtrace ===
-warning: Loadable section ".note.gnu.property" outside of ELF segments
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "/lib64/libthread_db.so.1".
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:111784:13: remark: '#pragma HLS inline' is vendor-specific; the portable TAPA form is the C++ `inline` keyword (tapacc emits the pragma from it)
- 111784 | #pragma HLS inline
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138148:13: remark: '#pragma HLS inline' is vendor-specific; the portable TAPA form is the C++ `inline` keyword (tapacc emits the pragma from it)
- 138148 | #pragma HLS INLINE OFF
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138153:13: remark: '#pragma HLS loop_tripcount' is vendor-specific; the portable TAPA form is [[tapa::tripcount(min, max)]]
- 138153 | #pragma HLS loop_tripcount min = ((INPUT_DIM - 1) / NUM_FEATURES_PER_READ + 1) \
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138155:13: remark: '#pragma HLS pipeline' is vendor-specific; the portable TAPA form is [[tapa::pipeline(II)]]
- 138155 | #pragma HLS pipeline II = 1
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138188:13: remark: '#pragma HLS loop_tripcount' is vendor-specific; the portable TAPA form is [[tapa::tripcount(min, max)]]
- 138188 | #pragma HLS loop_tripcount min = PARTITION_LEN_IN_I max = PARTITION_LEN_IN_I
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138189:13: remark: '#pragma HLS pipeline' is vendor-specific; the portable TAPA form is [[tapa::pipeline(II)]]
- 138189 | #pragma HLS pipeline II = 1
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138237:13: remark: '#pragma HLS inline' is vendor-specific; the portable TAPA form is the C++ `inline` keyword (tapacc emits the pragma from it)
- 138237 | #pragma HLS INLINE OFF
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138243:13: remark: '#pragma HLS array_partition' is vendor-specific; the portable TAPA form is [[tapa::partition(type, factor, dim)]]
- 138243 | #pragma HLS ARRAY_PARTITION variable = local_Query complete dim = 1
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138265:13: remark: '#pragma HLS pipeline' is vendor-specific; the portable TAPA form is [[tapa::pipeline(II)]]
- 138265 | #pragma HLS PIPELINE II = 1
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138271:13: remark: '#pragma HLS unroll' is vendor-specific; the portable TAPA form is [[tapa::unroll(factor)]]
- 138271 | #pragma HLS UNROLL
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138317:13: remark: '#pragma HLS inline' is vendor-specific; the portable TAPA form is the C++ `inline` keyword (tapacc emits the pragma from it)
- 138317 | #pragma HLS INLINE OFF
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138322:13: remark: '#pragma HLS array_partition' is vendor-specific; the portable TAPA form is [[tapa::partition(type, factor, dim)]]
- 138322 | #pragma HLS ARRAY_PARTITION variable = local_kNearstDist complete dim = 0
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138324:13: remark: '#pragma HLS array_partition' is vendor-specific; the portable TAPA form is [[tapa::partition(type, factor, dim)]]
- 138324 | #pragma HLS ARRAY_PARTITION variable = local_kNearstId complete dim = 0
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138339:13: remark: '#pragma HLS pipeline' is vendor-specific; the portable TAPA form is [[tapa::pipeline(II)]]
- 138339 | #pragma HLS PIPELINE II = I2D_FACTOR_W
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138362:13: remark: '#pragma HLS unroll' is vendor-specific; the portable TAPA form is [[tapa::unroll(factor)]]
- 138362 | #pragma HLS UNROLL
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138363:13: remark: '#pragma HLS dependence' is vendor-specific; the portable TAPA form is [[tapa::dependence(variable)]]
- 138363 | #pragma HLS DEPENDENCE variable = "local_kNearstDist" inter false
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138364:13: remark: '#pragma HLS dependence' is vendor-specific; the portable TAPA form is [[tapa::dependence(variable)]]
- 138364 | #pragma HLS DEPENDENCE variable = "local_kNearstId" inter false
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138384:13: remark: '#pragma HLS unroll' is vendor-specific; the portable TAPA form is [[tapa::unroll(factor)]]
- 138384 | #pragma HLS UNROLL
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138385:13: remark: '#pragma HLS dependence' is vendor-specific; the portable TAPA form is [[tapa::dependence(variable)]]
- 138385 | #pragma HLS DEPENDENCE variable = "local_kNearstDist" inter false
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138386:13: remark: '#pragma HLS dependence' is vendor-specific; the portable TAPA form is [[tapa::dependence(variable)]]
- 138386 | #pragma HLS DEPENDENCE variable = "local_kNearstId" inter false
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138408:13: remark: '#pragma HLS pipeline' is vendor-specific; the portable TAPA form is [[tapa::pipeline(II)]]
- 138408 | #pragma HLS PIPELINE II = 1
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138419:13: remark: '#pragma HLS unroll' is vendor-specific; the portable TAPA form is [[tapa::unroll(factor)]]
- 138419 | #pragma HLS UNROLL
-        |             ^
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:138437:13: remark: '#pragma HLS pipeline' is vendor-specific; the portable TAPA form is [[tapa::pipeline(II)]]
- 138437 | #pragma HLS pipeline II = 1
-        |             ^
-
-Program received signal SIGSEGV, Segmentation fault.
-0x0000555556f6cf23 in clang::Stmt::getBeginLoc() const ()
-#0  0x0000555556f6cf23 in clang::Stmt::getBeginLoc() const ()
-No symbol table info available.
-#1  0x000055555603907d in tapa::cc::XilinxBackend::RewriteHelperFunc(clang::FunctionDecl const*, tapa::cc::EditSink&) const ()
-No symbol table info available.
-#2  0x000055555602c98d in tapa::cc::RewriteTreeFiles(tapa::cc::Program const&, tapa::cc::SynthTarget, tapa::cc::Backend const&, tapa::cc::Backend const&, tapa::cc::Backend const&, clang::ASTContext&, tapa::cc::TreeSession&) ()
-No symbol table info available.
-#3  0x0000555555fd876e in tapa::cc::ProgramBuilder::RewriteTreeTu(clang::ASTContext&, std::vector<tapa::cc::IncludeDirective, std::allocator<tapa::cc::IncludeDirective> >, clang::syntax::TokenBuffer const*) ()
-No symbol table info available.
-#4  0x0000555555fcb7f2 in (anonymous namespace)::BuilderAction::CreateASTConsumer(clang::CompilerInstance&, llvm::StringRef)::Consumer::HandleTranslationUnit(clang::ASTContext&) ()
-No symbol table info available.
-#5  0x000055555625ff58 in clang::ParseAST(clang::Sema&, bool, bool) ()
-No symbol table info available.
-#6  0x00005555562289ef in clang::FrontendAction::Execute() ()
-No symbol table info available.
-#7  0x00005555561c5d9c in clang::CompilerInstance::ExecuteAction(clang::FrontendAction&) ()
-No symbol table info available.
-#8  0x0000555556069c29 in clang::tooling::FrontendActionFactory::runInvocation(std::shared_ptr<clang::CompilerInvocation>, clang::FileManager*, std::shared_ptr<clang::PCHContainerOperations>, clang::DiagnosticConsumer*) ()
-No symbol table info available.
-#9  0x000055555606bbde in clang::tooling::ClangTool::run(clang::tooling::ToolAction*) ()
-No symbol table info available.
-#10 0x0000555555fca677 in main ()
-No symbol table info available.
-E1025 21:09:56.205 tapa.steps.analyze:196] command ('/scratch/643_vitis_dchan2/CHIP-KNN-643/.tapa/usr/bin/tapacc', './_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp', '-top', 'Knn', '--', '-U__SYNTHESIS__', '-w', '-Wno-invalid-constexpr', '-Wno-error=invalid-constexpr', '-I/usr/bin/../lib/clang/20/include', '-I/usr/include/c++/8', '-I/usr/include/c++/8/x86_64-redhat-linux', '-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include', '-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include', '-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include', '-I/usr/include', '-I/usr/include/x86_64-linux-gnu', '-std=c++17', '-I', '/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src', '-stdlib=libc++', '-isystem', '/usr/lib/llvm-22/include/c++/v1/', '-isystem', '/usr/include/clang/22/include/', '-isystem', '/usr/lib/clang/22/include/') failed with exit code 139
-make: *** [Makefile:98: _x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn.xo] Error 139
+I1025 21:12:58.158 tapa.util:184] logging level set to INFO
+I1025 21:12:58.158 tapa.tapac:396] Step 0: run_tapacc is enabled.
+I1025 21:12:58.158 tapa.tapac:396] Step 1: run_hls is enabled.
+I1025 21:12:58.158 tapa.tapac:396] Step 2: generate_task_rtl is enabled.
+W1025 21:12:58.158 tapa.tapac:398] Step 3: run_floorplanning is *SKIPPED*.
+I1025 21:12:58.159 tapa.tapac:396] Step 4: generate_top_rtl is enabled.
+I1025 21:12:58.159 tapa.tapac:396] Step 5: pack_xo is enabled.
+I1025 21:12:58.159 tapa.tapac:514] running translated command: `tapa --work-dir=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform analyze --input=src/knn.cpp --top=Knn --cflags=-D__SYNTHESIS__ --cflags=-w --cflags=-Wno-invalid-constexpr --cflags=-Wno-error=invalid-constexpr --cflags=-I/usr/bin/../lib/clang/20/include --cflags=-I/usr/include/c++/8 --cflags=-I/usr/include/c++/8/x86_64-redhat-linux --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include --cflags=-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include --cflags=-I/usr/include --cflags=-I/usr/include/x86_64-linux-gnu synth --part-num=xczu3eg-sbva484-1-e --clock-period=5.00 link pack --output=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn.xo --bitstream-script=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn_generate_bitstream.sh`
+I1025 21:12:58.160 tapa.util:184] logging level set to INFO
+I1025 21:12:58.161 tapa.tapa:54] tapa version: 0.0.20240825.1
+I1025 21:12:58.161 tapa.tapa:58] Python recursion limit set to 3000
+W1025 21:13:06.376 tapa.util:129] not adding vendor include paths; please update FRT
+I1025 21:13:06.376 tapa.steps.analyze:265] Running tapacc command: /scratch/643_vitis_dchan2/CHIP-KNN-643/.tapa/usr/bin/tapacc ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp -top Knn -- -D__SYNTHESIS__ -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/usr/bin/../lib/clang/20/include -I/usr/include/c++/8 -I/usr/include/c++/8/x86_64-redhat-linux -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -I/usr/include -I/usr/include/x86_64-linux-gnu -std=c++17 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -stdlib=libc++ -isystem /usr/lib/llvm-22/include/c++/v1/ -isystem /usr/include/clang/22/include/ -isystem /usr/lib/clang/22/include/
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:3161:73: error: parameters cannot have __fp16 type; did you forget * ?
+ 3161 | inline __attribute__((always_inline)) unsigned short halfToRawBits(half pf) {
+      |                                                                         ^
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:3188:44: error: function return value cannot have __fp16 type; did you forget * ?
+ 3188 | inline __attribute__((always_inline)) half rawBitsToHalf(unsigned short pi) {
+      |                                            ^
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:3405:20: error: parameters cannot have __fp16 type; did you forget * ?
+ 3405 |   ap_int_base(half op) {
+      |                    ^
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:3808:3: error: function return value cannot have __fp16 type; did you forget * ?
+ 3808 |   to_half() const {
+      |   ^
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:3417:25: error: use of undeclared identifier '__builtin_bit_select'; did you mean '__builtin_rotateleft8'?
+ 3417 |       bool __Result__ = __builtin_bit_select((void *)(&__Val2__), BITS - 1);
+      |                         ^~~~~~~~~~~~~~~~~~~~
+      |                         __builtin_rotateleft8
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:3417:46: error: cannot initialize a parameter of type 'unsigned char' with an rvalue of type 'void *'
+ 3417 |       bool __Result__ = __builtin_bit_select((void *)(&__Val2__), BITS - 1);
+      |                                              ^~~~~~~~~~~~~~~~~~~
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:3424:7: error: use of undeclared identifier '__builtin_bit_part_select'
+ 3424 |       __builtin_bit_part_select((void *)(&__Result__), (void *)(&__Val2__), 23,
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~~
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:3433:7: error: use of undeclared identifier '__builtin_bit_part_select'
+ 3433 |       __builtin_bit_part_select((void *)(&__Result__), (void *)(&__Val2__), 0,
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~~
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:3444:7: error: use of undeclared identifier '__builtin_bit_part_set'
+ 3444 |       __builtin_bit_part_set((void *)(&__Result__), (void *)(&__Val2__),
+      |       ^~~~~~~~~~~~~~~~~~~~~~
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:3484:25: error: use of undeclared identifier '__builtin_bit_select'; did you mean '__builtin_rotateleft8'?
+ 3484 |       bool __Result__ = __builtin_bit_select((void *)(&__Val2__), BITS - 1);
+      |                         ^~~~~~~~~~~~~~~~~~~~
+      |                         __builtin_rotateleft8
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:3417:25: note: '__builtin_rotateleft8' declared here
+ 3417 |       bool __Result__ = __builtin_bit_select((void *)(&__Val2__), BITS - 1);
+      |                         ^
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:3484:46: error: cannot initialize a parameter of type 'unsigned char' with an rvalue of type 'void *'
+ 3484 |       bool __Result__ = __builtin_bit_select((void *)(&__Val2__), BITS - 1);
+      |                                              ^~~~~~~~~~~~~~~~~~~
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:3491:7: error: use of undeclared identifier '__builtin_bit_part_select'
+ 3491 |       __builtin_bit_part_select((void *)(&__Result__), (void *)(&__Val2__), 52,
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~~
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:3500:7: error: use of undeclared identifier '__builtin_bit_part_select'
+ 3500 |       __builtin_bit_part_select((void *)(&__Result__), (void *)(&__Val2__), 0,
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~~
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:3511:7: error: use of undeclared identifier '__builtin_bit_part_set'
+ 3511 |       __builtin_bit_part_set((void *)(&__Result__), (void *)(&__Val2__),
+      |       ^~~~~~~~~~~~~~~~~~~~~~
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:3851:15: error: use of undeclared identifier '__builtin_bit_select'; did you mean '__builtin_rotateleft8'?
+ 3851 |               __builtin_bit_select((void *)(&__Val2__), _AP_W - 1);
+      |               ^~~~~~~~~~~~~~~~~~~~
+      |               __builtin_rotateleft8
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:3417:25: note: '__builtin_rotateleft8' declared here
+ 3417 |       bool __Result__ = __builtin_bit_select((void *)(&__Val2__), BITS - 1);
+      |                         ^
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:3851:36: error: cannot initialize a parameter of type 'unsigned char' with an rvalue of type 'void *'
+ 3851 |               __builtin_bit_select((void *)(&__Val2__), _AP_W - 1);
+      |                                    ^~~~~~~~~~~~~~~~~~~
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:3866:7: error: use of undeclared identifier '__builtin_bit_part_set'
+ 3866 |       __builtin_bit_part_set((void *)(&__Result__), (void *)(&__Val2__),
+      |       ^~~~~~~~~~~~~~~~~~~~~~
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:3877:25: error: use of undeclared identifier '__builtin_bit_select'; did you mean '__builtin_rotateleft8'?
+ 3877 |       bool __Result__ = __builtin_bit_select((void *)(&__Val2__), i);
+      |                         ^~~~~~~~~~~~~~~~~~~~
+      |                         __builtin_rotateleft8
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:3417:25: note: '__builtin_rotateleft8' declared here
+ 3417 |       bool __Result__ = __builtin_bit_select((void *)(&__Val2__), BITS - 1);
+      |                         ^
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp:3877:46: error: cannot initialize a parameter of type 'unsigned char' with an rvalue of type 'void *'
+ 3877 |       bool __Result__ = __builtin_bit_select((void *)(&__Val2__), i);
+      |                                              ^~~~~~~~~~~~~~~~~~~
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+20 errors generated.
+Error while processing /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp.
+=== tapacc.real failed with exit code 1 ===
+E1025 21:13:08.927 tapa.steps.analyze:196] command ('/scratch/643_vitis_dchan2/CHIP-KNN-643/.tapa/usr/bin/tapacc', './_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp', '-top', 'Knn', '--', '-D__SYNTHESIS__', '-w', '-Wno-invalid-constexpr', '-Wno-error=invalid-constexpr', '-I/usr/bin/../lib/clang/20/include', '-I/usr/include/c++/8', '-I/usr/include/c++/8/x86_64-redhat-linux', '-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include', '-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include', '-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include', '-I/usr/include', '-I/usr/include/x86_64-linux-gnu', '-std=c++17', '-I', '/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src', '-stdlib=libc++', '-isystem', '/usr/lib/llvm-22/include/c++/v1/', '-isystem', '/usr/include/clang/22/include/', '-isystem', '/usr/lib/clang/22/include/') failed with exit code 1
+make: *** [Makefile:98: _x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn.xo] Error 1

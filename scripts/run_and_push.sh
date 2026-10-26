@@ -160,15 +160,110 @@ class hmap;
 mmap_targets = [
     os.path.join(repo, ".tapa/usr/include/tapa/xilinx/hls/mmap.h"),
 ]
+clean_task_code = """#pragma once
+
+#include <string>
+#include <utility>
+
+#include "tapa/base/task.h"
+
+namespace tapa {
+
+struct executable {
+  explicit executable(std::string path);
+};
+
+struct task {
+#if defined(TAPA_TARGET_DEVICE_) || defined(TAPA_TARGET_XILINX_HLS_) || defined(__SYNTHESIS__)
+  template <typename Func, typename... Args>
+  task& invoke(Func&&, Args&&...) { return *this; }
+
+  template <internal::InvokeMode mode, typename Func, typename... Args>
+  task& invoke(Func&&, Args&&...) { return *this; }
+
+  template <typename Func, typename... Args, size_t name_size>
+  task& invoke(Func&&, const char (&)[name_size], Args&&...) { return *this; }
+
+  template <internal::InvokeMode mode, typename Func, typename... Args,
+            size_t name_size>
+  task& invoke(Func&&, const char (&)[name_size], Args&&...) { return *this; }
+
+  template <internal::InvokeMode mode, int n, typename Func, typename... Args>
+  task& invoke(Func&&, Args&&...) { return *this; }
+
+  template <internal::InvokeMode mode, int n, typename Func, typename... Args,
+            size_t name_size>
+  task& invoke(Func&&, const char (&)[name_size], Args&&...) { return *this; }
+
+  template <typename Func, typename... Args>
+  task& invoke(Func&&, executable, Args&&...) { return *this; }
+#else
+  template <typename Func, typename... Args>
+  task& invoke(Func&& func, Args&&... args) {
+    return invoke<join>(std::forward<Func>(func), "",
+                        std::forward<Args>(args)...);
+  }
+
+  template <internal::InvokeMode mode, typename Func, typename... Args>
+  task& invoke(Func&& func, Args&&... args) {
+    return invoke<mode>(std::forward<Func>(func), "",
+                        std::forward<Args>(args)...);
+  }
+
+  template <typename Func, typename... Args, size_t name_size>
+  task& invoke(Func&& func, const char (&name)[name_size], Args&&... args) {
+    return invoke<join>(std::forward<Func>(func), name,
+                        std::forward<Args>(args)...);
+  }
+
+  template <internal::InvokeMode mode, typename Func, typename... Args,
+            size_t name_size>
+  task& invoke(Func&& func, const char (&name)[name_size], Args&&... args) {
+    func(std::forward<Args>(args)...);
+    return *this;
+  }
+
+  template <internal::InvokeMode mode, int n, typename Func, typename... Args>
+  task& invoke(Func&& func, Args&&... args) {
+    return invoke<mode, n>(std::forward<Func>(func), "",
+                           std::forward<Args>(args)...);
+  }
+
+  template <internal::InvokeMode mode, int n, typename Func, typename... Args,
+            size_t name_size>
+  task& invoke(Func&& func, const char (&name)[name_size], Args&&... args) {
+    for (int i = 0; i < n; ++i) {
+      invoke<mode>(std::forward<Func>(func), std::forward<Args>(args)...);
+    }
+    return *this;
+  }
+
+  template <typename Func, typename... Args>
+  task& invoke(Func&& func, executable exe, Args&&... args) {
+    return invoke<join>(std::forward<Func>(func), "",
+                        std::forward<Args>(args)...);
+  }
+#endif
+};
+
+}  // namespace tapa
+"""
+task_targets = [
+    os.path.join(repo, ".tapa/usr/include/tapa/xilinx/hls/task.h"),
+]
 import glob
 for p in glob.glob("/scratch/643_vitis_dchan2/**/tapa/xilinx/hls/stream.h", recursive=True):
     stream_targets.append(p)
 for p in glob.glob("/scratch/643_vitis_dchan2/**/tapa/xilinx/hls/mmap.h", recursive=True):
     mmap_targets.append(p)
+for p in glob.glob("/scratch/643_vitis_dchan2/**/tapa/xilinx/hls/task.h", recursive=True):
+    task_targets.append(p)
 for p in glob.glob("/afs/ece/usr/dchan2/miniconda3/**/tapa/xilinx/hls/stream.h", recursive=True):
     stream_targets.append(p)
 for p in glob.glob("/afs/ece/usr/dchan2/miniconda3/**/tapa/xilinx/hls/mmap.h", recursive=True):
     mmap_targets.append(p)
+for p in glob.glob("/afs/ece/usr/dchan2/miniconda3/**/tapa/xilinx/hls/task.h", recursive=True):
+    task_targets.append(p)
 
 for s in set(stream_targets):
     try:
@@ -187,6 +282,15 @@ for m in set(mmap_targets):
         print(f"Successfully wrote clean tapa mmap.h to {m}")
     except Exception as e:
         print(f"Failed to write to {m}: {e}")
+
+for t in set(task_targets):
+    try:
+        os.makedirs(os.path.dirname(t), exist_ok=True)
+        with open(t, "w") as f:
+            f.write(clean_task_code)
+        print(f"Successfully wrote clean tapa task.h to {t}")
+    except Exception as e:
+        print(f"Failed to write to {t}: {e}")
 
 util_targets = []
 for p in glob.glob("/scratch/643_vitis_dchan2/**/tapa/xilinx/hls/util.h", recursive=True):
@@ -374,9 +478,31 @@ if m:
 
         full_code = knn_cpp_content
 
+        def extract_task_code(task_name, source_code):
+            preamble = '#include "knn.h"\n#define printf(...) ((void)0)\n#define absval(input) ((input) > 0 ? static_cast<DATA_TYPE>(input) : static_cast<DATA_TYPE>(-1 * (input)))\n#define SORT_TO_HIERMERGE_STREAM_ARGS(PE) L0_out_dist_##PE, L0_out_id_##PE\n#define INVOKE_PPS_UNITS_FOR_PE(PE) .invoke(para_partial_sort, PE, compute_to_sort_stream_##PE, SORT_TO_HIERMERGE_STREAM_ARGS(PE) )\n'
+            forward_decls = (
+                "void load_KNN(int debug_PE_ID, tapa::async_mmap<INTERFACE_WIDTH> & searchSpace, tapa::ostream<INTERFACE_WIDTH>& load_to_compute_stream);\n"
+                "void compute_KNN(int debug_pe_idx, int debug_start_idx, tapa::istream<INTERFACE_WIDTH>& load_to_compute_stream, tapa::ostream<DATA_TYPE>& compute_to_sort_stream);\n"
+                "void para_partial_sort(const int PE_idx, tapa::istream<INTERFACE_WIDTH>& compute_to_sort_stream_0, tapa::ostream<DATA_TYPE>& sort_to_hiermerge_dist_stream, tapa::ostream<int>& sort_to_hiermerge_id_stream);\n"
+                "void krnl_singlePE_Write_Outputs(tapa::istream<DATA_TYPE> &in_dist0, tapa::istream<int> &in_id0, tapa::async_mmap<INT32>& output_knn);\n"
+            )
+            pattern = rf"(void\s+{re.escape(task_name)}\s*\([^)]*\)\s*\{{.*?^\}})"
+            m_fn = re.search(pattern, source_code, re.DOTALL | re.MULTILINE)
+            if not m_fn:
+                pattern = rf"(void\s+{re.escape(task_name)}\s*\(.*?\n\}})"
+                m_fn = re.search(pattern, source_code, re.DOTALL)
+            if m_fn:
+                body = m_fn.group(1)
+                if task_name == "para_partial_sort":
+                    swap_m = re.search(r"(#define\s+KNN_SWAP.*?\n(?=#define|void|\n\n))", source_code, re.DOTALL)
+                    if swap_m:
+                        body = swap_m.group(1) + "\n" + body
+                return preamble + "\n" + forward_decls + "\n" + body
+            return preamble + "\n" + source_code
+
         for tname, tdict in data.get("tasks", {}).items():
             if "code" not in tdict or not tdict["code"]:
-                tdict["code"] = full_code
+                tdict["code"] = extract_task_code(tname, knn_cpp_content)
 
         clean_cflags = []
         for cf in data.get("cflags", []):

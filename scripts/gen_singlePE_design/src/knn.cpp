@@ -365,8 +365,8 @@ void krnl_singlePE_Write_Outputs(
 
 
 void Knn(
-    tapa::async_mmap<INTERFACE_WIDTH>& in_0,
-    tapa::async_mmap<INT32>& final_out
+    tapa::mmap<INTERFACE_WIDTH> in_0,
+    tapa::mmap<INT32> final_out
 ) {
 
     // Streams, for the global merge:

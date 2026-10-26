@@ -25,6 +25,10 @@ if "-DTAPA_TARGET_DEVICE_" not in clean:
     clean.append("-DTAPA_TARGET_DEVICE_")
 if "-DTAPA_TARGET_XILINX_HLS_" not in clean:
     clean.append("-DTAPA_TARGET_XILINX_HLS_")
+if "-D__thread=" not in clean:
+    clean.append("-D__thread=")
+if "-Dthread_local=" not in clean:
+    clean.append("-Dthread_local=")
 if "-std=c++14" not in clean:
     clean.append("-std=c++14")
 

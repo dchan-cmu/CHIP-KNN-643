@@ -56,6 +56,12 @@ else:
         echo "=== [tapa stream patch] Patched stream.h for mutable _ ==="
     fi
 
+    MMAP_H="$REPO_ROOT/.tapa/usr/include/tapa/xilinx/hls/mmap.h"
+    if [ -f "$MMAP_H" ]; then
+        sed -i 's|hls::stream<addr_t> _;|mutable hls::stream<addr_t> _;|g' "$MMAP_H"
+        echo "=== [tapa mmap patch] Patched mmap.h for mutable _ ==="
+    fi
+
     python3 -c '
 import os, glob
 
@@ -67,7 +73,7 @@ for root, dirs, files in os.walk(inc_base):
     for f in files:
         p = os.path.join(root, f)
         rel = os.path.relpath(p, inc_base)
-        if rel in ["tapa.h", "tapa/base/stream.h", "tapa/base/task.h", "tapa/base/int.h", "tapa/xilinx/hls/tapa.h", "tapa/xilinx/hls/stream.h", "tapa/xilinx/hls/mmap.h", "tapa/xilinx/hls/task.h"]:
+        if rel in ["tapa.h", "tapa/base/stream.h", "tapa/base/task.h", "tapa/base/int.h", "tapa/xilinx/hls/tapa.h", "tapa/xilinx/hls/stream.h", "tapa/xilinx/hls/mmap.h", "tapa/xilinx/hls/task.h", "tapa/xilinx/hls/util.h", "tapa/compat.h"]:
             print(f"\n--- {rel} ---")
             with open(p, errors="ignore") as fp:
                 print(fp.read())
@@ -80,6 +86,19 @@ for root, dirs, files in os.walk(inc_base):
             with open(p, errors="ignore") as fp:
                 for idx, line in enumerate(fp, 1):
                     if "coroutine" in line or "TAPA_TARGET" in line:
+                        print(f"{os.path.relpath(p, inc_base)}:{idx}: {line.strip()}")
+        except Exception:
+            pass
+
+print("\n=== GREP mutex in headers ===")
+for root, dirs, files in os.walk(inc_base):
+    for f in files:
+        p = os.path.join(root, f)
+        try:
+            content = open(p, errors="ignore").read()
+            if "mutex" in content:
+                for idx, line in enumerate(content.splitlines(), 1):
+                    if "mutex" in line or "include" in line:
                         print(f"{os.path.relpath(p, inc_base)}:{idx}: {line.strip()}")
         except Exception:
             pass
@@ -102,7 +121,7 @@ for arg in "$@"; do
         sed -i \
             -e 's|-U__SYNTHESIS__|-D__SYNTHESIS__|g' \
             -e 's|-std=c++17|-std=c++14|g' \
-            -e 's|-DTAPA_TARGET_=XILINX_HLS|-DTAPA_TARGET_=XILINX_HLS -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__SYNTHESIS__|g' \
+            -e 's|-DTAPA_TARGET_=XILINX_HLS|-DTAPA_TARGET_=XILINX_HLS -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__SYNTHESIS__ -D__thread= -Dthread_local=|g' \
             -e 's|-I/usr/include/c++/[^ "]*||g' \
             -e 's|-I/usr/include/x86_64-linux-gnu||g' \
             -e 's|-I/usr/include||g' \
@@ -196,7 +215,7 @@ if m:
                     knn_cpp_content = cf.read()
                 break
 
-        full_code = knn_h_content + "\n" + knn_cpp_content
+        full_code = knn_cpp_content
 
         for tname, tdict in data.get("tasks", {}).items():
             if "code" not in tdict or not tdict["code"]:

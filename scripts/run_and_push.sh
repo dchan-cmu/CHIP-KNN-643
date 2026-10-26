@@ -9,6 +9,25 @@
     echo "=== 1. Cleaning previous build artifacts ==="
     rm -rf gen_singlePE_design gen_multiPE_design
 
+    echo "=== 1a. Patching TAPA core to remove obsolete gcc-6.2.0 include path ==="
+    python3 -c '
+import tapa.core, re
+
+core_file = tapa.core.__file__
+with open(core_file, "r") as f:
+    code = f.read()
+
+if "gcc-6.2.0" in code:
+    print(f"Patching {core_file} to remove obsolete gcc-6.2.0 path...")
+    new_code = re.sub(r"\*\([^\)]*gcc-6\.2\.0.*?for x in util\.get_vendor_include_paths\(\)\),?", "", code, flags=re.DOTALL)
+    compile(new_code, core_file, "exec")
+    with open(core_file, "w") as f:
+        f.write(new_code)
+    print("Successfully patched tapa.core!")
+else:
+    print("tapa.core already patched or gcc-6.2.0 not present.")
+' || true
+
     echo "=== 1b. Setting up vitis_hls and tapacc wrappers with diagnostics ==="
     mkdir -p "$REPO_ROOT/.tapa/usr/bin"
     export PATH="$REPO_ROOT/.tapa/usr/bin:$PATH"

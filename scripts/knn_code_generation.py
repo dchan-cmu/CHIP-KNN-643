@@ -99,8 +99,6 @@ def Generate_Design_Configuration(_N, _D, _Dist, _K, _port_width, _memory_type, 
     new_file.append("#include \"ap_int.h\" " + "\n")
     new_file.append("#include \"ap_axi_sdata.h\" " + "\n")
     new_file.append("#include <tapa.h>" + "\n")
-    new_file.append("#include <inttypes.h>" + "\n")
-    new_file.append("#include <stdlib.h>" + "\n")
     new_file.append("" + "\n")
     new_file.append("" + "\n")
     new_file.append("// CEIL_DIVISION(X, Y) = ceil(x/y)." + '\n')

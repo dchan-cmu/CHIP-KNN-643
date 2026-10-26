@@ -46,6 +46,9 @@ if [ $RC -ne 0 ]; then
             -ex "handle SIGSEGV stop print nopass" \
             -ex "run" \
             -ex "bt full 50" \
+            -ex "frame 1" \
+            -ex "info args" \
+            -ex "info locals" \
             --args "$DIR/tapacc.real" "${ARGS[@]}" >&2
     fi
     exit $RC

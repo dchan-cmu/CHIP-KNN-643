@@ -1,6 +1,6 @@
 #include "ap_int.h" 
-#include "ap_axi_sdata.h" 
 #include <tapa.h>
+#define printf(...) ((void)0)
 
 
 // CEIL_DIVISION(X, Y) = ceil(x/y).

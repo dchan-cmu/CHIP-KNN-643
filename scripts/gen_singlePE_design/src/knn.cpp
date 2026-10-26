@@ -1,4 +1,5 @@
 #include "knn.h"
+#define printf(...) ((void)0)
 #define absval(input) ((input) > 0 ? static_cast<DATA_TYPE>(input) : static_cast<DATA_TYPE>(-1 * (input)))
 
 #define SORT_TO_HIERMERGE_STREAM_ARGS(PE) \

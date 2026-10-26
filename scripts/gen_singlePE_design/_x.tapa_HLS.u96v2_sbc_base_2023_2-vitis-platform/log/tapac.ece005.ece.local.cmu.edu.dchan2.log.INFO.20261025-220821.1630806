@@ -1,0 +1,16 @@
+I1025 22:08:21.493 tapa.util:184] logging level set to INFO
+I1025 22:08:21.494 tapa.tapac:396] Step 0: run_tapacc is enabled.
+I1025 22:08:21.494 tapa.tapac:396] Step 1: run_hls is enabled.
+I1025 22:08:21.494 tapa.tapac:396] Step 2: generate_task_rtl is enabled.
+W1025 22:08:21.494 tapa.tapac:398] Step 3: run_floorplanning is *SKIPPED*.
+I1025 22:08:21.494 tapa.tapac:396] Step 4: generate_top_rtl is enabled.
+I1025 22:08:21.494 tapa.tapac:396] Step 5: pack_xo is enabled.
+I1025 22:08:21.494 tapa.tapac:514] running translated command: `tapa --work-dir=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform analyze --input=src/knn.cpp --top=Knn --cflags=-U__SYNTHESIS__ --cflags=-w --cflags=-Wno-invalid-constexpr --cflags=-Wno-error=invalid-constexpr --cflags=-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src --cflags=-I/usr/bin/../lib/clang/20/include --cflags=-I/usr/include --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include --cflags=-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include synth --part-num=xczu3eg-sbva484-1-e --clock-period=5.00 link pack --output=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn.xo --bitstream-script=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn_generate_bitstream.sh`
+I1025 22:08:21.496 tapa.util:184] logging level set to INFO
+I1025 22:08:21.496 tapa.util:184] logging level set to INFO
+I1025 22:08:21.496 tapa.tapa:54] tapa version: 0.0.20240825.1
+I1025 22:08:21.496 tapa.tapa:54] tapa version: 0.0.20240825.1
+I1025 22:08:21.496 tapa.tapa:58] Python recursion limit set to 3000
+I1025 22:08:21.496 tapa.tapa:58] Python recursion limit set to 3000
+E1025 22:08:21.940 tapa.steps.analyze:196] command ('/scratch/643_vitis_dchan2/CHIP-KNN-643/.tapa/usr/bin/tapa-clang', '-E', '-nostdinc', '-nostdinc++', '-CC', '-P', '-D__SYNTHESIS__', '-U__SYNTHESIS__', '-w', '-Wno-invalid-constexpr', '-Wno-error=invalid-constexpr', '-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src', '-I/usr/bin/../lib/clang/20/include', '-I/usr/include', '-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include', '-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include', '-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include', '-std=c++17', 'src/knn.cpp') failed with exit code 1
+E1025 22:08:21.940 tapa.steps.analyze:196] command ('/scratch/643_vitis_dchan2/CHIP-KNN-643/.tapa/usr/bin/tapa-clang', '-E', '-nostdinc', '-nostdinc++', '-CC', '-P', '-D__SYNTHESIS__', '-U__SYNTHESIS__', '-w', '-Wno-invalid-constexpr', '-Wno-error=invalid-constexpr', '-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src', '-I/usr/bin/../lib/clang/20/include', '-I/usr/include', '-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include', '-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include', '-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include', '-std=c++17', 'src/knn.cpp') failed with exit code 1

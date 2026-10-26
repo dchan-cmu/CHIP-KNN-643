@@ -75,14 +75,27 @@ if m:
     sys.stderr.write(text[:m.start()] + text[m.end():])
     try:
         data = json.loads(m.group(1))
+
+        knn_h_content = ""
+        for h in ["src/knn.h", "knn.h", "./src/knn.h", "../src/knn.h"]:
+            if os.path.isfile(h):
+                with open(h) as hf:
+                    knn_h_content = hf.read()
+                break
+
+        knn_cpp_content = ""
+        for c in ["src/knn.cpp", "knn.cpp", "./src/knn.cpp", "../src/knn.cpp"]:
+            if os.path.isfile(c):
+                with open(c) as cf:
+                    knn_cpp_content = cf.read()
+                break
+
+        full_code = knn_h_content + "\n" + knn_cpp_content
+
         for tname, tdict in data.get("tasks", {}).items():
-            if "code" not in tdict:
-                emit_files = glob.glob(f"/tmp/tapa_emit/*{tname}*.cpp") + glob.glob(f"/tmp/tapa_emit/{tname}*")
-                if emit_files and os.path.isfile(emit_files[0]):
-                    with open(emit_files[0]) as ef:
-                        tdict["code"] = ef.read()
-                else:
-                    tdict["code"] = ""
+            if "code" not in tdict or not tdict["code"]:
+                tdict["code"] = full_code
+
         sys.stdout.write(json.dumps(data))
     except Exception as e:
         sys.stderr.write(f"Error patching JSON: {e}\n")
@@ -101,6 +114,9 @@ fi
 EOF_WRAP
         chmod +x "$TAPACC_WRAPPER"
     fi
+
+    echo "=== 1.5 Inspecting TAPA Internals ==="
+    python3 -c "import tapa.core, tapa.task, inspect; print('=== Program.run_hls ===\n', inspect.getsource(tapa.core.Program.run_hls)); print('=== Task ===\n', inspect.getsource(tapa.task.Task.__init__))" 2>&1 || true
 
     echo "=== 2. Running Single-PE Exploration ==="
     python3 singlePE_design_exploration.py 2>&1 | tee "$REPO_ROOT/run_output.log" || true

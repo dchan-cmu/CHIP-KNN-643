@@ -106,6 +106,7 @@ $(TEMP_DIR)/knn.xo: $(KNN_SRC)
           --cflags=-w \
           --cflags=-Wno-invalid-constexpr \
           --cflags=-Wno-error=invalid-constexpr \
+          --cflags=-I$(shell pwd)/src \
           --cflags=-I$(CLANG_RES_INC) \
           --cflags=-I$(CXX_INC) \
           --cflags=-I$(CXX_ARCH_INC) \

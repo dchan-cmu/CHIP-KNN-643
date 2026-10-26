@@ -701,6 +701,7 @@ def Generate_MakeFile(_kernel_freq, _fpga_part_name):
     make_file.append('          --cflags=-w \\' + "\n")
     make_file.append('          --cflags=-Wno-invalid-constexpr \\' + "\n")
     make_file.append('          --cflags=-Wno-error=invalid-constexpr \\' + "\n")
+    make_file.append('          --cflags=-I$(shell pwd)/src \\' + "\n")
     make_file.append('          --cflags=-I$(CLANG_RES_INC) \\' + "\n")
     make_file.append('          --cflags=-I$(CXX_INC) \\' + "\n")
     make_file.append('          --cflags=-I$(CXX_ARCH_INC) \\' + "\n")

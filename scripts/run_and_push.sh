@@ -43,9 +43,9 @@ if [ $RC -ne 0 ]; then
     if [ $RC -gt 128 ] || [ $RC -lt 0 ]; then
         echo "=== Crash detected ($RC), running GDB to obtain backtrace ===" >&2
         gdb -batch \
-            -ex "handle SIGSEGV stop print" \
+            -ex "handle SIGSEGV stop print nopass" \
             -ex "run" \
-            -ex "bt 50" \
+            -ex "bt full 50" \
             --args "$DIR/tapacc.real" "${ARGS[@]}" >&2
     fi
     exit $RC

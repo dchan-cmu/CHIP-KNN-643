@@ -1,5 +1,5 @@
 #include "knn.h"
-#define absval(input) ((input) > 0 ? (input) : static_cast<DATA_TYPE>(-1 * (input)))
+#define absval(input) ((input) > 0 ? static_cast<DATA_TYPE>(input) : static_cast<DATA_TYPE>(-1 * (input)))
 
 #define SORT_TO_HIERMERGE_STREAM_ARGS(PE) \
     L0_out_dist_##PE,  \

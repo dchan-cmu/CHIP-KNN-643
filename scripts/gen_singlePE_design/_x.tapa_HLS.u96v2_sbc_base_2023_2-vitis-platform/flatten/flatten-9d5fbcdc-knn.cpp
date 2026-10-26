@@ -138280,7 +138280,11 @@ COMPUTE_DATA:
                  AP_RND, AP_SAT>
             delta =
                 ((sp_dim_item_value - local_Query[querypt_idx]) > 0
-                     ? (sp_dim_item_value - local_Query[querypt_idx])
+                     ? static_cast<ap_fixed<32, 12 /* NOTE: This includes the
+                                                      sign bit, if applicable.*/
+                                            ,
+                                            AP_RND, AP_SAT>>(
+                           sp_dim_item_value - local_Query[querypt_idx])
                      : static_cast<ap_fixed<32, 12 /* NOTE: This includes the
                                                       sign bit, if applicable.*/
                                             ,

@@ -697,7 +697,7 @@ def Generate_MakeFile(_kernel_freq, _fpga_part_name):
     make_file.append('	      --clock-period ' + "{:.2f}".format(clock_period) + ' \\' + "\n")
     make_file.append('	      -o $(TEMP_DIR)/knn.xo \\' + "\n")
     make_file.append('	      --enable-synth-util \\' + "\n")
-    make_file.append('          --cflags=-D__SYNTHESIS__ \\' + "\n")
+    make_file.append('          --cflags=-U__SYNTHESIS__ \\' + "\n")
     make_file.append('          --cflags=-w \\' + "\n")
     make_file.append('          --cflags=-Wno-invalid-constexpr \\' + "\n")
     make_file.append('          --cflags=-Wno-error=invalid-constexpr \\' + "\n")

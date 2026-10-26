@@ -45,10 +45,12 @@ if [ $RC -ne 0 ]; then
         gdb -batch \
             -ex "handle SIGSEGV stop print nopass" \
             -ex "run" \
-            -ex "bt full 50" \
+            -ex "bt full 20" \
             -ex "frame 1" \
             -ex "info args" \
             -ex "info locals" \
+            -ex "disas \$rip-40,\$rip+15" \
+            -ex "info registers" \
             --args "$DIR/tapacc.real" "${ARGS[@]}" >&2
     fi
     exit $RC

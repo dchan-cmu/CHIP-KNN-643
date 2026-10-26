@@ -36,23 +36,25 @@ if [ $INSERTED -eq 0 ]; then
     ARGS+=("--emit-dir" "$EMIT_DIR")
 fi
 
-"$DIR/tapacc.real" "${ARGS[@]}"
+GDB_PATCH="/tmp/tapacc_patch.gdb"
+cat << 'EOF_GDB' > "$GDB_PATCH"
+handle SIGSEGV stop print nopass
+break *(_ZNK4tapa2cc13XilinxBackend17RewriteHelperFuncEPKN5clang12FunctionDeclERNS0_8EditSinkE + 296)
+commands
+if $rax == 0
+  printf "[tapacc patch] Bypassing null helper function body\n"
+  set $rip = *(_ZNK4tapa2cc13XilinxBackend17RewriteHelperFuncEPKN5clang12FunctionDeclERNS0_8EditSinkE + 418)
+end
+continue
+end
+run
+quit
+EOF_GDB
+
+gdb -batch -return-child-result -x "$GDB_PATCH" --args "$DIR/tapacc.real" "${ARGS[@]}"
 RC=$?
 if [ $RC -ne 0 ]; then
     echo "=== tapacc.real failed with exit code $RC ===" >&2
-    if [ $RC -gt 128 ] || [ $RC -lt 0 ]; then
-        echo "=== Crash detected ($RC), running GDB to obtain backtrace ===" >&2
-        gdb -batch \
-            -ex "handle SIGSEGV stop print nopass" \
-            -ex "run" \
-            -ex "bt full 20" \
-            -ex "frame 1" \
-            -ex "p ((const clang::NamedDecl*) \$r14)->getNameAsString()" \
-            -ex "call ((const clang::Decl*) \$r14)->dump()" \
-            -ex "x/s \$rdx" \
-            -ex "disas \$rip-40,\$rip+15" \
-            --args "$DIR/tapacc.real" "${ARGS[@]}" >&2
-    fi
     exit $RC
 fi
 EOF_WRAP

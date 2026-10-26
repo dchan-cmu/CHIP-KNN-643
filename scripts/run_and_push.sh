@@ -9,7 +9,7 @@
     echo "=== 1. Cleaning previous build artifacts ==="
     rm -rf gen_singlePE_design gen_multiPE_design
 
-    echo "=== 1a. Patching TAPA core to remove obsolete gcc-6.2.0 path and use C++14 for HLS ==="
+    echo "=== 1a. Patching TAPA core to remove obsolete gcc-6.2.0 path ==="
     python3 -c '
 import tapa.core, re
 
@@ -23,24 +23,53 @@ if "gcc-6.2.0" in code:
     code = re.sub(r"\*\([^\)]*gcc-6\.2\.0.*?for x in util\.get_vendor_include_paths\(\)\),?", "", code, flags=re.DOTALL)
     modified = True
 
-if "std=\x27c++17\x27" in code:
-    print(f"Patching {core_file} to use std=c++14 for HLS...")
-    code = code.replace("std=\x27c++17\x27", "std=\x27c++14\x27")
+if "std=\x27c++14\x27" in code:
+    print(f"Reverting {core_file} to std=c++17...")
+    code = code.replace("std=\x27c++14\x27", "std=\x27c++17\x27")
     modified = True
 
-if "std=\"c++17\"" in code:
-    print(f"Patching {core_file} to use std=c++14 for HLS...")
-    code = code.replace("std=\"c++17\"", "std=\"c++14\"")
+if "std=\"c++14\"" in code:
+    print(f"Reverting {core_file} to std=c++17...")
+    code = code.replace("std=\"c++14\"", "std=\"c++17\"")
     modified = True
 
 if modified:
     compile(code, core_file, "exec")
     with open(core_file, "w") as f:
         f.write(code)
-    print("Successfully patched tapa.core!")
+    print("Successfully updated tapa.core!")
 else:
     print("tapa.core already up to date.")
 ' || true
+
+    python3 -c '
+import os, glob
+
+print("=== SEARCHING TAPA HEADERS ===")
+repo = os.environ.get("REPO_ROOT", "/scratch/643_vitis_dchan2/CHIP-KNN-643")
+inc_base = os.path.join(repo, ".tapa/usr/include")
+
+for root, dirs, files in os.walk(inc_base):
+    for f in files:
+        p = os.path.join(root, f)
+        rel = os.path.relpath(p, inc_base)
+        if rel in ["tapa.h", "tapa/base/stream.h", "tapa/base/task.h", "tapa/base/int.h"]:
+            print(f"\n--- {rel} ---")
+            with open(p, errors="ignore") as fp:
+                print(fp.read())
+
+print("\n=== GREP coroutine.h & TAPA_TARGET ===")
+for root, dirs, files in os.walk(inc_base):
+    for f in files:
+        p = os.path.join(root, f)
+        try:
+            with open(p, errors="ignore") as fp:
+                for idx, line in enumerate(fp, 1):
+                    if "coroutine" in line or "TAPA_TARGET" in line:
+                        print(f"{os.path.relpath(p, inc_base)}:{idx}: {line.strip()}")
+        except Exception:
+            pass
+' > "$REPO_ROOT/tapa_headers_debug.log" 2>&1 || true
 
     echo "=== 1b. Setting up vitis_hls and tapacc wrappers with diagnostics ==="
     mkdir -p "$REPO_ROOT/.tapa/usr/bin"
@@ -212,7 +241,7 @@ EOF_WRAP
 
     echo "=== 4. Pushing Logs to GitHub (branch: debug-run) ==="
     git checkout -B debug-run
-    git add -f run_output.log tapa_HLS_output.log tapacc_wrapper.log tapa_internals.log scripts/ 2>/dev/null || true
+    git add -f run_output.log tapa_HLS_output.log tapacc_wrapper.log tapa_internals.log tapa_headers_debug.log scripts/ 2>/dev/null || true
     git commit -m "Auto-upload run logs: $(date -u +'%Y-%m-%d %H:%M:%S UTC')" || true
     git push -u origin debug-run --force
 

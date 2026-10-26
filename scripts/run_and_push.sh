@@ -23,14 +23,22 @@ if "gcc-6.2.0" in code:
     code = re.sub(r"\*\([^\)]*gcc-6\.2\.0.*?for x in util\.get_vendor_include_paths\(\)\),?", "", code, flags=re.DOTALL)
     modified = True
 
-if "std=\x27c++14\x27" in code:
-    print(f"Reverting {core_file} to std=c++17...")
-    code = code.replace("std=\x27c++14\x27", "std=\x27c++17\x27")
+if "std=\x27c++17\x27" in code:
+    print(f"Setting {core_file} to std=c++14 for HLS...")
+    code = code.replace("std=\x27c++17\x27", "std=\x27c++14\x27")
     modified = True
 
-if "std=\"c++14\"" in code:
-    print(f"Reverting {core_file} to std=c++17...")
-    code = code.replace("std=\"c++14\"", "std=\"c++17\"")
+if "std=\"c++17\"" in code:
+    print(f"Setting {core_file} to std=c++14 for HLS...")
+    code = code.replace("std=\"c++17\"", "std=\"c++14\"")
+    modified = True
+
+if "\x27-DTAPA_TARGET_=XILINX_HLS\x27" in code and "TAPA_TARGET_DEVICE_" not in code:
+    print(f"Injecting TAPA_TARGET_DEVICE_ and TAPA_TARGET_XILINX_HLS_ into {core_file}...")
+    code = code.replace(
+        "\x27-DTAPA_TARGET_=XILINX_HLS\x27",
+        "\x27-DTAPA_TARGET_=XILINX_HLS\x27, \x27-DTAPA_TARGET_DEVICE_\x27, \x27-DTAPA_TARGET_XILINX_HLS_\x27, \x27-D__SYNTHESIS__\x27"
+    )
     modified = True
 
 if modified:
@@ -53,7 +61,7 @@ for root, dirs, files in os.walk(inc_base):
     for f in files:
         p = os.path.join(root, f)
         rel = os.path.relpath(p, inc_base)
-        if rel in ["tapa.h", "tapa/base/stream.h", "tapa/base/task.h", "tapa/base/int.h"]:
+        if rel in ["tapa.h", "tapa/base/stream.h", "tapa/base/task.h", "tapa/base/int.h", "tapa/xilinx/hls/tapa.h", "tapa/xilinx/hls/stream.h"]:
             print(f"\n--- {rel} ---")
             with open(p, errors="ignore") as fp:
                 print(fp.read())
@@ -87,6 +95,8 @@ for arg in "$@"; do
     if [ -f "$arg" ]; then
         sed -i \
             -e 's|-U__SYNTHESIS__|-D__SYNTHESIS__|g' \
+            -e 's|-std=c++17|-std=c++14|g' \
+            -e 's|-DTAPA_TARGET_=XILINX_HLS|-DTAPA_TARGET_=XILINX_HLS -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__SYNTHESIS__|g' \
             -e 's|-I/usr/include/c++/[^ "]*||g' \
             -e 's|-I/usr/include/x86_64-linux-gnu||g' \
             -e 's|-I/usr/include||g' \

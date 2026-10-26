@@ -28,7 +28,7 @@
       hls_cflags = ' '.join((
           self.cflags,
           
-          '-DTAPA_TARGET_=XILINX_HLS',
+          '-DTAPA_TARGET_=XILINX_HLS', '-DTAPA_TARGET_DEVICE_', '-DTAPA_TARGET_XILINX_HLS_', '-D__SYNTHESIS__',
       ))
       with open(self.get_tar(task.name), 'wb') as tarfileobj:
         with hls.RunHls(
@@ -39,7 +39,7 @@
             part_num=part_num,
             auto_prefix=True,
             hls='vitis_hls',
-            std='c++17',
+            std='c++14',
             other_configs=other_configs,
         ) as proc:
           stdout, stderr = proc.communicate()

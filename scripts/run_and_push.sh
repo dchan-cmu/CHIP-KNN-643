@@ -96,6 +96,24 @@ if m:
             if "code" not in tdict or not tdict["code"]:
                 tdict["code"] = full_code
 
+        clean_cflags = []
+        for cf in data.get("cflags", []):
+            if cf == "-U__SYNTHESIS__":
+                continue
+            if any(bad in cf for bad in [
+                "/usr/include/c++",
+                "/usr/include/x86_64-linux-gnu",
+                "/usr/include",
+                "/usr/bin/../lib/clang",
+                "clang/20",
+                "clang/22"
+            ]):
+                continue
+            clean_cflags.append(cf)
+        if "-D__SYNTHESIS__" not in clean_cflags:
+            clean_cflags.append("-D__SYNTHESIS__")
+        data["cflags"] = clean_cflags
+
         sys.stdout.write(json.dumps(data))
     except Exception as e:
         sys.stderr.write(f"Error patching JSON: {e}\n")
@@ -116,7 +134,7 @@ EOF_WRAP
     fi
 
     echo "=== 1.5 Inspecting TAPA Internals ==="
-    python3 -c "import tapa.core, tapa.task, inspect; print('=== Program.run_hls ===\n', inspect.getsource(tapa.core.Program.run_hls)); print('=== Task ===\n', inspect.getsource(tapa.task.Task.__init__))" 2>&1 || true
+    python3 -c "import tapa.core, tapa.task, inspect; print('=== Program.run_hls ===\n', inspect.getsource(tapa.core.Program.run_hls)); print('=== Task ===\n', inspect.getsource(tapa.task.Task.__init__))" > "$REPO_ROOT/tapa_internals.log" 2>&1 || true
 
     echo "=== 2. Running Single-PE Exploration ==="
     python3 singlePE_design_exploration.py 2>&1 | tee "$REPO_ROOT/run_output.log" || true

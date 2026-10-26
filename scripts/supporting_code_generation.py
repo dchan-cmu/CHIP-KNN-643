@@ -702,14 +702,9 @@ def Generate_MakeFile(_kernel_freq, _fpga_part_name):
     make_file.append('          --cflags=-Wno-invalid-constexpr \\' + "\n")
     make_file.append('          --cflags=-Wno-error=invalid-constexpr \\' + "\n")
     make_file.append('          --cflags=-I$(shell pwd)/src \\' + "\n")
-    make_file.append('          --cflags=-I$(CLANG_RES_INC) \\' + "\n")
-    make_file.append('          --cflags=-I$(CXX_INC) \\' + "\n")
-    make_file.append('          --cflags=-I$(CXX_ARCH_INC) \\' + "\n")
     make_file.append('          --cflags=-I$$XILINX_HLS/include \\' + "\n")
     make_file.append('          --cflags=-I$$XILINX_VITIS/include \\' + "\n")
     make_file.append('          --cflags=-I$(shell pwd)/../../.tapa/usr/include \\' + "\n")
-    make_file.append('          --cflags=-I/usr/include \\' + "\n")
-    make_file.append('          --cflags=-I/usr/include/x86_64-linux-gnu \\' + "\n")
 
     ### ############ NOTE: Changing this just for the purposes of testing.
     ### for i in range(0, 10):

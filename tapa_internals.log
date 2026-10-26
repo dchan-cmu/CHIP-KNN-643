@@ -1,0 +1,100 @@
+/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/autobridge/util.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import get_distribution
+=== Program.run_hls ===
+   def run_hls(
+      self,
+      clock_period: Union[int, float, str],
+      part_num: str,
+      skip_based_on_mtime: bool = False,
+      other_configs: str = '',
+  ) -> 'Program':
+    """Run HLS with extracted HLS C++ files and generate tarballs."""
+    self.extract_cpp()
+
+    _logger.info('running HLS')
+
+    def worker(task: Task, idx: int) -> None:
+      os.nice(idx % 19)
+      try:
+        if (skip_based_on_mtime and
+            os.path.getmtime(self.get_tar(task.name)) > os.path.getmtime(
+                self.get_cpp(task.name))):
+          _logger.info('skipping HLS for %s since %s is newer than %s',
+                       task.name, self.get_tar(task.name),
+                       self.get_cpp(task.name))
+          return
+      except OSError:
+        pass
+      hls_cflags = ' '.join((
+          self.cflags,
+          *(f'-isystem {x}/../tps/lnx64/gcc-6.2.0/include/c++/6.2.0'
+            for x in util.get_vendor_include_paths()),
+          '-DTAPA_TARGET_=XILINX_HLS',
+      ))
+      with open(self.get_tar(task.name), 'wb') as tarfileobj:
+        with hls.RunHls(
+            tarfileobj,
+            kernel_files=[(self.get_cpp(task.name), hls_cflags)],
+            top_name=task.name,
+            clock_period=clock_period,
+            part_num=part_num,
+            auto_prefix=True,
+            hls='vitis_hls',
+            std='c++17',
+            other_configs=other_configs,
+        ) as proc:
+          stdout, stderr = proc.communicate()
+      if proc.returncode != 0:
+        if b'Pre-synthesis failed.' in stdout and b'\nERROR:' not in stdout:
+          _logger.error(
+              'HLS failed for %s, but the failure may be flaky; retrying',
+              task.name,
+          )
+          worker(task, 0)
+          return
+        sys.stdout.write(stdout.decode('utf-8'))
+        sys.stderr.write(stderr.decode('utf-8'))
+        raise RuntimeError('HLS failed for {}'.format(task.name))
+
+    worker_num = util.nproc()
+    _logger.info(
+        'spawn %d workers for parallel HLS synthesis of the tasks',
+        worker_num,
+    )
+    with futures.ThreadPoolExecutor(max_workers=worker_num) as executor:
+      any(executor.map(worker, self._tasks.values(), itertools.count(0)))
+
+    return self
+
+=== Task ===
+   def __init__(self, **kwargs):
+    level: Union[Task.Level, str] = kwargs.pop('level')
+    if isinstance(level, str):
+      if level == 'lower':
+        level = Task.Level.LOWER
+      elif level == 'upper':
+        level = Task.Level.UPPER
+    if not isinstance(level, Task.Level):
+      raise TypeError('unexpected `level`: ' + level)
+    self.level = level
+    self.name: str = kwargs.pop('name')
+    self.code: str = kwargs.pop('code')
+    self.tasks = collections.OrderedDict()
+    self.fifos = collections.OrderedDict()
+    if self.is_upper:
+      self.tasks = collections.OrderedDict(
+          sorted((item for item in kwargs.pop('tasks', {}).items()),
+                 key=lambda x: x[0]))
+      self.fifos = collections.OrderedDict(
+          sorted((item for item in kwargs.pop('fifos').items()),
+                 key=lambda x: x[0]))
+      self.ports = {i.name: i for i in map(Port, kwargs.pop('ports', ()))}
+      self.fsm_module = rtl.Module(name=f'{self.name}_fsm')
+    self.module = rtl.Module(name=self.name)
+    self._instances: Optional[Tuple[Instance, ...]] = None
+    self._args: Optional[Dict[str, List[Instance.Arg]]] = None
+    self._mmaps: Optional[Dict[str, MMapConnection]] = None
+    self._self_area = {}
+    self._total_area = {}
+    self._clock_period = decimal.Decimal(0)
+

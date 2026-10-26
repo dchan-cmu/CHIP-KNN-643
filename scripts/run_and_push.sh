@@ -64,13 +64,26 @@ end
 run
 EOF_GDB
 
-LOG_FILE="/tmp/tapacc_wrapper.log"
-gdb -batch -return-child-result -x "$GDB_PATCH" --args "$DIR/tapacc.real" "${ARGS[@]}" 2>&1 | tee "$LOG_FILE"
-RC=${PIPESTATUS[0]}
-if [ $RC -ne 0 ]; then
-    echo "=== tapacc failed with exit code $RC ===" >&2
-    cat "$LOG_FILE" >&2
-    exit $RC
+RAW_OUT=$(gdb -q -batch -return-child-result -x "$GDB_PATCH" --args "$DIR/tapacc.real" "${ARGS[@]}" 2>&1)
+RC=$?
+
+echo "$RAW_OUT" | python3 -c '
+import sys, re
+text = sys.stdin.read()
+m = re.search(r"(\{.*\"schema_version\".*\})", text, re.DOTALL)
+if m:
+    sys.stderr.write(text[:m.start()] + text[m.end():])
+    sys.stdout.write(m.group(1))
+    sys.exit(0)
+else:
+    sys.stderr.write(text)
+    sys.exit(1)
+'
+PY_RC=$?
+
+if [ $RC -ne 0 ] || [ $PY_RC -ne 0 ]; then
+    echo "=== tapacc failed (RC=$RC, PY_RC=$PY_RC) ===" >&2
+    exit 1
 fi
 EOF_WRAP
         chmod +x "$TAPACC_WRAPPER"

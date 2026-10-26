@@ -396,78 +396,16 @@ exit $RET
 EOF_VHLS
     chmod +x "$VITIS_HLS_WRAPPER"
 
-    TAPACC_WRAPPER="$REPO_ROOT/.tapa/usr/bin/tapacc"
-    if [ -f "$TAPACC_WRAPPER.real" ]; then
-        cat << 'EOF_WRAP' > "$TAPACC_WRAPPER"
-#!/bin/bash
-DIR="$(dirname "$(readlink -f "$0")")"
-
-if [ "$1" = "--version" ] || [ "$1" = "-version" ] || [ "$1" = "-v" ] || [ "$1" = "--help" ] || [ "$1" = "-help" ]; then
-    exec "$DIR/tapacc.real" "$@"
-fi
-
-EMIT_DIR="/tmp/tapa_emit"
-mkdir -p "$EMIT_DIR"
-
-ARGS=()
-INSERTED=0
-for arg in "$@"; do
-    if [ "$arg" = "--" ] && [ $INSERTED -eq 0 ]; then
-        ARGS+=("--emit-dir" "$EMIT_DIR")
-        INSERTED=1
-    fi
-    ARGS+=("$arg")
-done
-if [ $INSERTED -eq 0 ]; then
-    ARGS+=("--emit-dir" "$EMIT_DIR")
-fi
-
-GDB_PATCH="/tmp/tapacc_patch.gdb"
-cat << 'EOF_GDB' > "$GDB_PATCH"
-set breakpoint pending on
-set confirm off
-set pagination off
-handle SIGSEGV stop print nopass
-
-break *(_ZNK4tapa2cc13XilinxBackend17RewriteHelperFuncEPKN5clang12FunctionDeclERNS0_8EditSinkE + 296)
-commands
-if $rax == 0
-  printf "[tapacc patch] Bypassing null helper function body by returning\n"
-  return
-end
-continue
-end
-
-break tapa::cc::AddPragmaToBody
-commands
-if $rsi == 0
-  printf "[tapacc patch] Bypassing AddPragmaToBody with null Stmt by returning\n"
-  return
-end
-continue
-end
-
-run
-EOF_GDB
-
-RAW_OUT=$(gdb -q -batch -return-child-result -x "$GDB_PATCH" --args "$DIR/tapacc.real" "${ARGS[@]}" 2>&1)
-RC=$?
-
-echo "$RAW_OUT" | python3 -c '
+    PATCH_GRAPH_PY="$REPO_ROOT/.tapa/usr/bin/patch_graph.py"
+    cat << 'EOF_PG' > "$PATCH_GRAPH_PY"
 import sys, re, json, os, glob
+
 text = sys.stdin.read()
 m = re.search(r"(\{.*\"schema_version\".*\})", text, re.DOTALL)
 if m:
     sys.stderr.write(text[:m.start()] + text[m.end():])
     try:
         data = json.loads(m.group(1))
-
-        knn_h_content = ""
-        for h in ["src/knn.h", "knn.h", "./src/knn.h", "../src/knn.h"]:
-            if os.path.isfile(h):
-                with open(h) as hf:
-                    knn_h_content = hf.read()
-                break
 
         knn_cpp_content = ""
         for c in ["src/knn.cpp", "knn.cpp", "./src/knn.cpp", "../src/knn.cpp"]:
@@ -530,7 +468,67 @@ if m:
 else:
     sys.stderr.write(text)
     sys.exit(1)
-'
+EOF_PG
+    chmod +x "$PATCH_GRAPH_PY"
+
+    TAPACC_WRAPPER="$REPO_ROOT/.tapa/usr/bin/tapacc"
+    if [ -f "$TAPACC_WRAPPER.real" ]; then
+        cat << 'EOF_WRAP' > "$TAPACC_WRAPPER"
+#!/bin/bash
+DIR="$(dirname "$(readlink -f "$0")")"
+
+if [ "$1" = "--version" ] || [ "$1" = "-version" ] || [ "$1" = "-v" ] || [ "$1" = "--help" ] || [ "$1" = "-help" ]; then
+    exec "$DIR/tapacc.real" "$@"
+fi
+
+EMIT_DIR="/tmp/tapa_emit"
+mkdir -p "$EMIT_DIR"
+
+ARGS=()
+INSERTED=0
+for arg in "$@"; do
+    if [ "$arg" = "--" ] && [ $INSERTED -eq 0 ]; then
+        ARGS+=("--emit-dir" "$EMIT_DIR")
+        INSERTED=1
+    fi
+    ARGS+=("$arg")
+done
+if [ $INSERTED -eq 0 ]; then
+    ARGS+=("--emit-dir" "$EMIT_DIR")
+fi
+
+GDB_PATCH="/tmp/tapacc_patch.gdb"
+cat << 'EOF_GDB' > "$GDB_PATCH"
+set breakpoint pending on
+set confirm off
+set pagination off
+handle SIGSEGV stop print nopass
+
+break *(_ZNK4tapa2cc13XilinxBackend17RewriteHelperFuncEPKN5clang12FunctionDeclERNS0_8EditSinkE + 296)
+commands
+if $rax == 0
+  printf "[tapacc patch] Bypassing null helper function body by returning\n"
+  return
+end
+continue
+end
+
+break tapa::cc::AddPragmaToBody
+commands
+if $rsi == 0
+  printf "[tapacc patch] Bypassing AddPragmaToBody with null Stmt by returning\n"
+  return
+end
+continue
+end
+
+run
+EOF_GDB
+
+RAW_OUT=$(gdb -q -batch -return-child-result -x "$GDB_PATCH" --args "$DIR/tapacc.real" "${ARGS[@]}" 2>&1)
+RC=$?
+
+echo "$RAW_OUT" | python3 "$DIR/patch_graph.py"
 PY_RC=$?
 
 if [ $RC -ne 0 ] || [ $PY_RC -ne 0 ]; then

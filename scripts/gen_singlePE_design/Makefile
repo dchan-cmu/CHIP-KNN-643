@@ -107,6 +107,8 @@ $(TEMP_DIR)/knn.xo: $(KNN_SRC)
           --cflags=-Wno-invalid-constexpr \
           --cflags=-Wno-error=invalid-constexpr \
           --cflags=-I$(shell pwd)/src \
+          --cflags=-I$(CLANG_RES_INC) \
+          --cflags=-I/usr/include \
           --cflags=-I$$XILINX_HLS/include \
           --cflags=-I$$XILINX_VITIS/include \
           --cflags=-I$(shell pwd)/../../.tapa/usr/include \

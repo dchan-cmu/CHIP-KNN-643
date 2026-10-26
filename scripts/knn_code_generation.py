@@ -2033,10 +2033,11 @@ def Generate_KNN_TopLevel(_core_krnl_file, _num_PE, _knn_config):
     for PE_idx in range(_num_PE):
         _core_krnl_file.append('    tapa::stream<INTERFACE_WIDTH, 2>           load_to_compute_stream_' + str(PE_idx) + ';\n')
     for PE_idx in range(_num_PE):
-        if (_knn_config.using_Ltypes == 1):
-            _core_krnl_file.append('    tapa::streams<LOCAL_DIST_DTYPE, NUM_SEGMENTS, 2>    compute_to_sort_stream_' + str(PE_idx) + ';' + "\n")
+        dtype_str = "LOCAL_DIST_DTYPE" if _knn_config.using_Ltypes == 1 else "DATA_TYPE"
+        if (_knn_config.using_segments == 0):
+            _core_krnl_file.append('    tapa::stream<' + dtype_str + ', 2>           compute_to_sort_stream_' + str(PE_idx) + ';\n')
         else:
-            _core_krnl_file.append('    tapa::streams<DATA_TYPE, NUM_SEGMENTS, 2>           compute_to_sort_stream_' + str(PE_idx) + ';' + "\n")
+            _core_krnl_file.append('    tapa::streams<' + dtype_str + ', NUM_SEGMENTS, 2>    compute_to_sort_stream_' + str(PE_idx) + ';\n')
 
     if (_knn_config.using_intra_pe_merge):
         for PE_idx in range(_num_PE):

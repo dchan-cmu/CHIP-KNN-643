@@ -192,14 +192,12 @@ void compute_KNN(   int debug_pe_idx,
     }
 }
 #define KNN_SWAP(a, b, x, y) do { \
-    DATA_TYPE _tmpdist_a = *(a); \
-    DATA_TYPE _tmpdist_b = *(b); \
-    *(b) = _tmpdist_a; \
-    *(a) = _tmpdist_b; \
-    int _tmpid_x = *(x); \
-    int _tmpid_y = *(y); \
-    *(x) = _tmpid_y; \
-    *(y) = _tmpid_x; \
+    DATA_TYPE _tmpdist = (a); \
+    (a) = (b); \
+    (b) = _tmpdist; \
+    int _tmpid = (x); \
+    (x) = (y); \
+    (y) = _tmpid; \
 } while(0)
 
 void para_partial_sort(const int PE_idx,
@@ -276,8 +274,8 @@ void para_partial_sort(const int PE_idx,
         #pragma HLS DEPENDENCE variable=local_kNearstId inter false
 
             if (local_kNearstDist[ii] < local_kNearstDist[ii+1]){
-                KNN_SWAP(&local_kNearstDist[ii], &local_kNearstDist[ii+1], 
-                          &local_kNearstId[ii], &local_kNearstId[ii+1]);
+                KNN_SWAP(local_kNearstDist[ii], local_kNearstDist[ii+1], 
+                         local_kNearstId[ii], local_kNearstId[ii+1]);
             }
 
         }
@@ -290,8 +288,8 @@ void para_partial_sort(const int PE_idx,
         #pragma HLS DEPENDENCE variable=local_kNearstId inter false
 
             if (local_kNearstDist[ii] > local_kNearstDist[ii-1]){
-                KNN_SWAP(&local_kNearstDist[ii], &local_kNearstDist[ii-1], 
-                          &local_kNearstId[ii], &local_kNearstId[ii-1]);
+                KNN_SWAP(local_kNearstDist[ii], local_kNearstDist[ii-1], 
+                         local_kNearstId[ii], local_kNearstId[ii-1]);
             }
 
         }
@@ -352,7 +350,7 @@ void krnl_singlePE_Write_Outputs(
             i_resp_output += (unsigned int) (output_knn.write_resp.read()) + 1;
         }
         if (i_req_output < 2*TOP && i_req_output >= 0 && !output_knn.write_addr.full() && !output_knn.write_data.full()) {
-            outval = * (INT32*) &cur_id;
+            outval = (INT32) cur_id;
             output_knn.write_addr.write(i_req_output * sizeof(INT32));
             output_knn.write_data.write(outval);
             --i_req_output;

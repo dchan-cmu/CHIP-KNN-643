@@ -238,53 +238,23 @@ clean_hls_stream_code = """#pragma once
 
 namespace hls {
 
-template<size_t SIZE>
+template<typename T>
 class stream_entity {
 public:
-  alignas(16) char _storage[SIZE > 0 ? SIZE : 1];
+  T _storage;
 
-  inline stream_entity() {}
+  inline stream_entity() : _storage() {}
 
-  inline bool read(void *elem) {
-    if (elem) {
-      if (SIZE == 1) {
-        *(uint8_t*)elem = *(const uint8_t*)_storage;
-      } else if (SIZE == 2) {
-        *(uint16_t*)elem = *(const uint16_t*)_storage;
-      } else if (SIZE == 4) {
-        *(uint32_t*)elem = *(const uint32_t*)_storage;
-      } else if (SIZE == 8) {
-        *(uint64_t*)elem = *(const uint64_t*)_storage;
-      } else if (SIZE == 16) {
-        *(unsigned __int128*)elem = *(const unsigned __int128*)_storage;
-      } else {
-        typedef struct { char b[SIZE]; } raw_t;
-        *(raw_t*)elem = *(const raw_t*)_storage;
-      }
-    }
+  inline bool read(T *elem) {
+    if (elem) *elem = _storage;
     return true;
   }
 
-  inline void write(const void *elem) {
-    if (elem) {
-      if (SIZE == 1) {
-        *(uint8_t*)_storage = *(const uint8_t*)elem;
-      } else if (SIZE == 2) {
-        *(uint16_t*)_storage = *(const uint16_t*)elem;
-      } else if (SIZE == 4) {
-        *(uint32_t*)_storage = *(const uint32_t*)elem;
-      } else if (SIZE == 8) {
-        *(uint64_t*)_storage = *(const uint64_t*)elem;
-      } else if (SIZE == 16) {
-        *(unsigned __int128*)_storage = *(const unsigned __int128*)elem;
-      } else {
-        typedef struct { char b[SIZE]; } raw_t;
-        *(raw_t*)_storage = *(const raw_t*)elem;
-      }
-    }
+  inline void write(const T *elem) {
+    if (elem) _storage = *elem;
   }
 
-  inline bool read_nb(void *elem) { return read(elem); }
+  inline bool read_nb(T *elem) { return read(elem); }
   inline size_t size() const { return 1; }
   inline void set_name(const char *n) {}
 };
@@ -294,10 +264,6 @@ class stream_map {
 public:
   static inline size_t count(void *p) { return 1; }
   static inline void insert(void *p) {}
-  static inline stream_entity<SIZE> &get_entity(void *p) {
-    static stream_entity<SIZE> ent;
-    return ent;
-  }
 };
 
 template<typename __STREAM_T__, int DEPTH=0>
@@ -309,21 +275,16 @@ class stream<__STREAM_T__, 0>
 public:
   using value_type = __STREAM_T__;
 
-private:
-  typedef stream_map<sizeof(__STREAM_T__)> map_t;
-
 protected:
-  stream_entity<sizeof(__STREAM_T__)> _data;
+  stream_entity<__STREAM_T__> _data;
 
-  inline stream_entity<sizeof(__STREAM_T__)> &get_entity() {
+  inline stream_entity<__STREAM_T__> &get_entity() {
     return _data;
   }
 
 public:
   inline stream() {}
-  inline stream(const char *name) {
-    _data.set_name(name);
-  }
+  inline stream(const char *name) {}
 
   inline void operator >> (__STREAM_T__& rdata) {
     read(rdata);
@@ -341,7 +302,7 @@ public:
   }
 
   inline __STREAM_T__ read() {
-    __STREAM_T__ elem;
+    __STREAM_T__ elem = __STREAM_T__();
     _data.read(&elem);
     return elem;
   }
@@ -361,7 +322,7 @@ public:
 
   inline size_t size() const { return 0; }
   inline size_t capacity() const { return 0; }
-  inline void set_name(const char *name) { _data.set_name(name); }
+  inline void set_name(const char *name) {}
 };
 
 template<typename __STREAM_T__, int DEPTH>

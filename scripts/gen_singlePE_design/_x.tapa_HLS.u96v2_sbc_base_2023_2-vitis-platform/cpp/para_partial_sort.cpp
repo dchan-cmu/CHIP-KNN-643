@@ -106,8 +106,10 @@ SORT_LOOP:
 OUTPUT_LOOP:
   for (int j = TOP; j > 0; --j) {
 #pragma HLS PIPELINE II = 1
-    sort_to_hiermerge_dist_stream.write(local_kNearstDist[j]);
-    sort_to_hiermerge_id_stream.write(local_kNearstId[j]);
+    DATA_TYPE _out_dist = local_kNearstDist[j];
+    sort_to_hiermerge_dist_stream.write(_out_dist);
+    int _out_id = local_kNearstId[j];
+    sort_to_hiermerge_id_stream.write(_out_id);
   }
 
 #ifndef __SYNTHESIS__

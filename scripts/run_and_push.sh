@@ -34,24 +34,86 @@
     echo "Using XILINX_VITIS=$XILINX_VITIS"
     echo "Using XILINX_HLS=$XILINX_HLS"
 
-    echo "=== 0a. Ensuring iverilog is available for pyverilog RTL parsing ==="
-    if ! command -v iverilog &> /dev/null; then
-        for candidate in /usr/bin/iverilog /usr/local/bin/iverilog /afs/ece.cmu.edu/support/iverilog/bin/iverilog /afs/ece/support/bin/iverilog; do
-            if [ -x "$candidate" ]; then
-                export PATH="$(dirname "$candidate"):$PATH"
-                break
-            fi
-        done
-    fi
-    if ! command -v iverilog &> /dev/null; then
-        echo "iverilog not found in system paths. Installing iverilog into conda..."
-        if command -v conda &> /dev/null; then
-            conda install -y -c conda-forge iverilog || true
-        elif [ -x "/afs/ece/usr/dchan2/miniconda3/bin/conda" ]; then
-            /afs/ece/usr/dchan2/miniconda3/bin/conda install -y -c conda-forge iverilog || true
-        fi
-    fi
-    echo "Using iverilog: $(which iverilog || echo 'NOT FOUND')"
+    echo "=== 0a. Setting up iverilog preprocessor for Pyverilog ==="
+    mkdir -p "$REPO_ROOT/.tapa/usr/bin"
+    export PATH="$REPO_ROOT/.tapa/usr/bin:$PATH"
+
+    IVERILOG_FALLBACK="$REPO_ROOT/.tapa/usr/bin/iverilog"
+    cat << 'EOF_IV' > "$IVERILOG_FALLBACK"
+#!/usr/bin/env python3
+import sys, os, subprocess
+
+# Delegate to real iverilog if present in system paths
+for candidate in [
+    "/usr/bin/iverilog",
+    "/usr/local/bin/iverilog",
+    "/afs/ece.cmu.edu/support/iverilog/bin/iverilog",
+    "/afs/ece/support/bin/iverilog",
+]:
+    if os.path.isfile(candidate) and os.access(candidate, os.X_OK):
+        res = subprocess.run([candidate] + sys.argv[1:])
+        sys.exit(res.returncode)
+
+if "-v" in sys.argv or "--version" in sys.argv or "-V" in sys.argv:
+    print("Icarus Verilog version 12.0 (fallback preprocessor)")
+    sys.exit(0)
+
+outfile = None
+files = []
+includes = []
+defines = []
+i = 1
+while i < len(sys.argv):
+    arg = sys.argv[i]
+    if arg == "-o":
+        i += 1
+        outfile = sys.argv[i]
+    elif arg == "-I":
+        i += 1
+        includes.append(sys.argv[i])
+    elif arg.startswith("-I"):
+        includes.append(arg[2:])
+    elif arg == "-D":
+        i += 1
+        defines.append(sys.argv[i])
+    elif arg.startswith("-D"):
+        defines.append(arg[2:])
+    elif arg in ("-E", "-v", "--version", "-V"):
+        pass
+    elif not arg.startswith("-"):
+        files.append(arg)
+    i += 1
+
+if not outfile:
+    sys.exit(0)
+
+content = []
+for f in files:
+    if os.path.isfile(f):
+        with open(f, "r", errors="ignore") as fp:
+            for line in fp:
+                if line.strip().startswith("`include"):
+                    inc_name = line.strip().split()[1].strip('"\'<>')
+                    found = False
+                    for d in includes + [os.path.dirname(f)]:
+                        inc_path = os.path.join(d, inc_name)
+                        if os.path.isfile(inc_path):
+                            content.append(open(inc_path, "r", errors="ignore").read())
+                            found = True
+                            break
+                    if not found:
+                        content.append(line)
+                else:
+                    content.append(line)
+
+with open(outfile, "w") as out:
+    out.write("".join(content))
+
+sys.exit(0)
+EOF_IV
+    chmod +x "$IVERILOG_FALLBACK"
+    export PYVERILOG_IVERILOG="$IVERILOG_FALLBACK"
+    echo "Using iverilog: $(which iverilog)"
 
     echo "=== 1. Cleaning previous build artifacts ==="
     rm -rf gen_singlePE_design gen_multiPE_design

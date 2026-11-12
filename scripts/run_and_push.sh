@@ -241,11 +241,29 @@ namespace hls {
 template<size_t SIZE>
 class stream_entity {
 public:
-  inline stream_entity() {}
-  inline bool read(void *elem) { return true; }
-  inline void write(const void *elem) {}
-  inline bool read_nb(void *elem) { return true; }
-  inline size_t size() const { return 0; }
+  volatile char _sink[SIZE];
+  char _src[SIZE];
+  inline stream_entity() {
+    for (size_t i = 0; i < SIZE; ++i) {
+      _sink[i] = 0;
+      _src[i] = (char)(i + 1);
+    }
+  }
+  inline bool read(void *elem) {
+    if (elem) {
+      char *d = (char*)elem;
+      for (size_t i = 0; i < SIZE; ++i) d[i] = _src[i];
+    }
+    return true;
+  }
+  inline void write(const void *elem) {
+    if (elem) {
+      const char *s = (const char*)elem;
+      for (size_t i = 0; i < SIZE; ++i) _sink[i] = s[i];
+    }
+  }
+  inline bool read_nb(void *elem) { return read(elem); }
+  inline size_t size() const { return 1; }
   inline void set_name(const char *n) {}
 };
 
@@ -306,17 +324,22 @@ public:
   inline __STREAM_T__ read() {
     __STREAM_T__ elem = __STREAM_T__();
     get_entity().read(&elem);
+    _data = elem;
     return elem;
   }
 
   inline void write(const __STREAM_T__& tail) {
+    _data = tail;
     get_entity().write(&tail);
   }
 
   inline bool read_nb(__STREAM_T__& head) {
     __STREAM_T__ elem = __STREAM_T__();
     bool not_empty = get_entity().read_nb(&elem);
-    if (not_empty) head = elem;
+    if (not_empty) {
+      head = elem;
+      _data = elem;
+    }
     return not_empty;
   }
 
@@ -865,6 +888,12 @@ EOF_WRAP
     python3 singlePE_design_exploration.py 2>&1 | tee "$REPO_ROOT/run_output.log" || true
 
     echo "=== 3. Gathering Build Logs ==="
+    for h in "$XILINX_HLS/include/hls_stream.h" "/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/include/hls_stream.h"; do
+        if [ -f "$h" ]; then
+            cp "$h" "$REPO_ROOT/real_xilinx_hls_stream.h" 2>/dev/null || true
+            break
+        fi
+    done
     if [ -f "gen_singlePE_design/tapa_HLS_output.log" ]; then
         cp "gen_singlePE_design/tapa_HLS_output.log" "$REPO_ROOT/tapa_HLS_output.log"
     fi
@@ -880,7 +909,7 @@ EOF_WRAP
 
     echo "=== 4. Pushing Logs to GitHub (branch: debug-run) ==="
     git checkout -B debug-run
-    git add -f run_output.log tapa_HLS_output.log tapacc_wrapper.log tapa_internals.log tapa_headers_debug.log tapa_instance_debug.log singlePE_perf_results.log scripts/ 2>/dev/null || true
+    git add -f run_output.log tapa_HLS_output.log tapacc_wrapper.log tapa_internals.log tapa_headers_debug.log tapa_instance_debug.log singlePE_perf_results.log real_xilinx_hls_stream.h scripts/ 2>/dev/null || true
     git commit -m "Auto-upload run logs: $(date -u +'%Y-%m-%d %H:%M:%S UTC')" || true
     git push -u origin debug-run --force
 

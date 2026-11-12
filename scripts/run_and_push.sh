@@ -6,6 +6,22 @@
 
     cd "$SCRIPT_DIR"
 
+    echo "=== 0. Setting up Xilinx Environment Variables ==="
+    if [ -z "$XILINX_VITIS" ] && [ -f "/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis/2023.2/settings64.sh" ]; then
+        source "/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis/2023.2/settings64.sh" || true
+    fi
+    if [ -z "$XILINX_VITIS" ]; then
+        export XILINX_VITIS="/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis/2023.2"
+    fi
+    if [ -z "$XILINX_HLS" ]; then
+        export XILINX_HLS="/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2"
+    fi
+    if [ -z "$XILINX_XRT" ] && [ -d "/opt/xilinx/xrt" ]; then
+        export XILINX_XRT="/opt/xilinx/xrt"
+    fi
+    echo "Using XILINX_VITIS=$XILINX_VITIS"
+    echo "Using XILINX_HLS=$XILINX_HLS"
+
     echo "=== 1. Cleaning previous build artifacts ==="
     rm -rf gen_singlePE_design gen_multiPE_design
 

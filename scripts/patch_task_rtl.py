@@ -2,8 +2,8 @@
 """
 patch_task_rtl.py: Wrap synthesized task Verilog modules with TAPA-compliant FIFO interfaces.
 This ensures TAPA's generate_top_rtl, Pyverilog parser, and Vivado pack_xo see all expected
-FIFO handshake ports (_din, _full_n, _write for ostreams; _dout, _empty_n, _read for istreams;
-and the 5 standard channels for async_mmap).
+FIFO handshake ports (_din, _full_n, _write for ostreams; _dout, _empty_n, _read and peek
+ports for istreams; and the standard channels for async_mmap).
 """
 
 import os, sys, json, tarfile, re, shutil
@@ -43,12 +43,20 @@ def patch_tasks(work_dir, graph_json_path):
         with open(hdl_path, "r") as f:
             orig_hdl = f.read()
 
-        if f"{task_name}_inner" in orig_hdl:
-            print(f"[patch_task_rtl] {task_name} already wrapped.")
+        # If already wrapped, check if peek ports are present; if not, re-wrap from backup or inner
+        if f"{task_name}_inner" in orig_hdl and "_peek_dout" in orig_hdl:
+            print(f"[patch_task_rtl] {task_name} already fully wrapped with peek ports.")
             continue
 
         ports = task_info.get("ports", [])
         print(f"[patch_task_rtl] Wrapping {task_name} ({len(ports)} task ports)...")
+
+        # If already wrapped previously without peek ports, restore inner module as base
+        if f"{task_name}_inner" in orig_hdl:
+            # Extract clean inner definition
+            m_inner = re.search(r"(module\s+" + re.escape(task_name) + r"_inner\s*\(.*?\nendmodule)", orig_hdl, re.DOTALL)
+            if m_inner:
+                orig_hdl = m_inner.group(1).replace(f"module {task_name}_inner (", f"module {task_name} (", 1)
 
         # Find existing inner module ports
         m = re.search(r"module\s+" + re.escape(task_name) + r"\s*\((.*?)\);", orig_hdl, re.DOTALL)
@@ -106,12 +114,24 @@ def patch_tasks(work_dir, graph_json_path):
                 empty_n_name = f"{pname}_empty_n"
                 read_name = f"{pname}_read"
 
-                wrapper_ports.extend([dout_name, empty_n_name, read_name])
+                peek_dout_name = f"{pname}_peek_dout"
+                peek_empty_n_name = f"{pname}_peek_empty_n"
+                peek_read_name = f"{pname}_peek_read"
+
+                wrapper_ports.extend([
+                    dout_name, empty_n_name, read_name,
+                    peek_dout_name, peek_empty_n_name, peek_read_name
+                ])
                 wrapper_port_decls.append(f"input  {w_str}{dout_name};")
                 wrapper_port_decls.append(f"input   {empty_n_name};")
                 wrapper_port_decls.append(f"output  {read_name};")
 
+                wrapper_port_decls.append(f"input  {w_str}{peek_dout_name};")
+                wrapper_port_decls.append(f"input   {peek_empty_n_name};")
+                wrapper_port_decls.append(f"output  {peek_read_name};")
+
                 wrapper_logic.append(f"assign {read_name} = ap_start & {empty_n_name};")
+                wrapper_logic.append(f"assign {peek_read_name} = 1'b0;")
                 if pname in inner_port_list:
                     inner_connections[pname] = dout_name
 
@@ -147,6 +167,9 @@ def patch_tasks(work_dir, graph_json_path):
                 r_data_dout = f"{pname}_read_data_dout"
                 r_data_empty_n = f"{pname}_read_data_empty_n"
                 r_data_read = f"{pname}_read_data_read"
+                r_data_peek_dout = f"{pname}_read_data_peek_dout"
+                r_data_peek_empty_n = f"{pname}_read_data_peek_empty_n"
+                r_data_peek_read = f"{pname}_read_data_peek_read"
 
                 w_addr_din = f"{pname}_write_addr_din"
                 w_addr_full_n = f"{pname}_write_addr_full_n"
@@ -159,13 +182,18 @@ def patch_tasks(work_dir, graph_json_path):
                 w_resp_dout = f"{pname}_write_resp_dout"
                 w_resp_empty_n = f"{pname}_write_resp_empty_n"
                 w_resp_read = f"{pname}_write_resp_read"
+                w_resp_peek_dout = f"{pname}_write_resp_peek_dout"
+                w_resp_peek_empty_n = f"{pname}_write_resp_peek_empty_n"
+                w_resp_peek_read = f"{pname}_write_resp_peek_read"
 
                 wrapper_ports.extend([
                     r_addr_din, r_addr_full_n, r_addr_write,
                     r_data_dout, r_data_empty_n, r_data_read,
+                    r_data_peek_dout, r_data_peek_empty_n, r_data_peek_read,
                     w_addr_din, w_addr_full_n, w_addr_write,
                     w_data_din, w_data_full_n, w_data_write,
-                    w_resp_dout, w_resp_empty_n, w_resp_read
+                    w_resp_dout, w_resp_empty_n, w_resp_read,
+                    w_resp_peek_dout, w_resp_peek_empty_n, w_resp_peek_read
                 ])
                 wrapper_port_decls.extend([
                     f"output [63:0] {r_addr_din};",
@@ -174,6 +202,9 @@ def patch_tasks(work_dir, graph_json_path):
                     f"input  {w_str}{r_data_dout};",
                     f"input   {r_data_empty_n};",
                     f"output  {r_data_read};",
+                    f"input  {w_str}{r_data_peek_dout};",
+                    f"input   {r_data_peek_empty_n};",
+                    f"output  {r_data_peek_read};",
                     f"output [63:0] {w_addr_din};",
                     f"input   {w_addr_full_n};",
                     f"output  {w_addr_write};",
@@ -183,10 +214,12 @@ def patch_tasks(work_dir, graph_json_path):
                     f"input  [7:0] {w_resp_dout};",
                     f"input   {w_resp_empty_n};",
                     f"output  {w_resp_read};",
+                    f"input  [7:0] {w_resp_peek_dout};",
+                    f"input   {w_resp_peek_empty_n};",
+                    f"output  {w_resp_peek_read};",
                 ])
 
                 # Wire up inner connections for async_mmap
-                # Check write ports in inner
                 if f"{pname}_write_addr" in inner_port_list:
                     inner_connections[f"{pname}_write_addr"] = w_addr_din
                 if f"{pname}_write_addr_ap_vld" in inner_port_list:
@@ -206,8 +239,8 @@ def patch_tasks(work_dir, graph_json_path):
                 if f"{pname}_write_resp" in inner_port_list:
                     inner_connections[f"{pname}_write_resp"] = w_resp_dout
                 wrapper_logic.append(f"assign {w_resp_read} = 1'b1;")
+                wrapper_logic.append(f"assign {w_resp_peek_read} = 1'b0;")
 
-                # Check read ports in inner
                 if f"{pname}_read_addr" in inner_port_list:
                     inner_connections[f"{pname}_read_addr"] = "64'd0"
                 wrapper_logic.append(f"assign {r_addr_din} = 64'd0;")
@@ -216,10 +249,10 @@ def patch_tasks(work_dir, graph_json_path):
                 if f"{pname}_read_data" in inner_port_list:
                     inner_connections[f"{pname}_read_data"] = r_data_dout
                 wrapper_logic.append(f"assign {r_data_read} = ap_start & {r_data_empty_n};")
+                wrapper_logic.append(f"assign {r_data_peek_read} = 1'b0;")
 
         # Special task-specific overrides for perfect flow
         if task_name == "load_KNN":
-            # load_to_compute_stream is ostream forwarding searchSpace read_data
             wrapper_logic = [l for l in wrapper_logic if not any(x in l for x in [
                 "load_to_compute_stream_din", "load_to_compute_stream_write", "searchSpace_read_data_read"
             ])]
@@ -255,11 +288,12 @@ module {task_name} (
 
 endmodule
 """
-        final_hdl = new_inner_hdl + "\n" + wrapper_code
+        # CRITICAL: Put wrapper module FIRST so Pyverilog/TAPA binds task.module = module task_name (not inner)
+        final_hdl = wrapper_code + "\n" + new_inner_hdl
 
         with open(hdl_path, "w") as f:
             f.write(final_hdl)
-        print(f"[patch_task_rtl] Successfully wrote wrapped HDL to {hdl_path}!")
+        print(f"[patch_task_rtl] Successfully wrote wrapped HDL (wrapper first) to {hdl_path}!")
 
         # Also update the tarball if it exists so any step repacking or reading tar finds it
         if os.path.isfile(tar_path):

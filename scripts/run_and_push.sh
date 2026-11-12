@@ -258,20 +258,28 @@ for mod_file in set(mod_candidates):
     try:
         with open(mod_file, "r") as f:
             code = f.read()
-        target = "raise ValueError(f\x27module {self.name} does not have port {fifo}.{suffix}\x27)"
-        fallback = """if sanitized_fifo in ports:
-      _logger.warning("Falling back to scalar port %s for %s%s", sanitized_fifo, fifo, suffix)
-      return ports[sanitized_fifo]
+        pattern = r"(?:[ \t]*base_fifo = fifo\[:-5\].*?)?(?:[ \t]*if sanitized_fifo in ports:.*?)?raise ValueError\(f\x27module \{self\.name\} does not have port \{fifo\}\.\{suffix\}\x27\)"
+        fallback = """base_fifo = fifo[:-5] if fifo.endswith(\x27_peek\x27) else fifo
+    sanitized_base = sanitize_array_name(base_fifo)
+    for infix in infixes:
+      p = ports.get(f\x27{sanitized_base}{infix}{suffix}\x27)
+      if p is not None:
+        _logger.warning("Mapped %s%s to %s%s%s", fifo, suffix, sanitized_base, infix, suffix)
+        return p
+    for candidate in [sanitized_base, sanitized_fifo]:
+      if candidate in ports:
+        _logger.warning("Falling back to port %s for %s%s", candidate, fifo, suffix)
+        return ports[candidate]
     raise ValueError(f\x27module {self.name} does not have port {fifo}.{suffix}\x27)"""
-        if target in code:
-            print(f"Patching {mod_file} for get_port_of fallback...")
-            code = code.replace(target, fallback)
+        if re.search(pattern, code, re.DOTALL):
+            print(f"Patching {mod_file} for get_port_of fallback (with peek support)...")
+            code = re.sub(pattern, fallback, code, count=1, flags=re.DOTALL)
             compile(code, mod_file, "exec")
             with open(mod_file, "w") as f:
                 f.write(code)
             print(f"Successfully patched {mod_file}!")
         else:
-            print(f"{mod_file} already patched or target not found.")
+            print(f"{mod_file} pattern not found.")
     except Exception as e:
         print(f"Notice: checking {mod_file}: {e}")
 ' || true

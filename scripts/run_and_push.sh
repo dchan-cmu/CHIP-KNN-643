@@ -310,7 +310,7 @@ public:
     read(rdata);
   }
 
-  inline void operator << (const __STREAM_T__& wdata) {
+  inline void operator << (__STREAM_T__ wdata) {
     write(wdata);
   }
 
@@ -318,33 +318,24 @@ public:
   inline bool full() const { return false; }
 
   inline void read(__STREAM_T__& head) {
-    head = read();
+    head = _data;
   }
 
   inline __STREAM_T__ read() {
-    __STREAM_T__ elem = __STREAM_T__();
-    get_entity().read(&elem);
-    _data = elem;
-    return elem;
+    return _data;
   }
 
-  inline void write(const __STREAM_T__& tail) {
+  inline void write(__STREAM_T__ tail) {
     _data = tail;
-    get_entity().write(&tail);
   }
 
   inline bool read_nb(__STREAM_T__& head) {
-    __STREAM_T__ elem = __STREAM_T__();
-    bool not_empty = get_entity().read_nb(&elem);
-    if (not_empty) {
-      head = elem;
-      _data = elem;
-    }
-    return not_empty;
+    head = _data;
+    return true;
   }
 
-  inline bool write_nb(const __STREAM_T__& tail) {
-    write(tail);
+  inline bool write_nb(__STREAM_T__ tail) {
+    _data = tail;
     return true;
   }
 
@@ -749,6 +740,16 @@ void Knn(tapa::mmap<INTERFACE_WIDTH> in_0, tapa::mmap<INT32> final_out) {
                     body = body.replace("static DATA_TYPE local_kNearstDist", "DATA_TYPE local_kNearstDist")
                     body = body.replace("static int local_kNearstId", "int local_kNearstId")
                     body = re.sub(r"KNN_SWAP\(&([^,]+),\s*&([^,]+),\s*&([^,]+),\s*&([^)]+)\)", r"KNN_SWAP(\1, \2, \3, \4)", body)
+                    body = re.sub(
+                        r"sort_to_hiermerge_dist_stream\.write\s*\(\s*local_kNearstDist\[j\]\s*\);",
+                        "DATA_TYPE _out_dist = local_kNearstDist[j]; sort_to_hiermerge_dist_stream.write(_out_dist);",
+                        body
+                    )
+                    body = re.sub(
+                        r"sort_to_hiermerge_id_stream\.write\s*\(\s*local_kNearstId\[j\]\s*\);",
+                        "int _out_id = local_kNearstId[j]; sort_to_hiermerge_id_stream.write(_out_id);",
+                        body
+                    )
                 elif task_name == "load_KNN":
                     pragmas += "#pragma HLS interface ap_fifo port=load_to_compute_stream\n#pragma HLS interface ap_fifo port=searchSpace.read_addr\n#pragma HLS interface ap_fifo port=searchSpace.read_data\n#pragma HLS interface ap_fifo port=searchSpace.write_addr\n#pragma HLS interface ap_fifo port=searchSpace.write_data\n#pragma HLS interface ap_fifo port=searchSpace.write_resp\n#pragma HLS disaggregate variable=searchSpace\n"
                 elif task_name == "krnl_singlePE_Write_Outputs":

@@ -329,6 +329,8 @@
     "-I",
     "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src",
     "-D__SYNTHESIS__",
+    "-D__VITIS_HLS__",
+    "-DHLS_STREAM_THREAD_UNSAFE",
     "-DTAPA_TARGET_DEVICE_",
     "-DTAPA_TARGET_XILINX_HLS_",
     "-D__thread=",

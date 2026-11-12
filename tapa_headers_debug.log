@@ -1662,7 +1662,7 @@ class hmap;
 #include <cstddef>
 #include <cstdint>
 
-#include "hls_stream.h"
+#include <hls_stream.h>
 
 namespace tapa {
 
@@ -1900,6 +1900,39 @@ tapa/xilinx/hls/task.h:15: #if defined(TAPA_TARGET_DEVICE_) || defined(TAPA_TARG
 tapa/xilinx/hls/vec.h:9: // are switched on by `TAPA_TARGET_XILINX_HLS_`, which the synthesis flow
 
 === GREP mutex in headers ===
+hls_stream.h:15: #error C++ is required to include this header file
+hls_stream.h:22: #include <queue>
+hls_stream.h:23: #include <iostream>
+hls_stream.h:24: #include <typeinfo>
+hls_stream.h:25: #include <string>
+hls_stream.h:26: #include <sstream>
+hls_stream.h:27: #include <unordered_map>
+hls_stream.h:28: #include <cstring>
+hls_stream.h:29: #include <array>
+hls_stream.h:30: #include <limits>
+hls_stream.h:31: #include <thread>
+hls_stream.h:32: #include <chrono>
+hls_stream.h:33: #include <mutex>
+hls_stream.h:34: #include <atomic>
+hls_stream.h:35: #include <condition_variable>
+hls_stream.h:38: #include <cxxabi.h>
+hls_stream.h:39: #include <stdlib.h>
+hls_stream.h:115: static std::mutex &get_mutex() {
+hls_stream.h:116: static std::mutex mutex;
+hls_stream.h:118: return mutex;
+hls_stream.h:169: std::unique_lock<std::mutex> ul(mutex);
+hls_stream.h:180: std::unique_lock<std::mutex> ul(mutex);
+hls_stream.h:222: std::unique_lock<std::mutex> ul(mutex);
+hls_stream.h:242: std::lock_guard<std::mutex> lg(mutex);
+hls_stream.h:259: std::lock_guard<std::mutex> lg(mutex);
+hls_stream.h:267: std::lock_guard<std::mutex> lg(mutex);
+hls_stream.h:276: std::mutex mutex;
+hls_stream.h:287: std::lock_guard<std::mutex> lg(get_mutex());
+hls_stream.h:294: std::lock_guard<std::mutex> lg(get_mutex());
+hls_stream.h:303: std::lock_guard<std::mutex> lg(get_mutex());
+hls_stream.h:310: static std::mutex &get_mutex() {
+hls_stream.h:311: static std::mutex *mutex = new std::mutex();
+hls_stream.h:312: return *mutex;
 glog/logging.h:32: // This file contains #include information about logging-related stuff.
 glog/logging.h:33: // Pretty much everybody needs to #include this file so that they can
 glog/logging.h:39: #include <cerrno>

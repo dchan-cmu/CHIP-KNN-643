@@ -161,6 +161,11 @@ def patch_tasks(work_dir, graph_json_path):
                     inner_connections[f"{pname}_ap_vld"] = inner_wire_vld
 
             elif pcat == "async_mmap":
+                # Base address offset port required by TAPA top-level instrumenter
+                offset_name = f"{pname}_offset"
+                wrapper_ports.append(offset_name)
+                wrapper_port_decls.append(f"input  [63:0] {offset_name};")
+
                 # 5 channels
                 r_addr_din = f"{pname}_read_addr_din"
                 r_addr_full_n = f"{pname}_read_addr_full_n"

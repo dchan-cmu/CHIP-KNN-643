@@ -191,6 +191,31 @@ else:
     print("tapa.core already up to date.")
 ' || true
 
+    echo "=== 1a-2. Patching TAPA instance to support scalar dict arguments ==="
+    python3 -c '
+import tapa.instance, re
+
+inst_file = tapa.instance.__file__
+with open(inst_file, "r") as f:
+    code = f.read()
+
+with open("tapa_instance_debug.log", "w") as df:
+    df.write(code)
+
+pattern = r"rtl\.sanitize_array_name\(\s*arg\[[\x27\"]arg[\x27\"]\]\s*\)"
+replacement = "(f\"{arg[\x27arg\x27].get(\x27width\x27, 32)}\x27d{arg[\x27arg\x27][\x27value\x27]}\" if isinstance(arg[\x27arg\x27], dict) else rtl.sanitize_array_name(str(arg[\x27arg\x27])))"
+
+if re.search(pattern, code):
+    print(f"Patching {inst_file} for scalar dictionary arguments...")
+    code = re.sub(pattern, replacement, code)
+    compile(code, inst_file, "exec")
+    with open(inst_file, "w") as f:
+        f.write(code)
+    print("Successfully patched tapa.instance!")
+else:
+    print("tapa.instance already patched or pattern not found.")
+' || true
+
     python3 -c '
 import os, glob
 
@@ -666,6 +691,24 @@ void Knn(tapa::mmap<INTERFACE_WIDTH> in_0, tapa::mmap<INT32> final_out) {
             clean_cflags.append(autopilot_inc)
         data["cflags"] = clean_cflags
 
+        def normalize_scalar_args(obj):
+            if isinstance(obj, dict):
+                if obj.get("cat") == "scalar":
+                    arg_val = obj.get("arg")
+                    if isinstance(arg_val, dict) and "value" in arg_val:
+                        w = arg_val.get("width", 32)
+                        v = arg_val.get("value", 0)
+                        obj["arg"] = f"{w}'d{v}"
+                    elif isinstance(arg_val, int):
+                        obj["arg"] = f"32'd{arg_val}"
+                for k, v in obj.items():
+                    normalize_scalar_args(v)
+            elif isinstance(obj, list):
+                for item in obj:
+                    normalize_scalar_args(item)
+
+        normalize_scalar_args(data)
+
         sys.stdout.write(json.dumps(data))
     except Exception as e:
         sys.stderr.write(f"Error patching JSON: {e}\n")
@@ -759,11 +802,15 @@ EOF_WRAP
         cp "/tmp/tapacc_wrapper.log" "$REPO_ROOT/tapacc_wrapper.log"
     fi
 
+    if [ -f "singlePE_perf_results.log" ]; then
+        cp "singlePE_perf_results.log" "$REPO_ROOT/singlePE_perf_results.log"
+    fi
+
     cd "$REPO_ROOT"
 
     echo "=== 4. Pushing Logs to GitHub (branch: debug-run) ==="
     git checkout -B debug-run
-    git add -f run_output.log tapa_HLS_output.log tapacc_wrapper.log tapa_internals.log tapa_headers_debug.log scripts/ 2>/dev/null || true
+    git add -f run_output.log tapa_HLS_output.log tapacc_wrapper.log tapa_internals.log tapa_headers_debug.log tapa_instance_debug.log singlePE_perf_results.log scripts/ 2>/dev/null || true
     git commit -m "Auto-upload run logs: $(date -u +'%Y-%m-%d %H:%M:%S UTC')" || true
     git push -u origin debug-run --force
 

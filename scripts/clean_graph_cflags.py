@@ -43,8 +43,26 @@ if autopilot_inc not in clean:
 
 data["cflags"] = clean
 
+def normalize_scalar_args(obj):
+    if isinstance(obj, dict):
+        if obj.get("cat") == "scalar":
+            arg_val = obj.get("arg")
+            if isinstance(arg_val, dict) and "value" in arg_val:
+                w = arg_val.get("width", 32)
+                v = arg_val.get("value", 0)
+                obj["arg"] = f"{w}'d{v}"
+            elif isinstance(arg_val, int):
+                obj["arg"] = f"32'd{arg_val}"
+        for k, v in obj.items():
+            normalize_scalar_args(v)
+    elif isinstance(obj, list):
+        for item in obj:
+            normalize_scalar_args(item)
+
+normalize_scalar_args(data)
+
 with open(path, "w") as f:
     json.dump(data, f, indent=2)
 
-print(f"[clean_graph_cflags] Updated {path} with clean cflags: {clean}")
+print(f"[clean_graph_cflags] Updated {path} with clean cflags and normalized scalar args")
 

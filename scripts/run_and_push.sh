@@ -235,26 +235,32 @@ clean_hls_stream_code = """#pragma once
 
 #include <cstddef>
 #include <cstdint>
+#include <array>
+#include <cstring>
 
 namespace hls {
 
-template<typename T>
+template<size_t SIZE>
 class stream_entity {
 public:
-  T _storage;
+  std::array<char, (SIZE > 0 ? SIZE : 1)> data;
 
-  inline stream_entity() : _storage() {}
+  inline stream_entity() {}
 
-  inline bool read(T *elem) {
-    if (elem) *elem = _storage;
+  inline bool read(void *elem) {
+    if (elem) {
+      memcpy(elem, data.data(), SIZE);
+    }
     return true;
   }
 
-  inline void write(const T *elem) {
-    if (elem) _storage = *elem;
+  inline void write(const void *elem) {
+    if (elem) {
+      memcpy(data.data(), elem, SIZE);
+    }
   }
 
-  inline bool read_nb(T *elem) { return read(elem); }
+  inline bool read_nb(void *elem) { return read(elem); }
   inline size_t size() const { return 1; }
   inline void set_name(const char *n) {}
 };
@@ -264,6 +270,10 @@ class stream_map {
 public:
   static inline size_t count(void *p) { return 1; }
   static inline void insert(void *p) {}
+  static inline stream_entity<SIZE> &get_entity(void *p) {
+    static stream_entity<SIZE> ent;
+    return ent;
+  }
 };
 
 template<typename __STREAM_T__, int DEPTH=0>
@@ -276,9 +286,9 @@ public:
   using value_type = __STREAM_T__;
 
 protected:
-  stream_entity<__STREAM_T__> _data;
+  stream_entity<sizeof(__STREAM_T__)> _data;
 
-  inline stream_entity<__STREAM_T__> &get_entity() {
+  inline stream_entity<sizeof(__STREAM_T__)> &get_entity() {
     return _data;
   }
 

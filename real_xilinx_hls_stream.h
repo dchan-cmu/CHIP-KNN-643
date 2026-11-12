@@ -342,6 +342,7 @@ class stream<__STREAM_T__, 0>
     /// Constructors
     // Keep consistent with the synthesis model's constructors
     stream() {
+#if !defined(__SYNTHESIS__)
       std::stringstream ss;
 #ifndef _MSC_VER
       char* _demangle_name = abi::__cxa_demangle(typeid(*this).name(), 0, 0, 0);
@@ -367,15 +368,18 @@ class stream<__STREAM_T__, 0>
 #endif
       ss << counter++;
       get_entity().set_name(ss.str().c_str());
+#endif
     }
 
     stream(const char *name) {
     // default constructor,
     // capacity set to predefined maximum
+#if !defined(__SYNTHESIS__)
 #if defined(__VITIS_HLS__)
       map_t::insert(&_data);
 #endif
       get_entity().set_name(name);
+#endif
     }
 
   /// Make copy constructor and assignment operator private
@@ -412,6 +416,7 @@ class stream<__STREAM_T__, 0>
     /// Destructor
     /// Check status of the queue
     ~stream() {
+#if !defined(__SYNTHESIS__)
       if (!empty())
       {
           std::cout << "WARNING [HLS SIM]: hls::stream '" 
@@ -420,11 +425,16 @@ class stream<__STREAM_T__, 0>
                     << " which may result in RTL simulation hanging."
                     << std::endl;
       }
+#endif
     }
 
 #if defined(__VITIS_HLS__)
     bool exist() {
+#if defined(__SYNTHESIS__)
+      return true;
+#else
       return map_t::count(&_data);
+#endif
     }
 #endif
 
@@ -437,54 +447,90 @@ class stream<__STREAM_T__, 0>
 
     /// Blocking read
     void read(__STREAM_T__& head) {
+#if defined(__SYNTHESIS__)
+        head = _data;
+#else
         head = read();
+#endif
     }
 
     /// Blocking read
     bool read_dep(__STREAM_T__& head, volatile bool flag) {
+#if defined(__SYNTHESIS__)
+        head = _data;
+        return flag;
+#else
         head = read();
         return flag;
+#endif
     }
 
     __STREAM_T__ read() {
+#if defined(__SYNTHESIS__)
+      return _data;
+#else
       __STREAM_T__ elem;
       auto &entity = get_entity();
       if (!entity.read(&elem)) 
         elem = __STREAM_T__();
       return elem;
+#endif
     }
 
     /// Blocking write
     void write(const __STREAM_T__& tail) { 
+#if defined(__SYNTHESIS__)
+      _data = tail;
+#else
       get_entity().write(&tail);
+#endif
     }
 
     /// Blocking write
     bool write_dep(const __STREAM_T__& tail, volatile bool flag) { 
+#if defined(__SYNTHESIS__)
+      _data = tail;
+      return flag;
+#else
       write(tail);
       return flag;
+#endif
     }
 
     /// Nonblocking read
     bool read_nb(__STREAM_T__& head) {
+#if defined(__SYNTHESIS__)
+      head = _data;
+      return true;
+#else
       __STREAM_T__ elem;
       auto &entity = get_entity();
       bool not_empty = entity.read_nb(&elem);
       if (not_empty)
         head = elem;
       return not_empty;
+#endif
     }
 
     /// Nonblocking write
     bool write_nb(const __STREAM_T__& tail) {
+#if defined(__SYNTHESIS__)
+        _data = tail;
+        return true;
+#else
         bool is_full = full();
         write(tail);
         return !is_full;
+#endif
     }
 
     /// Fifo size
     size_t size() {
+#if defined(__SYNTHESIS__)
+      return 0;
+#else
       return get_entity().size();
+#endif
     }
 
     /// Fifo capacity
@@ -495,11 +541,15 @@ class stream<__STREAM_T__, 0>
 
     /// Set name for c-sim debugging.
     void set_name(const char *name) { 
+#if !defined(__SYNTHESIS__)
       get_entity().set_name(name);
+#endif
     }
 
     void set_delegate(stream_delegate<sizeof(__STREAM_T__)> *d) {
+#if !defined(__SYNTHESIS__)
       get_entity().d = d;
+#endif
     }
 };
 

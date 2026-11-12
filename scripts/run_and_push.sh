@@ -232,16 +232,13 @@ repo = os.environ.get("REPO_ROOT", "/scratch/643_vitis_dchan2/CHIP-KNN-643")
 stream_h = os.path.join(repo, ".tapa/usr/include/tapa/xilinx/hls/stream.h")
 
 clean_hls_stream_code = ""
-for cand in [
-    os.path.join(repo, "real_xilinx_hls_stream.h"),
-    os.environ.get("XILINX_HLS", "") + "/include/hls_stream.h",
-    "/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/include/hls_stream.h"
-]:
-    if cand and os.path.isfile(cand):
-        with open(cand, "r") as rf:
-            clean_hls_stream_code = rf.read()
-        print(f"Loaded real Xilinx hls_stream.h from {cand}")
-        break
+patched_hdr = os.path.join(repo, "real_xilinx_hls_stream.h")
+if os.path.isfile(patched_hdr):
+    with open(patched_hdr, "r") as rf:
+        clean_hls_stream_code = rf.read()
+    print(f"Loaded patched Xilinx hls_stream.h from {patched_hdr}")
+else:
+    raise FileNotFoundError(f"Missing {patched_hdr}")
 
 clean_stream_code = """#pragma once
 
@@ -781,12 +778,6 @@ EOF_WRAP
     python3 singlePE_design_exploration.py 2>&1 | tee "$REPO_ROOT/run_output.log" || true
 
     echo "=== 3. Gathering Build Logs ==="
-    for h in "$XILINX_HLS/include/hls_stream.h" "/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/include/hls_stream.h"; do
-        if [ -f "$h" ]; then
-            cp "$h" "$REPO_ROOT/real_xilinx_hls_stream.h" 2>/dev/null || true
-            break
-        fi
-    done
     if [ -f "gen_singlePE_design/tapa_HLS_output.log" ]; then
         cp "gen_singlePE_design/tapa_HLS_output.log" "$REPO_ROOT/tapa_HLS_output.log"
     fi

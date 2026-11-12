@@ -115,8 +115,7 @@ $(TEMP_DIR)/knn.xo: $(KNN_SRC)
           --cflags=-I$(CXX_ARCH_INC) \
           --cflags=-I/usr/include \
           --cflags=-I/usr/include/x86_64-linux-gnu \
-          --cflags=-I$$XILINX_HLS/include \
-          --cflags=-I$$XILINX_VITIS/include \
+          --cflags=-I$$XILINX_HLS/common/technology/autopilot \
           --cflags=-I$(shell pwd)/../../.tapa/usr/include \
 	      --max-parallel-synth-jobs 12 \
 	      --run-tapacc \

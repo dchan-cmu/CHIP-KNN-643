@@ -227,7 +227,7 @@ class Program:
       hls_cflags = ' '.join((
           self.cflags,
           
-          '-DTAPA_TARGET_=XILINX_HLS', '-DTAPA_TARGET_DEVICE_', '-DTAPA_TARGET_XILINX_HLS_', '-D__SYNTHESIS__',
+          '-DTAPA_TARGET_=XILINX_HLS', '-DTAPA_TARGET_DEVICE_', '-DTAPA_TARGET_XILINX_HLS_', '-D__SYNTHESIS__', '-D__VITIS_HLS__', '-DTAPA_TARGET_DEVICE_', '-DTAPA_TARGET_XILINX_HLS_', '-D__SYNTHESIS__',
       ))
       with open(self.get_tar(task.name), 'wb') as tarfileobj:
         with hls.RunHls(

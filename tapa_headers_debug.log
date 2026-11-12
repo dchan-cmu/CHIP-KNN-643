@@ -1668,7 +1668,7 @@ class hmap;
 #include <cstddef>
 #include <cstdint>
 
-#include <hls_stream.h>
+#include "hls_stream.h"
 
 namespace tapa {
 

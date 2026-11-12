@@ -231,119 +231,17 @@ import os, glob
 repo = os.environ.get("REPO_ROOT", "/scratch/643_vitis_dchan2/CHIP-KNN-643")
 stream_h = os.path.join(repo, ".tapa/usr/include/tapa/xilinx/hls/stream.h")
 
-clean_hls_stream_code = """#pragma once
-
-#include <cstddef>
-#include <cstdint>
-#include <array>
-#include <cstring>
-
-namespace hls {
-
-template<size_t SIZE>
-class stream_entity {
-public:
-  std::array<char, (SIZE > 0 ? SIZE : 1)> data;
-
-  inline stream_entity() {}
-
-  inline bool read(void *elem) {
-    if (elem) {
-      memcpy(elem, data.data(), SIZE);
-    }
-    return true;
-  }
-
-  inline void write(const void *elem) {
-    if (elem) {
-      memcpy(data.data(), elem, SIZE);
-    }
-  }
-
-  inline bool read_nb(void *elem) { return read(elem); }
-  inline size_t size() const { return 1; }
-  inline void set_name(const char *n) {}
-};
-
-template<size_t SIZE>
-class stream_map {
-public:
-  static inline size_t count(void *p) { return 1; }
-  static inline void insert(void *p) {}
-  static inline stream_entity<SIZE> &get_entity(void *p) {
-    static stream_entity<SIZE> ent;
-    return ent;
-  }
-};
-
-template<typename __STREAM_T__, int DEPTH=0>
-class stream;
-
-template<typename __STREAM_T__>
-class stream<__STREAM_T__, 0> 
-{
-public:
-  using value_type = __STREAM_T__;
-
-protected:
-  stream_entity<sizeof(__STREAM_T__)> _data;
-
-  inline stream_entity<sizeof(__STREAM_T__)> &get_entity() {
-    return _data;
-  }
-
-public:
-  inline stream() {}
-  inline stream(const char *name) {}
-
-  inline void operator >> (__STREAM_T__& rdata) {
-    read(rdata);
-  }
-
-  inline void operator << (const __STREAM_T__& wdata) {
-    write(wdata);
-  }
-
-  inline bool empty() const { return false; }
-  inline bool full() const { return false; }
-
-  inline void read(__STREAM_T__& head) {
-    head = read();
-  }
-
-  inline __STREAM_T__ read() {
-    __STREAM_T__ elem = __STREAM_T__();
-    _data.read(&elem);
-    return elem;
-  }
-
-  inline void write(const __STREAM_T__& tail) {
-    _data.write(&tail);
-  }
-
-  inline bool read_nb(__STREAM_T__& head) {
-    return _data.read_nb(&head);
-  }
-
-  inline bool write_nb(const __STREAM_T__& tail) {
-    write(tail);
-    return true;
-  }
-
-  inline size_t size() const { return 0; }
-  inline size_t capacity() const { return 0; }
-  inline void set_name(const char *name) {}
-};
-
-template<typename __STREAM_T__, int DEPTH>
-class stream : public stream<__STREAM_T__, 0> {
-public:
-  inline stream() : stream<__STREAM_T__, 0>() {}
-  inline stream(const char* name) : stream<__STREAM_T__, 0>(name) {}
-};
-
-} // namespace hls
-"""
+clean_hls_stream_code = ""
+for cand in [
+    os.path.join(repo, "real_xilinx_hls_stream.h"),
+    os.environ.get("XILINX_HLS", "") + "/include/hls_stream.h",
+    "/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/include/hls_stream.h"
+]:
+    if cand and os.path.isfile(cand):
+        with open(cand, "r") as rf:
+            clean_hls_stream_code = rf.read()
+        print(f"Loaded real Xilinx hls_stream.h from {cand}")
+        break
 
 clean_stream_code = """#pragma once
 
@@ -357,7 +255,7 @@ clean_stream_code = """#pragma once
 #include <cstddef>
 #include <cstdint>
 
-#include "hls_stream.h"
+#include <hls_stream.h>
 
 namespace tapa {
 
@@ -651,9 +549,8 @@ for arg in "$@"; do
     if [ -f "$arg" ]; then
         sed -i \
             -e 's|-U__SYNTHESIS__|-D__SYNTHESIS__|g' \
-            -e 's|-D__VITIS_HLS__||g' \
             -e 's|-std=c++17|-std=c++14|g' \
-            -e 's|-DTAPA_TARGET_=XILINX_HLS|-DTAPA_TARGET_=XILINX_HLS -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__SYNTHESIS__ -D__thread= -Dthread_local=|g' \
+            -e 's|-DTAPA_TARGET_=XILINX_HLS|-DTAPA_TARGET_=XILINX_HLS -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__SYNTHESIS__ -D__VITIS_HLS__ -DHLS_STREAM_THREAD_UNSAFE -D__thread= -Dthread_local=|g' \
             -e 's|-I/usr/include/c++/[^ "]*||g' \
             -e 's|-I/usr/include/x86_64-linux-gnu||g' \
             -e 's|-I/usr/include||g' \
@@ -756,7 +653,7 @@ void Knn(tapa::mmap<INTERFACE_WIDTH> in_0, tapa::mmap<INT32> final_out) {
 
         clean_cflags = []
         for cf in data.get("cflags", []):
-            if cf in ("-U__SYNTHESIS__", "-D__VITIS_HLS__"):
+            if cf == "-U__SYNTHESIS__":
                 continue
             if any(bad in cf for bad in [
                 "/usr/include/c++",
@@ -770,6 +667,10 @@ void Knn(tapa::mmap<INTERFACE_WIDTH> in_0, tapa::mmap<INT32> final_out) {
             clean_cflags.append(cf)
         if "-D__SYNTHESIS__" not in clean_cflags:
             clean_cflags.append("-D__SYNTHESIS__")
+        if "-D__VITIS_HLS__" not in clean_cflags:
+            clean_cflags.append("-D__VITIS_HLS__")
+        if "-DHLS_STREAM_THREAD_UNSAFE" not in clean_cflags:
+            clean_cflags.append("-DHLS_STREAM_THREAD_UNSAFE")
         xil_hls = os.environ.get("XILINX_HLS", "/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2")
         autopilot_inc = f"-I{xil_hls}/common/technology/autopilot"
         if autopilot_inc not in clean_cflags:

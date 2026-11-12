@@ -25,19 +25,19 @@ tapac \
       src/knn.cpp
 /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/autobridge/util.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   from pkg_resources import get_distribution
-I1112 12:01:15.297 tapa.util:184] logging level set to INFO
-I1112 12:01:15.297 tapa.tapac:396] Step 0: run_tapacc is enabled.
-W1112 12:01:15.298 tapa.tapac:398] Step 1: run_hls is *SKIPPED*.
-W1112 12:01:15.298 tapa.tapac:398] Step 2: generate_task_rtl is *SKIPPED*.
-W1112 12:01:15.298 tapa.tapac:398] Step 3: run_floorplanning is *SKIPPED*.
-W1112 12:01:15.298 tapa.tapac:398] Step 4: generate_top_rtl is *SKIPPED*.
-W1112 12:01:15.298 tapa.tapac:398] Step 5: pack_xo is *SKIPPED*.
-I1112 12:01:15.298 tapa.tapac:514] running translated command: `tapa --work-dir=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform analyze --input=src/knn.cpp --top=Knn --cflags=-U__SYNTHESIS__ --cflags=-w --cflags=-Wno-invalid-constexpr --cflags=-Wno-error=invalid-constexpr --cflags=-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src --cflags=-I/usr/bin/../lib/clang/20/include --cflags=-I/usr/include/c++/8 --cflags=-I/usr/include/c++/8/x86_64-redhat-linux --cflags=-I/usr/include --cflags=-I/usr/include/x86_64-linux-gnu --cflags=-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include`
-I1112 12:01:15.299 tapa.util:184] logging level set to INFO
-I1112 12:01:15.300 tapa.tapa:54] tapa version: 0.0.20240825.1
-I1112 12:01:15.300 tapa.tapa:58] Python recursion limit set to 3000
-W1112 12:01:24.834 tapa.util:129] not adding vendor include paths; please update FRT
-I1112 12:01:24.834 tapa.steps.analyze:265] Running tapacc command: /scratch/643_vitis_dchan2/CHIP-KNN-643/.tapa/usr/bin/tapacc ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp -top Knn -- -U__SYNTHESIS__ -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/usr/bin/../lib/clang/20/include -I/usr/include/c++/8 -I/usr/include/c++/8/x86_64-redhat-linux -I/usr/include -I/usr/include/x86_64-linux-gnu -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -std=c++17 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -stdlib=libc++ -isystem /usr/lib/llvm-22/include/c++/v1/ -isystem /usr/include/clang/22/include/ -isystem /usr/lib/clang/22/include/
+I1112 12:16:41.786 tapa.util:184] logging level set to INFO
+I1112 12:16:41.786 tapa.tapac:396] Step 0: run_tapacc is enabled.
+W1112 12:16:41.786 tapa.tapac:398] Step 1: run_hls is *SKIPPED*.
+W1112 12:16:41.786 tapa.tapac:398] Step 2: generate_task_rtl is *SKIPPED*.
+W1112 12:16:41.786 tapa.tapac:398] Step 3: run_floorplanning is *SKIPPED*.
+W1112 12:16:41.786 tapa.tapac:398] Step 4: generate_top_rtl is *SKIPPED*.
+W1112 12:16:41.786 tapa.tapac:398] Step 5: pack_xo is *SKIPPED*.
+I1112 12:16:41.787 tapa.tapac:514] running translated command: `tapa --work-dir=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform analyze --input=src/knn.cpp --top=Knn --cflags=-U__SYNTHESIS__ --cflags=-w --cflags=-Wno-invalid-constexpr --cflags=-Wno-error=invalid-constexpr --cflags=-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src --cflags=-I/usr/bin/../lib/clang/20/include --cflags=-I/usr/include/c++/8 --cflags=-I/usr/include/c++/8/x86_64-redhat-linux --cflags=-I/usr/include --cflags=-I/usr/include/x86_64-linux-gnu --cflags=-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include`
+I1112 12:16:41.788 tapa.util:184] logging level set to INFO
+I1112 12:16:41.788 tapa.tapa:54] tapa version: 0.0.20240825.1
+I1112 12:16:41.788 tapa.tapa:58] Python recursion limit set to 3000
+W1112 12:16:51.438 tapa.util:129] not adding vendor include paths; please update FRT
+I1112 12:16:51.439 tapa.steps.analyze:265] Running tapacc command: /scratch/643_vitis_dchan2/CHIP-KNN-643/.tapa/usr/bin/tapacc ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp -top Knn -- -U__SYNTHESIS__ -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/usr/bin/../lib/clang/20/include -I/usr/include/c++/8 -I/usr/include/c++/8/x86_64-redhat-linux -I/usr/include -I/usr/include/x86_64-linux-gnu -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -std=c++17 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -stdlib=libc++ -isystem /usr/lib/llvm-22/include/c++/v1/ -isystem /usr/include/clang/22/include/ -isystem /usr/lib/clang/22/include/
 Breakpoint 1 at 0xae5072
 Breakpoint 2 at 0xae8634
 warning: Loadable section ".note.gnu.property" outside of ELF segments
@@ -46005,9 +46005,9 @@ Breakpoint 2, 0x000055555603c634 in tapa::cc::AddPragmaToBody(tapa::cc::EditSink
 Breakpoint 1, 0x0000555556039072 in tapa::cc::XilinxBackend::RewriteHelperFunc(clang::FunctionDecl const*, tapa::cc::EditSink&) const ()
 
 Breakpoint 2, 0x000055555603c634 in tapa::cc::AddPragmaToBody(tapa::cc::EditSink&, clang::Stmt const*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) ()
-[Inferior 1 (process 710843) exited normally]
-I1112 12:02:05.983 tapa.steps.common:92] writing TAPA graph to json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/graph.json`.
-I1112 12:02:05.984 tapa.steps.common:92] writing TAPA settings to json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/settings.json`.
+[Inferior 1 (process 721072) exited normally]
+I1112 12:17:28.869 tapa.steps.common:92] writing TAPA graph to json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/graph.json`.
+I1112 12:17:28.870 tapa.steps.common:92] writing TAPA settings to json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/settings.json`.
 python3 /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../clean_graph_cflags.py ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/graph.json
 [clean_graph_cflags] Updated ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/graph.json with clean cflags and normalized scalar args
 tapac \
@@ -46023,25 +46023,25 @@ tapac \
       src/knn.cpp
 /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/autobridge/util.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   from pkg_resources import get_distribution
-I1112 12:02:07.113 tapa.util:184] logging level set to INFO
-W1112 12:02:07.113 tapa.tapac:398] Step 0: run_tapacc is *SKIPPED*.
-I1112 12:02:07.113 tapa.tapac:396] Step 1: run_hls is enabled.
-I1112 12:02:07.113 tapa.tapac:396] Step 2: generate_task_rtl is enabled.
-W1112 12:02:07.114 tapa.tapac:398] Step 3: run_floorplanning is *SKIPPED*.
-W1112 12:02:07.114 tapa.tapac:398] Step 4: generate_top_rtl is *SKIPPED*.
-W1112 12:02:07.114 tapa.tapac:398] Step 5: pack_xo is *SKIPPED*.
-I1112 12:02:07.114 tapa.tapac:514] running translated command: `tapa --work-dir=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform synth --part-num=xczu3eg-sbva484-1-e --clock-period=5.00`
-I1112 12:02:07.115 tapa.util:184] logging level set to INFO
-I1112 12:02:07.115 tapa.tapa:54] tapa version: 0.0.20240825.1
-I1112 12:02:07.115 tapa.tapa:58] Python recursion limit set to 3000
-I1112 12:02:07.116 tapa.steps.common:50] loading TAPA graph from json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/graph.json`.
-I1112 12:02:07.117 tapa.steps.common:50] loading TAPA graph from json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/settings.json`.
-I1112 12:02:07.117 tapa.core:181] extracting HLS C++ files
-I1112 12:02:07.419 tapa.core:213] running HLS
-I1112 12:02:07.466 tapa.core:272] spawn 24 workers for parallel HLS synthesis of the tasks
-I1112 12:03:27.671 tapa.core:286] extracting RTL files
-I1112 12:03:27.849 tapa.core:295] Auto-wrapping task HDL modules with patch_task_rtl.py...
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/patch_task_rtl.py:308: DeprecationWarning: Python 3.14 will, by default, filter extracted tar archives and reject files or modify their metadata. Use the filter argument to control this behavior.
+I1112 12:17:29.789 tapa.util:184] logging level set to INFO
+W1112 12:17:29.790 tapa.tapac:398] Step 0: run_tapacc is *SKIPPED*.
+I1112 12:17:29.790 tapa.tapac:396] Step 1: run_hls is enabled.
+I1112 12:17:29.790 tapa.tapac:396] Step 2: generate_task_rtl is enabled.
+W1112 12:17:29.790 tapa.tapac:398] Step 3: run_floorplanning is *SKIPPED*.
+W1112 12:17:29.790 tapa.tapac:398] Step 4: generate_top_rtl is *SKIPPED*.
+W1112 12:17:29.790 tapa.tapac:398] Step 5: pack_xo is *SKIPPED*.
+I1112 12:17:29.791 tapa.tapac:514] running translated command: `tapa --work-dir=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform synth --part-num=xczu3eg-sbva484-1-e --clock-period=5.00`
+I1112 12:17:29.792 tapa.util:184] logging level set to INFO
+I1112 12:17:29.792 tapa.tapa:54] tapa version: 0.0.20240825.1
+I1112 12:17:29.792 tapa.tapa:58] Python recursion limit set to 3000
+I1112 12:17:29.793 tapa.steps.common:50] loading TAPA graph from json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/graph.json`.
+I1112 12:17:29.794 tapa.steps.common:50] loading TAPA graph from json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/settings.json`.
+I1112 12:17:29.795 tapa.core:181] extracting HLS C++ files
+I1112 12:17:30.121 tapa.core:213] running HLS
+I1112 12:17:30.128 tapa.core:272] spawn 24 workers for parallel HLS synthesis of the tasks
+I1112 12:18:49.051 tapa.core:286] extracting RTL files
+I1112 12:18:49.253 tapa.core:295] Auto-wrapping task HDL modules with patch_task_rtl.py...
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/patch_task_rtl.py:313: DeprecationWarning: Python 3.14 will, by default, filter extracted tar archives and reject files or modify their metadata. Use the filter argument to control this behavior.
   tf.extractall(path=tmp_tar_dir)
 [patch_task_rtl] Wrapping compute_KNN (4 task ports)...
 [patch_task_rtl] Wrote single-module wrapper to /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/hdl/compute_KNN.v and inner module to /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/hdl/compute_KNN_inner.v!
@@ -46055,11 +46055,11 @@ I1112 12:03:27.849 tapa.core:295] Auto-wrapping task HDL modules with patch_task
 [patch_task_rtl] Wrapping para_partial_sort (4 task ports)...
 [patch_task_rtl] Wrote single-module wrapper to /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/hdl/para_partial_sort.v and inner module to /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/hdl/para_partial_sort_inner.v!
 [patch_task_rtl] Updated /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/tar/para_partial_sort.tar with wrapper and inner module.
-I1112 12:03:28.253 tapa.core:326] parsing RTL files and populating tasks
-I1112 12:03:30.370 tapa.core:343] instrumenting upper-level RTL
-I1112 12:03:30.370 tapa.steps.common:92] writing TAPA settings to json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/settings.json`.
+I1112 12:18:49.678 tapa.core:326] parsing RTL files and populating tasks
+I1112 12:18:51.566 tapa.core:343] instrumenting upper-level RTL
+I1112 12:18:51.567 tapa.steps.common:92] writing TAPA settings to json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/settings.json`.
 python3 /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../patch_task_rtl.py ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/graph.json
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../patch_task_rtl.py:308: DeprecationWarning: Python 3.14 will, by default, filter extracted tar archives and reject files or modify their metadata. Use the filter argument to control this behavior.
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../patch_task_rtl.py:313: DeprecationWarning: Python 3.14 will, by default, filter extracted tar archives and reject files or modify their metadata. Use the filter argument to control this behavior.
   tf.extractall(path=tmp_tar_dir)
 [patch_task_rtl] Wrapping compute_KNN (4 task ports)...
 [patch_task_rtl] Wrote single-module wrapper to ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/hdl/compute_KNN.v and inner module to ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/hdl/compute_KNN_inner.v!
@@ -46089,28 +46089,28 @@ tapac \
       src/knn.cpp
 /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/autobridge/util.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   from pkg_resources import get_distribution
-I1112 12:03:31.816 tapa.util:184] logging level set to INFO
-W1112 12:03:31.816 tapa.tapac:398] Step 0: run_tapacc is *SKIPPED*.
-W1112 12:03:31.816 tapa.tapac:398] Step 1: run_hls is *SKIPPED*.
-W1112 12:03:31.816 tapa.tapac:398] Step 2: generate_task_rtl is *SKIPPED*.
-W1112 12:03:31.816 tapa.tapac:398] Step 3: run_floorplanning is *SKIPPED*.
-I1112 12:03:31.817 tapa.tapac:396] Step 4: generate_top_rtl is enabled.
-I1112 12:03:31.817 tapa.tapac:396] Step 5: pack_xo is enabled.
-I1112 12:03:31.817 tapa.tapac:514] running translated command: `tapa --work-dir=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform link pack --output=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn.xo --bitstream-script=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn_generate_bitstream.sh`
-I1112 12:03:31.818 tapa.util:184] logging level set to INFO
-I1112 12:03:31.818 tapa.tapa:54] tapa version: 0.0.20240825.1
-I1112 12:03:31.819 tapa.tapa:58] Python recursion limit set to 3000
-I1112 12:03:31.820 tapa.steps.common:50] loading TAPA graph from json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/graph.json`.
-I1112 12:03:31.821 tapa.steps.common:50] loading TAPA graph from json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/settings.json`.
-W1112 12:03:31.821 tapa.steps.link:46] The `link` command must be chained after the `synth` command in a single execution.
-W1112 12:03:31.821 tapa.steps.link:49] Executing `synth` using saved options.
-I1112 12:03:31.821 tapa.steps.common:46] reusing TAPA settings from upstream flows.
-I1112 12:03:31.821 tapa.core:181] extracting HLS C++ files
-I1112 12:03:32.156 tapa.core:213] running HLS
-I1112 12:03:32.161 tapa.core:272] spawn 24 workers for parallel HLS synthesis of the tasks
-I1112 12:04:11.375 tapa.core:286] extracting RTL files
-I1112 12:04:11.561 tapa.core:295] Auto-wrapping task HDL modules with patch_task_rtl.py...
-/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/patch_task_rtl.py:308: DeprecationWarning: Python 3.14 will, by default, filter extracted tar archives and reject files or modify their metadata. Use the filter argument to control this behavior.
+I1112 12:18:52.709 tapa.util:184] logging level set to INFO
+W1112 12:18:52.709 tapa.tapac:398] Step 0: run_tapacc is *SKIPPED*.
+W1112 12:18:52.709 tapa.tapac:398] Step 1: run_hls is *SKIPPED*.
+W1112 12:18:52.709 tapa.tapac:398] Step 2: generate_task_rtl is *SKIPPED*.
+W1112 12:18:52.709 tapa.tapac:398] Step 3: run_floorplanning is *SKIPPED*.
+I1112 12:18:52.709 tapa.tapac:396] Step 4: generate_top_rtl is enabled.
+I1112 12:18:52.709 tapa.tapac:396] Step 5: pack_xo is enabled.
+I1112 12:18:52.709 tapa.tapac:514] running translated command: `tapa --work-dir=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform link pack --output=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn.xo --bitstream-script=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn_generate_bitstream.sh`
+I1112 12:18:52.710 tapa.util:184] logging level set to INFO
+I1112 12:18:52.711 tapa.tapa:54] tapa version: 0.0.20240825.1
+I1112 12:18:52.711 tapa.tapa:58] Python recursion limit set to 3000
+I1112 12:18:52.712 tapa.steps.common:50] loading TAPA graph from json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/graph.json`.
+I1112 12:18:52.712 tapa.steps.common:50] loading TAPA graph from json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/settings.json`.
+W1112 12:18:52.713 tapa.steps.link:46] The `link` command must be chained after the `synth` command in a single execution.
+W1112 12:18:52.713 tapa.steps.link:49] Executing `synth` using saved options.
+I1112 12:18:52.713 tapa.steps.common:46] reusing TAPA settings from upstream flows.
+I1112 12:18:52.713 tapa.core:181] extracting HLS C++ files
+I1112 12:18:53.033 tapa.core:213] running HLS
+I1112 12:18:53.038 tapa.core:272] spawn 24 workers for parallel HLS synthesis of the tasks
+I1112 12:19:31.175 tapa.core:286] extracting RTL files
+I1112 12:19:31.375 tapa.core:295] Auto-wrapping task HDL modules with patch_task_rtl.py...
+/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/patch_task_rtl.py:313: DeprecationWarning: Python 3.14 will, by default, filter extracted tar archives and reject files or modify their metadata. Use the filter argument to control this behavior.
   tf.extractall(path=tmp_tar_dir)
 [patch_task_rtl] Wrapping compute_KNN (4 task ports)...
 [patch_task_rtl] Wrote single-module wrapper to /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/hdl/compute_KNN.v and inner module to /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/hdl/compute_KNN_inner.v!
@@ -46124,27 +46124,28 @@ I1112 12:04:11.561 tapa.core:295] Auto-wrapping task HDL modules with patch_task
 [patch_task_rtl] Wrapping para_partial_sort (4 task ports)...
 [patch_task_rtl] Wrote single-module wrapper to /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/hdl/para_partial_sort.v and inner module to /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/hdl/para_partial_sort_inner.v!
 [patch_task_rtl] Updated /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/tar/para_partial_sort.tar with wrapper and inner module.
-I1112 12:04:11.887 tapa.core:326] parsing RTL files and populating tasks
-I1112 12:04:13.604 tapa.core:343] instrumenting upper-level RTL
-I1112 12:04:13.604 tapa.steps.common:92] writing TAPA settings to json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/settings.json`.
-I1112 12:04:13.606 tapa.core:463] top task register level set to 0
-I1112 12:04:13.606 tapa.core:467] instrumenting top-level RTL
-E1112 12:04:13.612 tapa.verilog.xilinx.module:734] not adding pragma for unknown port 'm_axi_gmem0_AWREGION'
-E1112 12:04:13.612 tapa.verilog.xilinx.module:734] not adding pragma for unknown port 'm_axi_gmem0_AWUSER'
-E1112 12:04:13.612 tapa.verilog.xilinx.module:734] not adding pragma for unknown port 'm_axi_gmem0_WID'
-E1112 12:04:13.613 tapa.verilog.xilinx.module:734] not adding pragma for unknown port 'm_axi_gmem0_WUSER'
-E1112 12:04:13.613 tapa.verilog.xilinx.module:734] not adding pragma for unknown port 'm_axi_gmem0_ARREGION'
-E1112 12:04:13.613 tapa.verilog.xilinx.module:734] not adding pragma for unknown port 'm_axi_gmem0_ARUSER'
-E1112 12:04:13.613 tapa.verilog.xilinx.module:734] not adding pragma for unknown port 'm_axi_gmem0_RUSER'
-E1112 12:04:13.613 tapa.verilog.xilinx.module:734] not adding pragma for unknown port 'm_axi_gmem0_BUSER'
-E1112 12:04:13.613 tapa.verilog.xilinx.module:734] not adding pragma for unknown port 'm_axi_gmem1_AWREGION'
-E1112 12:04:13.613 tapa.verilog.xilinx.module:734] not adding pragma for unknown port 'm_axi_gmem1_AWUSER'
-E1112 12:04:13.613 tapa.verilog.xilinx.module:734] not adding pragma for unknown port 'm_axi_gmem1_WID'
-E1112 12:04:13.614 tapa.verilog.xilinx.module:734] not adding pragma for unknown port 'm_axi_gmem1_WUSER'
-E1112 12:04:13.614 tapa.verilog.xilinx.module:734] not adding pragma for unknown port 'm_axi_gmem1_ARREGION'
-E1112 12:04:13.614 tapa.verilog.xilinx.module:734] not adding pragma for unknown port 'm_axi_gmem1_ARUSER'
-E1112 12:04:13.614 tapa.verilog.xilinx.module:734] not adding pragma for unknown port 'm_axi_gmem1_RUSER'
-E1112 12:04:13.614 tapa.verilog.xilinx.module:734] not adding pragma for unknown port 'm_axi_gmem1_BUSER'
+I1112 12:19:31.727 tapa.core:326] parsing RTL files and populating tasks
+I1112 12:19:33.578 tapa.core:343] instrumenting upper-level RTL
+I1112 12:19:33.579 tapa.steps.common:92] writing TAPA settings to json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/settings.json`.
+I1112 12:19:33.581 tapa.core:463] top task register level set to 0
+I1112 12:19:33.581 tapa.core:467] instrumenting top-level RTL
+E1112 12:19:33.594 tapa.verilog.xilinx.module:734] not adding pragma for unknown port 'm_axi_gmem0_AWREGION'
+E1112 12:19:33.595 tapa.verilog.xilinx.module:734] not adding pragma for unknown port 'm_axi_gmem0_AWUSER'
+E1112 12:19:33.595 tapa.verilog.xilinx.module:734] not adding pragma for unknown port 'm_axi_gmem0_WID'
+E1112 12:19:33.595 tapa.verilog.xilinx.module:734] not adding pragma for unknown port 'm_axi_gmem0_WUSER'
+E1112 12:19:33.596 tapa.verilog.xilinx.module:734] not adding pragma for unknown port 'm_axi_gmem0_ARREGION'
+E1112 12:19:33.596 tapa.verilog.xilinx.module:734] not adding pragma for unknown port 'm_axi_gmem0_ARUSER'
+E1112 12:19:33.596 tapa.verilog.xilinx.module:734] not adding pragma for unknown port 'm_axi_gmem0_RUSER'
+E1112 12:19:33.597 tapa.verilog.xilinx.module:734] not adding pragma for unknown port 'm_axi_gmem0_BUSER'
+E1112 12:19:33.597 tapa.verilog.xilinx.module:734] not adding pragma for unknown port 'm_axi_gmem1_AWREGION'
+E1112 12:19:33.597 tapa.verilog.xilinx.module:734] not adding pragma for unknown port 'm_axi_gmem1_AWUSER'
+E1112 12:19:33.597 tapa.verilog.xilinx.module:734] not adding pragma for unknown port 'm_axi_gmem1_WID'
+E1112 12:19:33.598 tapa.verilog.xilinx.module:734] not adding pragma for unknown port 'm_axi_gmem1_WUSER'
+E1112 12:19:33.598 tapa.verilog.xilinx.module:734] not adding pragma for unknown port 'm_axi_gmem1_ARREGION'
+E1112 12:19:33.598 tapa.verilog.xilinx.module:734] not adding pragma for unknown port 'm_axi_gmem1_ARUSER'
+E1112 12:19:33.598 tapa.verilog.xilinx.module:734] not adding pragma for unknown port 'm_axi_gmem1_RUSER'
+E1112 12:19:33.599 tapa.verilog.xilinx.module:734] not adding pragma for unknown port 'm_axi_gmem1_BUSER'
+I1112 12:19:34.133 tapa.core:474] generating report
 Traceback (most recent call last):
   File "/afs/ece.cmu.edu/usr/dchan2/miniconda3/bin/tapac", line 6, in <module>
     sys.exit(main())
@@ -46183,44 +46184,21 @@ Traceback (most recent call last):
         ^^^^^^^^^^^^^^^
     )
     ^
-  File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/core.py", line 468, in generate_top_rtl
-    self._instrument_top_task(
-    ~~~~~~~~~~~~~~~~~~~~~~~~~^
-        self.top_task,
-        ^^^^^^^^^^^^^^
-        additional_fifo_pipelining,
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-        print_fifo_ops,
-        ^^^^^^^^^^^^^^^
+  File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/core.py", line 475, in generate_top_rtl
+    task_report = self.top_task.report
+                  ^^^^^^^^^^^^^^^^^^^^
+  File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/task.py", line 226, in report
+    'clock_period': str(self.clock_period),
+                        ^^^^^^^^^^^^^^^^^
+  File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/task.py", line 207, in clock_period
+    return max(
+        self._clock_period,
+        *(x.clock_period for x in {y.task for y in self.instances}),
     )
-    ^
-  File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/core.py", line 1018, in _instrument_top_task
-    is_done_signals = self._instantiate_children_tasks(
-        task,
-        width_table,
-    )
-  File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/core.py", line 685, in _instantiate_children_tasks
-    if set(x.portname for x in rtl.generate_async_mmap_ports(
-       ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-        tag=tag,
-        ^^^^^^^^
-    ...<3 lines>...
-        instance=instance,
-        ^^^^^^^^^^^^^^^^^^
-    )) & child_port_set:
-    ^^
-  File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/core.py", line 685, in <genexpr>
-    if set(x.portname for x in rtl.generate_async_mmap_ports(
-                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-        tag=tag,
-        ^^^^^^^^
-    ...<3 lines>...
-        instance=instance,
-        ^^^^^^^^^^^^^^^^^^
-    )) & child_port_set:
-    ^
-  File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/verilog/xilinx/async_mmap.py", line 91, in generate_async_mmap_ports
-    assert port_name is not None, f'missing async_mmap port `{arg}.offset`'
-           ^^^^^^^^^^^^^^^^^^^^^
-AssertionError: missing async_mmap port `final_out.offset`
+  File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/task.py", line 209, in <genexpr>
+    *(x.clock_period for x in {y.task for y in self.instances}),
+      ^^^^^^^^^^^^^^
+  File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/task.py", line 213, in clock_period
+    raise ValueError(f'clock period of task {self.name} not populated')
+ValueError: clock period of task load_KNN not populated
 make: *** [Makefile:104: _x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn.xo] Error 1

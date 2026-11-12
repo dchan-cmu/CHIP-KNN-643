@@ -287,6 +287,15 @@ class Program:
     for task in self._tasks.values():
       with tarfile.open(self.get_tar(task.name), 'r') as tarfileobj:
         tarfileobj.extractall(path=self.work_dir)
+    try:
+      import subprocess
+      patch_script = os.path.join(os.environ.get("REPO_ROOT", "/scratch/643_vitis_dchan2/CHIP-KNN-643"), "scripts/patch_task_rtl.py")
+      graph_path = os.path.join(self.work_dir, "graph.json")
+      if os.path.isfile(patch_script) and os.path.isfile(graph_path):
+        _logger.info("Auto-wrapping task HDL modules with patch_task_rtl.py...")
+        subprocess.run([sys.executable, patch_script, self.work_dir, graph_path], check=True)
+    except Exception as e:
+      _logger.warning("patch_task_rtl hook notice: %s", e)
 
     for file_name in (
         'arbiter.v',

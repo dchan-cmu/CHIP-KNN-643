@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import sys, json
+import sys, json, os
 
 if len(sys.argv) < 2:
     print("Usage: clean_graph_cflags.py <path_to_graph.json>")
@@ -14,6 +14,8 @@ for cf in data.get("cflags", []):
     if cf == "-U__SYNTHESIS__":
         continue
     if cf.startswith("-I/usr/include") or cf.startswith("-I/usr/bin") or "clang/20" in cf or "clang/22" in cf:
+        continue
+    if ("Vitis_HLS" in cf or "Vitis" in cf) and cf.endswith("/include"):
         continue
     if cf == "-std=c++17":
         cf = "-std=c++14"
@@ -34,9 +36,15 @@ if "-Dthread_local=" not in clean:
 if "-std=c++14" not in clean:
     clean.append("-std=c++14")
 
+xil_hls = os.environ.get("XILINX_HLS", "/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2")
+autopilot_inc = f"-I{xil_hls}/common/technology/autopilot"
+if autopilot_inc not in clean:
+    clean.append(autopilot_inc)
+
 data["cflags"] = clean
 
 with open(path, "w") as f:
     json.dump(data, f, indent=2)
 
 print(f"[clean_graph_cflags] Updated {path} with clean cflags: {clean}")
+

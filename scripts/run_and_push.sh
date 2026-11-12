@@ -182,6 +182,22 @@ if "FULL VITIS HLS LOG FOR" not in code and target_comm in code:
     modified = True
     print(f"Injected in-context HLS log dumper into {core_file}!")
 
+target_extract = "        tarfileobj.extractall(path=self.work_dir)"
+patch_invoke = """        tarfileobj.extractall(path=self.work_dir)
+    try:
+      import subprocess
+      patch_script = os.path.join(os.environ.get("REPO_ROOT", "/scratch/643_vitis_dchan2/CHIP-KNN-643"), "scripts/patch_task_rtl.py")
+      graph_path = os.path.join(self.work_dir, "graph.json")
+      if os.path.isfile(patch_script) and os.path.isfile(graph_path):
+        _logger.info("Auto-wrapping task HDL modules with patch_task_rtl.py...")
+        subprocess.run([sys.executable, patch_script, self.work_dir, graph_path], check=True)
+    except Exception as e:
+      _logger.warning("patch_task_rtl hook notice: %s", e)"""
+if "Auto-wrapping task HDL modules" not in code and target_extract in code:
+    code = code.replace(target_extract, patch_invoke)
+    modified = True
+    print(f"Injected patch_task_rtl hook into generate_task_rtl in {core_file}!")
+
 if modified:
     compile(code, core_file, "exec")
     with open(core_file, "w") as f:
@@ -223,6 +239,41 @@ for inst_file in set(inst_candidates):
             print(f"{inst_file} already patched or pattern not found.")
     except Exception as e:
         print(f"Notice: checking {inst_file}: {e}")
+' || true
+
+    echo "=== 1a-3. Patching TAPA module to support get_port_of fallback ==="
+    python3 -c '
+import os, sys, glob, re
+
+mod_candidates = []
+for p in sys.path:
+    target = os.path.join(p, "tapa/verilog/xilinx/module.py")
+    if os.path.isfile(target):
+        mod_candidates.append(target)
+for base in ["/afs/ece.cmu.edu/usr/dchan2/miniconda3", "/afs/ece/usr/dchan2/miniconda3", os.path.expanduser("~/miniconda3")]:
+    for p in glob.glob(f"{base}/**/tapa/verilog/xilinx/module.py", recursive=True):
+        mod_candidates.append(p)
+
+for mod_file in set(mod_candidates):
+    try:
+        with open(mod_file, "r") as f:
+            code = f.read()
+        target = "raise ValueError(f\x27module {self.name} does not have port {fifo}.{suffix}\x27)"
+        fallback = """if sanitized_fifo in ports:
+      _logger.warning("Falling back to scalar port %s for %s%s", sanitized_fifo, fifo, suffix)
+      return ports[sanitized_fifo]
+    raise ValueError(f\x27module {self.name} does not have port {fifo}.{suffix}\x27)"""
+        if target in code:
+            print(f"Patching {mod_file} for get_port_of fallback...")
+            code = code.replace(target, fallback)
+            compile(code, mod_file, "exec")
+            with open(mod_file, "w") as f:
+                f.write(code)
+            print(f"Successfully patched {mod_file}!")
+        else:
+            print(f"{mod_file} already patched or target not found.")
+    except Exception as e:
+        print(f"Notice: checking {mod_file}: {e}")
 ' || true
 
     python3 -c '
@@ -774,6 +825,8 @@ EOF_WRAP
     echo "=== 1.5 Inspecting TAPA Internals ==="
     python3 -c "import tapa.core, tapa.task, tapa.verilog.xilinx.module, inspect; print('=== Program.run_hls ===\n', inspect.getsource(tapa.core.Program.run_hls)); print('=== Program.generate_task_rtl ===\n', inspect.getsource(tapa.core.Program.generate_task_rtl) if hasattr(tapa.core.Program, 'generate_task_rtl') else 'N/A'); print('=== Program.generate_top_rtl ===\n', inspect.getsource(tapa.core.Program.generate_top_rtl) if hasattr(tapa.core.Program, 'generate_top_rtl') else 'N/A'); print('=== Module.get_port_of ===\n', inspect.getsource(tapa.verilog.xilinx.module.Module.get_port_of) if hasattr(tapa.verilog.xilinx.module.Module, 'get_port_of') else 'N/A')" > "$REPO_ROOT/tapa_internals.log" 2>&1 || true
 
+    chmod +x "$REPO_ROOT/scripts/"*.py 2>/dev/null || true
+
     echo "=== 2. Running Single-PE Exploration ==="
     python3 singlePE_design_exploration.py 2>&1 | tee "$REPO_ROOT/run_output.log" || true
 
@@ -788,12 +841,18 @@ EOF_WRAP
     if [ -f "singlePE_perf_results.log" ]; then
         cp "singlePE_perf_results.log" "$REPO_ROOT/singlePE_perf_results.log"
     fi
+    for rj in gen_singlePE_design/_x.tapa_HLS.*/report.json; do
+        if [ -f "$rj" ]; then
+            cp "$rj" "$REPO_ROOT/report.json"
+            break
+        fi
+    done
 
     cd "$REPO_ROOT"
 
     echo "=== 4. Pushing Logs to GitHub (branch: debug-run) ==="
     git checkout -B debug-run
-    git add -f run_output.log tapa_HLS_output.log tapacc_wrapper.log tapa_internals.log tapa_headers_debug.log tapa_instance_debug.log singlePE_perf_results.log real_xilinx_hls_stream.h scripts/ 2>/dev/null || true
+    git add -f run_output.log tapa_HLS_output.log tapacc_wrapper.log tapa_internals.log tapa_headers_debug.log tapa_instance_debug.log singlePE_perf_results.log report.json real_xilinx_hls_stream.h scripts/ 2>/dev/null || true
     git commit -m "Auto-upload run logs: $(date -u +'%Y-%m-%d %H:%M:%S UTC')" || true
     git push -u origin debug-run --force
 

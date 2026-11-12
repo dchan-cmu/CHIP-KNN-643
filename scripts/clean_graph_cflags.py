@@ -21,6 +21,8 @@ for cf in data.get("cflags", []):
 
 if "-D__SYNTHESIS__" not in clean:
     clean.append("-D__SYNTHESIS__")
+if "-D__VITIS_HLS__" not in clean:
+    clean.append("-D__VITIS_HLS__")
 if "-DTAPA_TARGET_DEVICE_" not in clean:
     clean.append("-DTAPA_TARGET_DEVICE_")
 if "-DTAPA_TARGET_XILINX_HLS_" not in clean:

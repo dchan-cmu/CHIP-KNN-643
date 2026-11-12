@@ -105,7 +105,6 @@ $(TEMP_DIR)/knn.xo: $(KNN_SRC)
 	      -o $(TEMP_DIR)/knn.xo \
 	      --enable-synth-util \
           --cflags=-U__SYNTHESIS__ \
-          --cflags=-D__VITIS_HLS__ \
           --cflags=-w \
           --cflags=-Wno-invalid-constexpr \
           --cflags=-Wno-error=invalid-constexpr \

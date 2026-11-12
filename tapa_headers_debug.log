@@ -1613,9 +1613,6 @@ struct seq {
 --- tapa/xilinx/hls/mmap.h ---
 #pragma once
 
-#ifndef __VITIS_HLS__
-#define __VITIS_HLS__
-#endif
 #ifndef __SYNTHESIS__
 #define __SYNTHESIS__
 #endif
@@ -1655,9 +1652,6 @@ class hmap;
 --- tapa/xilinx/hls/stream.h ---
 #pragma once
 
-#ifndef __VITIS_HLS__
-#define __VITIS_HLS__
-#endif
 #ifndef __SYNTHESIS__
 #define __SYNTHESIS__
 #endif

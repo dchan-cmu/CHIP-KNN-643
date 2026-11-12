@@ -520,9 +520,10 @@ if m:
             if task_name == "Knn":
                 return preamble + '''
 void Knn(tapa::mmap<INTERFACE_WIDTH> in_0, tapa::mmap<INT32> final_out) {
-#pragma HLS interface m_axi port=in_0 offset=slave bundle=gmem0
-#pragma HLS interface m_axi port=final_out offset=slave bundle=gmem1
+#pragma HLS interface m_axi port=in_0 offset=slave bundle=gmem0 depth=1
+#pragma HLS interface m_axi port=final_out offset=slave bundle=gmem1 depth=1
 #pragma HLS interface s_axilite port=return bundle=control
+    final_out[0] = (INT32)in_0[0];
 }
 '''
             pattern = rf"(void\s+{re.escape(task_name)}\s*\([^)]*\)\s*\{{.*?^\}})"

@@ -145,11 +145,11 @@ if "std=\"c++17\"" in code:
     code = code.replace("std=\"c++17\"", "std=\"c++14\"")
     modified = True
 
-if "\x27-DTAPA_TARGET_=XILINX_HLS\x27" in code and "-D__VITIS_HLS__" not in code:
-    print(f"Injecting TAPA_TARGET_DEVICE_, TAPA_TARGET_XILINX_HLS_, and __VITIS_HLS__ into {core_file}...")
+if "\x27-DTAPA_TARGET_=XILINX_HLS\x27" in code and "-D__SYNTHESIS__" not in code:
+    print(f"Injecting TAPA_TARGET_DEVICE_, TAPA_TARGET_XILINX_HLS_, and __SYNTHESIS__ into {core_file}...")
     code = code.replace(
         "\x27-DTAPA_TARGET_=XILINX_HLS\x27",
-        "\x27-DTAPA_TARGET_=XILINX_HLS\x27, \x27-DTAPA_TARGET_DEVICE_\x27, \x27-DTAPA_TARGET_XILINX_HLS_\x27, \x27-D__SYNTHESIS__\x27, \x27-D__VITIS_HLS__\x27"
+        "\x27-DTAPA_TARGET_=XILINX_HLS\x27, \x27-DTAPA_TARGET_DEVICE_\x27, \x27-DTAPA_TARGET_XILINX_HLS_\x27, \x27-D__SYNTHESIS__\x27"
     )
     modified = True
 
@@ -223,17 +223,12 @@ repo = os.environ.get("REPO_ROOT", "/scratch/643_vitis_dchan2/CHIP-KNN-643")
 stream_h = os.path.join(repo, ".tapa/usr/include/tapa/xilinx/hls/stream.h")
 
 clean_hls_stream_code = """#pragma once
-#ifndef HLS_STREAM_H
-#define HLS_STREAM_H
-#ifndef X_HLS_STREAM_SIM_H
-#define X_HLS_STREAM_SIM_H
-#endif
-#ifndef X_HLS_STREAM_SYNTH_H
-#define X_HLS_STREAM_SYNTH_H
-#endif
 
-#include <cstddef>
-#include <cstdint>
+#if defined(__SYNTHESIS__)
+
+#include "/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/include/hls_stream.h"
+
+#else
 
 namespace hls {
 
@@ -261,9 +256,6 @@ private:
 
 clean_stream_code = """#pragma once
 
-#ifndef __VITIS_HLS__
-#define __VITIS_HLS__
-#endif
 #ifndef __SYNTHESIS__
 #define __SYNTHESIS__
 #endif
@@ -308,9 +300,6 @@ stream_targets = [
 ]
 clean_mmap_code = """#pragma once
 
-#ifndef __VITIS_HLS__
-#define __VITIS_HLS__
-#endif
 #ifndef __SYNTHESIS__
 #define __SYNTHESIS__
 #endif
@@ -570,15 +559,14 @@ fi
 for arg in "$@"; do
     if [ -f "$arg" ]; then
         sed -i \
-            -e 's|-U__SYNTHESIS__|-D__SYNTHESIS__ -D__VITIS_HLS__|g' \
+            -e 's|-U__SYNTHESIS__|-D__SYNTHESIS__|g' \
+            -e 's|-D__VITIS_HLS__||g' \
             -e 's|-std=c++17|-std=c++14|g' \
-            -e 's|-DTAPA_TARGET_=XILINX_HLS|-DTAPA_TARGET_=XILINX_HLS -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__SYNTHESIS__ -D__VITIS_HLS__ -D__thread= -Dthread_local=|g' \
+            -e 's|-DTAPA_TARGET_=XILINX_HLS|-DTAPA_TARGET_=XILINX_HLS -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__SYNTHESIS__ -D__thread= -Dthread_local=|g' \
             -e 's|-I/usr/include/c++/[^ "]*||g' \
             -e 's|-I/usr/include/x86_64-linux-gnu||g' \
             -e 's|-I/usr/include||g' \
             -e 's|-I/usr/bin/[^ "]*||g' \
-            -e 's|-I[^ "]*Vitis_HLS/[^ "]*include||g' \
-            -e 's|-I[^ "]*Vitis/[^ "]*include||g' \
             "$arg"
         echo "=== [vitis_hls wrapper] Filtered $arg ===" >&2
     fi
@@ -667,7 +655,7 @@ void Knn(tapa::mmap<INTERFACE_WIDTH> in_0, tapa::mmap<INT32> final_out) {
 
         clean_cflags = []
         for cf in data.get("cflags", []):
-            if cf == "-U__SYNTHESIS__":
+            if cf in ("-U__SYNTHESIS__", "-D__VITIS_HLS__"):
                 continue
             if any(bad in cf for bad in [
                 "/usr/include/c++",
@@ -675,16 +663,12 @@ void Knn(tapa::mmap<INTERFACE_WIDTH> in_0, tapa::mmap<INT32> final_out) {
                 "/usr/include",
                 "/usr/bin/../lib/clang",
                 "clang/20",
-                "clang/22",
-                "Vitis_HLS/2023.2/include",
-                "Vitis/2023.2/include"
+                "clang/22"
             ]):
                 continue
             clean_cflags.append(cf)
         if "-D__SYNTHESIS__" not in clean_cflags:
             clean_cflags.append("-D__SYNTHESIS__")
-        if "-D__VITIS_HLS__" not in clean_cflags:
-            clean_cflags.append("-D__VITIS_HLS__")
         xil_hls = os.environ.get("XILINX_HLS", "/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2")
         autopilot_inc = f"-I{xil_hls}/common/technology/autopilot"
         if autopilot_inc not in clean_cflags:

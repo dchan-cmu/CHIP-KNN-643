@@ -11,11 +11,9 @@ with open(path, "r") as f:
 
 clean = []
 for cf in data.get("cflags", []):
-    if cf == "-U__SYNTHESIS__":
+    if cf in ("-U__SYNTHESIS__", "-D__VITIS_HLS__"):
         continue
     if cf.startswith("-I/usr/include") or cf.startswith("-I/usr/bin") or "clang/20" in cf or "clang/22" in cf:
-        continue
-    if ("Vitis_HLS" in cf or "Vitis" in cf) and cf.endswith("/include"):
         continue
     if cf == "-std=c++17":
         cf = "-std=c++14"
@@ -23,8 +21,6 @@ for cf in data.get("cflags", []):
 
 if "-D__SYNTHESIS__" not in clean:
     clean.append("-D__SYNTHESIS__")
-if "-D__VITIS_HLS__" not in clean:
-    clean.append("-D__VITIS_HLS__")
 if "-DTAPA_TARGET_DEVICE_" not in clean:
     clean.append("-DTAPA_TARGET_DEVICE_")
 if "-DTAPA_TARGET_XILINX_HLS_" not in clean:

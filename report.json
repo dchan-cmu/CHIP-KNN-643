@@ -1,0 +1,78 @@
+{
+  "schema": "v0.0.20210922",
+  "name": "Knn",
+  "performance": {
+    "source": "hls",
+    "clock_period": "5.0",
+    "critical_path": {
+      "load_KNN": {
+        "source": "hls",
+        "clock_period": "5.0"
+      }
+    }
+  },
+  "area": {
+    "source": "hls",
+    "total": {
+      "BRAM_18K": 20,
+      "DSP": 0,
+      "FF": 4610,
+      "LUT": 7520,
+      "URAM": 0
+    },
+    "breakdown": {
+      "compute_KNN": {
+        "count": 1,
+        "area": {
+          "source": "hls",
+          "total": {
+            "BRAM_18K": 0,
+            "DSP": 0,
+            "FF": 1247,
+            "LUT": 2794,
+            "URAM": 0
+          }
+        }
+      },
+      "krnl_singlePE_Write_Outputs": {
+        "count": 1,
+        "area": {
+          "source": "hls",
+          "total": {
+            "BRAM_18K": 0,
+            "DSP": 0,
+            "FF": 141,
+            "LUT": 504,
+            "URAM": 0
+          }
+        }
+      },
+      "load_KNN": {
+        "count": 1,
+        "area": {
+          "source": "hls",
+          "total": {
+            "BRAM_18K": 0,
+            "DSP": 0,
+            "FF": 2,
+            "LUT": 14,
+            "URAM": 0
+          }
+        }
+      },
+      "para_partial_sort": {
+        "count": 1,
+        "area": {
+          "source": "hls",
+          "total": {
+            "BRAM_18K": 0,
+            "DSP": 0,
+            "FF": 1081,
+            "LUT": 2149,
+            "URAM": 0
+          }
+        }
+      }
+    }
+  }
+}

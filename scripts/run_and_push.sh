@@ -7,9 +7,21 @@
     cd "$SCRIPT_DIR"
 
     echo "=== 0. Setting up Xilinx Environment Variables ==="
+    for conda_bin in "/afs/ece/usr/dchan2/miniconda3/bin" "/afs/ece.cmu.edu/usr/dchan2/miniconda3/bin" "$HOME/miniconda3/bin"; do
+        if [ -d "$conda_bin" ]; then
+            export PATH="$conda_bin:$PATH"
+        fi
+    done
+
     if [ -z "$XILINX_VITIS" ] && [ -f "/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis/2023.2/settings64.sh" ]; then
         source "/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis/2023.2/settings64.sh" || true
     fi
+    for conda_bin in "/afs/ece/usr/dchan2/miniconda3/bin" "/afs/ece.cmu.edu/usr/dchan2/miniconda3/bin" "$HOME/miniconda3/bin"; do
+        if [ -d "$conda_bin" ]; then
+            export PATH="$conda_bin:$PATH"
+        fi
+    done
+    export PATH
     if [ -z "$XILINX_VITIS" ]; then
         export XILINX_VITIS="/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis/2023.2"
     fi
@@ -399,6 +411,7 @@ for root, dirs, files in os.walk(inc_base):
     echo "=== 1b. Setting up vitis_hls and tapacc wrappers with diagnostics ==="
     mkdir -p "$REPO_ROOT/.tapa/usr/bin"
     export PATH="$REPO_ROOT/.tapa/usr/bin:$PATH"
+    echo "which tapac: $(which tapac || true)"
 
     VITIS_HLS_WRAPPER="$REPO_ROOT/.tapa/usr/bin/vitis_hls"
     cat << 'EOF_VHLS' > "$VITIS_HLS_WRAPPER"

@@ -621,6 +621,8 @@ def Generate_MakeFile(_kernel_freq, _fpga_part_name):
     make_file.append('HOST_ARCH := x86' + "\n")
     make_file.append('' + "\n")
     make_file.append('include ./utils.mk' + "\n")
+    make_file.append('SHELL := /bin/bash' + "\n")
+    make_file.append('export PATH := $(PATH)' + "\n")
     make_file.append('' + "\n")
     make_file.append('XSA := $(call device2xsa, $(DEVICE))' + "\n")
     make_file.append('TEMP_DIR := ./_x.$(TARGET).$(XSA)' + "\n")

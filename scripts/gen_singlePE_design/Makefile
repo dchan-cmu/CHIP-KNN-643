@@ -28,6 +28,8 @@ TARGET := hw
 HOST_ARCH := x86
 
 include ./utils.mk
+SHELL := /bin/bash
+export PATH := $(PATH)
 
 XSA := $(call device2xsa, $(DEVICE))
 TEMP_DIR := ./_x.$(TARGET).$(XSA)

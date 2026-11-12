@@ -1,4 +1,228 @@
-/afs/ece/support/mgc/mgc.release/cal_2022.4_aok/aok_cal_2022.4_28.13/bin/python3: line 203: Program.run_hls: command not found
-Argument expected for the -c option
-usage: /afs/ece/support/mgc/mgc.release/cal_2022.4_aok/aok_cal_2022.4_28.13/pkgs/icv_python/asp/bin/python3 [option] ... [-c cmd | -m mod | file | -] [arg] ...
-Try `python -h' for more information.
+/afs/ece.cmu.edu/usr/dchan2/miniconda3/lib/python3.13/site-packages/autobridge/util.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import get_distribution
+=== Program.run_hls ===
+   def run_hls(
+      self,
+      clock_period: Union[int, float, str],
+      part_num: str,
+      skip_based_on_mtime: bool = False,
+      other_configs: str = '',
+  ) -> 'Program':
+    """Run HLS with extracted HLS C++ files and generate tarballs."""
+    self.extract_cpp()
+
+    _logger.info('running HLS')
+
+    def worker(task: Task, idx: int) -> None:
+      os.nice(idx % 19)
+      try:
+        if (skip_based_on_mtime and
+            os.path.getmtime(self.get_tar(task.name)) > os.path.getmtime(
+                self.get_cpp(task.name))):
+          _logger.info('skipping HLS for %s since %s is newer than %s',
+                       task.name, self.get_tar(task.name),
+                       self.get_cpp(task.name))
+          return
+      except OSError:
+        pass
+      hls_cflags = ' '.join((
+          self.cflags,
+          
+          '-DTAPA_TARGET_=XILINX_HLS', '-DTAPA_TARGET_DEVICE_', '-DTAPA_TARGET_XILINX_HLS_', '-D__SYNTHESIS__', '-D__VITIS_HLS__', '-DTAPA_TARGET_DEVICE_', '-DTAPA_TARGET_XILINX_HLS_', '-D__SYNTHESIS__',
+      ))
+      with open(self.get_tar(task.name), 'wb') as tarfileobj:
+        with hls.RunHls(
+            tarfileobj,
+            kernel_files=[(self.get_cpp(task.name), hls_cflags)],
+            top_name=task.name,
+            clock_period=clock_period,
+            part_num=part_num,
+            auto_prefix=True,
+            hls='vitis_hls',
+            std='c++14',
+            other_configs=other_configs,
+        ) as proc:
+          stdout, stderr = proc.communicate()
+          if proc.returncode != 0:
+            import glob as _glob
+            print(f"=== FULL VITIS HLS LOG FOR {task.name} ===", flush=True)
+            for d in _glob.glob(f"/tmp/run-hls-{task.name}*"):
+              for root, dirs, files in os.walk(d):
+                for file in files:
+                  if file.endswith((".log", ".rpt", ".tcl", ".xml", ".size")):
+                    p = os.path.join(root, file)
+                    print(f"--- File: {p} ---", flush=True)
+                    try:
+                      with open(p, "r", errors="ignore") as lf:
+                        print(lf.read(), flush=True)
+                    except Exception as e:
+                      print(f"Could not read {p}: {e}", flush=True)
+      if proc.returncode != 0:
+        if b'Pre-synthesis failed.' in stdout and b'\nERROR:' not in stdout:
+          _logger.error(
+              'HLS failed for %s, but the failure may be flaky; retrying',
+              task.name,
+          )
+          worker(task, 0)
+          return
+        sys.stdout.write(stdout.decode('utf-8'))
+        sys.stderr.write(stderr.decode('utf-8'))
+        raise RuntimeError('HLS failed for {}'.format(task.name))
+
+    worker_num = util.nproc()
+    _logger.info(
+        'spawn %d workers for parallel HLS synthesis of the tasks',
+        worker_num,
+    )
+    with futures.ThreadPoolExecutor(max_workers=worker_num) as executor:
+      any(executor.map(worker, self._tasks.values(), itertools.count(0)))
+
+    return self
+
+=== Program.generate_task_rtl ===
+   def generate_task_rtl(
+      self,
+      additional_fifo_pipelining: bool = False,
+  ) -> 'Program':
+    """Extract HDL files from tarballs generated from HLS."""
+    _logger.info('extracting RTL files')
+    for task in self._tasks.values():
+      with tarfile.open(self.get_tar(task.name), 'r') as tarfileobj:
+        tarfileobj.extractall(path=self.work_dir)
+
+    for file_name in (
+        'arbiter.v',
+        'async_mmap.v',
+        'axi_pipeline.v',
+        'axi_crossbar_addr.v',
+        'axi_crossbar_rd.v',
+        'axi_crossbar_wr.v',
+        'axi_crossbar.v',
+        'axi_register_rd.v',
+        'axi_register_wr.v',
+        'detect_burst.v',
+        'fifo.v',
+        'fifo_bram.v',
+        'fifo_fwd.v',
+        'fifo_srl.v',
+        'generate_last.v',
+        'priority_encoder.v',
+        'relay_station.v',
+        'a_axi_write_broadcastor_1_to_3.v',
+        'a_axi_write_broadcastor_1_to_4.v',
+    ):
+      shutil.copy(
+          os.path.join(os.path.dirname(util.__file__), 'assets', 'verilog',
+                       file_name), self.rtl_dir)
+
+    # extract and parse RTL and populate tasks
+    _logger.info('parsing RTL files and populating tasks')
+    for task, module in zip(
+        self._tasks.values(),
+        futures.ProcessPoolExecutor().map(
+            rtl.Module,
+            ([self.get_rtl(x.name)] for x in self._tasks.values()),
+            (not x.is_upper for x in self._tasks.values()),
+        ),
+    ):
+      _logger.debug('parsing %s', task.name)
+      task.module = module
+      task.self_area = self.get_area(task.name)
+      task.clock_period = self.get_clock_period(task.name)
+      _logger.debug('populating %s', task.name)
+      self._populate_task(task)
+
+    # instrument the upper-level RTL except the top-level
+    _logger.info('instrumenting upper-level RTL')
+    for task in self._tasks.values():
+      if task.is_upper and task.name != self.top:
+        self._instrument_non_top_upper_task(
+            task,
+            additional_fifo_pipelining,
+        )
+
+    return self
+
+=== Program.generate_top_rtl ===
+   def generate_top_rtl(
+      self,
+      constraint: Optional[TextIO],
+      register_level: int,
+      additional_fifo_pipelining: bool,
+      part_num: str,
+      print_fifo_ops: bool = False,
+  ) -> 'Program':
+    """Instrument HDL files generated from HLS.
+
+    Args:
+        constraint: where to save the floorplan constraints
+        register_level: Non-zero value overrides self.register_level.
+        part_num: optinally provide the part_num to enable board-specific optimization
+        additional_fifo_pipelining: replace every FIFO by a relay_station of LEVEL 2
+
+    Returns:
+        Program: Return self.
+    """
+    # extract the floorplan result
+    if constraint is not None:
+      (
+          fifo_pipeline_level,
+          axi_pipeline_level,
+          fifo_to_depth,
+      ) = get_floorplan_result(self.autobridge_dir, constraint)
+
+      self.top_task.module.fifo_partition_count = fifo_pipeline_level
+      self.top_task.module.axi_pipeline_level = axi_pipeline_level
+
+      # adjust fifo depth for rebalancing
+      for fifo_name, depth in fifo_to_depth.items():
+        if fifo_name in self.top_task.fifos:
+          self.top_task.fifos[fifo_name]['depth'] = depth
+        else:
+          # streams has different naming convention
+          # change fifo_name_0 to fifo_name[0]
+          streams_fifo_name = re.sub(r'_(\d+)$', r'[\1]', fifo_name)
+          if streams_fifo_name in self.top_task.fifos:
+            self.top_task.fifos[streams_fifo_name]['depth'] = depth
+          else:
+            _logger.critical('unrecognized FIFO %s, skip depth adjustment',
+                             fifo_name)
+
+    if register_level:
+      assert register_level > 0
+      self.top_task.module.register_level = register_level
+    elif constraint is not None:
+      if is_part_num_supported(part_num):
+        self.top_task.module.register_level = get_slr_count(part_num)
+      else:
+        _logger.info(
+            'the part-num is not included in the hardware library, '
+            'using the default register level %d.', DEFAULT_REGISTER_LEVEL)
+        self.top_task.module.register_level = DEFAULT_REGISTER_LEVEL
+
+    _logger.info('top task register level set to %d',
+                 self.top_task.module.register_level)
+
+    # instrument the top-level RTL
+    _logger.info('instrumenting top-level RTL')
+    self._instrument_top_task(
+        self.top_task,
+        additional_fifo_pipelining,
+        print_fifo_ops,
+    )
+
+    _logger.info('generating report')
+    task_report = self.top_task.report
+    with open(os.path.join(self.work_dir, 'report.yaml'), 'w') as fp:
+      yaml.dump(task_report, fp, default_flow_style=False, sort_keys=False)
+    with open(os.path.join(self.work_dir, 'report.json'), 'w') as fp:
+      json.dump(task_report, fp, indent=2)
+
+    # self.files won't be populated until all tasks are instrumented
+    _logger.info('writing generated auxiliary RTL files')
+    for name, content in self.files.items():
+      with open(os.path.join(self.rtl_dir, name), 'w') as fp:
+        fp.write(content)
+
+    return self
+

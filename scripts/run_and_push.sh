@@ -911,6 +911,14 @@ EOF_WRAP
     echo "=== 2. Running Single-PE Exploration ==="
     python3 singlePE_design_exploration.py 2>&1 | tee "$REPO_ROOT/run_output.log" || true
 
+    echo "=== 2b. Running Multi-PE Exploration ==="
+    if [ -f "singlePE_perf_results.log" ]; then
+        rm -rf gen_multiPE_design
+        python3 multiPE_design_exploration.py 2>&1 | tee "$REPO_ROOT/multiPE_output.log" || true
+    else
+        echo "singlePE_perf_results.log missing, skipping multi-PE." | tee "$REPO_ROOT/multiPE_output.log"
+    fi
+
     echo "=== 3. Gathering Build Logs ==="
     if [ -f "gen_singlePE_design/tapa_HLS_output.log" ]; then
         cp "gen_singlePE_design/tapa_HLS_output.log" "$REPO_ROOT/tapa_HLS_output.log"
@@ -933,7 +941,7 @@ EOF_WRAP
 
     echo "=== 4. Pushing Logs to GitHub (branch: debug-run) ==="
     git checkout -B debug-run
-    git add -f run_output.log tapa_HLS_output.log tapacc_wrapper.log tapa_internals.log tapa_headers_debug.log tapa_instance_debug.log singlePE_perf_results.log report.json real_xilinx_hls_stream.h scripts/ 2>/dev/null || true
+    git add -f multiPE_output.log run_output.log tapa_HLS_output.log tapacc_wrapper.log tapa_internals.log tapa_headers_debug.log tapa_instance_debug.log singlePE_perf_results.log report.json real_xilinx_hls_stream.h scripts/ 2>/dev/null || true
     git commit -m "Auto-upload run logs: $(date -u +'%Y-%m-%d %H:%M:%S UTC')" || true
     git push -u origin debug-run --force
 

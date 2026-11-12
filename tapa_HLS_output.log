@@ -1,1 +1,28 @@
-utils.mk:30: *** XILINX_VITIS variable is not set, please set correctly and rerun.  Stop.
+mkdir -p ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform
+mkdir -p build_script
+tapac \
+      --work-dir ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform \
+      --top Knn \
+      --part-num xczu3eg-sbva484-1-e \
+      --clock-period 5.00 \
+      -o ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn.xo \
+      --enable-synth-util \
+          --cflags=-U__SYNTHESIS__ \
+          --cflags=-D__VITIS_HLS__ \
+          --cflags=-w \
+          --cflags=-Wno-invalid-constexpr \
+          --cflags=-Wno-error=invalid-constexpr \
+          --cflags=-I/afs/ece.cmu.edu/usr/dchan2/Private/18643/final_project/CHIP-KNN-643/scripts/gen_singlePE_design/src \
+          --cflags=-I/usr/bin/../lib/clang/20/include \
+          --cflags=-I/usr/include/c++/8 \
+          --cflags=-I/usr/include/c++/8/x86_64-redhat-linux \
+          --cflags=-I/usr/include \
+          --cflags=-I/usr/include/x86_64-linux-gnu \
+          --cflags=-I$XILINX_HLS/include \
+          --cflags=-I$XILINX_VITIS/include \
+          --cflags=-I/afs/ece.cmu.edu/usr/dchan2/Private/18643/final_project/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include \
+      --max-parallel-synth-jobs 12 \
+      --run-tapacc \
+      src/knn.cpp
+/bin/sh: line 1: tapac: command not found
+make: *** [Makefile:98: _x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn.xo] Error 127

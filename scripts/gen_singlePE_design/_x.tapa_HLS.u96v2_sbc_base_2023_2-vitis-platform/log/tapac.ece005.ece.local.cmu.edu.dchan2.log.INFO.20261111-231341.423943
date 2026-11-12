@@ -1,0 +1,48 @@
+I1111 23:13:41.418 tapa.util:184] logging level set to INFO
+W1111 23:13:41.418 tapa.tapac:398] Step 0: run_tapacc is *SKIPPED*.
+I1111 23:13:41.418 tapa.tapac:396] Step 1: run_hls is enabled.
+I1111 23:13:41.418 tapa.tapac:396] Step 2: generate_task_rtl is enabled.
+W1111 23:13:41.419 tapa.tapac:398] Step 3: run_floorplanning is *SKIPPED*.
+I1111 23:13:41.419 tapa.tapac:396] Step 4: generate_top_rtl is enabled.
+I1111 23:13:41.419 tapa.tapac:396] Step 5: pack_xo is enabled.
+I1111 23:13:41.419 tapa.tapac:514] running translated command: `tapa --work-dir=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform synth --part-num=xczu3eg-sbva484-1-e --clock-period=5.00 link pack --output=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn.xo --bitstream-script=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn_generate_bitstream.sh`
+I1111 23:13:41.421 tapa.util:184] logging level set to INFO
+I1111 23:13:41.421 tapa.util:184] logging level set to INFO
+I1111 23:13:41.421 tapa.tapa:54] tapa version: 0.0.20240825.1
+I1111 23:13:41.421 tapa.tapa:54] tapa version: 0.0.20240825.1
+I1111 23:13:41.421 tapa.tapa:58] Python recursion limit set to 3000
+I1111 23:13:41.421 tapa.tapa:58] Python recursion limit set to 3000
+I1111 23:13:41.423 tapa.steps.common:50] loading TAPA graph from json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/graph.json`.
+I1111 23:13:41.423 tapa.steps.common:50] loading TAPA graph from json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/graph.json`.
+I1111 23:13:41.425 tapa.steps.common:50] loading TAPA graph from json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/settings.json`.
+I1111 23:13:41.425 tapa.steps.common:50] loading TAPA graph from json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/settings.json`.
+I1111 23:13:41.425 tapa.core:181] extracting HLS C++ files
+I1111 23:13:41.425 tapa.core:181] extracting HLS C++ files
+I1111 23:13:41.759 tapa.core:213] running HLS
+I1111 23:13:41.759 tapa.core:213] running HLS
+I1111 23:13:41.766 tapa.core:272] spawn 24 workers for parallel HLS synthesis of the tasks
+I1111 23:13:41.766 tapa.core:272] spawn 24 workers for parallel HLS synthesis of the tasks
+I1111 23:14:54.711 tapa.core:286] extracting RTL files
+I1111 23:14:54.711 tapa.core:286] extracting RTL files
+I1111 23:14:54.947 tapa.core:317] parsing RTL files and populating tasks
+I1111 23:14:54.947 tapa.core:317] parsing RTL files and populating tasks
+D1111 23:14:56.689 tapa.core:326] parsing compute_KNN
+D1111 23:14:56.689 tapa.core:326] parsing compute_KNN
+D1111 23:14:56.691 tapa.core:330] populating compute_KNN
+D1111 23:14:56.691 tapa.core:330] populating compute_KNN
+D1111 23:14:56.721 tapa.core:326] parsing krnl_singlePE_Write_Outputs
+D1111 23:14:56.721 tapa.core:326] parsing krnl_singlePE_Write_Outputs
+D1111 23:14:56.722 tapa.core:330] populating krnl_singlePE_Write_Outputs
+D1111 23:14:56.722 tapa.core:330] populating krnl_singlePE_Write_Outputs
+D1111 23:14:56.722 tapa.core:326] parsing load_KNN
+D1111 23:14:56.722 tapa.core:326] parsing load_KNN
+D1111 23:14:56.723 tapa.core:330] populating load_KNN
+D1111 23:14:56.723 tapa.core:330] populating load_KNN
+D1111 23:14:56.810 tapa.core:326] parsing para_partial_sort
+D1111 23:14:56.810 tapa.core:326] parsing para_partial_sort
+D1111 23:14:56.811 tapa.core:330] populating para_partial_sort
+D1111 23:14:56.811 tapa.core:330] populating para_partial_sort
+D1111 23:14:56.812 tapa.core:326] parsing Knn
+D1111 23:14:56.812 tapa.core:326] parsing Knn
+D1111 23:14:56.815 tapa.core:330] populating Knn
+D1111 23:14:56.815 tapa.core:330] populating Knn

@@ -26,19 +26,19 @@ tapac \
       src/knn.cpp
 /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/autobridge/util.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   from pkg_resources import get_distribution
-I1111 23:02:54.434 tapa.util:184] logging level set to INFO
-I1111 23:02:54.434 tapa.tapac:396] Step 0: run_tapacc is enabled.
-W1111 23:02:54.435 tapa.tapac:398] Step 1: run_hls is *SKIPPED*.
-W1111 23:02:54.435 tapa.tapac:398] Step 2: generate_task_rtl is *SKIPPED*.
-W1111 23:02:54.435 tapa.tapac:398] Step 3: run_floorplanning is *SKIPPED*.
-W1111 23:02:54.435 tapa.tapac:398] Step 4: generate_top_rtl is *SKIPPED*.
-W1111 23:02:54.435 tapa.tapac:398] Step 5: pack_xo is *SKIPPED*.
-I1111 23:02:54.435 tapa.tapac:514] running translated command: `tapa --work-dir=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform analyze --input=src/knn.cpp --top=Knn --cflags=-U__SYNTHESIS__ --cflags=-D__VITIS_HLS__ --cflags=-w --cflags=-Wno-invalid-constexpr --cflags=-Wno-error=invalid-constexpr --cflags=-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src --cflags=-I/usr/bin/../lib/clang/20/include --cflags=-I/usr/include/c++/8 --cflags=-I/usr/include/c++/8/x86_64-redhat-linux --cflags=-I/usr/include --cflags=-I/usr/include/x86_64-linux-gnu --cflags=-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include`
-I1111 23:02:54.436 tapa.util:184] logging level set to INFO
-I1111 23:02:54.437 tapa.tapa:54] tapa version: 0.0.20240825.1
-I1111 23:02:54.437 tapa.tapa:58] Python recursion limit set to 3000
-W1111 23:03:03.807 tapa.util:129] not adding vendor include paths; please update FRT
-I1111 23:03:03.807 tapa.steps.analyze:265] Running tapacc command: /scratch/643_vitis_dchan2/CHIP-KNN-643/.tapa/usr/bin/tapacc ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp -top Knn -- -U__SYNTHESIS__ -D__VITIS_HLS__ -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/usr/bin/../lib/clang/20/include -I/usr/include/c++/8 -I/usr/include/c++/8/x86_64-redhat-linux -I/usr/include -I/usr/include/x86_64-linux-gnu -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -std=c++17 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -stdlib=libc++ -isystem /usr/lib/llvm-22/include/c++/v1/ -isystem /usr/include/clang/22/include/ -isystem /usr/lib/clang/22/include/
+I1111 23:12:56.083 tapa.util:184] logging level set to INFO
+I1111 23:12:56.083 tapa.tapac:396] Step 0: run_tapacc is enabled.
+W1111 23:12:56.083 tapa.tapac:398] Step 1: run_hls is *SKIPPED*.
+W1111 23:12:56.083 tapa.tapac:398] Step 2: generate_task_rtl is *SKIPPED*.
+W1111 23:12:56.083 tapa.tapac:398] Step 3: run_floorplanning is *SKIPPED*.
+W1111 23:12:56.084 tapa.tapac:398] Step 4: generate_top_rtl is *SKIPPED*.
+W1111 23:12:56.084 tapa.tapac:398] Step 5: pack_xo is *SKIPPED*.
+I1111 23:12:56.084 tapa.tapac:514] running translated command: `tapa --work-dir=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform analyze --input=src/knn.cpp --top=Knn --cflags=-U__SYNTHESIS__ --cflags=-D__VITIS_HLS__ --cflags=-w --cflags=-Wno-invalid-constexpr --cflags=-Wno-error=invalid-constexpr --cflags=-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src --cflags=-I/usr/bin/../lib/clang/20/include --cflags=-I/usr/include/c++/8 --cflags=-I/usr/include/c++/8/x86_64-redhat-linux --cflags=-I/usr/include --cflags=-I/usr/include/x86_64-linux-gnu --cflags=-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include`
+I1111 23:12:56.085 tapa.util:184] logging level set to INFO
+I1111 23:12:56.086 tapa.tapa:54] tapa version: 0.0.20240825.1
+I1111 23:12:56.086 tapa.tapa:58] Python recursion limit set to 3000
+W1111 23:13:05.319 tapa.util:129] not adding vendor include paths; please update FRT
+I1111 23:13:05.320 tapa.steps.analyze:265] Running tapacc command: /scratch/643_vitis_dchan2/CHIP-KNN-643/.tapa/usr/bin/tapacc ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-9d5fbcdc-knn.cpp -top Knn -- -U__SYNTHESIS__ -D__VITIS_HLS__ -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src -I/usr/bin/../lib/clang/20/include -I/usr/include/c++/8 -I/usr/include/c++/8/x86_64-redhat-linux -I/usr/include -I/usr/include/x86_64-linux-gnu -I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -std=c++17 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -stdlib=libc++ -isystem /usr/lib/llvm-22/include/c++/v1/ -isystem /usr/include/clang/22/include/ -isystem /usr/lib/clang/22/include/
 Breakpoint 1 at 0xae5072
 Breakpoint 2 at 0xae8634
 warning: Loadable section ".note.gnu.property" outside of ELF segments
@@ -46006,9 +46006,9 @@ Breakpoint 2, 0x000055555603c634 in tapa::cc::AddPragmaToBody(tapa::cc::EditSink
 Breakpoint 1, 0x0000555556039072 in tapa::cc::XilinxBackend::RewriteHelperFunc(clang::FunctionDecl const*, tapa::cc::EditSink&) const ()
 
 Breakpoint 2, 0x000055555603c634 in tapa::cc::AddPragmaToBody(tapa::cc::EditSink&, clang::Stmt const*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) ()
-[Inferior 1 (process 419677) exited normally]
-I1111 23:03:40.344 tapa.steps.common:92] writing TAPA graph to json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/graph.json`.
-I1111 23:03:40.346 tapa.steps.common:92] writing TAPA settings to json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/settings.json`.
+[Inferior 1 (process 423819) exited normally]
+I1111 23:13:40.395 tapa.steps.common:92] writing TAPA graph to json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/graph.json`.
+I1111 23:13:40.397 tapa.steps.common:92] writing TAPA settings to json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/settings.json`.
 python3 /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../clean_graph_cflags.py ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/graph.json
 [clean_graph_cflags] Updated ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/graph.json with clean cflags: ['-D__VITIS_HLS__', '-w', '-Wno-invalid-constexpr', '-Wno-error=invalid-constexpr', '-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/src', '-I/scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/../../.tapa/usr/include', '-std=c++14', '-I', '/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src', '-D__SYNTHESIS__', '-DTAPA_TARGET_DEVICE_', '-DTAPA_TARGET_XILINX_HLS_', '-D__thread=', '-Dthread_local=', '-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/common/technology/autopilot']
 tapac \
@@ -46029,63 +46029,24 @@ tapac \
       src/knn.cpp
 /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/autobridge/util.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   from pkg_resources import get_distribution
-I1111 23:03:41.365 tapa.util:184] logging level set to INFO
-W1111 23:03:41.365 tapa.tapac:398] Step 0: run_tapacc is *SKIPPED*.
-I1111 23:03:41.365 tapa.tapac:396] Step 1: run_hls is enabled.
-I1111 23:03:41.365 tapa.tapac:396] Step 2: generate_task_rtl is enabled.
-W1111 23:03:41.365 tapa.tapac:398] Step 3: run_floorplanning is *SKIPPED*.
-I1111 23:03:41.365 tapa.tapac:396] Step 4: generate_top_rtl is enabled.
-I1111 23:03:41.365 tapa.tapac:396] Step 5: pack_xo is enabled.
-I1111 23:03:41.366 tapa.tapac:514] running translated command: `tapa --work-dir=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform synth --part-num=xczu3eg-sbva484-1-e --clock-period=5.00 link pack --output=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn.xo --bitstream-script=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn_generate_bitstream.sh`
-I1111 23:03:41.367 tapa.util:184] logging level set to INFO
-I1111 23:03:41.367 tapa.tapa:54] tapa version: 0.0.20240825.1
-I1111 23:03:41.367 tapa.tapa:58] Python recursion limit set to 3000
-I1111 23:03:41.369 tapa.steps.common:50] loading TAPA graph from json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/graph.json`.
-I1111 23:03:41.370 tapa.steps.common:50] loading TAPA graph from json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/settings.json`.
-I1111 23:03:41.370 tapa.core:181] extracting HLS C++ files
-I1111 23:03:41.701 tapa.core:213] running HLS
-I1111 23:03:41.708 tapa.core:272] spawn 24 workers for parallel HLS synthesis of the tasks
-I1111 23:04:37.307 tapa.core:286] extracting RTL files
-I1111 23:04:37.541 tapa.core:317] parsing RTL files and populating tasks
-concurrent.futures.process._RemoteTraceback: 
-"""
-Traceback (most recent call last):
-  File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/concurrent/futures/process.py", line 254, in _process_worker
-    r = call_item.fn(*call_item.args, **call_item.kwargs)
-  File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/concurrent/futures/process.py", line 203, in _process_chunk
-    return [fn(*args) for args in chunk]
-            ~~^^^^^^^
-  File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/verilog/xilinx/module.py", line 102, in __init__
-    self.ast: ast.Source = codeparser.parse()
-                           ~~~~~~~~~~~~~~~~^^
-  File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/pyverilog/vparser/parser.py", line 2315, in parse
-    text = self.preprocess()
-  File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/pyverilog/vparser/parser.py", line 2309, in preprocess
-    self.preprocessor.preprocess()
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/pyverilog/vparser/preprocessor.py", line 86, in preprocess
-    subprocess.call(cmd)
-    ~~~~~~~~~~~~~~~^^^^^
-  File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/subprocess.py", line 395, in call
-    with Popen(*popenargs, **kwargs) as p:
-         ~~~~~^^^^^^^^^^^^^^^^^^^^^^
-  File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/subprocess.py", line 1039, in __init__
-    self._execute_child(args, executable, preexec_fn, close_fds,
-    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-                        pass_fds, cwd, env,
-                        ^^^^^^^^^^^^^^^^^^^
-    ...<5 lines>...
-                        gid, gids, uid, umask,
-                        ^^^^^^^^^^^^^^^^^^^^^^
-                        start_new_session, process_group)
-                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/subprocess.py", line 1991, in _execute_child
-    raise child_exception_type(errno_num, err_msg, err_filename)
-FileNotFoundError: [Errno 2] No such file or directory: 'iverilog'
-"""
-
-The above exception was the direct cause of the following exception:
-
+I1111 23:13:41.418 tapa.util:184] logging level set to INFO
+W1111 23:13:41.418 tapa.tapac:398] Step 0: run_tapacc is *SKIPPED*.
+I1111 23:13:41.418 tapa.tapac:396] Step 1: run_hls is enabled.
+I1111 23:13:41.418 tapa.tapac:396] Step 2: generate_task_rtl is enabled.
+W1111 23:13:41.419 tapa.tapac:398] Step 3: run_floorplanning is *SKIPPED*.
+I1111 23:13:41.419 tapa.tapac:396] Step 4: generate_top_rtl is enabled.
+I1111 23:13:41.419 tapa.tapac:396] Step 5: pack_xo is enabled.
+I1111 23:13:41.419 tapa.tapac:514] running translated command: `tapa --work-dir=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform synth --part-num=xczu3eg-sbva484-1-e --clock-period=5.00 link pack --output=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn.xo --bitstream-script=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn_generate_bitstream.sh`
+I1111 23:13:41.421 tapa.util:184] logging level set to INFO
+I1111 23:13:41.421 tapa.tapa:54] tapa version: 0.0.20240825.1
+I1111 23:13:41.421 tapa.tapa:58] Python recursion limit set to 3000
+I1111 23:13:41.423 tapa.steps.common:50] loading TAPA graph from json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/graph.json`.
+I1111 23:13:41.425 tapa.steps.common:50] loading TAPA graph from json `./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/settings.json`.
+I1111 23:13:41.425 tapa.core:181] extracting HLS C++ files
+I1111 23:13:41.759 tapa.core:213] running HLS
+I1111 23:13:41.766 tapa.core:272] spawn 24 workers for parallel HLS synthesis of the tasks
+I1111 23:14:54.711 tapa.core:286] extracting RTL files
+I1111 23:14:54.947 tapa.core:317] parsing RTL files and populating tasks
 Traceback (most recent call last):
   File "/afs/ece.cmu.edu/usr/dchan2/miniconda3/bin/tapac", line 6, in <module>
     sys.exit(main())
@@ -46117,29 +46078,40 @@ Traceback (most recent call last):
   File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/steps/synth.py", line 78, in synth
     program.generate_task_rtl(additional_fifo_pipelining)
     ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/core.py", line 318, in generate_task_rtl
-    for task, module in zip(
-                        ~~~^
-        self._tasks.values(),
-        ^^^^^^^^^^^^^^^^^^^^^
+  File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/core.py", line 331, in generate_task_rtl
+    self._populate_task(task)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/core.py", line 501, in _populate_task
+    task.instances = tuple(
+                     ~~~~~^
+        Instance(self.get_task(name), verilog=rtl, instance_id=idx, **obj)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        for name, objs in task.tasks.items()
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        for idx, obj in enumerate(objs))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/core.py", line 502, in <genexpr>
+    Instance(self.get_task(name), verilog=rtl, instance_id=idx, **obj)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/instance.py", line 118, in __init__
+    sorted(
+    ~~~~~~^
+        Instance.Arg(
+        ^^^^^^^^^^^^^
     ...<4 lines>...
-        ),
-        ^^
-    ):
-    ^
-  File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/concurrent/futures/process.py", line 617, in _chain_from_iterable_of_lists
-    for element in iterable:
-                   ^^^^^^^^
-  File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/concurrent/futures/_base.py", line 619, in result_iterator
-    yield _result_or_cancel(fs.pop())
-          ~~~~~~~~~~~~~~~~~^^^^^^^^^^
-  File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/concurrent/futures/_base.py", line 317, in _result_or_cancel
-    return fut.result(timeout)
-           ~~~~~~~~~~^^^^^^^^^
-  File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/concurrent/futures/_base.py", line 456, in result
-    return self.__get_result()
-           ~~~~~~~~~~~~~~~~~^^
-  File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/concurrent/futures/_base.py", line 401, in __get_result
-    raise self._exception
-FileNotFoundError: [Errno 2] No such file or directory: 'iverilog'
+            is_upper=task.is_upper,
+            ^^^^^^^^^^^^^^^^^^^^^^^
+        ) for port, arg in kwargs.pop('args').items()))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/instance.py", line 120, in <genexpr>
+    name=rtl.sanitize_array_name(arg['arg']),
+         ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/verilog/util.py", line 49, in sanitize_array_name
+    match = match_array_name(name)
+  File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/verilog/util.py", line 42, in match_array_name
+    match = re.fullmatch(r'(\w+)\[(\d+)\]', name)
+  File "/afs/ece/usr/dchan2/miniconda3/lib/python3.13/re/__init__.py", line 172, in fullmatch
+    return _compile(pattern, flags).fullmatch(string)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+TypeError: expected string or bytes-like object, got 'dict'
 make: *** [Makefile:102: _x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn.xo] Error 1

@@ -239,22 +239,14 @@ clean_hls_stream_code = """#pragma once
 
 namespace hls {
 
-template<size_t SIZE>
+template<typename T>
 class stream_entity {
 public:
-  char _storage[SIZE];
+  T _storage;
   inline stream_entity() {}
-  inline bool read(void *elem) {
-    if (elem) std::memcpy(elem, _storage, SIZE);
-    return true;
-  }
-  inline void write(const void *elem) {
-    if (elem) std::memcpy(_storage, elem, SIZE);
-  }
-  inline bool read_nb(void *elem) {
-    if (elem) std::memcpy(elem, _storage, SIZE);
-    return true;
-  }
+  inline void read(T& elem) { elem = _storage; }
+  inline void write(const T& elem) { _storage = elem; }
+  inline bool read_nb(T& elem) { elem = _storage; return true; }
   inline size_t size() const { return 0; }
   inline void set_name(const char *n) {}
 };
@@ -269,7 +261,7 @@ public:
   using value_type = __STREAM_T__;
 
 protected:
-  stream_entity<sizeof(__STREAM_T__)> _data;
+  stream_entity<__STREAM_T__> _data;
 
 public:
   inline stream() {}
@@ -287,25 +279,24 @@ public:
   inline bool full() const { return false; }
 
   inline void read(__STREAM_T__& head) {
-    _data.read(&head);
+    head = _data._storage;
   }
 
   inline __STREAM_T__ read() {
-    __STREAM_T__ elem = __STREAM_T__();
-    _data.read(&elem);
-    return elem;
+    return _data._storage;
   }
 
   inline void write(const __STREAM_T__& tail) {
-    _data.write(&tail);
+    _data._storage = tail;
   }
 
   inline bool read_nb(__STREAM_T__& head) {
-    return _data.read_nb(&head);
+    head = _data._storage;
+    return true;
   }
 
   inline bool write_nb(const __STREAM_T__& tail) {
-    _data.write(&tail);
+    _data._storage = tail;
     return true;
   }
 

@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'compute_KNN_Pipeline_VITIS_LOOP_36_1'
 ================================================================
-* Date:           Wed Nov 11 23:14:50 2026
+* Date:           Wed Nov 11 23:24:44 2026
 
 * Version:        2023.2 (Build 4023990 on Oct 11 2023)
 * Project:        project
@@ -155,7 +155,7 @@ The critical path consists of the following:
 	'store' operation 0 bit ('store_ln36', /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp:36) of constant 0 on local variable 'j', /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp:36 [26]  (0.489 ns)
 	'load' operation 3 bit ('j', /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp:40) on local variable 'j', /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp:36 [29]  (0.000 ns)
 	'lshr' operation 128 bit ('lshr_ln38', /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp:38) [41]  (1.720 ns)
-	'store' operation 0 bit ('store_ln20', /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp:20) of variable 'local_Query', /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp:38 on local variable 'local_Query_30_out' [45]  (0.000 ns)
+	'store' operation 0 bit ('store_ln20', /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp:20) of variable 'local_Query', /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/gen_singlePE_design/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/cpp/compute_KNN.cpp:38 on local variable 'local_Query_29_out' [48]  (0.000 ns)
 
 
 ============================================================

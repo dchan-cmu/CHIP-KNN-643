@@ -84,17 +84,11 @@
                 "cat": "ostream"
               },
               "debug_pe_idx": {
-                "arg": {
-                  "value": 0,
-                  "width": 32
-                },
+                "arg": "32'd0",
                 "cat": "scalar"
               },
               "debug_start_idx": {
-                "arg": {
-                  "value": 0,
-                  "width": 32
-                },
+                "arg": "32'd0",
                 "cat": "scalar"
               },
               "load_to_compute_stream": {
@@ -128,10 +122,7 @@
           {
             "args": {
               "debug_PE_ID": {
-                "arg": {
-                  "value": 0,
-                  "width": 32
-                },
+                "arg": "32'd0",
                 "cat": "scalar"
               },
               "load_to_compute_stream": {
@@ -150,10 +141,7 @@
           {
             "args": {
               "PE_idx": {
-                "arg": {
-                  "value": 0,
-                  "width": 32
-                },
+                "arg": "32'd0",
                 "cat": "scalar"
               },
               "compute_to_sort_stream": {

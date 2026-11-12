@@ -131,6 +131,16 @@ $(TEMP_DIR)/knn.xo: $(KNN_SRC)
 	      --max-parallel-synth-jobs 12 \
 	      --run-hls \
 	      --generate-task-rtl \
+	      $(KNN_SRC)
+	python3 $(shell pwd)/../patch_task_rtl.py $(TEMP_DIR) $(TEMP_DIR)/graph.json
+	tapac \
+	      --work-dir $(TEMP_DIR) \
+	      --top Knn \
+	      --part-num xczu3eg-sbva484-1-e \
+	      --clock-period 5.00 \
+	      -o $(TEMP_DIR)/knn.xo \
+	      --enable-synth-util \
+	      --max-parallel-synth-jobs 12 \
 	      --generate-top-rtl \
 	      --pack-xo \
 	      --connectivity $(INIFILE) \

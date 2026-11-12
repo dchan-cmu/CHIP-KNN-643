@@ -1,0 +1,172 @@
+
+
+================================================================
+== Vitis HLS Report for 'compute_KNN_Pipeline_VITIS_LOOP_36_1'
+================================================================
+* Date:           Wed Nov 11 23:04:35 2026
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        project
+* Solution:       compute_KNN (Vivado IP Flow Target)
+* Product family: zynquplus
+* Target device:  xczu3eg-sbva484-1-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  2.209 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                   |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |     Loop Name     |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_36_1  |        ?|        ?|         1|          1|          1|     ?|       yes|
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+--------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF   |  LUT  | URAM|
++-----------------+---------+-----+--------+-------+-----+
+|DSP              |        -|    -|       -|      -|    -|
+|Expression       |        -|    -|       0|    457|    -|
+|FIFO             |        -|    -|       -|      -|    -|
+|Instance         |        -|    -|       -|      -|    -|
+|Memory           |        -|    -|       -|      -|    -|
+|Multiplexer      |        -|    -|       -|     45|    -|
+|Register         |        -|    -|      10|      -|    -|
++-----------------+---------+-----+--------+-------+-----+
+|Total            |        0|    0|      10|    502|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Available        |      432|  360|  141120|  70560|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Utilization (%)  |        0|    0|      ~0|     ~0|    0|
++-----------------+---------+-----+--------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +---------------------+----------+----+---+-----+------------+------------+
+    |    Variable Name    | Operation| DSP| FF| LUT | Bitwidth P0| Bitwidth P1|
+    +---------------------+----------+----+---+-----+------------+------------+
+    |add_ln37_fu_276_p2   |         +|   0|  0|   12|           5|           1|
+    |j_2_fu_144_p2        |         +|   0|  0|   10|           3|           1|
+    |icmp_ln36_fu_138_p2  |      icmp|   0|  0|   12|           5|           5|
+    |lshr_ln38_fu_170_p2  |      lshr|   0|  0|  423|         128|         128|
+    +---------------------+----------+----+---+-----+------------+------------+
+    |Total                |          |   0|  0|  457|         141|         135|
+    +---------------------+----------+----+---+-----+------------+------------+
+
+    * Multiplexer: 
+    +----------------------------------+----+-----------+-----+-----------+
+    |               Name               | LUT| Input Size| Bits| Total Bits|
+    +----------------------------------+----+-----------+-----+-----------+
+    |ap_done_int                       |   9|          2|    1|          2|
+    |ap_sig_allocacmp_input_dim_idx_1  |   9|          2|    5|         10|
+    |ap_sig_allocacmp_j_1              |   9|          2|    3|          6|
+    |input_dim_idx_fu_100              |   9|          2|    5|         10|
+    |j_fu_96                           |   9|          2|    3|          6|
+    +----------------------------------+----+-----------+-----+-----------+
+    |Total                             |  45|         10|   17|         34|
+    +----------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +----------------------+---+----+-----+-----------+
+    |         Name         | FF| LUT| Bits| Const Bits|
+    +----------------------+---+----+-----+-----------+
+    |ap_CS_fsm             |  1|   0|    1|          0|
+    |ap_done_reg           |  1|   0|    1|          0|
+    |input_dim_idx_fu_100  |  5|   0|    5|          0|
+    |j_fu_96               |  3|   0|    3|          0|
+    +----------------------+---+----+-----+-----------+
+    |Total                 | 10|   0|   10|          0|
+    +----------------------+---+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++---------------------------+-----+-----+------------+--------------------------------------+--------------+
+|         RTL Ports         | Dir | Bits|  Protocol  |             Source Object            |    C Type    |
++---------------------------+-----+-----+------------+--------------------------------------+--------------+
+|ap_clk                     |   in|    1|  ap_ctrl_hs|  compute_KNN_Pipeline_VITIS_LOOP_36_1|  return value|
+|ap_rst                     |   in|    1|  ap_ctrl_hs|  compute_KNN_Pipeline_VITIS_LOOP_36_1|  return value|
+|ap_start                   |   in|    1|  ap_ctrl_hs|  compute_KNN_Pipeline_VITIS_LOOP_36_1|  return value|
+|ap_done                    |  out|    1|  ap_ctrl_hs|  compute_KNN_Pipeline_VITIS_LOOP_36_1|  return value|
+|ap_idle                    |  out|    1|  ap_ctrl_hs|  compute_KNN_Pipeline_VITIS_LOOP_36_1|  return value|
+|ap_ready                   |  out|    1|  ap_ctrl_hs|  compute_KNN_Pipeline_VITIS_LOOP_36_1|  return value|
+|indvars_iv114              |   in|    5|     ap_none|                         indvars_iv114|        scalar|
+|sub_ln30                   |   in|    5|     ap_none|                              sub_ln30|        scalar|
+|cur_data                   |   in|  128|     ap_none|                              cur_data|        scalar|
+|local_Query_31_out         |  out|   32|      ap_vld|                    local_Query_31_out|       pointer|
+|local_Query_31_out_ap_vld  |  out|    1|      ap_vld|                    local_Query_31_out|       pointer|
+|local_Query_30_out         |  out|   32|      ap_vld|                    local_Query_30_out|       pointer|
+|local_Query_30_out_ap_vld  |  out|    1|      ap_vld|                    local_Query_30_out|       pointer|
+|local_Query_29_out         |  out|   32|      ap_vld|                    local_Query_29_out|       pointer|
+|local_Query_29_out_ap_vld  |  out|    1|      ap_vld|                    local_Query_29_out|       pointer|
+|local_Query_28_out         |  out|   32|      ap_vld|                    local_Query_28_out|       pointer|
+|local_Query_28_out_ap_vld  |  out|    1|      ap_vld|                    local_Query_28_out|       pointer|
+|local_Query_27_out         |  out|   32|      ap_vld|                    local_Query_27_out|       pointer|
+|local_Query_27_out_ap_vld  |  out|    1|      ap_vld|                    local_Query_27_out|       pointer|
+|local_Query_26_out         |  out|   32|      ap_vld|                    local_Query_26_out|       pointer|
+|local_Query_26_out_ap_vld  |  out|    1|      ap_vld|                    local_Query_26_out|       pointer|
+|local_Query_25_out         |  out|   32|      ap_vld|                    local_Query_25_out|       pointer|
+|local_Query_25_out_ap_vld  |  out|    1|      ap_vld|                    local_Query_25_out|       pointer|
+|local_Query_24_out         |  out|   32|      ap_vld|                    local_Query_24_out|       pointer|
+|local_Query_24_out_ap_vld  |  out|    1|      ap_vld|                    local_Query_24_out|       pointer|
+|local_Query_23_out         |  out|   32|      ap_vld|                    local_Query_23_out|       pointer|
+|local_Query_23_out_ap_vld  |  out|    1|      ap_vld|                    local_Query_23_out|       pointer|
+|local_Query_22_out         |  out|   32|      ap_vld|                    local_Query_22_out|       pointer|
+|local_Query_22_out_ap_vld  |  out|    1|      ap_vld|                    local_Query_22_out|       pointer|
+|local_Query_21_out         |  out|   32|      ap_vld|                    local_Query_21_out|       pointer|
+|local_Query_21_out_ap_vld  |  out|    1|      ap_vld|                    local_Query_21_out|       pointer|
+|local_Query_20_out         |  out|   32|      ap_vld|                    local_Query_20_out|       pointer|
+|local_Query_20_out_ap_vld  |  out|    1|      ap_vld|                    local_Query_20_out|       pointer|
+|local_Query_19_out         |  out|   32|      ap_vld|                    local_Query_19_out|       pointer|
+|local_Query_19_out_ap_vld  |  out|    1|      ap_vld|                    local_Query_19_out|       pointer|
+|local_Query_18_out         |  out|   32|      ap_vld|                    local_Query_18_out|       pointer|
+|local_Query_18_out_ap_vld  |  out|    1|      ap_vld|                    local_Query_18_out|       pointer|
+|local_Query_17_out         |  out|   32|      ap_vld|                    local_Query_17_out|       pointer|
+|local_Query_17_out_ap_vld  |  out|    1|      ap_vld|                    local_Query_17_out|       pointer|
+|local_Query_16_out         |  out|   32|      ap_vld|                    local_Query_16_out|       pointer|
+|local_Query_16_out_ap_vld  |  out|    1|      ap_vld|                    local_Query_16_out|       pointer|
++---------------------------+-----+-----+------------+--------------------------------------+--------------+
+

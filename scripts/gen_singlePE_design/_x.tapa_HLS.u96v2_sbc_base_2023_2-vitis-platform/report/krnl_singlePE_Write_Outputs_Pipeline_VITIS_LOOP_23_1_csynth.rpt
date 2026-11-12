@@ -1,0 +1,166 @@
+
+
+================================================================
+== Vitis HLS Report for 'krnl_singlePE_Write_Outputs_Pipeline_VITIS_LOOP_23_1'
+================================================================
+* Date:           Wed Nov 11 23:04:32 2026
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        project
+* Solution:       krnl_singlePE_Write_Outputs (Vivado IP Flow Target)
+* Product family: zynquplus
+* Target device:  xczu3eg-sbva484-1-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  3.945 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |  Latency (cycles) |   Latency (absolute)  |  Interval | Pipeline|
+    |   min   |   max   |    min    |    max    | min | max |   Type  |
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |       12|       12|  60.000 ns|  60.000 ns|   12|   12|       no|
+    +---------+---------+-----------+-----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                   |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |     Loop Name     |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_23_1  |       10|       10|         1|          1|          1|    10|       yes|
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+--------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF   |  LUT  | URAM|
++-----------------+---------+-----+--------+-------+-----+
+|DSP              |        -|    -|       -|      -|    -|
+|Expression       |        -|    -|       0|    430|    -|
+|FIFO             |        -|    -|       -|      -|    -|
+|Instance         |        -|    -|       -|      -|    -|
+|Memory           |        -|    -|       -|      -|    -|
+|Multiplexer      |        -|    -|       -|     54|    -|
+|Register         |        -|    -|     137|      -|    -|
++-----------------+---------+-----+--------+-------+-----+
+|Total            |        0|    0|     137|    484|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Available        |      432|  360|  141120|  70560|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Utilization (%)  |        0|    0|      ~0|     ~0|    0|
++-----------------+---------+-----+--------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +--------------------------+----------+----+---+----+------------+------------+
+    |       Variable Name      | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +--------------------------+----------+----+---+----+------------+------------+
+    |i_2_fu_153_p2             |         +|   0|  0|  12|           4|           1|
+    |i_req_output_1_fu_186_p2  |         +|   0|  0|  39|          32|           2|
+    |i_req_output_3_fu_233_p2  |         +|   0|  0|  39|          32|           2|
+    |ap_condition_238          |       and|   0|  0|   2|           1|           1|
+    |icmp_ln23_fu_147_p2       |      icmp|   0|  0|  12|           4|           4|
+    |icmp_ln28_fu_168_p2       |      icmp|   0|  0|  39|          32|           5|
+    |icmp_ln39_fu_215_p2       |      icmp|   0|  0|  39|          32|           5|
+    |or_ln39_1_fu_245_p2       |        or|   0|  0|   2|           1|           1|
+    |or_ln39_2_fu_259_p2       |        or|   0|  0|   2|           1|           1|
+    |or_ln39_fu_239_p2         |        or|   0|  0|   2|           1|           1|
+    |i_req_output_2_fu_207_p3  |    select|   0|  0|  32|           1|          32|
+    |i_req_output_4_fu_272_p3  |    select|   0|  0|  32|           1|          32|
+    |outval_1_fu_265_p3        |    select|   0|  0|  32|           1|          32|
+    |outval_fu_200_p3          |    select|   0|  0|  32|           1|          32|
+    |select_ln28_fu_192_p3     |    select|   0|  0|  56|           1|          64|
+    |select_ln39_fu_251_p3     |    select|   0|  0|  56|           1|          64|
+    |ap_enable_pp0             |       xor|   0|  0|   2|           1|           2|
+    +--------------------------+----------+----+---+----+------------+------------+
+    |Total                     |          |   0|  0| 430|         147|         281|
+    +--------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +--------------------------------------+----+-----------+-----+-----------+
+    |                 Name                 | LUT| Input Size| Bits| Total Bits|
+    +--------------------------------------+----+-----------+-----+-----------+
+    |ap_done_int                           |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1               |   9|          2|    1|          2|
+    |i_fu_58                               |   9|          2|    4|          8|
+    |i_req_output_fu_54                    |   9|          2|   32|         64|
+    |output_knn_write_addr_flag_0_reg_110  |   9|          2|    1|          2|
+    |output_knn_write_data_flag_0_reg_122  |   9|          2|    1|          2|
+    +--------------------------------------+----+-----------+-----+-----------+
+    |Total                                 |  54|         12|   40|         80|
+    +--------------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +--------------------------------------+----+----+-----+-----------+
+    |                 Name                 | FF | LUT| Bits| Const Bits|
+    +--------------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                             |   1|   0|    1|          0|
+    |ap_done_reg                           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1               |   1|   0|    1|          0|
+    |i_fu_58                               |   4|   0|    4|          0|
+    |i_req_output_fu_54                    |  32|   0|   32|          0|
+    |output_knn_write_addr_flag_0_reg_110  |   1|   0|    1|          0|
+    |output_knn_write_addr_new_0_fu_66     |  64|   0|   64|          0|
+    |output_knn_write_data_flag_0_reg_122  |   1|   0|    1|          0|
+    |output_knn_write_data_new_0_fu_62     |  32|   0|   32|          0|
+    +--------------------------------------+----+----+-----+-----------+
+    |Total                                 | 137|   0|  137|          0|
+    +--------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------------------------------+-----+-----+------------+------------------------------------------------------+--------------+
+|                RTL Ports                | Dir | Bits|  Protocol  |                     Source Object                    |    C Type    |
++-----------------------------------------+-----+-----+------------+------------------------------------------------------+--------------+
+|ap_clk                                   |   in|    1|  ap_ctrl_hs|  krnl_singlePE_Write_Outputs_Pipeline_VITIS_LOOP_23_1|  return value|
+|ap_rst                                   |   in|    1|  ap_ctrl_hs|  krnl_singlePE_Write_Outputs_Pipeline_VITIS_LOOP_23_1|  return value|
+|ap_start                                 |   in|    1|  ap_ctrl_hs|  krnl_singlePE_Write_Outputs_Pipeline_VITIS_LOOP_23_1|  return value|
+|ap_done                                  |  out|    1|  ap_ctrl_hs|  krnl_singlePE_Write_Outputs_Pipeline_VITIS_LOOP_23_1|  return value|
+|ap_idle                                  |  out|    1|  ap_ctrl_hs|  krnl_singlePE_Write_Outputs_Pipeline_VITIS_LOOP_23_1|  return value|
+|ap_ready                                 |  out|    1|  ap_ctrl_hs|  krnl_singlePE_Write_Outputs_Pipeline_VITIS_LOOP_23_1|  return value|
+|cur_dist                                 |   in|   32|     ap_none|                                              cur_dist|        scalar|
+|cur_id                                   |   in|   32|     ap_none|                                                cur_id|        scalar|
+|output_knn_write_addr_flag_0_out         |  out|    1|      ap_vld|                      output_knn_write_addr_flag_0_out|       pointer|
+|output_knn_write_addr_flag_0_out_ap_vld  |  out|    1|      ap_vld|                      output_knn_write_addr_flag_0_out|       pointer|
+|output_knn_write_addr_new_0_out          |  out|   64|      ap_vld|                       output_knn_write_addr_new_0_out|       pointer|
+|output_knn_write_addr_new_0_out_ap_vld   |  out|    1|      ap_vld|                       output_knn_write_addr_new_0_out|       pointer|
+|output_knn_write_data_flag_0_out         |  out|    1|      ap_vld|                      output_knn_write_data_flag_0_out|       pointer|
+|output_knn_write_data_flag_0_out_ap_vld  |  out|    1|      ap_vld|                      output_knn_write_data_flag_0_out|       pointer|
+|output_knn_write_data_new_0_out          |  out|   32|      ap_vld|                       output_knn_write_data_new_0_out|       pointer|
+|output_knn_write_data_new_0_out_ap_vld   |  out|    1|      ap_vld|                       output_knn_write_data_new_0_out|       pointer|
++-----------------------------------------+-----+-----+------------+------------------------------------------------------+--------------+
+

@@ -1,0 +1,165 @@
+
+
+================================================================
+== Vitis HLS Report for 'para_partial_sort_Pipeline_OUTPUT_LOOP'
+================================================================
+* Date:           Wed Nov 11 23:04:34 2026
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        project
+* Solution:       para_partial_sort (Vivado IP Flow Target)
+* Product family: zynquplus
+* Target device:  xczu3eg-sbva484-1-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  1.846 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |  Latency (cycles) |   Latency (absolute)  |  Interval | Pipeline|
+    |   min   |   max   |    min    |    max    | min | max |   Type  |
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |       12|       12|  60.000 ns|  60.000 ns|   12|   12|       no|
+    +---------+---------+-----------+-----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +---------------+---------+---------+----------+-----------+-----------+------+----------+
+        |               |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |   Loop Name   |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +---------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- OUTPUT_LOOP  |       10|       10|         1|          1|          1|    10|       yes|
+        +---------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+--------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF   |  LUT  | URAM|
++-----------------+---------+-----+--------+-------+-----+
+|DSP              |        -|    -|       -|      -|    -|
+|Expression       |        -|    -|       0|     24|    -|
+|FIFO             |        -|    -|       -|      -|    -|
+|Instance         |        -|    -|       0|    108|    -|
+|Memory           |        -|    -|       -|      -|    -|
+|Multiplexer      |        -|    -|       -|     27|    -|
+|Register         |        -|    -|      70|      -|    -|
++-----------------+---------+-----+--------+-------+-----+
+|Total            |        0|    0|      70|    159|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Available        |      432|  360|  141120|  70560|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Utilization (%)  |        0|    0|      ~0|     ~0|    0|
++-----------------+---------+-----+--------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    +---------------------------+-----------------------+---------+----+---+----+-----+
+    |          Instance         |         Module        | BRAM_18K| DSP| FF| LUT| URAM|
+    +---------------------------+-----------------------+---------+----+---+----+-----+
+    |sparsemux_21_4_32_1_1_U23  |sparsemux_21_4_32_1_1  |        0|   0|  0|  54|    0|
+    |sparsemux_21_4_32_1_1_U24  |sparsemux_21_4_32_1_1  |        0|   0|  0|  54|    0|
+    +---------------------------+-----------------------+---------+----+---+----+-----+
+    |Total                      |                       |        0|   0|  0| 108|    0|
+    +---------------------------+-----------------------+---------+----+---+----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +----------------------+----------+----+---+----+------------+------------+
+    |     Variable Name    | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------+----------+----+---+----+------------+------------+
+    |add_ln107_fu_348_p2   |         +|   0|  0|  12|           4|           2|
+    |icmp_ln107_fu_246_p2  |      icmp|   0|  0|  12|           4|           1|
+    +----------------------+----------+----+---+----+------------+------------+
+    |Total                 |          |   0|  0|  24|           8|           3|
+    +----------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +----------------------+----+-----------+-----+-----------+
+    |         Name         | LUT| Input Size| Bits| Total Bits|
+    +----------------------+----+-----------+-----+-----------+
+    |ap_done_int           |   9|          2|    1|          2|
+    |ap_sig_allocacmp_j_1  |   9|          2|    4|          8|
+    |j_fu_100              |   9|          2|    4|          8|
+    +----------------------+----+-----------+-----+-----------+
+    |Total                 |  27|          6|    9|         18|
+    +----------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +--------------+----+----+-----+-----------+
+    |     Name     | FF | LUT| Bits| Const Bits|
+    +--------------+----+----+-----+-----------+
+    |ap_CS_fsm     |   1|   0|    1|          0|
+    |ap_done_reg   |   1|   0|    1|          0|
+    |j_fu_100      |   4|   0|    4|          0|
+    |p_phi2_fu_92  |  32|   0|   32|          0|
+    |p_phi_fu_96   |  32|   0|   32|          0|
+    +--------------+----+----+-----+-----------+
+    |Total         |  70|   0|   70|          0|
+    +--------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-------------------+-----+-----+------------+----------------------------------------+--------------+
+|     RTL Ports     | Dir | Bits|  Protocol  |              Source Object             |    C Type    |
++-------------------+-----+-----+------------+----------------------------------------+--------------+
+|ap_clk             |   in|    1|  ap_ctrl_hs|  para_partial_sort_Pipeline_OUTPUT_LOOP|  return value|
+|ap_rst             |   in|    1|  ap_ctrl_hs|  para_partial_sort_Pipeline_OUTPUT_LOOP|  return value|
+|ap_start           |   in|    1|  ap_ctrl_hs|  para_partial_sort_Pipeline_OUTPUT_LOOP|  return value|
+|ap_done            |  out|    1|  ap_ctrl_hs|  para_partial_sort_Pipeline_OUTPUT_LOOP|  return value|
+|ap_idle            |  out|    1|  ap_ctrl_hs|  para_partial_sort_Pipeline_OUTPUT_LOOP|  return value|
+|ap_ready           |  out|    1|  ap_ctrl_hs|  para_partial_sort_Pipeline_OUTPUT_LOOP|  return value|
+|p_0_0_0128_reload  |   in|   32|     ap_none|                       p_0_0_0128_reload|        scalar|
+|p_reload55         |   in|   32|     ap_none|                              p_reload55|        scalar|
+|p_reload54         |   in|   32|     ap_none|                              p_reload54|        scalar|
+|p_reload53         |   in|   32|     ap_none|                              p_reload53|        scalar|
+|p_reload52         |   in|   32|     ap_none|                              p_reload52|        scalar|
+|p_reload51         |   in|   32|     ap_none|                              p_reload51|        scalar|
+|p_reload50         |   in|   32|     ap_none|                              p_reload50|        scalar|
+|p_reload49         |   in|   32|     ap_none|                              p_reload49|        scalar|
+|p_reload48         |   in|   32|     ap_none|                              p_reload48|        scalar|
+|p_reload47         |   in|   32|     ap_none|                              p_reload47|        scalar|
+|p_reload46         |   in|   32|     ap_none|                              p_reload46|        scalar|
+|p_reload45         |   in|   32|     ap_none|                              p_reload45|        scalar|
+|p_reload44         |   in|   32|     ap_none|                              p_reload44|        scalar|
+|p_reload43         |   in|   32|     ap_none|                              p_reload43|        scalar|
+|p_reload42         |   in|   32|     ap_none|                              p_reload42|        scalar|
+|p_reload41         |   in|   32|     ap_none|                              p_reload41|        scalar|
+|p_reload40         |   in|   32|     ap_none|                              p_reload40|        scalar|
+|p_reload39         |   in|   32|     ap_none|                              p_reload39|        scalar|
+|p_reload38         |   in|   32|     ap_none|                              p_reload38|        scalar|
+|p_reload           |   in|   32|     ap_none|                                p_reload|        scalar|
+|p_phi_out          |  out|   32|      ap_vld|                               p_phi_out|       pointer|
+|p_phi_out_ap_vld   |  out|    1|      ap_vld|                               p_phi_out|       pointer|
+|p_phi2_out         |  out|   32|      ap_vld|                              p_phi2_out|       pointer|
+|p_phi2_out_ap_vld  |  out|    1|      ap_vld|                              p_phi2_out|       pointer|
++-------------------+-----+-----+------------+----------------------------------------+--------------+
+

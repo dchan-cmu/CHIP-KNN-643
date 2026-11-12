@@ -235,20 +235,29 @@ clean_hls_stream_code = """#pragma once
 
 #include <cstddef>
 #include <cstdint>
-#include <cstring>
 
 namespace hls {
 
-template<typename T>
+template<size_t SIZE>
 class stream_entity {
 public:
-  T _storage;
   inline stream_entity() {}
-  inline void read(T& elem) { elem = _storage; }
-  inline void write(const T& elem) { _storage = elem; }
-  inline bool read_nb(T& elem) { elem = _storage; return true; }
+  inline bool read(void *elem) { return true; }
+  inline void write(const void *elem) {}
+  inline bool read_nb(void *elem) { return true; }
   inline size_t size() const { return 0; }
   inline void set_name(const char *n) {}
+};
+
+template<size_t SIZE>
+class stream_map {
+public:
+  static inline size_t count(void *p) { return 1; }
+  static inline void insert(void *p) {}
+  static inline stream_entity<SIZE> &get_entity(void *p) {
+    static stream_entity<SIZE> ent;
+    return ent;
+  }
 };
 
 template<typename __STREAM_T__, int DEPTH=0>
@@ -260,12 +269,24 @@ class stream<__STREAM_T__, 0>
 public:
   using value_type = __STREAM_T__;
 
+private:
+  typedef stream_map<sizeof(__STREAM_T__)> map_t;
+
 protected:
-  stream_entity<__STREAM_T__> _data;
+  __STREAM_T__ _data;
+
+  inline stream_entity<sizeof(__STREAM_T__)> &get_entity() {
+    return map_t::get_entity(&_data);
+  }
 
 public:
-  inline stream() {}
-  inline stream(const char *name) {}
+  inline stream() {
+    map_t::insert(&_data);
+  }
+
+  inline stream(const char *name) {
+    map_t::insert(&_data);
+  }
 
   inline void operator >> (__STREAM_T__& rdata) {
     read(rdata);
@@ -279,24 +300,28 @@ public:
   inline bool full() const { return false; }
 
   inline void read(__STREAM_T__& head) {
-    head = _data._storage;
+    head = read();
   }
 
   inline __STREAM_T__ read() {
-    return _data._storage;
+    __STREAM_T__ elem = __STREAM_T__();
+    get_entity().read(&elem);
+    return elem;
   }
 
   inline void write(const __STREAM_T__& tail) {
-    _data._storage = tail;
+    get_entity().write(&tail);
   }
 
   inline bool read_nb(__STREAM_T__& head) {
-    head = _data._storage;
-    return true;
+    __STREAM_T__ elem = __STREAM_T__();
+    bool not_empty = get_entity().read_nb(&elem);
+    if (not_empty) head = elem;
+    return not_empty;
   }
 
   inline bool write_nb(const __STREAM_T__& tail) {
-    _data._storage = tail;
+    write(tail);
     return true;
   }
 
@@ -308,7 +333,7 @@ public:
 template<typename __STREAM_T__, int DEPTH>
 class stream : public stream<__STREAM_T__, 0> {
 public:
-  inline stream() {}
+  inline stream() : stream<__STREAM_T__, 0>() {}
   inline stream(const char* name) : stream<__STREAM_T__, 0>(name) {}
 };
 
@@ -834,7 +859,7 @@ EOF_WRAP
     fi
 
     echo "=== 1.5 Inspecting TAPA Internals ==="
-    python3 -c "import tapa.core, tapa.task, inspect; print('=== Program.run_hls ===\n', inspect.getsource(tapa.core.Program.run_hls)); print('=== Program.generate_task_rtl ===\n', inspect.getsource(tapa.core.Program.generate_task_rtl) if hasattr(tapa.core.Program, 'generate_task_rtl') else 'N/A'); print('=== Program.generate_top_rtl ===\n', inspect.getsource(tapa.core.Program.generate_top_rtl) if hasattr(tapa.core.Program, 'generate_top_rtl') else 'N/A')" > "$REPO_ROOT/tapa_internals.log" 2>&1 || true
+    python3 -c "import tapa.core, tapa.task, tapa.verilog.xilinx.module, inspect; print('=== Program.run_hls ===\n', inspect.getsource(tapa.core.Program.run_hls)); print('=== Program.generate_task_rtl ===\n', inspect.getsource(tapa.core.Program.generate_task_rtl) if hasattr(tapa.core.Program, 'generate_task_rtl') else 'N/A'); print('=== Program.generate_top_rtl ===\n', inspect.getsource(tapa.core.Program.generate_top_rtl) if hasattr(tapa.core.Program, 'generate_top_rtl') else 'N/A'); print('=== Module.get_port_of ===\n', inspect.getsource(tapa.verilog.xilinx.module.Module.get_port_of) if hasattr(tapa.verilog.xilinx.module.Module, 'get_port_of') else 'N/A')" > "$REPO_ROOT/tapa_internals.log" 2>&1 || true
 
     echo "=== 2. Running Single-PE Exploration ==="
     python3 singlePE_design_exploration.py 2>&1 | tee "$REPO_ROOT/run_output.log" || true

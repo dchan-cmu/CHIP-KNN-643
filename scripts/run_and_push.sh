@@ -235,36 +235,75 @@ clean_hls_stream_code = """#pragma once
 
 #include <cstddef>
 #include <cstdint>
+#include <string>
 
 namespace hls {
 
 template<size_t SIZE>
+class stream_delegate {
+public:
+  virtual bool read(void *elem) = 0;
+  virtual void write(const void *elem) = 0;
+  virtual bool read_nb(void *elem) = 0;
+  virtual size_t size() = 0;
+};
+
+template<size_t SIZE>
 class stream_entity {
 public:
-  volatile char _sink[SIZE];
-  char _src[SIZE];
-  inline stream_entity() {
-    for (size_t i = 0; i < SIZE; ++i) {
-      _sink[i] = 0;
-      _src[i] = (char)(i + 1);
-    }
-  }
+  alignas(16) char _storage[SIZE > 0 ? SIZE : 1];
+  stream_delegate<SIZE> *d;
+  std::string name;
+
+  inline stream_entity() : d(0) {}
+
   inline bool read(void *elem) {
+    if (d) return d->read(elem);
     if (elem) {
-      char *d = (char*)elem;
-      for (size_t i = 0; i < SIZE; ++i) d[i] = _src[i];
+      if (SIZE == 1) {
+        *(uint8_t*)elem = *(const uint8_t*)_storage;
+      } else if (SIZE == 2) {
+        *(uint16_t*)elem = *(const uint16_t*)_storage;
+      } else if (SIZE == 4) {
+        *(uint32_t*)elem = *(const uint32_t*)_storage;
+      } else if (SIZE == 8) {
+        *(uint64_t*)elem = *(const uint64_t*)_storage;
+      } else if (SIZE == 16) {
+        *(unsigned __int128*)elem = *(const unsigned __int128*)_storage;
+      } else {
+        typedef struct { char b[SIZE]; } raw_t;
+        *(raw_t*)elem = *(const raw_t*)_storage;
+      }
     }
     return true;
   }
+
   inline void write(const void *elem) {
+    if (d) {
+      d->write(elem);
+      return;
+    }
     if (elem) {
-      const char *s = (const char*)elem;
-      for (size_t i = 0; i < SIZE; ++i) _sink[i] = s[i];
+      if (SIZE == 1) {
+        *(uint8_t*)_storage = *(const uint8_t*)elem;
+      } else if (SIZE == 2) {
+        *(uint16_t*)_storage = *(const uint16_t*)elem;
+      } else if (SIZE == 4) {
+        *(uint32_t*)_storage = *(const uint32_t*)elem;
+      } else if (SIZE == 8) {
+        *(uint64_t*)_storage = *(const uint64_t*)elem;
+      } else if (SIZE == 16) {
+        *(unsigned __int128*)_storage = *(const unsigned __int128*)elem;
+      } else {
+        typedef struct { char b[SIZE]; } raw_t;
+        *(raw_t*)_storage = *(const raw_t*)elem;
+      }
     }
   }
+
   inline bool read_nb(void *elem) { return read(elem); }
   inline size_t size() const { return 1; }
-  inline void set_name(const char *n) {}
+  inline void set_name(const char *n) { name = (n ? n : ""); }
 };
 
 template<size_t SIZE>
@@ -291,26 +330,23 @@ private:
   typedef stream_map<sizeof(__STREAM_T__)> map_t;
 
 protected:
-  __STREAM_T__ _data;
+  stream_entity<sizeof(__STREAM_T__)> _data;
 
   inline stream_entity<sizeof(__STREAM_T__)> &get_entity() {
-    return map_t::get_entity(&_data);
+    return _data;
   }
 
 public:
-  inline stream() {
-    map_t::insert(&_data);
-  }
-
+  inline stream() {}
   inline stream(const char *name) {
-    map_t::insert(&_data);
+    _data.set_name(name);
   }
 
   inline void operator >> (__STREAM_T__& rdata) {
     read(rdata);
   }
 
-  inline void operator << (__STREAM_T__ wdata) {
+  inline void operator << (const __STREAM_T__& wdata) {
     write(wdata);
   }
 
@@ -318,30 +354,31 @@ public:
   inline bool full() const { return false; }
 
   inline void read(__STREAM_T__& head) {
-    head = _data;
+    head = read();
   }
 
   inline __STREAM_T__ read() {
-    return _data;
+    __STREAM_T__ elem;
+    _data.read(&elem);
+    return elem;
   }
 
-  inline void write(__STREAM_T__ tail) {
-    _data = tail;
+  inline void write(const __STREAM_T__& tail) {
+    _data.write(&tail);
   }
 
   inline bool read_nb(__STREAM_T__& head) {
-    head = _data;
-    return true;
+    return _data.read_nb(&head);
   }
 
-  inline bool write_nb(__STREAM_T__ tail) {
-    _data = tail;
+  inline bool write_nb(const __STREAM_T__& tail) {
+    write(tail);
     return true;
   }
 
   inline size_t size() const { return 0; }
   inline size_t capacity() const { return 0; }
-  inline void set_name(const char *name) {}
+  inline void set_name(const char *name) { _data.set_name(name); }
 };
 
 template<typename __STREAM_T__, int DEPTH>

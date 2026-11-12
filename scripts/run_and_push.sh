@@ -193,27 +193,36 @@ else:
 
     echo "=== 1a-2. Patching TAPA instance to support scalar dict arguments ==="
     python3 -c '
-import tapa.instance, re
+import os, sys, glob, re
 
-inst_file = tapa.instance.__file__
-with open(inst_file, "r") as f:
-    code = f.read()
+inst_candidates = []
+for p in sys.path:
+    target = os.path.join(p, "tapa/instance.py")
+    if os.path.isfile(target):
+        inst_candidates.append(target)
+for base in ["/afs/ece.cmu.edu/usr/dchan2/miniconda3", "/afs/ece/usr/dchan2/miniconda3", os.path.expanduser("~/miniconda3")]:
+    for p in glob.glob(f"{base}/**/tapa/instance.py", recursive=True):
+        inst_candidates.append(p)
 
-with open("tapa_instance_debug.log", "w") as df:
-    df.write(code)
-
-pattern = r"rtl\.sanitize_array_name\(\s*arg\[[\x27\"]arg[\x27\"]\]\s*\)"
-replacement = "(f\"{arg[\x27arg\x27].get(\x27width\x27, 32)}\x27d{arg[\x27arg\x27][\x27value\x27]}\" if isinstance(arg[\x27arg\x27], dict) else rtl.sanitize_array_name(str(arg[\x27arg\x27])))"
-
-if re.search(pattern, code):
-    print(f"Patching {inst_file} for scalar dictionary arguments...")
-    code = re.sub(pattern, replacement, code)
-    compile(code, inst_file, "exec")
-    with open(inst_file, "w") as f:
-        f.write(code)
-    print("Successfully patched tapa.instance!")
-else:
-    print("tapa.instance already patched or pattern not found.")
+for inst_file in set(inst_candidates):
+    try:
+        with open(inst_file, "r") as f:
+            code = f.read()
+        with open("tapa_instance_debug.log", "w") as df:
+            df.write(code)
+        pattern = r"rtl\.sanitize_array_name\(\s*arg\[[\x27\"]arg[\x27\"]\]\s*\)"
+        replacement = "(f\"{arg[\x27arg\x27].get(\x27width\x27, 32)}\x27d{arg[\x27arg\x27][\x27value\x27]}\" if isinstance(arg[\x27arg\x27], dict) else rtl.sanitize_array_name(str(arg[\x27arg\x27])))"
+        if re.search(pattern, code):
+            print(f"Patching {inst_file} for scalar dictionary arguments...")
+            code = re.sub(pattern, replacement, code)
+            compile(code, inst_file, "exec")
+            with open(inst_file, "w") as f:
+                f.write(code)
+            print(f"Successfully patched {inst_file}!")
+        else:
+            print(f"{inst_file} already patched or pattern not found.")
+    except Exception as e:
+        print(f"Notice: checking {inst_file}: {e}")
 ' || true
 
     python3 -c '
@@ -224,34 +233,95 @@ stream_h = os.path.join(repo, ".tapa/usr/include/tapa/xilinx/hls/stream.h")
 
 clean_hls_stream_code = """#pragma once
 
-#if defined(__SYNTHESIS__)
-
-#include "/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/include/hls_stream.h"
-
-#else
+#include <cstddef>
+#include <cstdint>
+#include <cstring>
 
 namespace hls {
 
-template<typename __STREAM_T__, int DEPTH=0>
-class stream {
+template<size_t SIZE>
+class stream_entity {
 public:
-    inline stream() {}
-    inline stream(const char* name) {}
-    inline bool empty() const { return false; }
-    inline bool full() const { return false; }
-    inline void read(__STREAM_T__& val) { val = _data; }
-    inline __STREAM_T__ read() { return _data; }
-    inline void write(const __STREAM_T__& val) { _data = val; }
-    inline bool read_nb(__STREAM_T__& val) { val = _data; return true; }
-    inline bool write_nb(const __STREAM_T__& val) { _data = val; return true; }
-    inline size_t size() const { return 0; }
-private:
-    __STREAM_T__ _data;
+  char _storage[SIZE];
+  inline stream_entity() {}
+  inline bool read(void *elem) {
+    if (elem) std::memcpy(elem, _storage, SIZE);
+    return true;
+  }
+  inline void write(const void *elem) {
+    if (elem) std::memcpy(_storage, elem, SIZE);
+  }
+  inline bool read_nb(void *elem) {
+    if (elem) std::memcpy(elem, _storage, SIZE);
+    return true;
+  }
+  inline size_t size() const { return 0; }
+  inline void set_name(const char *n) {}
+};
+
+template<typename __STREAM_T__, int DEPTH=0>
+class stream;
+
+template<typename __STREAM_T__>
+class stream<__STREAM_T__, 0> 
+{
+public:
+  using value_type = __STREAM_T__;
+
+protected:
+  stream_entity<sizeof(__STREAM_T__)> _data;
+
+public:
+  inline stream() {}
+  inline stream(const char *name) {}
+
+  inline void operator >> (__STREAM_T__& rdata) {
+    read(rdata);
+  }
+
+  inline void operator << (const __STREAM_T__& wdata) {
+    write(wdata);
+  }
+
+  inline bool empty() const { return false; }
+  inline bool full() const { return false; }
+
+  inline void read(__STREAM_T__& head) {
+    _data.read(&head);
+  }
+
+  inline __STREAM_T__ read() {
+    __STREAM_T__ elem = __STREAM_T__();
+    _data.read(&elem);
+    return elem;
+  }
+
+  inline void write(const __STREAM_T__& tail) {
+    _data.write(&tail);
+  }
+
+  inline bool read_nb(__STREAM_T__& head) {
+    return _data.read_nb(&head);
+  }
+
+  inline bool write_nb(const __STREAM_T__& tail) {
+    _data.write(&tail);
+    return true;
+  }
+
+  inline size_t size() const { return 0; }
+  inline size_t capacity() const { return 0; }
+  inline void set_name(const char *name) {}
+};
+
+template<typename __STREAM_T__, int DEPTH>
+class stream : public stream<__STREAM_T__, 0> {
+public:
+  inline stream() {}
+  inline stream(const char* name) : stream<__STREAM_T__, 0>(name) {}
 };
 
 } // namespace hls
-
-#endif
 """
 
 clean_stream_code = """#pragma once

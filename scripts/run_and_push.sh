@@ -34,6 +34,25 @@
     echo "Using XILINX_VITIS=$XILINX_VITIS"
     echo "Using XILINX_HLS=$XILINX_HLS"
 
+    echo "=== 0a. Ensuring iverilog is available for pyverilog RTL parsing ==="
+    if ! command -v iverilog &> /dev/null; then
+        for candidate in /usr/bin/iverilog /usr/local/bin/iverilog /afs/ece.cmu.edu/support/iverilog/bin/iverilog /afs/ece/support/bin/iverilog; do
+            if [ -x "$candidate" ]; then
+                export PATH="$(dirname "$candidate"):$PATH"
+                break
+            fi
+        done
+    fi
+    if ! command -v iverilog &> /dev/null; then
+        echo "iverilog not found in system paths. Installing iverilog into conda..."
+        if command -v conda &> /dev/null; then
+            conda install -y -c conda-forge iverilog || true
+        elif [ -x "/afs/ece/usr/dchan2/miniconda3/bin/conda" ]; then
+            /afs/ece/usr/dchan2/miniconda3/bin/conda install -y -c conda-forge iverilog || true
+        fi
+    fi
+    echo "Using iverilog: $(which iverilog || echo 'NOT FOUND')"
+
     echo "=== 1. Cleaning previous build artifacts ==="
     rm -rf gen_singlePE_design gen_multiPE_design
 

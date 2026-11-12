@@ -235,30 +235,17 @@ clean_hls_stream_code = """#pragma once
 
 #include <cstddef>
 #include <cstdint>
-#include <string>
 
 namespace hls {
-
-template<size_t SIZE>
-class stream_delegate {
-public:
-  virtual bool read(void *elem) = 0;
-  virtual void write(const void *elem) = 0;
-  virtual bool read_nb(void *elem) = 0;
-  virtual size_t size() = 0;
-};
 
 template<size_t SIZE>
 class stream_entity {
 public:
   alignas(16) char _storage[SIZE > 0 ? SIZE : 1];
-  stream_delegate<SIZE> *d;
-  std::string name;
 
-  inline stream_entity() : d(0) {}
+  inline stream_entity() {}
 
   inline bool read(void *elem) {
-    if (d) return d->read(elem);
     if (elem) {
       if (SIZE == 1) {
         *(uint8_t*)elem = *(const uint8_t*)_storage;
@@ -279,10 +266,6 @@ public:
   }
 
   inline void write(const void *elem) {
-    if (d) {
-      d->write(elem);
-      return;
-    }
     if (elem) {
       if (SIZE == 1) {
         *(uint8_t*)_storage = *(const uint8_t*)elem;
@@ -303,7 +286,7 @@ public:
 
   inline bool read_nb(void *elem) { return read(elem); }
   inline size_t size() const { return 1; }
-  inline void set_name(const char *n) { name = (n ? n : ""); }
+  inline void set_name(const char *n) {}
 };
 
 template<size_t SIZE>

@@ -96,11 +96,10 @@ def Generate_Design_Configuration(_N, _D, _Dist, _K, _port_width, _memory_type, 
     ### Begin writing stuff to the file.
     #########################################################
 
+    new_file.append("#pragma once\n")
     new_file.append("#include \"ap_int.h\" " + "\n")
-    new_file.append("#include \"ap_axi_sdata.h\" " + "\n")
     new_file.append("#include <tapa.h>" + "\n")
-    new_file.append("#include <inttypes.h>" + "\n")
-    new_file.append("#include <stdlib.h>" + "\n")
+    new_file.append("#define printf(...) ((void)0)" + "\n")
     new_file.append("" + "\n")
     new_file.append("" + "\n")
     new_file.append("// CEIL_DIVISION(X, Y) = ceil(x/y)." + '\n')
@@ -317,9 +316,8 @@ def Generate_Design_Configuration(_N, _D, _Dist, _K, _port_width, _memory_type, 
 
 def GeneratePartialKNN_Header(_core_krnl_file, _knn_config):
     _core_krnl_file.append('#include "knn.h"' + '\n')
-    _core_krnl_file.append('static inline DATA_TYPE absval(DATA_TYPE input){' + '\n')
-    _core_krnl_file.append('    return (input > 0 ? input : static_cast<DATA_TYPE>(-1*input));' + '\n')
-    _core_krnl_file.append('}' + '\n\n')
+    _core_krnl_file.append('#define printf(...) ((void)0)\n')
+    _core_krnl_file.append('#define absval(input) ((input) > 0 ? static_cast<DATA_TYPE>(input) : static_cast<DATA_TYPE>(-1 * (input)))\n\n')
 
 
     ########################################
@@ -344,9 +342,9 @@ def GeneratePartialKNN_Header(_core_krnl_file, _knn_config):
                 _core_krnl_file.append(',  \\' + "\n")
 
     elif (_knn_config.using_intra_pe_merge == 0):
-        _core_krnl_file.append('#define SORT_TO_HIERMERGE_STREAM_ARGS(PE) \\' + "\n")
-        _core_krnl_file.append('    L0_out_dist[PE],  \\' + "\n")
-        _core_krnl_file.append('    L0_out_id[PE]' + "\n")
+        _core_krnl_file.append('#define SORT_TO_HIERMERGE_STREAM_ARGS(PE) \\\n')
+        _core_krnl_file.append('    L0_out_dist_##PE,  \\\n')
+        _core_krnl_file.append('    L0_out_id_##PE\n')
 
     else:
         print("FATAL ERROR: In defining SORT_TO_HIERMERGE_STREAM_ARGS.")
@@ -395,8 +393,8 @@ def GeneratePartialKNN_Header(_core_krnl_file, _knn_config):
                     'sort_to_hiermerge_id_stream_##PE  [0], ' +
                     'sort_to_hiermerge_dist_stream_##PE[1], ' +
                     'sort_to_hiermerge_id_stream_##PE  [1], ' +
-                    'L0_out_dist[PE],'     +
-                    'L0_out_id[PE])'      + "\n")
+                    'L0_out_dist_##PE,'     +
+                    'L0_out_id_##PE)'      + "\n")
 
         else:
             _core_krnl_file.append('#define HIERMERGE_STREAM_DECLS(PE) \\' + "\n")
@@ -440,8 +438,8 @@ def GeneratePartialKNN_Header(_core_krnl_file, _knn_config):
                     'PE_##PE##_id_stage'      + str(total_num_hiermerge_layers-1) +  '[0], ' +
                     'PE_##PE##_dist_stage'    + str(total_num_hiermerge_layers-1) +  '[1], ' +
                     'PE_##PE##_id_stage'      + str(total_num_hiermerge_layers-1) +  '[1], ' +
-                    'L0_out_dist[PE],'     +
-                    'L0_out_id[PE])'      + "\n")
+                    'L0_out_dist_##PE,'     +
+                    'L0_out_id_##PE)'      + "\n")
 
         _core_krnl_file.append('' + "\n")
         _core_krnl_file.append('' + "\n")
@@ -468,12 +466,13 @@ def GeneratePartialKNN_Load(_core_krnl_file, _knn_config):
     _core_krnl_file.append('        #pragma HLS pipeline II=1' + "\n")
     _core_krnl_file.append('        //Think of addr as an array index.' + "\n")
     _core_krnl_file.append('        int addr = i_req;' + "\n")
-    _core_krnl_file.append('        if (i_req < (INPUT_DIM-1)/NUM_FEATURES_PER_READ + 1 && searchSpace.read_addr.try_write(addr)) {' + "\n")
+    _core_krnl_file.append('        if (i_req < (INPUT_DIM-1)/NUM_FEATURES_PER_READ + 1 && !searchSpace.read_addr.full()) {' + "\n")
+    _core_krnl_file.append('            searchSpace.read_addr.write(addr * sizeof(INTERFACE_WIDTH));' + "\n")
     _core_krnl_file.append('            i_req++;' + "\n")
     _core_krnl_file.append('        }' + "\n")
     _core_krnl_file.append('' + "\n")
     _core_krnl_file.append('        if (!searchSpace.read_data.empty()) {' + "\n")
-    _core_krnl_file.append('            loaded_value = searchSpace.read_data.read(nullptr);' + "\n")
+    _core_krnl_file.append('            loaded_value = searchSpace.read_data.read();' + "\n")
     _core_krnl_file.append('            i_resp++;' + "\n")
     _core_krnl_file.append('' + "\n")
     _core_krnl_file.append('            // DEBUGGING:' + "\n")
@@ -511,11 +510,12 @@ def GeneratePartialKNN_Load(_core_krnl_file, _knn_config):
     _core_krnl_file.append('        #pragma HLS pipeline II=1' + "\n")
     _core_krnl_file.append('        //Think of addr as an array index.' + "\n")
     _core_krnl_file.append('        int addr = QUERY_DATA_RESERVE + i_req;' + "\n")
-    _core_krnl_file.append('        if (i_req < PARTITION_LEN_IN_I && searchSpace.read_addr.try_write(addr)) {' + "\n")
+    _core_krnl_file.append('        if (i_req < PARTITION_LEN_IN_I && !searchSpace.read_addr.full()) {' + "\n")
+    _core_krnl_file.append('            searchSpace.read_addr.write(addr * sizeof(INTERFACE_WIDTH));' + "\n")
     _core_krnl_file.append('            i_req++;' + "\n")
     _core_krnl_file.append('        }' + "\n")
     _core_krnl_file.append('        if (!searchSpace.read_data.empty()) {' + "\n")
-    _core_krnl_file.append('            loaded_value = searchSpace.read_data.read(nullptr);' + "\n")
+    _core_krnl_file.append('            loaded_value = searchSpace.read_data.read();' + "\n")
     _core_krnl_file.append('            i_resp++;' + "\n")
     _core_krnl_file.append('' + "\n")
     _core_krnl_file.append('            //// DEBUGGING: Printing the loaded data:' + "\n")
@@ -841,28 +841,15 @@ def GeneratePartialKNN_Compute(_core_krnl_file, _knn_config):
 #############################################################
 
 def __GeneratePartialKNN_SortHelpers(_core_krnl_file, _knn_config):
-    ### Naive compare, naive swap
-    _core_krnl_file.append('void swap(DATA_TYPE* a, DATA_TYPE* b, ' + "\n")
-    _core_krnl_file.append('               int* x, int* y)' + "\n")
-    _core_krnl_file.append('{' + "\n")
-    _core_krnl_file.append('#pragma HLS INLINE' + "\n")
-    _core_krnl_file.append('' + "\n")
-    _core_krnl_file.append('    DATA_TYPE tmpdist_a;' + "\n")
-    _core_krnl_file.append('    DATA_TYPE tmpdist_b;' + "\n")
-    _core_krnl_file.append('' + "\n")
-    _core_krnl_file.append('    int tmpid_x;' + "\n")
-    _core_krnl_file.append('    int tmpid_y;' + "\n")
-    _core_krnl_file.append('' + "\n")
-    _core_krnl_file.append('    tmpdist_a = *a;' + "\n")
-    _core_krnl_file.append('    tmpdist_b = *b;' + "\n")
-    _core_krnl_file.append('    *b = tmpdist_a;' + "\n")
-    _core_krnl_file.append('    *a = tmpdist_b;' + "\n")
-    _core_krnl_file.append('' + "\n")
-    _core_krnl_file.append('    tmpid_x = *x;' + "\n")
-    _core_krnl_file.append('    tmpid_y = *y;' + "\n")
-    _core_krnl_file.append('    *x = tmpid_y;' + "\n")
-    _core_krnl_file.append('    *y = tmpid_x;' + "\n")
-    _core_krnl_file.append('}' + "\n")
+    ### Naive compare, naive swap as macro to avoid pointer references
+    _core_krnl_file.append('#define KNN_SWAP(a, b, x, y) do { \\\n')
+    _core_krnl_file.append('    DATA_TYPE _tmpdist = (a); \\\n')
+    _core_krnl_file.append('    (a) = (b); \\\n')
+    _core_krnl_file.append('    (b) = _tmpdist; \\\n')
+    _core_krnl_file.append('    int _tmpid = (x); \\\n')
+    _core_krnl_file.append('    (x) = (y); \\\n')
+    _core_krnl_file.append('    (y) = _tmpid; \\\n')
+    _core_krnl_file.append('} while(0)\n\n')
 
 
 def __GenerateSwapCalls(_core_krnl_file, _knn_config, indentation, use_D_idx):
@@ -875,8 +862,8 @@ def __GenerateSwapCalls(_core_krnl_file, _knn_config, indentation, use_D_idx):
     _core_krnl_file.append(indentation + '//compare and swap odd' + '\n')
     _core_krnl_file.append(indentation + 'for(int ii=1; ii<TOP; ii+=2){' + '\n')
     _core_krnl_file.append(indentation + '#pragma HLS UNROLL' + '\n')
-    _core_krnl_file.append(indentation + '#pragma HLS DEPENDENCE variable="local_kNearstDist" inter false' + '\n')
-    _core_krnl_file.append(indentation + '#pragma HLS DEPENDENCE variable="local_kNearstId" inter false' + '\n')
+    _core_krnl_file.append(indentation + '#pragma HLS DEPENDENCE variable=local_kNearstDist inter false' + '\n')
+    _core_krnl_file.append(indentation + '#pragma HLS DEPENDENCE variable=local_kNearstId inter false' + '\n')
     _core_krnl_file.append('' + '\n')
 
     if (_knn_config.using_float):
@@ -891,8 +878,8 @@ def __GenerateSwapCalls(_core_krnl_file, _knn_config, indentation, use_D_idx):
         _core_krnl_file.append('' + '\n')
         _core_krnl_file.append(indentation + '    if (tmp < 0){' + '\n')
 
-    _core_krnl_file.append(indentation + '        swap(&local_kNearstDist' + str(D_idx_str) + '[ii], &local_kNearstDist' + str(D_idx_str) + '[ii+1], ' + '\n')
-    _core_krnl_file.append(indentation + '                  &local_kNearstId' + str(D_idx_str) + '[ii], &local_kNearstId' + str(D_idx_str) + '[ii+1]);' + '\n')
+    _core_krnl_file.append(indentation + '        KNN_SWAP(local_kNearstDist' + str(D_idx_str) + '[ii], local_kNearstDist' + str(D_idx_str) + '[ii+1], ' + '\n')
+    _core_krnl_file.append(indentation + '                 local_kNearstId' + str(D_idx_str) + '[ii], local_kNearstId' + str(D_idx_str) + '[ii+1]);' + '\n')
     _core_krnl_file.append(indentation + '    }' + '\n')
     _core_krnl_file.append(indentation + '' + '\n')
     _core_krnl_file.append(indentation + '}' + '\n')
@@ -905,8 +892,8 @@ def __GenerateSwapCalls(_core_krnl_file, _knn_config, indentation, use_D_idx):
     _core_krnl_file.append(indentation + '//compare and swap even' + '\n')
     _core_krnl_file.append(indentation + 'for(int ii=1; ii<TOP+1; ii+=2){' + '\n')
     _core_krnl_file.append(indentation + '#pragma HLS UNROLL' + '\n')
-    _core_krnl_file.append(indentation + '#pragma HLS DEPENDENCE variable="local_kNearstDist" inter false' + '\n')
-    _core_krnl_file.append(indentation + '#pragma HLS DEPENDENCE variable="local_kNearstId" inter false' + '\n')
+    _core_krnl_file.append(indentation + '#pragma HLS DEPENDENCE variable=local_kNearstDist inter false' + '\n')
+    _core_krnl_file.append(indentation + '#pragma HLS DEPENDENCE variable=local_kNearstId inter false' + '\n')
     _core_krnl_file.append('' + '\n')
 
     if (_knn_config.using_float):
@@ -920,8 +907,8 @@ def __GenerateSwapCalls(_core_krnl_file, _knn_config, indentation, use_D_idx):
         _core_krnl_file.append('' + '\n')
         _core_krnl_file.append(indentation + '    if (tmp < 0){' + '\n')
 
-    _core_krnl_file.append(indentation + '        swap(&local_kNearstDist' + str(D_idx_str) + '[ii], &local_kNearstDist' + str(D_idx_str) + '[ii-1], ' + '\n')
-    _core_krnl_file.append(indentation + '                  &local_kNearstId' + str(D_idx_str) + '[ii], &local_kNearstId' + str(D_idx_str) + '[ii-1]);' + '\n')
+    _core_krnl_file.append(indentation + '        KNN_SWAP(local_kNearstDist' + str(D_idx_str) + '[ii], local_kNearstDist' + str(D_idx_str) + '[ii-1], ' + '\n')
+    _core_krnl_file.append(indentation + '                 local_kNearstId' + str(D_idx_str) + '[ii], local_kNearstId' + str(D_idx_str) + '[ii-1]);' + '\n')
     _core_krnl_file.append(indentation + '    }' + '\n')
     _core_krnl_file.append('' + '\n')
     _core_krnl_file.append(indentation + '}' + '\n')
@@ -1042,12 +1029,12 @@ def GeneratePartialKNN_Sort(_core_krnl_file, _knn_config):
         _core_krnl_file.append('            //compare and swap odd' + "\n")
         _core_krnl_file.append('            for(int ii=1; ii<TOP; ii+=2){' + "\n")
         _core_krnl_file.append('            #pragma HLS UNROLL' + "\n")
-        _core_krnl_file.append('            #pragma HLS DEPENDENCE variable="local_kNearstDist" inter false' + "\n")
-        _core_krnl_file.append('            #pragma HLS DEPENDENCE variable="local_kNearstId" inter false' + "\n")
+        _core_krnl_file.append('            #pragma HLS DEPENDENCE variable=local_kNearstDist inter false' + "\n")
+        _core_krnl_file.append('            #pragma HLS DEPENDENCE variable=local_kNearstId inter false' + "\n")
         _core_krnl_file.append('' + "\n")
         _core_krnl_file.append('                if (local_kNearstDist[D_idx][ii] < local_kNearstDist[D_idx][ii+1]){' + "\n")
-        _core_krnl_file.append('                    swap(&local_kNearstDist[D_idx][ii], &local_kNearstDist[D_idx][ii+1], ' + "\n")
-        _core_krnl_file.append('                              &local_kNearstId[D_idx][ii], &local_kNearstId[D_idx][ii+1]);' + "\n")
+        _core_krnl_file.append('                    KNN_SWAP(local_kNearstDist[D_idx][ii], local_kNearstDist[D_idx][ii+1], ' + "\n")
+        _core_krnl_file.append('                             local_kNearstId[D_idx][ii], local_kNearstId[D_idx][ii+1]);' + "\n")
         _core_krnl_file.append('                }' + "\n")
         _core_krnl_file.append('' + "\n")
         _core_krnl_file.append('            }' + "\n")
@@ -1056,12 +1043,12 @@ def GeneratePartialKNN_Sort(_core_krnl_file, _knn_config):
         _core_krnl_file.append('            //compare and swap even' + "\n")
         _core_krnl_file.append('            for(int ii=1; ii<TOP+1; ii+=2){' + "\n")
         _core_krnl_file.append('            #pragma HLS UNROLL' + "\n")
-        _core_krnl_file.append('            #pragma HLS DEPENDENCE variable="local_kNearstDist" inter false' + "\n")
-        _core_krnl_file.append('            #pragma HLS DEPENDENCE variable="local_kNearstId" inter false' + "\n")
+        _core_krnl_file.append('            #pragma HLS DEPENDENCE variable=local_kNearstDist inter false' + "\n")
+        _core_krnl_file.append('            #pragma HLS DEPENDENCE variable=local_kNearstId inter false' + "\n")
         _core_krnl_file.append('' + "\n")
         _core_krnl_file.append('                if (local_kNearstDist[D_idx][ii] > local_kNearstDist[D_idx][ii-1]){' + "\n")
-        _core_krnl_file.append('                    swap(&local_kNearstDist[D_idx][ii], &local_kNearstDist[D_idx][ii-1], ' + "\n")
-        _core_krnl_file.append('                              &local_kNearstId[D_idx][ii], &local_kNearstId[D_idx][ii-1]);' + "\n")
+        _core_krnl_file.append('                    KNN_SWAP(local_kNearstDist[D_idx][ii], local_kNearstDist[D_idx][ii-1], ' + "\n")
+        _core_krnl_file.append('                             local_kNearstId[D_idx][ii], local_kNearstId[D_idx][ii-1]);' + "\n")
         _core_krnl_file.append('                }' + "\n")
         _core_krnl_file.append('' + "\n")
         _core_krnl_file.append('            }' + "\n")
@@ -1215,12 +1202,12 @@ def GeneratePartialKNN_Sort(_core_krnl_file, _knn_config):
         _core_krnl_file.append('            //compare and swap odd' + "\n")
         _core_krnl_file.append('            for(int ii=1; ii<TOP; ii+=2){' + "\n")
         _core_krnl_file.append('            #pragma HLS UNROLL' + "\n")
-        _core_krnl_file.append('            #pragma HLS DEPENDENCE variable="local_kNearstDist" inter false' + "\n")
-        _core_krnl_file.append('            #pragma HLS DEPENDENCE variable="local_kNearstId" inter false' + "\n")
+        _core_krnl_file.append('            #pragma HLS DEPENDENCE variable=local_kNearstDist inter false' + "\n")
+        _core_krnl_file.append('            #pragma HLS DEPENDENCE variable=local_kNearstId inter false' + "\n")
         _core_krnl_file.append('' + "\n")
         _core_krnl_file.append('                if (local_kNearstDist[D_idx][ii] < local_kNearstDist[D_idx][ii+1]){' + "\n")
-        _core_krnl_file.append('                    swap(&local_kNearstDist[D_idx][ii], &local_kNearstDist[D_idx][ii+1], ' + "\n")
-        _core_krnl_file.append('                              &local_kNearstId[D_idx][ii], &local_kNearstId[D_idx][ii+1]);' + "\n")
+        _core_krnl_file.append('                    KNN_SWAP(local_kNearstDist[D_idx][ii], local_kNearstDist[D_idx][ii+1], ' + "\n")
+        _core_krnl_file.append('                             local_kNearstId[D_idx][ii], local_kNearstId[D_idx][ii+1]);' + "\n")
         _core_krnl_file.append('                }' + "\n")
         _core_krnl_file.append('' + "\n")
         _core_krnl_file.append('            }' + "\n")
@@ -1229,12 +1216,12 @@ def GeneratePartialKNN_Sort(_core_krnl_file, _knn_config):
         _core_krnl_file.append('            //compare and swap even' + "\n")
         _core_krnl_file.append('            for(int ii=1; ii<TOP+1; ii+=2){' + "\n")
         _core_krnl_file.append('            #pragma HLS UNROLL' + "\n")
-        _core_krnl_file.append('            #pragma HLS DEPENDENCE variable="local_kNearstDist" inter false' + "\n")
-        _core_krnl_file.append('            #pragma HLS DEPENDENCE variable="local_kNearstId" inter false' + "\n")
+        _core_krnl_file.append('            #pragma HLS DEPENDENCE variable=local_kNearstDist inter false' + "\n")
+        _core_krnl_file.append('            #pragma HLS DEPENDENCE variable=local_kNearstId inter false' + "\n")
         _core_krnl_file.append('' + "\n")
         _core_krnl_file.append('                if (local_kNearstDist[D_idx][ii] > local_kNearstDist[D_idx][ii-1]){' + "\n")
-        _core_krnl_file.append('                    swap(&local_kNearstDist[D_idx][ii], &local_kNearstDist[D_idx][ii-1], ' + "\n")
-        _core_krnl_file.append('                              &local_kNearstId[D_idx][ii], &local_kNearstId[D_idx][ii-1]);' + "\n")
+        _core_krnl_file.append('                    KNN_SWAP(local_kNearstDist[D_idx][ii], local_kNearstDist[D_idx][ii-1], ' + "\n")
+        _core_krnl_file.append('                             local_kNearstId[D_idx][ii], local_kNearstId[D_idx][ii-1]);' + "\n")
         _core_krnl_file.append('                }' + "\n")
         _core_krnl_file.append('' + "\n")
         _core_krnl_file.append('            }' + "\n")
@@ -1355,12 +1342,12 @@ def GeneratePartialKNN_Sort(_core_krnl_file, _knn_config):
         _core_krnl_file.append('        //compare and swap odd' + "\n")
         _core_krnl_file.append('        for(int ii=1; ii<TOP; ii+=2){' + "\n")
         _core_krnl_file.append('        #pragma HLS UNROLL' + "\n")
-        _core_krnl_file.append('        #pragma HLS DEPENDENCE variable="local_kNearstDist" inter false' + "\n")
-        _core_krnl_file.append('        #pragma HLS DEPENDENCE variable="local_kNearstId" inter false' + "\n")
+        _core_krnl_file.append('        #pragma HLS DEPENDENCE variable=local_kNearstDist inter false' + "\n")
+        _core_krnl_file.append('        #pragma HLS DEPENDENCE variable=local_kNearstId inter false' + "\n")
         _core_krnl_file.append('' + "\n")
         _core_krnl_file.append('            if (local_kNearstDist[ii] < local_kNearstDist[ii+1]){' + "\n")
-        _core_krnl_file.append('                swap(&local_kNearstDist[ii], &local_kNearstDist[ii+1], ' + "\n")
-        _core_krnl_file.append('                          &local_kNearstId[ii], &local_kNearstId[ii+1]);' + "\n")
+        _core_krnl_file.append('                KNN_SWAP(local_kNearstDist[ii], local_kNearstDist[ii+1], ' + "\n")
+        _core_krnl_file.append('                         local_kNearstId[ii], local_kNearstId[ii+1]);' + "\n")
         _core_krnl_file.append('            }' + "\n")
         _core_krnl_file.append('' + "\n")
         _core_krnl_file.append('        }' + "\n")
@@ -1369,12 +1356,12 @@ def GeneratePartialKNN_Sort(_core_krnl_file, _knn_config):
         _core_krnl_file.append('        //compare and swap even' + "\n")
         _core_krnl_file.append('        for(int ii=1; ii<TOP+1; ii+=2){' + "\n")
         _core_krnl_file.append('        #pragma HLS UNROLL' + "\n")
-        _core_krnl_file.append('        #pragma HLS DEPENDENCE variable="local_kNearstDist" inter false' + "\n")
-        _core_krnl_file.append('        #pragma HLS DEPENDENCE variable="local_kNearstId" inter false' + "\n")
+        _core_krnl_file.append('        #pragma HLS DEPENDENCE variable=local_kNearstDist inter false' + "\n")
+        _core_krnl_file.append('        #pragma HLS DEPENDENCE variable=local_kNearstId inter false' + "\n")
         _core_krnl_file.append('' + "\n")
         _core_krnl_file.append('            if (local_kNearstDist[ii] > local_kNearstDist[ii-1]){' + "\n")
-        _core_krnl_file.append('                swap(&local_kNearstDist[ii], &local_kNearstDist[ii-1], ' + "\n")
-        _core_krnl_file.append('                          &local_kNearstId[ii], &local_kNearstId[ii-1]);' + "\n")
+        _core_krnl_file.append('                KNN_SWAP(local_kNearstDist[ii], local_kNearstDist[ii-1], ' + "\n")
+        _core_krnl_file.append('                         local_kNearstId[ii], local_kNearstId[ii-1]);' + "\n")
         _core_krnl_file.append('            }' + "\n")
         _core_krnl_file.append('' + "\n")
         _core_krnl_file.append('        }' + "\n")
@@ -1446,13 +1433,13 @@ def _generate_write_out_mmap(_core_krnl_file, _knn_config):
     _core_krnl_file.append('        //        i_req_output, outval.to_float(), output_dist.to_float());' + "\n")
     _core_krnl_file.append('        //#endif' + "\n")
     _core_krnl_file.append('' + "\n")
-    _core_krnl_file.append('        output_knn.write_addr.try_write(i_req_output);' + "\n")
-    _core_krnl_file.append('        output_knn.write_data.try_write(outval);' + "\n")
+    _core_krnl_file.append('        output_knn.write_addr.write(i_req_output * sizeof(INT32));' + "\n")
+    _core_krnl_file.append('        output_knn.write_data.write(outval);' + "\n")
     _core_krnl_file.append('        --i_req_output;' + "\n")
     _core_krnl_file.append('    }' + "\n")
     _core_krnl_file.append('' + "\n")
     _core_krnl_file.append('    if (!output_knn.write_resp.empty()) {' + "\n")
-    _core_krnl_file.append('        i_resp_output += (unsigned int) (output_knn.write_resp.read(nullptr)) + 1;' + "\n")
+    _core_krnl_file.append('        i_resp_output += (unsigned int) (output_knn.write_resp.read()) + 1;' + "\n")
     _core_krnl_file.append('    }' + "\n")
     _core_krnl_file.append('' + "\n")
     _core_krnl_file.append('    if (i_req_output < 2*TOP && i_req_output >= 0 && ' + "\n")
@@ -1466,13 +1453,13 @@ def _generate_write_out_mmap(_core_krnl_file, _knn_config):
     _core_krnl_file.append('        //        i_req_output, outval.to_float(), output_id);' + "\n")
     _core_krnl_file.append('        //#endif' + "\n")
     _core_krnl_file.append('' + "\n")
-    _core_krnl_file.append('        output_knn.write_addr.try_write(i_req_output);' + "\n")
-    _core_krnl_file.append('        output_knn.write_data.try_write(outval);' + "\n")
+    _core_krnl_file.append('        output_knn.write_addr.write(i_req_output * sizeof(INT32));' + "\n")
+    _core_krnl_file.append('        output_knn.write_data.write(outval);' + "\n")
     _core_krnl_file.append('        --i_req_output;' + "\n")
     _core_krnl_file.append('    }' + "\n")
     _core_krnl_file.append('' + "\n")
     _core_krnl_file.append('    if (!output_knn.write_resp.empty()) {' + "\n")
-    _core_krnl_file.append('        i_resp_output += (unsigned int) (output_knn.write_resp.read(nullptr)) + 1;' + "\n")
+    _core_krnl_file.append('        i_resp_output += (unsigned int) (output_knn.write_resp.read()) + 1;' + "\n")
     _core_krnl_file.append('    }' + "\n")
     _core_krnl_file.append('}' + "\n")
     _core_krnl_file.append('' + "\n")
@@ -1483,9 +1470,8 @@ def _generate_write_out_mmap(_core_krnl_file, _knn_config):
 
 
 def GeneratePartialKNN_HierMerge(_core_krnl_file, _knn_config):
-    _generate_write_out_mmap(_core_krnl_file, _knn_config)
-
     if ((_knn_config.num_PE > 1) or (_knn_config.using_segments == 1) or (_knn_config.using_Ltypes == 1)):
+        _generate_write_out_mmap(_core_krnl_file, _knn_config)
         _core_krnl_file.append('void merge_dual_streams(' + "\n")
         _core_krnl_file.append('                        int debug_PE_idx,' + "\n")
         _core_krnl_file.append('                        int debug_seg_d2l_idx,' + "\n")
@@ -1959,15 +1945,28 @@ def Generate_singlePE_output_function(_core_krnl_file, _knn_config):
     _core_krnl_file.append('        #pragma HLS pipeline II=1' + "\n")
     _core_krnl_file.append('        cur_dist = in_dist0.read();' + "\n")
     _core_krnl_file.append('        cur_id = in_id0.read();' + "\n")
-    _core_krnl_file.append('' + "\n")
-    _core_krnl_file.append('        write_out_mmap(' + "\n")
-    _core_krnl_file.append('            output_knn,' + "\n")
-    _core_krnl_file.append('            cur_dist,' + "\n")
-    _core_krnl_file.append('            cur_id,' + "\n")
-    _core_krnl_file.append('            i_req_output,' + "\n")
-    _core_krnl_file.append('            i_resp_output' + "\n")
-    _core_krnl_file.append('        );' + "\n")
-    _core_krnl_file.append('' + "\n")
+    _core_krnl_file.append('        INT32 outval = 0;' + "\n")
+    _core_krnl_file.append('        if (i_req_output < 2*TOP && i_req_output >= 0 && !output_knn.write_addr.full() && !output_knn.write_data.full()) {' + "\n")
+    if (_knn_config.using_float):
+        _core_krnl_file.append('            outval = *(INT32*) &cur_dist;' + "\n")
+    else:
+        _core_krnl_file.append('            outval.range(DATA_TYPE_TOTAL_SZ-1, 0) = cur_dist.range(DATA_TYPE_TOTAL_SZ-1, 0);' + "\n")
+    _core_krnl_file.append('            output_knn.write_addr.write(i_req_output * sizeof(INT32));' + "\n")
+    _core_krnl_file.append('            output_knn.write_data.write(outval);' + "\n")
+    _core_krnl_file.append('            --i_req_output;' + "\n")
+    _core_krnl_file.append('        }' + "\n")
+    _core_krnl_file.append('        if (!output_knn.write_resp.empty()) {' + "\n")
+    _core_krnl_file.append('            i_resp_output += (unsigned int) (output_knn.write_resp.read()) + 1;' + "\n")
+    _core_krnl_file.append('        }' + "\n")
+    _core_krnl_file.append('        if (i_req_output < 2*TOP && i_req_output >= 0 && !output_knn.write_addr.full() && !output_knn.write_data.full()) {' + "\n")
+    _core_krnl_file.append('            outval = (INT32) cur_id;' + "\n")
+    _core_krnl_file.append('            output_knn.write_addr.write(i_req_output * sizeof(INT32));' + "\n")
+    _core_krnl_file.append('            output_knn.write_data.write(outval);' + "\n")
+    _core_krnl_file.append('            --i_req_output;' + "\n")
+    _core_krnl_file.append('        }' + "\n")
+    _core_krnl_file.append('        if (!output_knn.write_resp.empty()) {' + "\n")
+    _core_krnl_file.append('            i_resp_output += (unsigned int) (output_knn.write_resp.read()) + 1;' + "\n")
+    _core_krnl_file.append('        }' + "\n")
     _core_krnl_file.append('    }' + "\n")
     _core_krnl_file.append('}' + "\n")
 
@@ -2020,24 +2019,24 @@ def Generate_KNN_TopLevel(_core_krnl_file, _num_PE, _knn_config):
     
     _core_krnl_file.append('    // Streams, for the global merge:' + "\n")
     for (layer_idx, num_arr) in enumerate(num_arr_per_globalsort_layer):
-        if (layer_idx == 0):
-            _core_krnl_file.append('    tapa::streams<DATA_TYPE, ' + str(num_arr) + ', TOP> L' + str(layer_idx) + '_out_dist;' + "\n")
-            _core_krnl_file.append('    tapa::streams<int,       ' + str(num_arr) + ', TOP> L' + str(layer_idx) + '_out_id;' + "\n")
-        else:
-            _core_krnl_file.append('    tapa::streams<DATA_TYPE, ' + str(num_arr) + ', 2>   L' + str(layer_idx) + '_out_dist;' + "\n")
-            _core_krnl_file.append('    tapa::streams<int,       ' + str(num_arr) + ', 2>   L' + str(layer_idx) + '_out_id;' + "\n")
+        depth = "TOP" if layer_idx == 0 else "2"
+        for arr_idx in range(num_arr):
+            _core_krnl_file.append('    tapa::stream<DATA_TYPE, ' + depth + '> L' + str(layer_idx) + '_out_dist_' + str(arr_idx) + ';\n')
+            _core_krnl_file.append('    tapa::stream<int,       ' + depth + '> L' + str(layer_idx) + '_out_id_' + str(arr_idx) + ';\n')
 
 
     ###################################
     #### Generating the load/compute/sort/intraPEmerge
     #### Fully-task-parallel, streaming implementation:
     _core_krnl_file.append('    // Streams, for load->compute->sort:' + "\n")
-    _core_krnl_file.append('    tapa::streams<INTERFACE_WIDTH, NUM_PE, 2>           load_to_compute_stream;' + "\n")
     for PE_idx in range(_num_PE):
-        if (_knn_config.using_Ltypes == 1):
-            _core_krnl_file.append('    tapa::streams<LOCAL_DIST_DTYPE, NUM_SEGMENTS, 2>    compute_to_sort_stream_' + str(PE_idx) + ';' + "\n")
+        _core_krnl_file.append('    tapa::stream<INTERFACE_WIDTH, 2>           load_to_compute_stream_' + str(PE_idx) + ';\n')
+    for PE_idx in range(_num_PE):
+        dtype_str = "LOCAL_DIST_DTYPE" if _knn_config.using_Ltypes == 1 else "DATA_TYPE"
+        if (_knn_config.using_segments == 0):
+            _core_krnl_file.append('    tapa::stream<' + dtype_str + ', 2>           compute_to_sort_stream_' + str(PE_idx) + ';\n')
         else:
-            _core_krnl_file.append('    tapa::streams<DATA_TYPE, NUM_SEGMENTS, 2>           compute_to_sort_stream_' + str(PE_idx) + ';' + "\n")
+            _core_krnl_file.append('    tapa::streams<' + dtype_str + ', NUM_SEGMENTS, 2>    compute_to_sort_stream_' + str(PE_idx) + ';\n')
 
     if (_knn_config.using_intra_pe_merge):
         for PE_idx in range(_num_PE):
@@ -2057,11 +2056,11 @@ def Generate_KNN_TopLevel(_core_krnl_file, _num_PE, _knn_config):
 
     _core_krnl_file.append('    tapa::task()' + "\n")
     for PE_idx in range(_num_PE):
-        _core_krnl_file.append('        .invoke( load_KNN, ' + str(PE_idx) + ', in_' + str(PE_idx) + ', load_to_compute_stream[' + str(PE_idx) + '])' + "\n")
+        _core_krnl_file.append('        .invoke( load_KNN, ' + str(PE_idx) + ', in_' + str(PE_idx) + ', load_to_compute_stream_' + str(PE_idx) + ')\n')
     _core_krnl_file.append('' + "\n")
     for PE_idx in range(_num_PE):
         _core_krnl_file.append('        .invoke( compute_KNN, ' + str(PE_idx) + ', NUM_SP_PTS_PER_KRNL_PADDED*' + str(PE_idx) +
-                                        ', load_to_compute_stream[' + str(PE_idx) + ' ], compute_to_sort_stream_' + str(PE_idx) + '  )' + "\n")
+                                        ', load_to_compute_stream_' + str(PE_idx) + ', compute_to_sort_stream_' + str(PE_idx) + '  )\n')
     _core_krnl_file.append('' + "\n")
     for PE_idx in range(_num_PE):
         _core_krnl_file.append('        INVOKE_PPS_UNITS_FOR_PE(' + str(PE_idx) + ')' + "\n")
@@ -2097,22 +2096,22 @@ def Generate_KNN_TopLevel(_core_krnl_file, _num_PE, _knn_config):
                 if (grouping == 3):
                     _core_krnl_file.append('        .invoke( merge_trio_streams' + FINAL_string + ', ')
                     _core_krnl_file.append('-1, ' + str(src_arr_idx) + ', ' + str(layer_idx-1) + ', ')
-                    _core_krnl_file.append('L' + str(layer_idx) + '_out_dist[' + str(src_arr_idx+0) + '], L' + str(layer_idx) + '_out_id[' + str(src_arr_idx+0) + '], ')
-                    _core_krnl_file.append('L' + str(layer_idx) + '_out_dist[' + str(src_arr_idx+1) + '], L' + str(layer_idx) + '_out_id[' + str(src_arr_idx+1) + '], ')
-                    _core_krnl_file.append('L' + str(layer_idx) + '_out_dist[' + str(src_arr_idx+2) + '], L' + str(layer_idx) + '_out_id[' + str(src_arr_idx+2) + '], ')
+                    _core_krnl_file.append('L' + str(layer_idx) + '_out_dist_' + str(src_arr_idx+0) + ', L' + str(layer_idx) + '_out_id_' + str(src_arr_idx+0) + ', ')
+                    _core_krnl_file.append('L' + str(layer_idx) + '_out_dist_' + str(src_arr_idx+1) + ', L' + str(layer_idx) + '_out_id_' + str(src_arr_idx+1) + ', ')
+                    _core_krnl_file.append('L' + str(layer_idx) + '_out_dist_' + str(src_arr_idx+2) + ', L' + str(layer_idx) + '_out_id_' + str(src_arr_idx+2) + ', ')
                     if (is_final_layer):
                         _core_krnl_file.append('final_out);' + "\n")
                     else:
-                        _core_krnl_file.append('L' + str(layer_idx+1) + '_out_dist[' + str(dst_arr_idx) + '], L' + str(layer_idx+1) + '_out_id[' + str(dst_arr_idx) + '] )' + "\n")
+                        _core_krnl_file.append('L' + str(layer_idx+1) + '_out_dist_' + str(dst_arr_idx) + ', L' + str(layer_idx+1) + '_out_id_' + str(dst_arr_idx) + ' )' + "\n")
                 elif (grouping == 2):
                     _core_krnl_file.append('        .invoke( merge_dual_streams' + FINAL_string + ', ')
                     _core_krnl_file.append('-1, ' + str(src_arr_idx) + ', ' + str(layer_idx-1) + ', ')
-                    _core_krnl_file.append('L' + str(layer_idx) + '_out_dist[' + str(src_arr_idx+0) + '], L' + str(layer_idx) + '_out_id[' + str(src_arr_idx+0) + '], ')
-                    _core_krnl_file.append('L' + str(layer_idx) + '_out_dist[' + str(src_arr_idx+1) + '], L' + str(layer_idx) + '_out_id[' + str(src_arr_idx+1) + '], ')
+                    _core_krnl_file.append('L' + str(layer_idx) + '_out_dist_' + str(src_arr_idx+0) + ', L' + str(layer_idx) + '_out_id_' + str(src_arr_idx+0) + ', ')
+                    _core_krnl_file.append('L' + str(layer_idx) + '_out_dist_' + str(src_arr_idx+1) + ', L' + str(layer_idx) + '_out_id_' + str(src_arr_idx+1) + ', ')
                     if (is_final_layer):
                         _core_krnl_file.append('final_out);' + "\n")
                     else:
-                        _core_krnl_file.append('L' + str(layer_idx+1) + '_out_dist[' + str(dst_arr_idx) + '], L' + str(layer_idx+1) + '_out_id[' + str(dst_arr_idx) + '] )' + "\n")
+                        _core_krnl_file.append('L' + str(layer_idx+1) + '_out_dist_' + str(dst_arr_idx) + ', L' + str(layer_idx+1) + '_out_id_' + str(dst_arr_idx) + '] )' + "\n")
                 else:
                     msg = "SOMETHING HAS GONE WRONG. Grouping = " + str(grouping)
                     print(msg)
@@ -2124,7 +2123,7 @@ def Generate_KNN_TopLevel(_core_krnl_file, _num_PE, _knn_config):
 
 
     if (not using_interPE_merge):
-        _core_krnl_file.append('        .invoke( krnl_singlePE_Write_Outputs,  L0_out_dist[0],  L0_out_id[0],' + "\n")
+        _core_krnl_file.append('        .invoke( krnl_singlePE_Write_Outputs,  L0_out_dist_0,  L0_out_id_0,\n')
         _core_krnl_file.append('                                               final_out);' + "\n")
 
     _core_krnl_file.append('}' + "\n")

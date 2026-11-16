@@ -1,0 +1,34 @@
+[
+  {
+    "pe_idx": 0,
+    "start_pt": 0,
+    "end_pt": 32768,
+    "count": 32768,
+    "bin_file": "search_space_pe0.bin",
+    "txt_file": "search_space_pe0.txt"
+  },
+  {
+    "pe_idx": 1,
+    "start_pt": 32768,
+    "end_pt": 65536,
+    "count": 32768,
+    "bin_file": "search_space_pe1.bin",
+    "txt_file": "search_space_pe1.txt"
+  },
+  {
+    "pe_idx": 2,
+    "start_pt": 65536,
+    "end_pt": 98304,
+    "count": 32768,
+    "bin_file": "search_space_pe2.bin",
+    "txt_file": "search_space_pe2.txt"
+  },
+  {
+    "pe_idx": 3,
+    "start_pt": 98304,
+    "end_pt": 131072,
+    "count": 32768,
+    "bin_file": "search_space_pe3.bin",
+    "txt_file": "search_space_pe3.txt"
+  }
+]

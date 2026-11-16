@@ -1,0 +1,23 @@
+{
+  "config_name": "sweep_D64_PE4",
+  "dimension": 64,
+  "num_pe": 4,
+  "n_points": 131072,
+  "k": 10,
+  "clock_frequency_mhz": 200,
+  "clock_period_ns": 5.0,
+  "status": "SCAFFOLDED",
+  "has_xo": false,
+  "has_xclbin": false,
+  "build_time_sec": 0.0,
+  "performance": {
+    "cycles_per_vector": 16,
+    "pts_per_pe": 32768,
+    "estimated_cycles": 524378,
+    "estimated_clock_period_ns": 5.0,
+    "estimated_runtime_sec": 0.00262189,
+    "throughput_features_sec": 3199450777.873976,
+    "throughput_queries_sec": 49991418.40428088
+  },
+  "resources": null
+}

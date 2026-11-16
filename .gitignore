@@ -141,3 +141,5 @@ dmypy.json
 *.prj*
 .tapa/
 install_tapa.sh
+sweeps/**/golden/*.bin
+sweeps/**/golden/*.txt

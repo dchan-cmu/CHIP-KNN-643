@@ -7,10 +7,10 @@
     "k": 10,
     "clock_frequency_mhz": 200,
     "clock_period_ns": 5.0,
-    "status": "SCAFFOLDED",
+    "status": "HLS_FAILED",
     "has_xo": false,
     "has_xclbin": false,
-    "build_time_sec": 0.0,
+    "build_time_sec": 54.98,
     "performance": {
       "cycles_per_vector": 1,
       "pts_per_pe": 131072,
@@ -30,10 +30,10 @@
     "k": 10,
     "clock_frequency_mhz": 200,
     "clock_period_ns": 5.0,
-    "status": "SCAFFOLDED",
+    "status": "HLS_FAILED",
     "has_xo": false,
     "has_xclbin": false,
-    "build_time_sec": 0.0,
+    "build_time_sec": 46.09,
     "performance": {
       "cycles_per_vector": 1,
       "pts_per_pe": 65536,
@@ -53,10 +53,10 @@
     "k": 10,
     "clock_frequency_mhz": 200,
     "clock_period_ns": 5.0,
-    "status": "SCAFFOLDED",
+    "status": "HLS_FAILED",
     "has_xo": false,
     "has_xclbin": false,
-    "build_time_sec": 0.0,
+    "build_time_sec": 46.61,
     "performance": {
       "cycles_per_vector": 1,
       "pts_per_pe": 43691,
@@ -76,10 +76,10 @@
     "k": 10,
     "clock_frequency_mhz": 200,
     "clock_period_ns": 5.0,
-    "status": "SCAFFOLDED",
+    "status": "HLS_FAILED",
     "has_xo": false,
     "has_xclbin": false,
-    "build_time_sec": 0.0,
+    "build_time_sec": 43.05,
     "performance": {
       "cycles_per_vector": 1,
       "pts_per_pe": 32768,
@@ -99,10 +99,10 @@
     "k": 10,
     "clock_frequency_mhz": 200,
     "clock_period_ns": 5.0,
-    "status": "SCAFFOLDED",
-    "has_xo": false,
+    "status": "XO_SUCCESS",
+    "has_xo": true,
     "has_xclbin": false,
-    "build_time_sec": 0.0,
+    "build_time_sec": 321.3,
     "performance": {
       "cycles_per_vector": 4,
       "pts_per_pe": 131072,
@@ -112,7 +112,14 @@
       "throughput_features_sec": 799908457.7418051,
       "throughput_queries_sec": 49994278.60886282
     },
-    "resources": null
+    "resources": {
+      "BRAM": 20,
+      "DSP": 0,
+      "FF": 4610,
+      "LUT": 7520,
+      "URAM": 0,
+      "clock_period_ns": 5.0
+    }
   },
   {
     "config_name": "sweep_D16_PE2",
@@ -122,10 +129,10 @@
     "k": 10,
     "clock_frequency_mhz": 200,
     "clock_period_ns": 5.0,
-    "status": "SCAFFOLDED",
+    "status": "HLS_FAILED",
     "has_xo": false,
     "has_xclbin": false,
-    "build_time_sec": 0.0,
+    "build_time_sec": 130.19,
     "performance": {
       "cycles_per_vector": 4,
       "pts_per_pe": 65536,
@@ -145,10 +152,10 @@
     "k": 10,
     "clock_frequency_mhz": 200,
     "clock_period_ns": 5.0,
-    "status": "SCAFFOLDED",
+    "status": "HLS_FAILED",
     "has_xo": false,
     "has_xclbin": false,
-    "build_time_sec": 0.0,
+    "build_time_sec": 83.91,
     "performance": {
       "cycles_per_vector": 4,
       "pts_per_pe": 43691,
@@ -168,10 +175,10 @@
     "k": 10,
     "clock_frequency_mhz": 200,
     "clock_period_ns": 5.0,
-    "status": "SCAFFOLDED",
+    "status": "HLS_FAILED",
     "has_xo": false,
     "has_xclbin": false,
-    "build_time_sec": 0.0,
+    "build_time_sec": 83.28,
     "performance": {
       "cycles_per_vector": 4,
       "pts_per_pe": 32768,
@@ -191,10 +198,10 @@
     "k": 10,
     "clock_frequency_mhz": 200,
     "clock_period_ns": 5.0,
-    "status": "SCAFFOLDED",
-    "has_xo": false,
+    "status": "XO_SUCCESS",
+    "has_xo": true,
     "has_xclbin": false,
-    "build_time_sec": 0.0,
+    "build_time_sec": 316.43,
     "performance": {
       "cycles_per_vector": 16,
       "pts_per_pe": 131072,
@@ -204,7 +211,14 @@
       "throughput_features_sec": 799977112.4712237,
       "throughput_queries_sec": 12499642.38236287
     },
-    "resources": null
+    "resources": {
+      "BRAM": 20,
+      "DSP": 0,
+      "FF": 6162,
+      "LUT": 7732,
+      "URAM": 0,
+      "clock_period_ns": 5.0
+    }
   },
   {
     "config_name": "sweep_D64_PE2",
@@ -214,10 +228,10 @@
     "k": 10,
     "clock_frequency_mhz": 200,
     "clock_period_ns": 5.0,
-    "status": "SCAFFOLDED",
+    "status": "HLS_FAILED",
     "has_xo": false,
     "has_xclbin": false,
-    "build_time_sec": 0.0,
+    "build_time_sec": 105.52,
     "performance": {
       "cycles_per_vector": 16,
       "pts_per_pe": 65536,
@@ -237,10 +251,10 @@
     "k": 10,
     "clock_frequency_mhz": 200,
     "clock_period_ns": 5.0,
-    "status": "SCAFFOLDED",
+    "status": "HLS_FAILED",
     "has_xo": false,
     "has_xclbin": false,
-    "build_time_sec": 0.0,
+    "build_time_sec": 94.2,
     "performance": {
       "cycles_per_vector": 16,
       "pts_per_pe": 43691,
@@ -260,10 +274,10 @@
     "k": 10,
     "clock_frequency_mhz": 200,
     "clock_period_ns": 5.0,
-    "status": "SCAFFOLDED",
+    "status": "HLS_FAILED",
     "has_xo": false,
     "has_xclbin": false,
-    "build_time_sec": 0.0,
+    "build_time_sec": 86.17,
     "performance": {
       "cycles_per_vector": 16,
       "pts_per_pe": 32768,

@@ -41,6 +41,8 @@ def _Generate_KNN_Design(_knn_config, _num_PE, _partialKNN_krnl_name):
     knngen.GeneratePartialKNN_Compute(core_krnl_file, _knn_config)
     knngen.GeneratePartialKNN_Sort(core_krnl_file, _knn_config)
     knngen.GeneratePartialKNN_HierMerge(core_krnl_file, _knn_config)
+    if (_num_PE == 1):
+        knngen.Generate_singlePE_output_function(core_krnl_file, _knn_config)
 
     knngen.Generate_KNN_TopLevel(core_krnl_file, _num_PE, _knn_config)
 

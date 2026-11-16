@@ -772,6 +772,9 @@ void Knn(tapa::mmap<INTERFACE_WIDTH> in_0, tapa::mmap<INT32> final_out) {
                 elif task_name == "krnl_singlePE_Write_Outputs":
                     pragmas += "#pragma HLS interface ap_fifo port=in_dist0\n#pragma HLS interface ap_fifo port=in_id0\n#pragma HLS interface ap_fifo port=output_knn.read_addr\n#pragma HLS interface ap_fifo port=output_knn.read_data\n#pragma HLS interface ap_fifo port=output_knn.write_addr\n#pragma HLS interface ap_fifo port=output_knn.write_data\n#pragma HLS interface ap_fifo port=output_knn.write_resp\n#pragma HLS disaggregate variable=output_knn\n"
                     body = re.sub(r"\*\s*\(\s*INT32\s*\*\s*\)\s*&\s*cur_id", "(INT32) cur_id", body)
+                elif task_name in ("merge_dual_streams_FINAL", "merge_trio_streams_FINAL"):
+                    pragmas += "#pragma HLS interface ap_fifo port=hiermerge_output.read_addr\n#pragma HLS interface ap_fifo port=hiermerge_output.read_data\n#pragma HLS interface ap_fifo port=hiermerge_output.write_addr\n#pragma HLS interface ap_fifo port=hiermerge_output.write_data\n#pragma HLS interface ap_fifo port=hiermerge_output.write_resp\n#pragma HLS disaggregate variable=hiermerge_output\n"
+                    body = re.sub(r"\*\s*\(\s*INT32\s*\*\s*\)\s*&\s*output_id", "(INT32) output_id", body)
                 body = body[:idx] + pragmas + body[idx:]
                 return preamble + "\n" + body
             return preamble + "\n" + source_code

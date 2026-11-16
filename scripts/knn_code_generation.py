@@ -1446,7 +1446,7 @@ def _generate_write_out_mmap(_core_krnl_file, _knn_config):
     _core_krnl_file.append('        !output_knn.write_addr.full() && ' + "\n")
     _core_krnl_file.append('        !output_knn.write_data.full()' + "\n")
     _core_krnl_file.append('    ) {' + "\n")
-    _core_krnl_file.append('        outval = * (INT32*) &output_id;' + "\n")
+    _core_krnl_file.append('        outval = (INT32) output_id;' + "\n")
     _core_krnl_file.append('' + "\n")
     _core_krnl_file.append('        //#ifndef __SYNTHESIS__' + "\n")
     _core_krnl_file.append('        //printf("KDEBUG: i_req_output = %d. Outval = %f, output_id = %d\\n",' + "\n")
@@ -2111,7 +2111,7 @@ def Generate_KNN_TopLevel(_core_krnl_file, _num_PE, _knn_config):
                     if (is_final_layer):
                         _core_krnl_file.append('final_out);' + "\n")
                     else:
-                        _core_krnl_file.append('L' + str(layer_idx+1) + '_out_dist_' + str(dst_arr_idx) + ', L' + str(layer_idx+1) + '_out_id_' + str(dst_arr_idx) + '] )' + "\n")
+                        _core_krnl_file.append('L' + str(layer_idx+1) + '_out_dist_' + str(dst_arr_idx) + ', L' + str(layer_idx+1) + '_out_id_' + str(dst_arr_idx) + ' )' + "\n")
                 else:
                     msg = "SOMETHING HAS GONE WRONG. Grouping = " + str(grouping)
                     print(msg)

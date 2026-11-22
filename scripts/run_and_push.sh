@@ -726,9 +726,20 @@ if m:
 
         full_code = knn_cpp_content
 
-        def extract_task_code(task_name, source_code):
+        write_out_code = ""
+        m_write = re.search(r"(void\s+write_out_mmap\s*\(.*?\n\})", knn_cpp_content, re.DOTALL)
+        if m_write:
+            write_out_code = m_write.group(1) + "\n\n"
+
+        swap_code = ""
+        swap_m = re.search(r"(#define\s+KNN_SWAP.*?\n(?=#define|void|\n\n))", knn_cpp_content, re.DOTALL)
+        if swap_m:
+            swap_code = swap_m.group(1) + "\n\n"
+
+        def build_knn_top_stub(source_code):
             preamble = '#include "knn.h"\n#define printf(...) ((void)0)\n#define absval(input) ((input) > 0 ? static_cast<DATA_TYPE>(input) : static_cast<DATA_TYPE>(-1 * (input)))\n'
-            if task_name == "Knn":
+            m_sig = re.search(r"void\s+Knn\s*\((.*?)\)\s*\{", source_code, re.DOTALL)
+            if not m_sig:
                 return preamble + '''
 void Knn(tapa::mmap<INTERFACE_WIDTH> in_0, tapa::mmap<INT32> final_out) {
 #pragma HLS interface m_axi port=in_0 offset=slave bundle=gmem0 depth=1
@@ -737,51 +748,77 @@ void Knn(tapa::mmap<INTERFACE_WIDTH> in_0, tapa::mmap<INT32> final_out) {
     final_out[0] = (INT32)in_0[0];
 }
 '''
+            params_str = m_sig.group(1)
+            params = re.findall(r"tapa::mmap<([^>]+)>\s*(\w+)", params_str)
+            param_decls = []
+            pragmas = []
+            body_lines = ["    INT32 sum = 0;"]
+            for idx, (dtype, pname) in enumerate(params):
+                param_decls.append(f"    tapa::mmap<{dtype}> {pname}")
+                pragmas.append(f"#pragma HLS interface m_axi port={pname} offset=slave bundle=gmem{idx} depth=1")
+                if pname != "final_out":
+                    body_lines.append(f"    sum += (INT32){pname}[0];")
+            body_lines.append("    final_out[0] = sum;")
+
+            decl_str = ",\n".join(param_decls)
+            pragma_str = "\n".join(pragmas)
+            body_str = "\n".join(body_lines)
+            return f"{preamble}\nvoid Knn(\n{decl_str}\n) {{\n{pragma_str}\n#pragma HLS interface s_axilite port=return bundle=control\n{body_str}\n}}\n"
+
+        def extract_task_code(task_name, source_code):
+            preamble = '#include "knn.h"\n#define printf(...) ((void)0)\n#define absval(input) ((input) > 0 ? static_cast<DATA_TYPE>(input) : static_cast<DATA_TYPE>(-1 * (input)))\n'
+            if task_name == "Knn":
+                return build_knn_top_stub(source_code)
+
             pattern = rf"(void\s+{re.escape(task_name)}\s*\([^)]*\)\s*\{{.*?^\}})"
             m_fn = re.search(pattern, source_code, re.DOTALL | re.MULTILINE)
             if not m_fn:
                 pattern = rf"(void\s+{re.escape(task_name)}\s*\(.*?\n\}})"
                 m_fn = re.search(pattern, source_code, re.DOTALL)
-            if m_fn:
-                body = m_fn.group(1)
-                idx = body.find("{") + 1
-                pragmas = "\n"
-                if task_name == "compute_KNN":
-                    pragmas += "#pragma HLS interface ap_fifo port=load_to_compute_stream\n#pragma HLS interface ap_fifo port=compute_to_sort_stream\n"
-                elif task_name == "para_partial_sort":
-                    pragmas += "#pragma HLS interface ap_fifo port=compute_to_sort_stream\n#pragma HLS interface ap_fifo port=sort_to_hiermerge_dist_stream\n#pragma HLS interface ap_fifo port=sort_to_hiermerge_id_stream\n"
-                    swap_m = re.search(r"(#define\s+KNN_SWAP.*?\n(?=#define|void|\n\n))", source_code, re.DOTALL)
-                    if swap_m:
-                        preamble += "\n" + swap_m.group(1) + "\n"
-                    body = re.sub(r"#ifdef\s+__SYNTHESIS__\s*\n\s*static[^\n]*.*?\n\s*#endif", "", body, flags=re.DOTALL)
-                    body = body.replace("static DATA_TYPE local_kNearstDist", "DATA_TYPE local_kNearstDist")
-                    body = body.replace("static int local_kNearstId", "int local_kNearstId")
-                    body = re.sub(r"KNN_SWAP\(&([^,]+),\s*&([^,]+),\s*&([^,]+),\s*&([^)]+)\)", r"KNN_SWAP(\1, \2, \3, \4)", body)
-                    body = re.sub(
-                        r"sort_to_hiermerge_dist_stream\.write\s*\(\s*local_kNearstDist\[j\]\s*\);",
-                        "DATA_TYPE _out_dist = local_kNearstDist[j]; sort_to_hiermerge_dist_stream.write(_out_dist);",
-                        body
-                    )
-                    body = re.sub(
-                        r"sort_to_hiermerge_id_stream\.write\s*\(\s*local_kNearstId\[j\]\s*\);",
-                        "int _out_id = local_kNearstId[j]; sort_to_hiermerge_id_stream.write(_out_id);",
-                        body
-                    )
-                elif task_name == "load_KNN":
-                    pragmas += "#pragma HLS interface ap_fifo port=load_to_compute_stream\n#pragma HLS interface ap_fifo port=searchSpace.read_addr\n#pragma HLS interface ap_fifo port=searchSpace.read_data\n#pragma HLS interface ap_fifo port=searchSpace.write_addr\n#pragma HLS interface ap_fifo port=searchSpace.write_data\n#pragma HLS interface ap_fifo port=searchSpace.write_resp\n#pragma HLS disaggregate variable=searchSpace\n"
-                elif task_name == "krnl_singlePE_Write_Outputs":
-                    pragmas += "#pragma HLS interface ap_fifo port=in_dist0\n#pragma HLS interface ap_fifo port=in_id0\n#pragma HLS interface ap_fifo port=output_knn.read_addr\n#pragma HLS interface ap_fifo port=output_knn.read_data\n#pragma HLS interface ap_fifo port=output_knn.write_addr\n#pragma HLS interface ap_fifo port=output_knn.write_data\n#pragma HLS interface ap_fifo port=output_knn.write_resp\n#pragma HLS disaggregate variable=output_knn\n"
-                    body = re.sub(r"\*\s*\(\s*INT32\s*\*\s*\)\s*&\s*cur_id", "(INT32) cur_id", body)
-                elif task_name in ("merge_dual_streams_FINAL", "merge_trio_streams_FINAL"):
-                    pragmas += "#pragma HLS interface ap_fifo port=hiermerge_output.read_addr\n#pragma HLS interface ap_fifo port=hiermerge_output.read_data\n#pragma HLS interface ap_fifo port=hiermerge_output.write_addr\n#pragma HLS interface ap_fifo port=hiermerge_output.write_data\n#pragma HLS interface ap_fifo port=hiermerge_output.write_resp\n#pragma HLS disaggregate variable=hiermerge_output\n"
-                    body = re.sub(r"\*\s*\(\s*INT32\s*\*\s*\)\s*&\s*output_id", "(INT32) output_id", body)
-                body = body[:idx] + pragmas + body[idx:]
-                return preamble + "\n" + body
-            return preamble + "\n" + source_code
+            if not m_fn:
+                return preamble + "\n" + source_code
+
+            body = m_fn.group(1)
+            idx = body.find("{") + 1
+            sig_part = body[:idx]
+
+            stream_ports = re.findall(r"tapa::[io]stream<[^>]+>\s*&?\s*(\w+)", sig_part)
+            pragmas = "\n"
+            for sp in stream_ports:
+                pragmas += f"#pragma HLS interface ap_fifo port={sp}\n"
+
+            task_preamble = preamble
+            if task_name == "compute_KNN":
+                pass
+            elif task_name == "para_partial_sort":
+                if swap_code:
+                    task_preamble += "\n" + swap_code
+                body = re.sub(r"#ifdef\s+__SYNTHESIS__\s*\n\s*static[^\n]*.*?\n\s*#endif", "", body, flags=re.DOTALL)
+                body = body.replace("static DATA_TYPE local_kNearstDist", "DATA_TYPE local_kNearstDist")
+                body = body.replace("static int local_kNearstId", "int local_kNearstId")
+                body = re.sub(r"KNN_SWAP\(&([^,]+),\s*&([^,]+),\s*&([^,]+),\s*&([^)]+)\)", r"KNN_SWAP(\1, \2, \3, \4)", body)
+                body = re.sub(r"(\w+)\.write\s*\(\s*local_kNearstDist\[j\]\s*\);", r"DATA_TYPE _out_dist = local_kNearstDist[j]; \1.write(_out_dist);", body)
+                body = re.sub(r"(\w+)\.write\s*\(\s*local_kNearstId\[j\]\s*\);", r"int _out_id = local_kNearstId[j]; \1.write(_out_id);", body)
+            elif task_name == "load_KNN":
+                pragmas += "#pragma HLS interface ap_fifo port=searchSpace.read_addr\n#pragma HLS interface ap_fifo port=searchSpace.read_data\n#pragma HLS interface ap_fifo port=searchSpace.write_addr\n#pragma HLS interface ap_fifo port=searchSpace.write_data\n#pragma HLS interface ap_fifo port=searchSpace.write_resp\n#pragma HLS disaggregate variable=searchSpace\n"
+            elif task_name == "krnl_singlePE_Write_Outputs":
+                pragmas += "#pragma HLS interface ap_fifo port=output_knn.read_addr\n#pragma HLS interface ap_fifo port=output_knn.read_data\n#pragma HLS interface ap_fifo port=output_knn.write_addr\n#pragma HLS interface ap_fifo port=output_knn.write_data\n#pragma HLS interface ap_fifo port=output_knn.write_resp\n#pragma HLS disaggregate variable=output_knn\n"
+                body = re.sub(r"\*\s*\(\s*INT32\s*\*\s*\)\s*&\s*cur_id", "(INT32) cur_id", body)
+            elif task_name in ("merge_dual_streams_FINAL", "merge_trio_streams_FINAL"):
+                pragmas += "#pragma HLS interface ap_fifo port=hiermerge_output.read_addr\n#pragma HLS interface ap_fifo port=hiermerge_output.read_data\n#pragma HLS interface ap_fifo port=hiermerge_output.write_addr\n#pragma HLS interface ap_fifo port=hiermerge_output.write_data\n#pragma HLS interface ap_fifo port=hiermerge_output.write_resp\n#pragma HLS disaggregate variable=hiermerge_output\n"
+                body = re.sub(r"\*\s*\(\s*INT32\s*\*\s*\)\s*&\s*output_id", "(INT32) output_id", body)
+                if write_out_code:
+                    task_preamble += "\n" + write_out_code
+
+            body = body[:idx] + pragmas + body[idx:]
+            return task_preamble + "\n" + body
 
         for tname, tdict in data.get("tasks", {}).items():
-            if "code" not in tdict or not tdict["code"]:
+            if tname == "Knn" or "code" not in tdict or not tdict["code"]:
                 tdict["code"] = extract_task_code(tname, knn_cpp_content)
+            elif tname in ("merge_dual_streams_FINAL", "merge_trio_streams_FINAL"):
+                if "write_out_mmap" not in tdict.get("code", ""):
+                    tdict["code"] = extract_task_code(tname, knn_cpp_content)
 
         clean_cflags = []
         for cf in data.get("cflags", []):

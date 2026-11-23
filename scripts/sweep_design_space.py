@@ -91,6 +91,10 @@ def parse_args():
         "--clean", action="store_true",
         help="Clean existing sweep output directory before starting"
     )
+    parser.add_argument(
+        "--auto-push", action="store_true",
+        help="Commit and push sweep results to GitHub after each configuration finishes"
+    )
     return parser.parse_args()
 
 def calculate_analytical_performance(dim, num_pe, n_points, k, clock_period_ns):
@@ -409,9 +413,42 @@ def run_sweep(args):
                 
             sweep_results.append(metrics)
             
-    # 4. Generate summary reports
-    generate_summary_reports(args.output_dir, sweep_results)
+            # Update summary reports after each configuration finishes
+            generate_summary_reports(args.output_dir, sweep_results)
+
+            if args.auto_push:
+                git_auto_push(config_name, point_dir)
+            
     return sweep_results
+
+def git_auto_push(config_name, point_dir):
+    """
+    Commit and push newly generated sweep results to the current git branch.
+    """
+    try:
+        res_branch = subprocess.run(
+            ["git", "rev-parse", "--abbrev-ref", "HEAD"],
+            capture_output=True, text=True, check=True
+        )
+        branch = res_branch.stdout.strip()
+        if not branch or branch == "HEAD":
+            print(f"[auto-push] Detached HEAD detected; skipping git push for {config_name}.")
+            return
+
+        subprocess.run(["git", "add", "sweeps/"], check=True)
+        status_proc = subprocess.run(["git", "diff", "--cached", "--quiet"])
+        if status_proc.returncode != 0:
+            commit_msg = f"Auto-push: complete build for {config_name}"
+            subprocess.run(["git", "commit", "-m", commit_msg], check=True)
+            print(f"[auto-push] Pushing {config_name} to origin/{branch}...")
+            subprocess.run(["git", "push", "origin", branch], check=True)
+            print(f"[auto-push] Successfully pushed {config_name} to origin/{branch}.")
+        else:
+            print(f"[auto-push] No new changes to commit for {config_name}.")
+    except subprocess.CalledProcessError as e:
+        print(f"[auto-push] Notice: git operation exited with code {e.returncode}: {e}")
+    except Exception as e:
+        print(f"[auto-push] Notice: unexpected git error: {e}")
 
 def generate_summary_reports(output_dir, sweep_results):
     """

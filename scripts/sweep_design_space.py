@@ -305,6 +305,11 @@ def build_sweep_point(point_dir, dim, num_pe, args):
         xclbin_target = os.path.join(build_dir, "knn.xclbin")
         cmd_link = ["make", "build", f"DEVICE={FPGA_target_name}"]
         
+        # Sanitize any XO and Verilog files in point_dir before bitstream link
+        sanitize_script = os.path.join(SCRIPT_DIR, "sanitize_top_rtl.py")
+        if os.path.isfile(sanitize_script):
+            subprocess.run([sys.executable, sanitize_script, point_dir], check=False)
+
         with open(build_log_path, "a") as log_file:
             log_file.write("\n=== STARTING BITSTREAM LINKING ===\n")
             proc_link = subprocess.run(cmd_link, stdout=log_file, stderr=subprocess.STDOUT, text=True, env=env)

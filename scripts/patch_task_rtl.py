@@ -161,102 +161,115 @@ def patch_tasks(work_dir, graph_json_path):
                     inner_connections[f"{pname}_ap_vld"] = inner_wire_vld
 
             elif pcat == "async_mmap":
+                # Determine whether this task is a reader, writer, or both
+                # Memory writers (e.g. Write_Outputs or hiermerge_output) only require write channels
+                # Memory readers (e.g. load_KNN) only require read channels
+                is_writer = (f"{pname}_write_addr_ap_vld" in inner_port_list) or ("Write_Outputs" in task_name) or ("hiermerge" in task_name and "output" in pname)
+                is_reader = ("load_KNN" in task_name) or (not is_writer)
+
                 # Base address offset port required by TAPA top-level instrumenter
                 offset_name = f"{pname}_offset"
                 wrapper_ports.append(offset_name)
                 wrapper_port_decls.append(f"input  [63:0] {offset_name};")
 
-                # 5 channels
-                r_addr_din = f"{pname}_read_addr_din"
-                r_addr_full_n = f"{pname}_read_addr_full_n"
-                r_addr_write = f"{pname}_read_addr_write"
+                if is_reader:
+                    # 2 read channels: read_addr, read_data
+                    r_addr_din = f"{pname}_read_addr_din"
+                    r_addr_full_n = f"{pname}_read_addr_full_n"
+                    r_addr_write = f"{pname}_read_addr_write"
 
-                r_data_dout = f"{pname}_read_data_dout"
-                r_data_empty_n = f"{pname}_read_data_empty_n"
-                r_data_read = f"{pname}_read_data_read"
-                r_data_peek_dout = f"{pname}_read_data_peek_dout"
-                r_data_peek_empty_n = f"{pname}_read_data_peek_empty_n"
-                r_data_peek_read = f"{pname}_read_data_peek_read"
+                    r_data_dout = f"{pname}_read_data_dout"
+                    r_data_empty_n = f"{pname}_read_data_empty_n"
+                    r_data_read = f"{pname}_read_data_read"
+                    r_data_peek_dout = f"{pname}_read_data_peek_dout"
+                    r_data_peek_empty_n = f"{pname}_read_data_peek_empty_n"
+                    r_data_peek_read = f"{pname}_read_data_peek_read"
 
-                w_addr_din = f"{pname}_write_addr_din"
-                w_addr_full_n = f"{pname}_write_addr_full_n"
-                w_addr_write = f"{pname}_write_addr_write"
+                    wrapper_ports.extend([
+                        r_addr_din, r_addr_full_n, r_addr_write,
+                        r_data_dout, r_data_empty_n, r_data_read,
+                        r_data_peek_dout, r_data_peek_empty_n, r_data_peek_read
+                    ])
+                    wrapper_port_decls.extend([
+                        f"output [63:0] {r_addr_din};",
+                        f"input   {r_addr_full_n};",
+                        f"output  {r_addr_write};",
+                        f"input  {w_str}{r_data_dout};",
+                        f"input   {r_data_empty_n};",
+                        f"output  {r_data_read};",
+                        f"input  {w_str}{r_data_peek_dout};",
+                        f"input   {r_data_peek_empty_n};",
+                        f"output  {r_data_peek_read};",
+                    ])
 
-                w_data_din = f"{pname}_write_data_din"
-                w_data_full_n = f"{pname}_write_data_full_n"
-                w_data_write = f"{pname}_write_data_write"
+                    if f"{pname}_read_addr" in inner_port_list:
+                        inner_connections[f"{pname}_read_addr"] = "64'd0"
+                    wrapper_logic.append(f"assign {r_addr_din} = 64'd0;")
+                    wrapper_logic.append(f"assign {r_addr_write} = ap_start;")
 
-                w_resp_dout = f"{pname}_write_resp_dout"
-                w_resp_empty_n = f"{pname}_write_resp_empty_n"
-                w_resp_read = f"{pname}_write_resp_read"
-                w_resp_peek_dout = f"{pname}_write_resp_peek_dout"
-                w_resp_peek_empty_n = f"{pname}_write_resp_peek_empty_n"
-                w_resp_peek_read = f"{pname}_write_resp_peek_read"
+                    if f"{pname}_read_data" in inner_port_list:
+                        inner_connections[f"{pname}_read_data"] = r_data_dout
+                    wrapper_logic.append(f"assign {r_data_read} = ap_start & {r_data_empty_n};")
+                    wrapper_logic.append(f"assign {r_data_peek_read} = 1'b0;")
 
-                wrapper_ports.extend([
-                    r_addr_din, r_addr_full_n, r_addr_write,
-                    r_data_dout, r_data_empty_n, r_data_read,
-                    r_data_peek_dout, r_data_peek_empty_n, r_data_peek_read,
-                    w_addr_din, w_addr_full_n, w_addr_write,
-                    w_data_din, w_data_full_n, w_data_write,
-                    w_resp_dout, w_resp_empty_n, w_resp_read,
-                    w_resp_peek_dout, w_resp_peek_empty_n, w_resp_peek_read
-                ])
-                wrapper_port_decls.extend([
-                    f"output [63:0] {r_addr_din};",
-                    f"input   {r_addr_full_n};",
-                    f"output  {r_addr_write};",
-                    f"input  {w_str}{r_data_dout};",
-                    f"input   {r_data_empty_n};",
-                    f"output  {r_data_read};",
-                    f"input  {w_str}{r_data_peek_dout};",
-                    f"input   {r_data_peek_empty_n};",
-                    f"output  {r_data_peek_read};",
-                    f"output [63:0] {w_addr_din};",
-                    f"input   {w_addr_full_n};",
-                    f"output  {w_addr_write};",
-                    f"output {w_str}{w_data_din};",
-                    f"input   {w_data_full_n};",
-                    f"output  {w_data_write};",
-                    f"input  [7:0] {w_resp_dout};",
-                    f"input   {w_resp_empty_n};",
-                    f"output  {w_resp_read};",
-                    f"input  [7:0] {w_resp_peek_dout};",
-                    f"input   {w_resp_peek_empty_n};",
-                    f"output  {w_resp_peek_read};",
-                ])
+                if is_writer:
+                    # 3 write channels: write_addr, write_data, write_resp
+                    w_addr_din = f"{pname}_write_addr_din"
+                    w_addr_full_n = f"{pname}_write_addr_full_n"
+                    w_addr_write = f"{pname}_write_addr_write"
 
-                # Wire up inner connections for async_mmap
-                if f"{pname}_write_addr" in inner_port_list:
-                    inner_connections[f"{pname}_write_addr"] = w_addr_din
-                if f"{pname}_write_addr_ap_vld" in inner_port_list:
-                    inner_connections[f"{pname}_write_addr_ap_vld"] = w_addr_write
-                else:
-                    wrapper_logic.append(f"assign {w_addr_write} = 1'b0;")
-                    wrapper_logic.append(f"assign {w_addr_din} = 64'd0;")
+                    w_data_din = f"{pname}_write_data_din"
+                    w_data_full_n = f"{pname}_write_data_full_n"
+                    w_data_write = f"{pname}_write_data_write"
 
-                if f"{pname}_write_data" in inner_port_list:
-                    inner_connections[f"{pname}_write_data"] = w_data_din
-                if f"{pname}_write_data_ap_vld" in inner_port_list:
-                    inner_connections[f"{pname}_write_data_ap_vld"] = w_data_write
-                else:
-                    wrapper_logic.append(f"assign {w_data_write} = 1'b0;")
-                    wrapper_logic.append(f"assign {w_data_din} = {pw}'d0;")
+                    w_resp_dout = f"{pname}_write_resp_dout"
+                    w_resp_empty_n = f"{pname}_write_resp_empty_n"
+                    w_resp_read = f"{pname}_write_resp_read"
+                    w_resp_peek_dout = f"{pname}_write_resp_peek_dout"
+                    w_resp_peek_empty_n = f"{pname}_write_resp_peek_empty_n"
+                    w_resp_peek_read = f"{pname}_write_resp_peek_read"
 
-                if f"{pname}_write_resp" in inner_port_list:
-                    inner_connections[f"{pname}_write_resp"] = w_resp_dout
-                wrapper_logic.append(f"assign {w_resp_read} = 1'b1;")
-                wrapper_logic.append(f"assign {w_resp_peek_read} = 1'b0;")
+                    wrapper_ports.extend([
+                        w_addr_din, w_addr_full_n, w_addr_write,
+                        w_data_din, w_data_full_n, w_data_write,
+                        w_resp_dout, w_resp_empty_n, w_resp_read,
+                        w_resp_peek_dout, w_resp_peek_empty_n, w_resp_peek_read
+                    ])
+                    wrapper_port_decls.extend([
+                        f"output [63:0] {w_addr_din};",
+                        f"input   {w_addr_full_n};",
+                        f"output  {w_addr_write};",
+                        f"output {w_str}{w_data_din};",
+                        f"input   {w_data_full_n};",
+                        f"output  {w_data_write};",
+                        f"input  [7:0] {w_resp_dout};",
+                        f"input   {w_resp_empty_n};",
+                        f"output  {w_resp_read};",
+                        f"input  [7:0] {w_resp_peek_dout};",
+                        f"input   {w_resp_peek_empty_n};",
+                        f"output  {w_resp_peek_read};",
+                    ])
 
-                if f"{pname}_read_addr" in inner_port_list:
-                    inner_connections[f"{pname}_read_addr"] = "64'd0"
-                wrapper_logic.append(f"assign {r_addr_din} = 64'd0;")
-                wrapper_logic.append(f"assign {r_addr_write} = ap_start;")
+                    if f"{pname}_write_addr" in inner_port_list:
+                        inner_connections[f"{pname}_write_addr"] = w_addr_din
+                    if f"{pname}_write_addr_ap_vld" in inner_port_list:
+                        inner_connections[f"{pname}_write_addr_ap_vld"] = w_addr_write
+                    else:
+                        wrapper_logic.append(f"assign {w_addr_write} = 1'b0;")
+                        wrapper_logic.append(f"assign {w_addr_din} = 64'd0;")
 
-                if f"{pname}_read_data" in inner_port_list:
-                    inner_connections[f"{pname}_read_data"] = r_data_dout
-                wrapper_logic.append(f"assign {r_data_read} = ap_start & {r_data_empty_n};")
-                wrapper_logic.append(f"assign {r_data_peek_read} = 1'b0;")
+                    if f"{pname}_write_data" in inner_port_list:
+                        inner_connections[f"{pname}_write_data"] = w_data_din
+                    if f"{pname}_write_data_ap_vld" in inner_port_list:
+                        inner_connections[f"{pname}_write_data_ap_vld"] = w_data_write
+                    else:
+                        wrapper_logic.append(f"assign {w_data_write} = 1'b0;")
+                        wrapper_logic.append(f"assign {w_data_din} = {pw}'d0;")
+
+                    if f"{pname}_write_resp" in inner_port_list:
+                        inner_connections[f"{pname}_write_resp"] = w_resp_dout
+                    wrapper_logic.append(f"assign {w_resp_read} = 1'b1;")
+                    wrapper_logic.append(f"assign {w_resp_peek_read} = 1'b0;")
 
         # Special task-specific overrides for perfect flow
         if task_name == "load_KNN":

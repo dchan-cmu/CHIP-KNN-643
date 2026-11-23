@@ -147,9 +147,11 @@ $(TEMP_DIR)/knn.xo: $(KNN_SRC)
 	      --read-only-args in_.* \
 	      --write-only-args final_out\
 	      $(KNN_SRC)
+	python3 $(SCRIPTS_DIR)/sanitize_top_rtl.py $(TEMP_DIR)
 
 $(BUILD_DIR)/knn.xclbin: $(BINARY_CONTAINER_knn_OBJS)
 	mkdir -p $(BUILD_DIR)
+	python3 $(SCRIPTS_DIR)/sanitize_top_rtl.py $(+)
 	$(VPP) $(CLFLAGS) --temp_dir $(BUILD_DIR) -l $(LDCLFLAGS) -o'$@' $(+)
 
 # Building Host

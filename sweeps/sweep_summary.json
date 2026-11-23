@@ -10,7 +10,7 @@
     "status": "HLS_FAILED",
     "has_xo": false,
     "has_xclbin": false,
-    "build_time_sec": 54.98,
+    "build_time_sec": 56.26,
     "performance": {
       "cycles_per_vector": 1,
       "pts_per_pe": 131072,
@@ -33,7 +33,7 @@
     "status": "HLS_FAILED",
     "has_xo": false,
     "has_xclbin": false,
-    "build_time_sec": 46.09,
+    "build_time_sec": 47.74,
     "performance": {
       "cycles_per_vector": 1,
       "pts_per_pe": 65536,
@@ -56,7 +56,7 @@
     "status": "HLS_FAILED",
     "has_xo": false,
     "has_xclbin": false,
-    "build_time_sec": 46.61,
+    "build_time_sec": 47.08,
     "performance": {
       "cycles_per_vector": 1,
       "pts_per_pe": 43691,
@@ -79,7 +79,7 @@
     "status": "HLS_FAILED",
     "has_xo": false,
     "has_xclbin": false,
-    "build_time_sec": 43.05,
+    "build_time_sec": 49.03,
     "performance": {
       "cycles_per_vector": 1,
       "pts_per_pe": 32768,
@@ -102,7 +102,7 @@
     "status": "XO_SUCCESS",
     "has_xo": true,
     "has_xclbin": false,
-    "build_time_sec": 321.3,
+    "build_time_sec": 426.91,
     "performance": {
       "cycles_per_vector": 4,
       "pts_per_pe": 131072,
@@ -132,7 +132,7 @@
     "status": "HLS_FAILED",
     "has_xo": false,
     "has_xclbin": false,
-    "build_time_sec": 130.19,
+    "build_time_sec": 126.86,
     "performance": {
       "cycles_per_vector": 4,
       "pts_per_pe": 65536,
@@ -155,7 +155,7 @@
     "status": "HLS_FAILED",
     "has_xo": false,
     "has_xclbin": false,
-    "build_time_sec": 83.91,
+    "build_time_sec": 105.51,
     "performance": {
       "cycles_per_vector": 4,
       "pts_per_pe": 43691,
@@ -178,7 +178,7 @@
     "status": "HLS_FAILED",
     "has_xo": false,
     "has_xclbin": false,
-    "build_time_sec": 83.28,
+    "build_time_sec": 84.98,
     "performance": {
       "cycles_per_vector": 4,
       "pts_per_pe": 32768,
@@ -201,7 +201,7 @@
     "status": "XO_SUCCESS",
     "has_xo": true,
     "has_xclbin": false,
-    "build_time_sec": 316.43,
+    "build_time_sec": 310.47,
     "performance": {
       "cycles_per_vector": 16,
       "pts_per_pe": 131072,
@@ -231,7 +231,7 @@
     "status": "HLS_FAILED",
     "has_xo": false,
     "has_xclbin": false,
-    "build_time_sec": 105.52,
+    "build_time_sec": 98.34,
     "performance": {
       "cycles_per_vector": 16,
       "pts_per_pe": 65536,
@@ -254,7 +254,7 @@
     "status": "HLS_FAILED",
     "has_xo": false,
     "has_xclbin": false,
-    "build_time_sec": 94.2,
+    "build_time_sec": 122.53,
     "performance": {
       "cycles_per_vector": 16,
       "pts_per_pe": 43691,
@@ -277,7 +277,7 @@
     "status": "HLS_FAILED",
     "has_xo": false,
     "has_xclbin": false,
-    "build_time_sec": 86.17,
+    "build_time_sec": 85.22,
     "performance": {
       "cycles_per_vector": 16,
       "pts_per_pe": 32768,

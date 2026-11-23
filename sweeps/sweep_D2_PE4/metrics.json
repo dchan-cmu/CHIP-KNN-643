@@ -9,7 +9,7 @@
   "status": "HLS_FAILED",
   "has_xo": false,
   "has_xclbin": false,
-  "build_time_sec": 43.05,
+  "build_time_sec": 49.03,
   "performance": {
     "cycles_per_vector": 1,
     "pts_per_pe": 32768,

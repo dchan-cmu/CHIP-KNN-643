@@ -277,6 +277,9 @@ for ini_p in ini_candidates:
         with open(ini_p, "r") as f:
             ini_content = f.read()
         new_ini = re.sub(r":DDR\[\d+\]", ":DDR[0]", ini_content)
+        new_ini = re.sub(r"sp=Knn\.", "sp=Knn_1.", new_ini)
+        if "nk=Knn:1:Knn_1" not in new_ini:
+            new_ini = new_ini.replace("[connectivity]", "[connectivity]\nnk=Knn:1:Knn_1")
         if new_ini != ini_content:
             with open(ini_p, "w") as f:
                 f.write(new_ini)

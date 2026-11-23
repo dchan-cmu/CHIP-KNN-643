@@ -563,12 +563,13 @@ def Generate_Connectivity_Map(_memory_type, _num_PE, _port_width):
     overall_pe_idx = 0
 
     connectivity_file.append('[connectivity]' + "\n")
+    connectivity_file.append('nk=Knn:1:Knn_1' + "\n")
     if (_memory_type == 'DDR4'):
         for PE_idx in range(_num_PE):
             # Ultra96 has only a single physical memory channel (DDR[0])
-            connectivity_file.append('sp=Knn.in_' + str(PE_idx) + ':DDR[0]' + "\n")
+            connectivity_file.append('sp=Knn_1.in_' + str(PE_idx) + ':DDR[0]' + "\n")
 
-        connectivity_file.append('sp=Knn.final_out:DDR[0]' + "\n")
+        connectivity_file.append('sp=Knn_1.final_out:DDR[0]' + "\n")
 
     elif (_memory_type == 'HBM2'):
         ### NOTE: TAPA/Autobridge generates a better mapping

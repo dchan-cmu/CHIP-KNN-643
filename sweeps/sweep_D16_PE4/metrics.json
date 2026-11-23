@@ -9,7 +9,7 @@
   "status": "XO_SUCCESS",
   "has_xo": true,
   "has_xclbin": false,
-  "build_time_sec": 333.75,
+  "build_time_sec": 321.95,
   "performance": {
     "cycles_per_vector": 4,
     "pts_per_pe": 32768,
@@ -22,8 +22,8 @@
   "resources": {
     "BRAM": 68,
     "DSP": 0,
-    "FF": 15200,
-    "LUT": 26542,
+    "FF": 15596,
+    "LUT": 28086,
     "URAM": 0,
     "clock_period_ns": 5.0
   }

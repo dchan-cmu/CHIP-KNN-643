@@ -307,10 +307,10 @@
     "k": 10,
     "clock_frequency_mhz": 200,
     "clock_period_ns": 5.0,
-    "status": "XO_SUCCESS",
+    "status": "BITSTREAM_SUCCESS",
     "has_xo": true,
-    "has_xclbin": false,
-    "build_time_sec": 0.13,
+    "has_xclbin": true,
+    "build_time_sec": 0.15,
     "performance": {
       "cycles_per_vector": 16,
       "pts_per_pe": 43691,

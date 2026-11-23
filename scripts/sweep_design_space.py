@@ -411,6 +411,22 @@ def generate_summary_reports(output_dir, sweep_results):
     """
     Produce JSON and CSV summary tables, then print the leaderboard to stdout.
     """
+    # Merge with existing metrics.json files across output_dir to retain sweep history
+    all_results = {r["config_name"]: r for r in sweep_results}
+    if os.path.isdir(output_dir):
+        for entry in sorted(os.listdir(output_dir)):
+            sub_dir = os.path.join(output_dir, entry)
+            metric_file = os.path.join(sub_dir, "metrics.json")
+            if os.path.isdir(sub_dir) and os.path.isfile(metric_file) and entry not in all_results:
+                try:
+                    with open(metric_file, "r") as mf:
+                        all_results[entry] = json.load(mf)
+                except Exception:
+                    pass
+
+    # Sort merged results by dimension then PE
+    sweep_results = sorted(all_results.values(), key=lambda r: (r.get("dimension", 0), r.get("num_pe", 0)))
+
     json_path = os.path.join(output_dir, "sweep_summary.json")
     csv_path = os.path.join(output_dir, "sweep_summary.csv")
     

@@ -324,13 +324,15 @@ def GeneratePartialKNN_Header(_core_krnl_file, _knn_config):
     ### Generating macros for sort:
     
     if (_knn_config.using_segments):
-        _core_krnl_file.append('#define SORT_TO_HIERMERGE_STREAM_ARGS(PE, SEG) \\' + "\n")
-        for d2l_idx in range(_knn_config.D2L_factor_w):
-            _core_krnl_file.append('    sort_to_hiermerge_dist_stream_##PE[D2L_FACTOR_W*SEG + ' + str(d2l_idx) + '],  \\' + "\n")
-        for d2l_idx in range(_knn_config.D2L_factor_w):
-            _core_krnl_file.append('    sort_to_hiermerge_id_stream_##PE[D2L_FACTOR_W*SEG + ' + str(d2l_idx) + ']')
-            if (d2l_idx != _knn_config.D2L_factor_w - 1):
-                _core_krnl_file.append(',  \\' + "\n")
+        for segment_idx in range(_knn_config.num_segments):
+            _core_krnl_file.append('#define SORT_TO_HIERMERGE_STREAM_ARGS_' + str(segment_idx) + '(PE) \\\n')
+            for d2l_idx in range(_knn_config.D2L_factor_w):
+                idx = _knn_config.D2L_factor_w * segment_idx + d2l_idx
+                _core_krnl_file.append('    sort_to_hiermerge_dist_stream_##PE##_' + str(idx) + ',  \\\n')
+            for d2l_idx in range(_knn_config.D2L_factor_w):
+                idx = _knn_config.D2L_factor_w * segment_idx + d2l_idx
+                sep = ',  \\\n' if d2l_idx != _knn_config.D2L_factor_w - 1 else '\n'
+                _core_krnl_file.append('    sort_to_hiermerge_id_stream_##PE##_' + str(idx) + sep)
 
     elif (_knn_config.using_Ltypes):
         _core_krnl_file.append('#define SORT_TO_HIERMERGE_STREAM_ARGS(PE) \\' + "\n")
@@ -360,12 +362,14 @@ def GeneratePartialKNN_Header(_core_krnl_file, _knn_config):
 
 
     # NOTE: This logic still works even if NUM_SEGMENTS == 1.
-    _core_krnl_file.append('#define INVOKE_PPS_UNITS_FOR_PE(PE) \\' + "\n")
     if (_knn_config.using_segments == 0):
-        _core_krnl_file.append('    .invoke(para_partial_sort, PE, compute_to_sort_stream_##PE, SORT_TO_HIERMERGE_STREAM_ARGS(PE) ) \\' + "\n")
+        _core_krnl_file.append('#define INVOKE_PPS_UNITS_FOR_PE(PE) \\\n')
+        _core_krnl_file.append('    .invoke(para_partial_sort, PE, compute_to_sort_stream_##PE, SORT_TO_HIERMERGE_STREAM_ARGS(PE) )\n')
     else:
+        invokes = []
         for segment_idx in range(_knn_config.num_segments):
-            _core_krnl_file.append('    .invoke(para_partial_sort, PE, ' + str(segment_idx) + ', compute_to_sort_stream_##PE[' + str(segment_idx) + '], SORT_TO_HIERMERGE_STREAM_ARGS(PE, ' + str(segment_idx) + ') ) \\' + "\n")
+            invokes.append('    .invoke(para_partial_sort, PE, ' + str(segment_idx) + ', compute_to_sort_stream_##PE##_' + str(segment_idx) + ', SORT_TO_HIERMERGE_STREAM_ARGS_' + str(segment_idx) + '(PE) )')
+        _core_krnl_file.append('#define INVOKE_PPS_UNITS_FOR_PE(PE) \\\n' + ' \\\n'.join(invokes) + '\n')
 
     _core_krnl_file.append('' + "\n")
     _core_krnl_file.append('' + "\n")
@@ -381,65 +385,64 @@ def GeneratePartialKNN_Header(_core_krnl_file, _knn_config):
         if (total_num_hiermerge_layers == 1):
             ## If there is only one hiermerge layer, we need to merge directly from the sort_to_hiermerge streams to the global merge streams
             _core_krnl_file.append('// purposefully empty #define' + "\n")
-            _core_krnl_file.append('#define HIERMERGE_STREAM_DECLS(PE) \\' + "\n")
-            _core_krnl_file.append('' + "\n")
-            _core_krnl_file.append('' + "\n")
+            _core_krnl_file.append('#define HIERMERGE_STREAM_DECLS(PE)\n\n\n')
 
-            _core_krnl_file.append('#define INVOKE_HIERMERGE_UNITS_FOR_PE(PE) \\' + "\n")
+            _core_krnl_file.append('#define INVOKE_HIERMERGE_UNITS_FOR_PE(PE) \\\n')
             _core_krnl_file.append('    .invoke(merge_dual_streams, PE, ' +
                     '0, ' +
                     str(total_num_hiermerge_layers) + ', ' +
-                    'sort_to_hiermerge_dist_stream_##PE[0], ' +
-                    'sort_to_hiermerge_id_stream_##PE  [0], ' +
-                    'sort_to_hiermerge_dist_stream_##PE[1], ' +
-                    'sort_to_hiermerge_id_stream_##PE  [1], ' +
-                    'L0_out_dist_##PE,'     +
-                    'L0_out_id_##PE)'      + "\n")
+                    'sort_to_hiermerge_dist_stream_##PE##_0, ' +
+                    'sort_to_hiermerge_id_stream_##PE##_0, ' +
+                    'sort_to_hiermerge_dist_stream_##PE##_1, ' +
+                    'sort_to_hiermerge_id_stream_##PE##_1, ' +
+                    'L0_out_dist_##PE, '     +
+                    'L0_out_id_##PE)\n')
 
         else:
-            _core_krnl_file.append('#define HIERMERGE_STREAM_DECLS(PE) \\' + "\n")
+            decls = []
             for cur_hiermerge_layer in range(1, total_num_hiermerge_layers):
                 divider = 2**cur_hiermerge_layer
-                _core_krnl_file.append('    tapa::streams<DATA_TYPE,    NUM_SEGMENTS*D2L_FACTOR_W/' + str(divider) + '    , TOP>    PE_##PE##_dist_stage' + str(cur_hiermerge_layer) + '; \\' + "\n")
-                _core_krnl_file.append('    tapa::streams<int,          NUM_SEGMENTS*D2L_FACTOR_W/' + str(divider) + '    , TOP>    PE_##PE##_id_stage' + str(cur_hiermerge_layer) + '; \\' + "\n")
+                num_streams_in_layer = int((_knn_config.num_segments * _knn_config.D2L_factor_w) / divider)
+                for s_idx in range(num_streams_in_layer):
+                    decls.append('    tapa::stream<DATA_TYPE, TOP>    PE_##PE##_dist_stage' + str(cur_hiermerge_layer) + '_' + str(s_idx) + ';')
+                    decls.append('    tapa::stream<int,       TOP>    PE_##PE##_id_stage' + str(cur_hiermerge_layer) + '_' + str(s_idx) + ';')
+            _core_krnl_file.append('#define HIERMERGE_STREAM_DECLS(PE) \\\n' + ' \\\n'.join(decls) + '\n\n')
 
-            _core_krnl_file.append('' + "\n")
-            _core_krnl_file.append('' + "\n")
-
-            _core_krnl_file.append('#define INVOKE_HIERMERGE_UNITS_FOR_PE(PE) \\' + "\n")
+            invokes = []
             for cur_hiermerge_layer in range(1, total_num_hiermerge_layers):
                 num_nodes_in_cur_layer = 2**( total_num_hiermerge_layers - (cur_hiermerge_layer-1) )
                 for node_idx in range(0, num_nodes_in_cur_layer, 2):
                     if (cur_hiermerge_layer == 1):
-                        _core_krnl_file.append('    .invoke(merge_dual_streams, PE, ' +
+                        invokes.append('    .invoke(merge_dual_streams, PE, ' +
                                 str(node_idx) + ', ' +
                                 str(cur_hiermerge_layer) + ', ' +
-                                'sort_to_hiermerge_dist_stream_##PE[' + str(node_idx) + '], ' +
-                                'sort_to_hiermerge_id_stream_##PE  [' + str(node_idx) + '], ' +
-                                'sort_to_hiermerge_dist_stream_##PE[' + str(node_idx+1) + '], ' +
-                                'sort_to_hiermerge_id_stream_##PE  [' + str(node_idx+1) + '], ' +
-                                'PE_##PE##_dist_stage'    + str(cur_hiermerge_layer) +    '[' + str(int(node_idx/2)) + '], ' +
-                                'PE_##PE##_id_stage'      + str(cur_hiermerge_layer) +    '[' + str(int(node_idx/2)) + ']) \\' + "\n")
+                                'sort_to_hiermerge_dist_stream_##PE##_' + str(node_idx) + ', ' +
+                                'sort_to_hiermerge_id_stream_##PE##_' + str(node_idx) + ', ' +
+                                'sort_to_hiermerge_dist_stream_##PE##_' + str(node_idx+1) + ', ' +
+                                'sort_to_hiermerge_id_stream_##PE##_' + str(node_idx+1) + ', ' +
+                                'PE_##PE##_dist_stage'    + str(cur_hiermerge_layer) +    '_' + str(int(node_idx/2)) + ', ' +
+                                'PE_##PE##_id_stage'      + str(cur_hiermerge_layer) +    '_' + str(int(node_idx/2)) + ')')
                     else:
-                        _core_krnl_file.append('    .invoke(merge_dual_streams, PE, ' +
+                        invokes.append('    .invoke(merge_dual_streams, PE, ' +
                                 str(node_idx) + ', ' +
                                 str(cur_hiermerge_layer) + ', ' +
-                                'PE_##PE##_dist_stage'    + str(cur_hiermerge_layer-1) +  '[' + str(node_idx) + '], ' +
-                                'PE_##PE##_id_stage'      + str(cur_hiermerge_layer-1) +  '[' + str(node_idx) + '], ' +
-                                'PE_##PE##_dist_stage'    + str(cur_hiermerge_layer-1) +  '[' + str(node_idx+1) + '], ' +
-                                'PE_##PE##_id_stage'      + str(cur_hiermerge_layer-1) +  '[' + str(node_idx+1) + '], ' +
-                                'PE_##PE##_dist_stage'    + str(cur_hiermerge_layer) +    '[' + str(int(node_idx/2)) + '], ' +
-                                'PE_##PE##_id_stage'      + str(cur_hiermerge_layer) +    '[' + str(int(node_idx/2)) + ']) \\' + "\n")
+                                'PE_##PE##_dist_stage'    + str(cur_hiermerge_layer-1) +  '_' + str(node_idx) + ', ' +
+                                'PE_##PE##_id_stage'      + str(cur_hiermerge_layer-1) +  '_' + str(node_idx) + ', ' +
+                                'PE_##PE##_dist_stage'    + str(cur_hiermerge_layer-1) +  '_' + str(node_idx+1) + ', ' +
+                                'PE_##PE##_id_stage'      + str(cur_hiermerge_layer-1) +  '_' + str(node_idx+1) + ', ' +
+                                'PE_##PE##_dist_stage'    + str(cur_hiermerge_layer) +    '_' + str(int(node_idx/2)) + ', ' +
+                                'PE_##PE##_id_stage'      + str(cur_hiermerge_layer) +    '_' + str(int(node_idx/2)) + ')')
 
-            _core_krnl_file.append('    .invoke(merge_dual_streams, PE, ' +
+            invokes.append('    .invoke(merge_dual_streams, PE, ' +
                     '0, ' +
                     str(total_num_hiermerge_layers) + ', ' +
-                    'PE_##PE##_dist_stage'    + str(total_num_hiermerge_layers-1) +  '[0], ' +
-                    'PE_##PE##_id_stage'      + str(total_num_hiermerge_layers-1) +  '[0], ' +
-                    'PE_##PE##_dist_stage'    + str(total_num_hiermerge_layers-1) +  '[1], ' +
-                    'PE_##PE##_id_stage'      + str(total_num_hiermerge_layers-1) +  '[1], ' +
-                    'L0_out_dist_##PE,'     +
-                    'L0_out_id_##PE)'      + "\n")
+                    'PE_##PE##_dist_stage'    + str(total_num_hiermerge_layers-1) +  '_0, ' +
+                    'PE_##PE##_id_stage'      + str(total_num_hiermerge_layers-1) +  '_0, ' +
+                    'PE_##PE##_dist_stage'    + str(total_num_hiermerge_layers-1) +  '_1, ' +
+                    'PE_##PE##_id_stage'      + str(total_num_hiermerge_layers-1) +  '_1, ' +
+                    'L0_out_dist_##PE, '     +
+                    'L0_out_id_##PE)')
+            _core_krnl_file.append('#define INVOKE_HIERMERGE_UNITS_FOR_PE(PE) \\\n' + ' \\\n'.join(invokes) + '\n')
 
         _core_krnl_file.append('' + "\n")
         _core_krnl_file.append('' + "\n")
@@ -565,8 +568,10 @@ def GeneratePartialKNN_Compute(_core_krnl_file, _knn_config):
         if (_knn_config.using_segments == 1 and _knn_config.using_Ltypes == 1):
             _core_krnl_file.append('void compute_KNN(   int debug_pe_idx,' + "\n")
             _core_krnl_file.append('                    int debug_start_idx,' + "\n")
-            _core_krnl_file.append('                    tapa::istream<INTERFACE_WIDTH>&     load_to_compute_stream,' + "\n")
-            _core_krnl_file.append('                    tapa::ostreams<LOCAL_DIST_DTYPE, NUM_SEGMENTS>&     compute_to_sort_stream)' + "\n")
+            _core_krnl_file.append('                    tapa::istream<INTERFACE_WIDTH>&     load_to_compute_stream')
+            for seg in range(_knn_config.num_segments):
+                _core_krnl_file.append(',\n                    tapa::ostream<LOCAL_DIST_DTYPE>&     compute_to_sort_stream_' + str(seg))
+            _core_krnl_file.append(')\n')
             _core_krnl_file.append('{' + "\n")
             _core_krnl_file.append('#pragma HLS INLINE OFF' + "\n")
             _core_krnl_file.append('' + "\n")
@@ -684,8 +689,12 @@ def GeneratePartialKNN_Compute(_core_krnl_file, _knn_config):
             _core_krnl_file.append('                    //}' + "\n")
             _core_krnl_file.append('                    //#endif' + "\n")
             _core_krnl_file.append('                }' + "\n")
-            _core_krnl_file.append('                int stream_idx = (ii*L2I_FACTOR_W + l2i)%NUM_SEGMENTS;' + "\n")
-            _core_krnl_file.append('                compute_to_sort_stream[stream_idx].write(aggregated_local_dists);' + "\n")
+            _core_krnl_file.append('                int stream_idx = (ii*L2I_FACTOR_W + l2i)%NUM_SEGMENTS;\n')
+            for seg in range(_knn_config.num_segments):
+                prefix = 'if' if seg == 0 else 'else if'
+                _core_krnl_file.append('                ' + prefix + ' (stream_idx == ' + str(seg) + ') {\n')
+                _core_krnl_file.append('                    compute_to_sort_stream_' + str(seg) + '.write(aggregated_local_dists);\n')
+                _core_krnl_file.append('                }\n')
             _core_krnl_file.append('' + "\n")
             _core_krnl_file.append('                //#ifndef __SYNTHESIS__' + "\n")
             _core_krnl_file.append('                //if (debug_pe_idx == 0)' + "\n")
@@ -2036,12 +2045,14 @@ def Generate_KNN_TopLevel(_core_krnl_file, _num_PE, _knn_config):
         if (_knn_config.using_segments == 0):
             _core_krnl_file.append('    tapa::stream<' + dtype_str + ', 2>           compute_to_sort_stream_' + str(PE_idx) + ';\n')
         else:
-            _core_krnl_file.append('    tapa::streams<' + dtype_str + ', NUM_SEGMENTS, 2>    compute_to_sort_stream_' + str(PE_idx) + ';\n')
+            for seg in range(_knn_config.num_segments):
+                _core_krnl_file.append('    tapa::stream<' + dtype_str + ', 2>           compute_to_sort_stream_' + str(PE_idx) + '_' + str(seg) + ';\n')
 
     if (_knn_config.using_intra_pe_merge):
         for PE_idx in range(_num_PE):
-            _core_krnl_file.append('    tapa::streams<DATA_TYPE, NUM_SEGMENTS*D2L_FACTOR_W, TOP>                 sort_to_hiermerge_dist_stream_' + str(PE_idx) + ';' + "\n")
-            _core_krnl_file.append('    tapa::streams<int, NUM_SEGMENTS*D2L_FACTOR_W, TOP>                       sort_to_hiermerge_id_stream_' + str(PE_idx) + ';' + "\n")
+            for s_idx in range(_knn_config.num_segments * _knn_config.D2L_factor_w):
+                _core_krnl_file.append('    tapa::stream<DATA_TYPE, TOP>                 sort_to_hiermerge_dist_stream_' + str(PE_idx) + '_' + str(s_idx) + ';\n')
+                _core_krnl_file.append('    tapa::stream<int, TOP>                       sort_to_hiermerge_id_stream_' + str(PE_idx) + '_' + str(s_idx) + ';\n')
     _core_krnl_file.append('' + "\n")
 
     if (_knn_config.using_intra_pe_merge):
@@ -2059,8 +2070,13 @@ def Generate_KNN_TopLevel(_core_krnl_file, _num_PE, _knn_config):
         _core_krnl_file.append('        .invoke( load_KNN, ' + str(PE_idx) + ', in_' + str(PE_idx) + ', load_to_compute_stream_' + str(PE_idx) + ')\n')
     _core_krnl_file.append('' + "\n")
     for PE_idx in range(_num_PE):
-        _core_krnl_file.append('        .invoke( compute_KNN, ' + str(PE_idx) + ', NUM_SP_PTS_PER_KRNL_PADDED*' + str(PE_idx) +
-                                        ', load_to_compute_stream_' + str(PE_idx) + ', compute_to_sort_stream_' + str(PE_idx) + '  )\n')
+        if (_knn_config.using_segments == 0):
+            _core_krnl_file.append('        .invoke( compute_KNN, ' + str(PE_idx) + ', NUM_SP_PTS_PER_KRNL_PADDED*' + str(PE_idx) +
+                                            ', load_to_compute_stream_' + str(PE_idx) + ', compute_to_sort_stream_' + str(PE_idx) + '  )\n')
+        else:
+            streams_args = ', '.join(['compute_to_sort_stream_' + str(PE_idx) + '_' + str(seg) for seg in range(_knn_config.num_segments)])
+            _core_krnl_file.append('        .invoke( compute_KNN, ' + str(PE_idx) + ', NUM_SP_PTS_PER_KRNL_PADDED*' + str(PE_idx) +
+                                            ', load_to_compute_stream_' + str(PE_idx) + ', ' + streams_args + '  )\n')
     _core_krnl_file.append('' + "\n")
     for PE_idx in range(_num_PE):
         _core_krnl_file.append('        INVOKE_PPS_UNITS_FOR_PE(' + str(PE_idx) + ')' + "\n")

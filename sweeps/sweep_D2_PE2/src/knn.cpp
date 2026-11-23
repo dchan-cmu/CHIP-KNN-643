@@ -2,27 +2,34 @@
 #define printf(...) ((void)0)
 #define absval(input) ((input) > 0 ? static_cast<DATA_TYPE>(input) : static_cast<DATA_TYPE>(-1 * (input)))
 
-#define SORT_TO_HIERMERGE_STREAM_ARGS(PE, SEG) \
-    sort_to_hiermerge_dist_stream_##PE[D2L_FACTOR_W*SEG + 0],  \
-    sort_to_hiermerge_dist_stream_##PE[D2L_FACTOR_W*SEG + 1],  \
-    sort_to_hiermerge_id_stream_##PE[D2L_FACTOR_W*SEG + 0],  \
-    sort_to_hiermerge_id_stream_##PE[D2L_FACTOR_W*SEG + 1]
+#define SORT_TO_HIERMERGE_STREAM_ARGS_0(PE) \
+    sort_to_hiermerge_dist_stream_##PE##_0,  \
+    sort_to_hiermerge_dist_stream_##PE##_1,  \
+    sort_to_hiermerge_id_stream_##PE##_0,  \
+    sort_to_hiermerge_id_stream_##PE##_1
+#define SORT_TO_HIERMERGE_STREAM_ARGS_1(PE) \
+    sort_to_hiermerge_dist_stream_##PE##_2,  \
+    sort_to_hiermerge_dist_stream_##PE##_3,  \
+    sort_to_hiermerge_id_stream_##PE##_2,  \
+    sort_to_hiermerge_id_stream_##PE##_3
+
 
 
 #define INVOKE_PPS_UNITS_FOR_PE(PE) \
-    .invoke(para_partial_sort, PE, 0, compute_to_sort_stream_##PE[0], SORT_TO_HIERMERGE_STREAM_ARGS(PE, 0) ) \
-    .invoke(para_partial_sort, PE, 1, compute_to_sort_stream_##PE[1], SORT_TO_HIERMERGE_STREAM_ARGS(PE, 1) ) \
+    .invoke(para_partial_sort, PE, 0, compute_to_sort_stream_##PE##_0, SORT_TO_HIERMERGE_STREAM_ARGS_0(PE) ) \
+    .invoke(para_partial_sort, PE, 1, compute_to_sort_stream_##PE##_1, SORT_TO_HIERMERGE_STREAM_ARGS_1(PE) )
 
 
 #define HIERMERGE_STREAM_DECLS(PE) \
-    tapa::streams<DATA_TYPE,    NUM_SEGMENTS*D2L_FACTOR_W/2    , TOP>    PE_##PE##_dist_stage1; \
-    tapa::streams<int,          NUM_SEGMENTS*D2L_FACTOR_W/2    , TOP>    PE_##PE##_id_stage1; \
-
+    tapa::stream<DATA_TYPE, TOP>    PE_##PE##_dist_stage1_0; \
+    tapa::stream<int,       TOP>    PE_##PE##_id_stage1_0; \
+    tapa::stream<DATA_TYPE, TOP>    PE_##PE##_dist_stage1_1; \
+    tapa::stream<int,       TOP>    PE_##PE##_id_stage1_1;
 
 #define INVOKE_HIERMERGE_UNITS_FOR_PE(PE) \
-    .invoke(merge_dual_streams, PE, 0, 1, sort_to_hiermerge_dist_stream_##PE[0], sort_to_hiermerge_id_stream_##PE  [0], sort_to_hiermerge_dist_stream_##PE[1], sort_to_hiermerge_id_stream_##PE  [1], PE_##PE##_dist_stage1[0], PE_##PE##_id_stage1[0]) \
-    .invoke(merge_dual_streams, PE, 2, 1, sort_to_hiermerge_dist_stream_##PE[2], sort_to_hiermerge_id_stream_##PE  [2], sort_to_hiermerge_dist_stream_##PE[3], sort_to_hiermerge_id_stream_##PE  [3], PE_##PE##_dist_stage1[1], PE_##PE##_id_stage1[1]) \
-    .invoke(merge_dual_streams, PE, 0, 2, PE_##PE##_dist_stage1[0], PE_##PE##_id_stage1[0], PE_##PE##_dist_stage1[1], PE_##PE##_id_stage1[1], L0_out_dist_##PE,L0_out_id_##PE)
+    .invoke(merge_dual_streams, PE, 0, 1, sort_to_hiermerge_dist_stream_##PE##_0, sort_to_hiermerge_id_stream_##PE##_0, sort_to_hiermerge_dist_stream_##PE##_1, sort_to_hiermerge_id_stream_##PE##_1, PE_##PE##_dist_stage1_0, PE_##PE##_id_stage1_0) \
+    .invoke(merge_dual_streams, PE, 2, 1, sort_to_hiermerge_dist_stream_##PE##_2, sort_to_hiermerge_id_stream_##PE##_2, sort_to_hiermerge_dist_stream_##PE##_3, sort_to_hiermerge_id_stream_##PE##_3, PE_##PE##_dist_stage1_1, PE_##PE##_id_stage1_1) \
+    .invoke(merge_dual_streams, PE, 0, 2, PE_##PE##_dist_stage1_0, PE_##PE##_id_stage1_0, PE_##PE##_dist_stage1_1, PE_##PE##_id_stage1_1, L0_out_dist_##PE, L0_out_id_##PE)
 
 
 /*************************************************/
@@ -125,7 +132,8 @@ void load_KNN(   int debug_PE_ID,
 void compute_KNN(   int debug_pe_idx,
                     int debug_start_idx,
                     tapa::istream<INTERFACE_WIDTH>&     load_to_compute_stream,
-                    tapa::ostreams<LOCAL_DIST_DTYPE, NUM_SEGMENTS>&     compute_to_sort_stream)
+                    tapa::ostream<LOCAL_DIST_DTYPE>&     compute_to_sort_stream_0,
+                    tapa::ostream<LOCAL_DIST_DTYPE>&     compute_to_sort_stream_1)
 {
 #pragma HLS INLINE OFF
 
@@ -225,7 +233,12 @@ void compute_KNN(   int debug_pe_idx,
                     //#endif
                 }
                 int stream_idx = (ii*L2I_FACTOR_W + l2i)%NUM_SEGMENTS;
-                compute_to_sort_stream[stream_idx].write(aggregated_local_dists);
+                if (stream_idx == 0) {
+                    compute_to_sort_stream_0.write(aggregated_local_dists);
+                }
+                else if (stream_idx == 1) {
+                    compute_to_sort_stream_1.write(aggregated_local_dists);
+                }
 
                 //#ifndef __SYNTHESIS__
                 //if (debug_pe_idx == 0)
@@ -939,12 +952,26 @@ void Knn(
     // Streams, for load->compute->sort:
     tapa::stream<INTERFACE_WIDTH, 2>           load_to_compute_stream_0;
     tapa::stream<INTERFACE_WIDTH, 2>           load_to_compute_stream_1;
-    tapa::streams<LOCAL_DIST_DTYPE, NUM_SEGMENTS, 2>    compute_to_sort_stream_0;
-    tapa::streams<LOCAL_DIST_DTYPE, NUM_SEGMENTS, 2>    compute_to_sort_stream_1;
-    tapa::streams<DATA_TYPE, NUM_SEGMENTS*D2L_FACTOR_W, TOP>                 sort_to_hiermerge_dist_stream_0;
-    tapa::streams<int, NUM_SEGMENTS*D2L_FACTOR_W, TOP>                       sort_to_hiermerge_id_stream_0;
-    tapa::streams<DATA_TYPE, NUM_SEGMENTS*D2L_FACTOR_W, TOP>                 sort_to_hiermerge_dist_stream_1;
-    tapa::streams<int, NUM_SEGMENTS*D2L_FACTOR_W, TOP>                       sort_to_hiermerge_id_stream_1;
+    tapa::stream<LOCAL_DIST_DTYPE, 2>           compute_to_sort_stream_0_0;
+    tapa::stream<LOCAL_DIST_DTYPE, 2>           compute_to_sort_stream_0_1;
+    tapa::stream<LOCAL_DIST_DTYPE, 2>           compute_to_sort_stream_1_0;
+    tapa::stream<LOCAL_DIST_DTYPE, 2>           compute_to_sort_stream_1_1;
+    tapa::stream<DATA_TYPE, TOP>                 sort_to_hiermerge_dist_stream_0_0;
+    tapa::stream<int, TOP>                       sort_to_hiermerge_id_stream_0_0;
+    tapa::stream<DATA_TYPE, TOP>                 sort_to_hiermerge_dist_stream_0_1;
+    tapa::stream<int, TOP>                       sort_to_hiermerge_id_stream_0_1;
+    tapa::stream<DATA_TYPE, TOP>                 sort_to_hiermerge_dist_stream_0_2;
+    tapa::stream<int, TOP>                       sort_to_hiermerge_id_stream_0_2;
+    tapa::stream<DATA_TYPE, TOP>                 sort_to_hiermerge_dist_stream_0_3;
+    tapa::stream<int, TOP>                       sort_to_hiermerge_id_stream_0_3;
+    tapa::stream<DATA_TYPE, TOP>                 sort_to_hiermerge_dist_stream_1_0;
+    tapa::stream<int, TOP>                       sort_to_hiermerge_id_stream_1_0;
+    tapa::stream<DATA_TYPE, TOP>                 sort_to_hiermerge_dist_stream_1_1;
+    tapa::stream<int, TOP>                       sort_to_hiermerge_id_stream_1_1;
+    tapa::stream<DATA_TYPE, TOP>                 sort_to_hiermerge_dist_stream_1_2;
+    tapa::stream<int, TOP>                       sort_to_hiermerge_id_stream_1_2;
+    tapa::stream<DATA_TYPE, TOP>                 sort_to_hiermerge_dist_stream_1_3;
+    tapa::stream<int, TOP>                       sort_to_hiermerge_id_stream_1_3;
 
     HIERMERGE_STREAM_DECLS(0)
     HIERMERGE_STREAM_DECLS(1)
@@ -954,8 +981,8 @@ void Knn(
         .invoke( load_KNN, 0, in_0, load_to_compute_stream_0)
         .invoke( load_KNN, 1, in_1, load_to_compute_stream_1)
 
-        .invoke( compute_KNN, 0, NUM_SP_PTS_PER_KRNL_PADDED*0, load_to_compute_stream_0, compute_to_sort_stream_0  )
-        .invoke( compute_KNN, 1, NUM_SP_PTS_PER_KRNL_PADDED*1, load_to_compute_stream_1, compute_to_sort_stream_1  )
+        .invoke( compute_KNN, 0, NUM_SP_PTS_PER_KRNL_PADDED*0, load_to_compute_stream_0, compute_to_sort_stream_0_0, compute_to_sort_stream_0_1  )
+        .invoke( compute_KNN, 1, NUM_SP_PTS_PER_KRNL_PADDED*1, load_to_compute_stream_1, compute_to_sort_stream_1_0, compute_to_sort_stream_1_1  )
 
         INVOKE_PPS_UNITS_FOR_PE(0)
         INVOKE_PPS_UNITS_FOR_PE(1)

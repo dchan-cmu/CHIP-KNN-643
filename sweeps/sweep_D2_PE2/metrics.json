@@ -6,10 +6,10 @@
   "k": 10,
   "clock_frequency_mhz": 200,
   "clock_period_ns": 5.0,
-  "status": "HLS_FAILED",
+  "status": "SCAFFOLDED",
   "has_xo": false,
   "has_xclbin": false,
-  "build_time_sec": 50.43,
+  "build_time_sec": 0.0,
   "performance": {
     "cycles_per_vector": 1,
     "pts_per_pe": 65536,

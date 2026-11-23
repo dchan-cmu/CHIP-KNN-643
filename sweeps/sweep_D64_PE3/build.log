@@ -1,6 +1,7 @@
 make: Nothing to be done for 'tapa_HLS'.
 mkdir -p ./build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform
-v++ -t hw --platform u96v2_sbc_base_2023_2-vitis-platform --save-temps --kernel_frequency 200 --temp_dir ./build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform -l --config src/knn.ini -o'build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/knn.xclbin' knn.xo
+v++ -t hw --platform u96v2_sbc_base_2023_2-vitis-platform --save-temps --clock.defaultFreqHz 200000000 --temp_dir ./build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform -l --config src/knn.ini -o'build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/knn.xclbin' knn.xo
+WARNING: [v++ 60-1603] The supplied option 'clock.defaultFreqHz' is deprecated. The supplied option is replaced by an alternative feature controlled by option 'clock.default_freqhz'. 
 Option Map File Used: '/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis/2023.2/data/vitis/vpp/optMap.xml'
 
 ****** v++ v2023.2 (64-bit)
@@ -11,15 +12,47 @@ Option Map File Used: '/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis/
 INFO: [v++ 60-1306] Additional information associated with this v++ link can be found at:
 	Reports: /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D64_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/reports/link
 	Log files: /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D64_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/logs/link
-Running Dispatch Server on port: 34285
-INFO: [v++ 60-1548] Creating build summary session with primary output /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D64_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/knn.xclbin.link_summary, at Mon Nov 23 12:34:55 2026
-INFO: [v++ 60-1315] Creating rulecheck session with output '/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D64_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/reports/link/v++_link_knn_guidance.html', at Mon Nov 23 12:34:55 2026
+Running Dispatch Server on port: 41557
+INFO: [v++ 60-1548] Creating build summary session with primary output /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D64_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/knn.xclbin.link_summary, at Mon Nov 23 12:42:31 2026
+INFO: [v++ 60-1315] Creating rulecheck session with output '/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D64_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/reports/link/v++_link_knn_guidance.html', at Mon Nov 23 12:42:31 2026
 INFO: [v++ 60-895]   Target platform: /afs/ece.cmu.edu/class/ece643/software/xilinxVitis/platforms/2023.2/u96v2_sbc_base_2023_2/export/u96v2_sbc_base_2023_2-vitis-platform/u96v2_sbc_base_2023_2-vitis-platform.xpfm
 INFO: [v++ 60-1578]   This platform contains Xilinx Shell Archive '/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/platforms/2023.2/u96v2_sbc_base_2023_2/export/u96v2_sbc_base_2023_2-vitis-platform/hw/u96v2_sbc_base.xsa'
 INFO: [v++ 60-629] Linking for hardware target
 INFO: [v++ 60-423]   Target device: u96v2_sbc_base_2023_2-vitis-platform
-ERROR: [v++ 60-2505] Option '--kernel_frequency' is used with a platform that does not have scalable kernel clocks. Please use '--clock.defaultFreqHz arg' instead.
-ERROR: [v++ 60-628] Kernel link setup failed to complete
+CRITICAL WARNING: [v++ 17-1396] The specified XO container failed integrity check: 'knn.xo'
+INFO: [v++ 60-1332] Run 'run_link' status: Not started
+INFO: [v++ 60-1443] [12:42:33] Run run_link: Step system_link: Started
+INFO: [v++ 60-1453] Command Line: system_link --xo /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D64_PE3/knn.xo -keep --config /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D64_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/int/syslinkConfig.ini --xpfm /afs/ece.cmu.edu/class/ece643/software/xilinxVitis/platforms/2023.2/u96v2_sbc_base_2023_2/export/u96v2_sbc_base_2023_2-vitis-platform/u96v2_sbc_base_2023_2-vitis-platform.xpfm --target hw --output_dir /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D64_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/int --temp_dir /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D64_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/sys_link
+INFO: [v++ 60-1454] Run Directory: /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D64_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/run_link
+INFO: [SYSTEM_LINK 82-70] Extracting xo v3 file /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D64_PE3/knn.xo
+INFO: [SYSTEM_LINK 82-53] Creating IP database /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D64_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/sys_link/_sysl/.cdb/xd_ip_db.xml
+INFO: [SYSTEM_LINK 82-38] [12:42:36] build_xd_ip_db started: /afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis/2023.2/bin/build_xd_ip_db -ip_search 0  -sds-pf /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D64_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/sys_link/u96v2_sbc_base.hpfm -clkid 0 -ip /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D64_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/sys_link/iprepo/haoda_xrtl_Knn_1_0,Knn -o /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D64_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/sys_link/_sysl/.cdb/xd_ip_db.xml
+INFO: [SYSTEM_LINK 82-37] [12:42:44] build_xd_ip_db finished successfully
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 485.328 ; gain = 0.000 ; free physical = 24072 ; free virtual = 37368
+INFO: [SYSTEM_LINK 82-51] Create system connectivity graph
+INFO: [SYSTEM_LINK 82-102] Applying explicit connections to the system connectivity graph: /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D64_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/sys_link/cfgraph/cfgen_cfgraph.xml
+INFO: [SYSTEM_LINK 82-38] [12:42:44] cfgen started: /afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis/2023.2/bin/cfgen  -sp Knn.in_0:DDR[0] -sp Knn.in_1:DDR[0] -sp Knn.in_2:DDR[0] -sp Knn.final_out:DDR[0] -clock.defaultFreqHz 200000000 -dpa_mem_offload false -dmclkid 0 -r /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D64_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/sys_link/_sysl/.cdb/xd_ip_db.xml -o /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D64_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/sys_link/cfgraph/cfgen_cfgraph.xml
+INFO: [CFGEN 83-0] Kernel Specs: 
+INFO: [CFGEN 83-0]   kernel: Knn, num: 1  {Knn_1}
+INFO: [CFGEN 83-0] Port Specs: 
+INFO: [CFGEN 83-0]   kernel: Knn, k_port: in_0, sptag: DDR[0]
+INFO: [CFGEN 83-0]   kernel: Knn, k_port: in_1, sptag: DDR[0]
+INFO: [CFGEN 83-0]   kernel: Knn, k_port: in_2, sptag: DDR[0]
+INFO: [CFGEN 83-0]   kernel: Knn, k_port: final_out, sptag: DDR[0]
+ERROR: [CFGEN 83-2291] --sp tag applied to invalid kernel instance: Knn
+ERROR: [CFGEN 83-2291] --sp tag applied to invalid kernel instance: Knn
+ERROR: [CFGEN 83-2291] --sp tag applied to invalid kernel instance: Knn
+ERROR: [CFGEN 83-2291] --sp tag applied to invalid kernel instance: Knn
+ERROR: [CFGEN 83-2298] Exiting due to previous error
+ERROR: [SYSTEM_LINK 82-36] [12:42:47] cfgen failed
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 485.328 ; gain = 0.000 ; free physical = 24063 ; free virtual = 37359
+ERROR: [SYSTEM_LINK 82-62] Error generating design file for /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D64_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/sys_link/cfgraph/cfgen_cfgraph.xml, command: /afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis/2023.2/bin/cfgen  -sp Knn.in_0:DDR[0] -sp Knn.in_1:DDR[0] -sp Knn.in_2:DDR[0] -sp Knn.final_out:DDR[0] -clock.defaultFreqHz 200000000 -dpa_mem_offload false -dmclkid 0 -r /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D64_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/sys_link/_sysl/.cdb/xd_ip_db.xml -o /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D64_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/sys_link/cfgraph/cfgen_cfgraph.xml
+ERROR: [SYSTEM_LINK 82-96] Error applying explicit connections to the system connectivity graph
+ERROR: [SYSTEM_LINK 82-79] Unable to create system connectivity graph
+INFO: [v++ 60-1442] [12:42:47] Run run_link: Step system_link: Failed
+Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 501.973 ; gain = 0.000 ; free physical = 24130 ; free virtual = 37426
+ERROR: [v++ 60-661] v++ link run 'run_link' failed
+ERROR: [v++ 60-626] Kernel link failed to complete
 ERROR: [v++ 60-703] Failed to finish linking
 INFO: [v++ 60-1653] Closing dispatch client.
 make: *** [Makefile:162: build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/knn.xclbin] Error 1

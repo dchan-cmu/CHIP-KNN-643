@@ -274,10 +274,11 @@ def build_sweep_point(point_dir, dim, num_pe, args):
     xo_path = os.path.join(point_dir, temp_dir_pattern, "knn.xo")
     report_path = os.path.join(point_dir, temp_dir_pattern, "report.json")
     
-    has_xo = os.path.isfile(xo_path)
+    has_xo = os.path.isfile(xo_path) or os.path.isfile(os.path.join(point_dir, "knn.xo"))
     if has_xo:
         build_status = "XO_SUCCESS"
-        shutil.copy2(xo_path, os.path.join(point_dir, "knn.xo"))
+        if os.path.isfile(xo_path) and not os.path.isfile(os.path.join(point_dir, "knn.xo")):
+            shutil.copy2(xo_path, os.path.join(point_dir, "knn.xo"))
     else:
         build_status = "HLS_FAILED" if proc.returncode != 0 else "XO_MISSING"
         

@@ -84,7 +84,13 @@ CMD_ARGS = $(BUILD_DIR)/knn.xclbin
 EMCONFIG_DIR = $(TEMP_DIR)
 
 BINARY_CONTAINERS += $(BUILD_DIR)/knn.xclbin
+ifneq ($(wildcard ./knn.xo),)
+BINARY_CONTAINER_knn_OBJS += ./knn.xo
+else ifneq ($(wildcard ./_x.tapa_HLS.$(XSA)/knn.xo),)
+BINARY_CONTAINER_knn_OBJS += ./_x.tapa_HLS.$(XSA)/knn.xo
+else
 BINARY_CONTAINER_knn_OBJS += $(TEMP_DIR)/knn.xo
+endif
 CP = cp -rf
 
 .PHONY: all clean cleanall docs emconfig

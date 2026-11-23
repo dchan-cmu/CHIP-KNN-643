@@ -25,19 +25,19 @@ tapac \
       src/knn.cpp
 /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/autobridge/util.py:8: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   from pkg_resources import get_distribution
-I1122 17:33:47.809 tapa.util:184] logging level set to INFO
-I1122 17:33:47.810 tapa.tapac:396] Step 0: run_tapacc is enabled.
-W1122 17:33:47.810 tapa.tapac:398] Step 1: run_hls is *SKIPPED*.
-W1122 17:33:47.810 tapa.tapac:398] Step 2: generate_task_rtl is *SKIPPED*.
-W1122 17:33:47.810 tapa.tapac:398] Step 3: run_floorplanning is *SKIPPED*.
-W1122 17:33:47.810 tapa.tapac:398] Step 4: generate_top_rtl is *SKIPPED*.
-W1122 17:33:47.810 tapa.tapac:398] Step 5: pack_xo is *SKIPPED*.
-I1122 17:33:47.810 tapa.tapac:514] running translated command: `tapa --work-dir=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform analyze --input=src/knn.cpp --top=Knn --cflags=-U__SYNTHESIS__ --cflags=-w --cflags=-Wno-invalid-constexpr --cflags=-Wno-error=invalid-constexpr --cflags=-I/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D2_PE2/src --cflags=-I/usr/bin/../lib/clang/20/include --cflags=-I/usr/include/c++/8 --cflags=-I/usr/include/c++/8/x86_64-redhat-linux --cflags=-I/usr/include --cflags=-I/usr/include/x86_64-linux-gnu --cflags=-I/scratch/643_vitis_dchan2/CHIP-KNN-643/.tapa/usr/include --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include`
-I1122 17:33:47.812 tapa.util:184] logging level set to INFO
-I1122 17:33:47.812 tapa.tapa:54] tapa version: 0.0.20240825.1
-I1122 17:33:47.812 tapa.tapa:58] Python recursion limit set to 3000
-W1122 17:33:58.262 tapa.util:129] not adding vendor include paths; please update FRT
-I1122 17:33:58.263 tapa.steps.analyze:265] Running tapacc command: /scratch/643_vitis_dchan2/CHIP-KNN-643/.tapa/usr/bin/tapacc ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-2d858d1e-knn.cpp -top Knn -- -U__SYNTHESIS__ -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D2_PE2/src -I/usr/bin/../lib/clang/20/include -I/usr/include/c++/8 -I/usr/include/c++/8/x86_64-redhat-linux -I/usr/include -I/usr/include/x86_64-linux-gnu -I/scratch/643_vitis_dchan2/CHIP-KNN-643/.tapa/usr/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -std=c++17 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -stdlib=libc++ -isystem /usr/lib/llvm-22/include/c++/v1/ -isystem /usr/include/clang/22/include/ -isystem /usr/lib/clang/22/include/
+I1122 21:00:54.394 tapa.util:184] logging level set to INFO
+I1122 21:00:54.394 tapa.tapac:396] Step 0: run_tapacc is enabled.
+W1122 21:00:54.395 tapa.tapac:398] Step 1: run_hls is *SKIPPED*.
+W1122 21:00:54.395 tapa.tapac:398] Step 2: generate_task_rtl is *SKIPPED*.
+W1122 21:00:54.395 tapa.tapac:398] Step 3: run_floorplanning is *SKIPPED*.
+W1122 21:00:54.395 tapa.tapac:398] Step 4: generate_top_rtl is *SKIPPED*.
+W1122 21:00:54.395 tapa.tapac:398] Step 5: pack_xo is *SKIPPED*.
+I1122 21:00:54.395 tapa.tapac:514] running translated command: `tapa --work-dir=./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform analyze --input=src/knn.cpp --top=Knn --cflags=-U__SYNTHESIS__ --cflags=-w --cflags=-Wno-invalid-constexpr --cflags=-Wno-error=invalid-constexpr --cflags=-I/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D2_PE2/src --cflags=-I/usr/bin/../lib/clang/20/include --cflags=-I/usr/include/c++/8 --cflags=-I/usr/include/c++/8/x86_64-redhat-linux --cflags=-I/usr/include --cflags=-I/usr/include/x86_64-linux-gnu --cflags=-I/scratch/643_vitis_dchan2/CHIP-KNN-643/.tapa/usr/include --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include --cflags=-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include`
+I1122 21:00:54.396 tapa.util:184] logging level set to INFO
+I1122 21:00:54.397 tapa.tapa:54] tapa version: 0.0.20240825.1
+I1122 21:00:54.397 tapa.tapa:58] Python recursion limit set to 3000
+W1122 21:01:03.572 tapa.util:129] not adding vendor include paths; please update FRT
+I1122 21:01:03.573 tapa.steps.analyze:265] Running tapacc command: /scratch/643_vitis_dchan2/CHIP-KNN-643/.tapa/usr/bin/tapacc ./_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-2d858d1e-knn.cpp -top Knn -- -U__SYNTHESIS__ -w -Wno-invalid-constexpr -Wno-error=invalid-constexpr -I/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D2_PE2/src -I/usr/bin/../lib/clang/20/include -I/usr/include/c++/8 -I/usr/include/c++/8/x86_64-redhat-linux -I/usr/include -I/usr/include/x86_64-linux-gnu -I/scratch/643_vitis_dchan2/CHIP-KNN-643/.tapa/usr/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include -I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include -std=c++17 -I /afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src -stdlib=libc++ -isystem /usr/lib/llvm-22/include/c++/v1/ -isystem /usr/include/clang/22/include/ -isystem /usr/lib/clang/22/include/
 Breakpoint 1 at 0xae5072
 Breakpoint 2 at 0xae8634
 warning: Loadable section ".note.gnu.property" outside of ELF segments
@@ -46113,7 +46113,7 @@ Breakpoint 1, 0x0000555556039072 in tapa::cc::XilinxBackend::RewriteHelperFunc(c
 Breakpoint 2, 0x000055555603c634 in tapa::cc::AddPragmaToBody(tapa::cc::EditSink&, clang::Stmt const*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) ()
 20 errors generated.
 Error while processing /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D2_PE2/_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-2d858d1e-knn.cpp.
-[Inferior 1 (process 2195489) exited with code 01]
+[Inferior 1 (process 2255362) exited with code 01]
 === tapacc failed (RC=1, PY_RC=1) ===
-E1122 17:34:34.435 tapa.steps.analyze:196] command ('/scratch/643_vitis_dchan2/CHIP-KNN-643/.tapa/usr/bin/tapacc', './_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-2d858d1e-knn.cpp', '-top', 'Knn', '--', '-U__SYNTHESIS__', '-w', '-Wno-invalid-constexpr', '-Wno-error=invalid-constexpr', '-I/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D2_PE2/src', '-I/usr/bin/../lib/clang/20/include', '-I/usr/include/c++/8', '-I/usr/include/c++/8/x86_64-redhat-linux', '-I/usr/include', '-I/usr/include/x86_64-linux-gnu', '-I/scratch/643_vitis_dchan2/CHIP-KNN-643/.tapa/usr/include', '-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include', '-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include', '-std=c++17', '-I', '/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src', '-stdlib=libc++', '-isystem', '/usr/lib/llvm-22/include/c++/v1/', '-isystem', '/usr/include/clang/22/include/', '-isystem', '/usr/lib/clang/22/include/') failed with exit code 1
+E1122 21:01:43.593 tapa.steps.analyze:196] command ('/scratch/643_vitis_dchan2/CHIP-KNN-643/.tapa/usr/bin/tapacc', './_x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/flatten/flatten-2d858d1e-knn.cpp', '-top', 'Knn', '--', '-U__SYNTHESIS__', '-w', '-Wno-invalid-constexpr', '-Wno-error=invalid-constexpr', '-I/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D2_PE2/src', '-I/usr/bin/../lib/clang/20/include', '-I/usr/include/c++/8', '-I/usr/include/c++/8/x86_64-redhat-linux', '-I/usr/include', '-I/usr/include/x86_64-linux-gnu', '-I/scratch/643_vitis_dchan2/CHIP-KNN-643/.tapa/usr/include', '-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis_HLS/2023.2/include', '-I/afs/ece.cmu.edu/class/ece643/software/xilinxVitis//Vitis/2023.2/include', '-std=c++17', '-I', '/afs/ece/usr/dchan2/miniconda3/lib/python3.13/site-packages/tapa/../../../src', '-stdlib=libc++', '-isystem', '/usr/lib/llvm-22/include/c++/v1/', '-isystem', '/usr/include/clang/22/include/', '-isystem', '/usr/lib/clang/22/include/') failed with exit code 1
 make: *** [Makefile:103: _x.tapa_HLS.u96v2_sbc_base_2023_2-vitis-platform/knn.xo] Error 1

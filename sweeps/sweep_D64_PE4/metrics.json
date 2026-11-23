@@ -6,10 +6,10 @@
   "k": 10,
   "clock_frequency_mhz": 200,
   "clock_period_ns": 5.0,
-  "status": "HLS_FAILED",
-  "has_xo": false,
+  "status": "XO_SUCCESS",
+  "has_xo": true,
   "has_xclbin": false,
-  "build_time_sec": 85.22,
+  "build_time_sec": 321.8,
   "performance": {
     "cycles_per_vector": 16,
     "pts_per_pe": 32768,
@@ -19,5 +19,12 @@
     "throughput_features_sec": 3199450777.873976,
     "throughput_queries_sec": 49991418.40428088
   },
-  "resources": null
+  "resources": {
+    "BRAM": 68,
+    "DSP": 0,
+    "FF": 21408,
+    "LUT": 27390,
+    "URAM": 0,
+    "clock_period_ns": 5.0
+  }
 }

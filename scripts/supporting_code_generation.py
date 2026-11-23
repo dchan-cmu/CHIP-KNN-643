@@ -655,7 +655,7 @@ def Generate_MakeFile(_kernel_freq, _fpga_part_name):
     make_file.append('LDFLAGS += -ltapa -lfrt -lglog -lgflags' + "\n")
     make_file.append('' + "\n")
     make_file.append('# Kernel compiler global settings' + "\n")
-    make_file.append('CLFLAGS += -t $(TARGET) --platform $(DEVICE) --save-temps --kernel_frequency ' + str(_kernel_freq) + '' + "\n")
+    make_file.append('CLFLAGS += -t $(TARGET) --platform $(DEVICE) --save-temps --clock.defaultFreqHz ' + str(int(_kernel_freq * 1000000)) + '' + "\n")
     make_file.append('ifneq ($(TARGET), hw)' + "\n")
     make_file.append('	CLFLAGS += -g' + "\n")
     make_file.append('endif' + "\n")

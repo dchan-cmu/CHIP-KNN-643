@@ -62,7 +62,7 @@ LDFLAGS += -lrt -lstdc++
 LDFLAGS += -ltapa -lfrt -lglog -lgflags
 
 # Kernel compiler global settings
-CLFLAGS += -t $(TARGET) --platform $(DEVICE) --save-temps --kernel_frequency 200
+CLFLAGS += -t $(TARGET) --platform $(DEVICE) --save-temps --clock.defaultFreqHz 200000000
 ifneq ($(TARGET), hw)
 	CLFLAGS += -g
 endif

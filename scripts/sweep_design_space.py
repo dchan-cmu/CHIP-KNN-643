@@ -303,6 +303,9 @@ def build_sweep_point(point_dir, dim, num_pe, args):
         print(f"[{dim}D-{num_pe}PE] Launching Vivado bitstream generation (.xclbin)...", flush=True)
         build_dir = os.path.join(point_dir, f"build_dir.hw.{FPGA_target_name}")
         xclbin_target = os.path.join(build_dir, "knn.xclbin")
+        if not os.path.isfile(xclbin_target) and os.path.isdir(build_dir):
+            print(f"[{dim}D-{num_pe}PE] Cleaning incomplete build directory before linking...", flush=True)
+            shutil.rmtree(build_dir, ignore_errors=True)
         cmd_link = ["make", "build", f"DEVICE={FPGA_target_name}"]
         
         # Sanitize any XO and Verilog files in point_dir before bitstream link

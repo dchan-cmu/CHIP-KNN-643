@@ -1,5 +1,6 @@
 make: Nothing to be done for 'tapa_HLS'.
 mkdir -p ./build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform
+python3 /scratch/643_vitis_dchan2/CHIP-KNN-643/scripts/sanitize_top_rtl.py knn.xo
 v++ -t hw --platform u96v2_sbc_base_2023_2-vitis-platform --save-temps --clock.defaultFreqHz 200000000 --temp_dir ./build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform -l --config src/knn.ini -o'build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/knn.xclbin' knn.xo
 WARNING: [v++ 60-1603] The supplied option 'clock.defaultFreqHz' is deprecated. The supplied option is replaced by an alternative feature controlled by option 'clock.default_freqhz'. 
 Option Map File Used: '/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis/2023.2/data/vitis/vpp/optMap.xml'
@@ -12,26 +13,26 @@ Option Map File Used: '/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis/
 INFO: [v++ 60-1306] Additional information associated with this v++ link can be found at:
 	Reports: /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/reports/link
 	Log files: /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/logs/link
-Running Dispatch Server on port: 45973
-INFO: [v++ 60-1548] Creating build summary session with primary output /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/knn.xclbin.link_summary, at Mon Nov 23 13:27:20 2026
-INFO: [v++ 60-1315] Creating rulecheck session with output '/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/reports/link/v++_link_knn_guidance.html', at Mon Nov 23 13:27:20 2026
+Running Dispatch Server on port: 41325
+INFO: [v++ 60-1548] Creating build summary session with primary output /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/knn.xclbin.link_summary, at Mon Nov 23 16:42:16 2026
+INFO: [v++ 60-1315] Creating rulecheck session with output '/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/reports/link/v++_link_knn_guidance.html', at Mon Nov 23 16:42:16 2026
 INFO: [v++ 60-895]   Target platform: /afs/ece.cmu.edu/class/ece643/software/xilinxVitis/platforms/2023.2/u96v2_sbc_base_2023_2/export/u96v2_sbc_base_2023_2-vitis-platform/u96v2_sbc_base_2023_2-vitis-platform.xpfm
 INFO: [v++ 60-1578]   This platform contains Xilinx Shell Archive '/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/platforms/2023.2/u96v2_sbc_base_2023_2/export/u96v2_sbc_base_2023_2-vitis-platform/hw/u96v2_sbc_base.xsa'
 INFO: [v++ 60-629] Linking for hardware target
 INFO: [v++ 60-423]   Target device: u96v2_sbc_base_2023_2-vitis-platform
 CRITICAL WARNING: [v++ 17-1396] The specified XO container failed integrity check: 'knn.xo'
 INFO: [v++ 60-1332] Run 'run_link' status: Not started
-INFO: [v++ 60-1443] [13:27:29] Run run_link: Step system_link: Started
+INFO: [v++ 60-1443] [16:42:25] Run run_link: Step system_link: Started
 INFO: [v++ 60-1453] Command Line: system_link --xo /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/knn.xo -keep --config /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/int/syslinkConfig.ini --xpfm /afs/ece.cmu.edu/class/ece643/software/xilinxVitis/platforms/2023.2/u96v2_sbc_base_2023_2/export/u96v2_sbc_base_2023_2-vitis-platform/u96v2_sbc_base_2023_2-vitis-platform.xpfm --target hw --output_dir /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/int --temp_dir /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/sys_link
 INFO: [v++ 60-1454] Run Directory: /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/run_link
 INFO: [SYSTEM_LINK 82-70] Extracting xo v3 file /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/knn.xo
 INFO: [SYSTEM_LINK 82-53] Creating IP database /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/sys_link/_sysl/.cdb/xd_ip_db.xml
-INFO: [SYSTEM_LINK 82-38] [13:27:32] build_xd_ip_db started: /afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis/2023.2/bin/build_xd_ip_db -ip_search 0  -sds-pf /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/sys_link/u96v2_sbc_base.hpfm -clkid 0 -ip /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/sys_link/iprepo/haoda_xrtl_Knn_1_0,Knn -o /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/sys_link/_sysl/.cdb/xd_ip_db.xml
-INFO: [SYSTEM_LINK 82-37] [13:27:40] build_xd_ip_db finished successfully
-Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 475.465 ; gain = 0.000 ; free physical = 13525 ; free virtual = 29198
+INFO: [SYSTEM_LINK 82-38] [16:42:29] build_xd_ip_db started: /afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis/2023.2/bin/build_xd_ip_db -ip_search 0  -sds-pf /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/sys_link/u96v2_sbc_base.hpfm -clkid 0 -ip /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/sys_link/iprepo/haoda_xrtl_Knn_1_0,Knn -o /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/sys_link/_sysl/.cdb/xd_ip_db.xml
+INFO: [SYSTEM_LINK 82-37] [16:42:37] build_xd_ip_db finished successfully
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 485.328 ; gain = 0.000 ; free physical = 21909 ; free virtual = 40129
 INFO: [SYSTEM_LINK 82-51] Create system connectivity graph
 INFO: [SYSTEM_LINK 82-102] Applying explicit connections to the system connectivity graph: /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/sys_link/cfgraph/cfgen_cfgraph.xml
-INFO: [SYSTEM_LINK 82-38] [13:27:40] cfgen started: /afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis/2023.2/bin/cfgen  -nk Knn:1:Knn_1 -sp Knn_1.in_0:HP0 -sp Knn_1.in_1:HP1 -sp Knn_1.in_2:HP2 -sp Knn_1.final_out:HP0 -clock.defaultFreqHz 200000000 -dpa_mem_offload false -dmclkid 0 -r /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/sys_link/_sysl/.cdb/xd_ip_db.xml -o /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/sys_link/cfgraph/cfgen_cfgraph.xml
+INFO: [SYSTEM_LINK 82-38] [16:42:37] cfgen started: /afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis/2023.2/bin/cfgen  -nk Knn:1:Knn_1 -sp Knn_1.in_0:HP0 -sp Knn_1.in_1:HP1 -sp Knn_1.in_2:HP2 -sp Knn_1.final_out:HP0 -clock.defaultFreqHz 200000000 -dpa_mem_offload false -dmclkid 0 -r /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/sys_link/_sysl/.cdb/xd_ip_db.xml -o /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/sys_link/cfgraph/cfgen_cfgraph.xml
 INFO: [CFGEN 83-0] Kernel Specs: 
 INFO: [CFGEN 83-0]   kernel: Knn, num: 1  {Knn_1}
 INFO: [CFGEN 83-0] Port Specs: 
@@ -39,29 +40,29 @@ INFO: [CFGEN 83-0]   kernel: Knn_1, k_port: in_0, sptag: HP0
 INFO: [CFGEN 83-0]   kernel: Knn_1, k_port: in_1, sptag: HP1
 INFO: [CFGEN 83-0]   kernel: Knn_1, k_port: in_2, sptag: HP2
 INFO: [CFGEN 83-0]   kernel: Knn_1, k_port: final_out, sptag: HP0
-INFO: [SYSTEM_LINK 82-37] [13:27:43] cfgen finished successfully
-Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 475.465 ; gain = 0.000 ; free physical = 13602 ; free virtual = 29281
+INFO: [SYSTEM_LINK 82-37] [16:42:40] cfgen finished successfully
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 485.328 ; gain = 0.000 ; free physical = 21896 ; free virtual = 40117
 INFO: [SYSTEM_LINK 82-52] Create top-level block diagram
-INFO: [SYSTEM_LINK 82-38] [13:27:43] cf2bd started: /afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis/2023.2/bin/cf2bd  --linux --trace_buffer 1024 --input_file /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/sys_link/cfgraph/cfgen_cfgraph.xml --ip_db /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/sys_link/_sysl/.cdb/xd_ip_db.xml --cf_name dr --working_dir /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/sys_link/_sysl/.xsd --temp_dir /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/sys_link --output_dir /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/int
+INFO: [SYSTEM_LINK 82-38] [16:42:40] cf2bd started: /afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis/2023.2/bin/cf2bd  --linux --trace_buffer 1024 --input_file /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/sys_link/cfgraph/cfgen_cfgraph.xml --ip_db /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/sys_link/_sysl/.cdb/xd_ip_db.xml --cf_name dr --working_dir /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/sys_link/_sysl/.xsd --temp_dir /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/sys_link --output_dir /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/int
 INFO: [CF2BD 82-31] Launching cf2xd: cf2xd -linux -trace-buffer 1024 -i /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/sys_link/cfgraph/cfgen_cfgraph.xml -r /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/sys_link/_sysl/.cdb/xd_ip_db.xml -o dr.xml
 INFO: [CF2BD 82-28] cf2xd finished successfully
 INFO: [CF2BD 82-31] Launching cf_xsd: cf_xsd -disable-address-gen -dn dr -dp /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/sys_link/_sysl/.xsd
 INFO: [CF2BD 82-28] cf_xsd finished successfully
-INFO: [SYSTEM_LINK 82-37] [13:27:48] cf2bd finished successfully
-Time (s): cpu = 00:00:03 ; elapsed = 00:00:05 . Memory (MB): peak = 475.465 ; gain = 0.000 ; free physical = 11545 ; free virtual = 27235
-INFO: [v++ 60-1441] [13:27:48] Run run_link: Step system_link: Completed
-Time (s): cpu = 00:00:17 ; elapsed = 00:00:19 . Memory (MB): peak = 480.934 ; gain = 0.000 ; free physical = 11606 ; free virtual = 27296
-INFO: [v++ 60-1443] [13:27:48] Run run_link: Step cf2sw: Started
+INFO: [SYSTEM_LINK 82-37] [16:42:46] cf2bd finished successfully
+Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 485.328 ; gain = 0.000 ; free physical = 21886 ; free virtual = 40116
+INFO: [v++ 60-1441] [16:42:46] Run run_link: Step system_link: Completed
+Time (s): cpu = 00:00:18 ; elapsed = 00:00:21 . Memory (MB): peak = 501.977 ; gain = 0.000 ; free physical = 21955 ; free virtual = 40185
+INFO: [v++ 60-1443] [16:42:46] Run run_link: Step cf2sw: Started
 INFO: [v++ 60-1453] Command Line: cf2sw -sdsl /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/int/sdsl.dat -rtd /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/int/cf2sw.rtd -nofilter /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/int/cf2sw_full.rtd -xclbin /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/int/xclbin_orig.xml -o /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/int/xclbin_orig.1.xml
 INFO: [v++ 60-1454] Run Directory: /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/run_link
-INFO: [v++ 60-1441] [13:27:52] Run run_link: Step cf2sw: Completed
-Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 480.934 ; gain = 0.000 ; free physical = 11520 ; free virtual = 27214
-INFO: [v++ 60-1443] [13:27:52] Run run_link: Step rtd2_system_diagram: Started
+INFO: [v++ 60-1441] [16:42:51] Run run_link: Step cf2sw: Completed
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 501.977 ; gain = 0.000 ; free physical = 21960 ; free virtual = 40190
+INFO: [v++ 60-1443] [16:42:51] Run run_link: Step rtd2_system_diagram: Started
 INFO: [v++ 60-1453] Command Line: rtd2SystemDiagram
 INFO: [v++ 60-1454] Run Directory: /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/run_link
-INFO: [v++ 60-1441] [13:27:52] Run run_link: Step rtd2_system_diagram: Completed
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.17 . Memory (MB): peak = 480.934 ; gain = 0.000 ; free physical = 11513 ; free virtual = 27207
-INFO: [v++ 60-1443] [13:27:52] Run run_link: Step vpl: Started
+INFO: [v++ 60-1441] [16:42:51] Run run_link: Step rtd2_system_diagram: Completed
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.35 . Memory (MB): peak = 501.977 ; gain = 0.000 ; free physical = 21949 ; free virtual = 40179
+INFO: [v++ 60-1443] [16:42:51] Run run_link: Step vpl: Started
 INFO: [v++ 60-1453] Command Line: vpl -t hw -f u96v2_sbc_base_2023_2-vitis-platform -s --remote_ip_cache /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/.ipcache --output_dir /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/int --log_dir /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/logs/link --report_dir /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/reports/link --config /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/int/vplConfig.ini -k /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/int/kernel_info.dat --webtalk_flag Vitis --temp_dir /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link --no-info --iprepo /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/int/xo/ip_repo/haoda_xrtl_Knn_1_0 --messageDb /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/run_link/vpl.pb /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/int/dr.bd.tcl
 INFO: [v++ 60-1454] Run Directory: /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/run_link
 
@@ -73,73 +74,213 @@ INFO: [v++ 60-1454] Run Directory: /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps
 INFO: [VPL 60-839] Read in kernel information from file '/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/int/kernel_info.dat'.
 INFO: [VPL 60-423]   Target device: u96v2_sbc_base_2023_2-vitis-platform
 INFO: [VPL 60-1032] Extracting hardware platform to /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/vivado/vpl/.local/hw_platform
-[13:28:15] Run vpl: Step create_project: Started
+[16:43:27] Run vpl: Step create_project: Started
 Creating Vivado project.
-[13:28:39] Run vpl: Step create_project: Completed
-[13:28:39] Run vpl: Step create_bd: Started
-[13:28:59] Run vpl: Step create_bd: Completed
-[13:28:59] Run vpl: Step update_bd: Started
-[13:29:00] Run vpl: Step update_bd: Completed
-[13:29:00] Run vpl: Step generate_target: Started
-[13:30:09] Run vpl: Step generate_target: Completed
-[13:30:09] Run vpl: Step config_hw_runs: Started
-[13:30:21] Run vpl: Step config_hw_runs: Completed
-[13:30:21] Run vpl: Step synth: Started
-[13:30:52] Block-level synthesis in progress, 0 of 13 jobs complete, 8 jobs running.
-[13:31:22] Block-level synthesis in progress, 0 of 13 jobs complete, 8 jobs running.
-[13:31:53] Block-level synthesis in progress, 4 of 13 jobs complete, 4 jobs running.
-[13:32:23] Block-level synthesis in progress, 6 of 13 jobs complete, 6 jobs running.
-[13:32:53] Block-level synthesis in progress, 8 of 13 jobs complete, 5 jobs running.
-[13:33:15] Run vpl: Step synth: Failed
-[13:33:15] Run vpl: FINISHED. Run Status: synth ERROR
+[16:43:55] Run vpl: Step create_project: Completed
+[16:43:55] Run vpl: Step create_bd: Started
+[16:44:16] Run vpl: Step create_bd: Completed
+[16:44:16] Run vpl: Step update_bd: Started
+[16:44:17] Run vpl: Step update_bd: Completed
+[16:44:17] Run vpl: Step generate_target: Started
+[16:45:26] Run vpl: Step generate_target: Completed
+[16:45:26] Run vpl: Step config_hw_runs: Started
+[16:45:42] Run vpl: Step config_hw_runs: Completed
+[16:45:42] Run vpl: Step synth: Started
+[16:46:14] Block-level synthesis in progress, 0 of 1 jobs complete, 1 job running.
+[16:46:44] Block-level synthesis in progress, 0 of 1 jobs complete, 1 job running.
+[16:47:14] Block-level synthesis in progress, 0 of 1 jobs complete, 1 job running.
+[16:47:45] Block-level synthesis in progress, 0 of 1 jobs complete, 1 job running.
+[16:48:15] Block-level synthesis in progress, 0 of 1 jobs complete, 1 job running.
+[16:48:45] Block-level synthesis in progress, 0 of 1 jobs complete, 1 job running.
+[16:49:15] Block-level synthesis in progress, 0 of 1 jobs complete, 1 job running.
+[16:49:45] Block-level synthesis in progress, 0 of 1 jobs complete, 1 job running.
+[16:50:16] Block-level synthesis in progress, 1 of 1 jobs complete, 0 jobs running.
+[16:50:46] Top-level synthesis in progress.
+[16:51:16] Top-level synthesis in progress.
+[16:51:46] Top-level synthesis in progress.
+[16:52:07] Run vpl: Step synth: Completed
+[16:52:07] Run vpl: Step impl: Started
+[16:54:39] Finished 2nd of 6 tasks (FPGA linking synthesized kernels to platform). Elapsed time: 00h 11m 44s 
 
-===>The following messages were generated while processing /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/vivado/vpl/prj/prj.runs/u96v2_sbc_base_Knn_1_0_synth_1 :
-ERROR: [VPL 8-344] instance 'load_KNN_0' has duplicate port connection for port 'searchSpace_offset' [/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ipshared/31ce/src/Knn.v:1857]
-ERROR: [VPL 8-344] instance 'load_KNN_1' has duplicate port connection for port 'searchSpace_offset' [/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ipshared/31ce/src/Knn.v:1896]
-ERROR: [VPL 8-344] instance 'load_KNN_2' has duplicate port connection for port 'searchSpace_offset' [/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ipshared/31ce/src/Knn.v:1935]
-ERROR: [VPL 8-6156] failed synthesizing module 'merge_trio_streams_FINAL_flow_control_loop_pipe_sequential_init' [/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ipshared/31ce/src/merge_trio_streams_FINAL_flow_control_loop_pipe_sequential_init.v:11]
-ERROR: [VPL 8-6156] failed synthesizing module 'merge_trio_streams_FINAL_merge_trio_streams_FINAL_Pipeline_VITIS_LOOP_84_1' [/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ipshared/31ce/src/merge_trio_streams_FINAL_merge_trio_streams_FINAL_Pipeline_VITIS_LOOP_84_1.v:9]
-ERROR: [VPL 8-6156] failed synthesizing module 'merge_trio_streams_FINAL_inner' [/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ipshared/31ce/src/merge_trio_streams_FINAL_inner.v:9]
-ERROR: [VPL 8-6156] failed synthesizing module 'merge_trio_streams_FINAL' [/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ipshared/31ce/src/merge_trio_streams_FINAL.v:8]
-ERROR: [VPL 8-6156] failed synthesizing module 'Knn' [/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ipshared/31ce/src/Knn.v:3]
-ERROR: [VPL 8-6156] failed synthesizing module 'u96v2_sbc_base_Knn_1_0' [/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_Knn_1_0/synth/u96v2_sbc_base_Knn_1_0.v:53]
-ERROR: [VPL 17-69] Command failed: Synthesis failed - please see the console or run log file for details
+[16:54:39] Starting logic optimization..
+[16:54:39] Phase 1 Initialization
+[16:54:39] Phase 1.1 Core Generation And Design Setup
+[16:54:39] Phase 1.2 Setup Constraints And Sort Netlist
+[16:54:39] Phase 2 Timer Update And Timing Data Collection
+[16:54:39] Phase 2.1 Timer Update
+[16:54:39] Phase 2.2 Timing Data Collection
+[16:54:39] Phase 3 Retarget
+[16:55:09] Phase 4 Constant propagation
+[16:55:09] Phase 5 Sweep
+[16:55:09] Phase 6 BUFG optimization
+[16:55:09] Phase 7 Shift Register Optimization
+[16:55:09] Phase 8 Post Processing Netlist
+[16:55:09] Phase 9 Finalization
+[16:55:09] Phase 9.1 Finalizing Design Cores and Updating Shapes
+[16:55:09] Phase 9.2 Verifying Netlist Connectivity
+[16:55:39] Finished 3rd of 6 tasks (FPGA logic optimization). Elapsed time: 00h 01m 00s 
 
-===>The following messages were generated while  creating FPGA bitstream. Log file: /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/vivado/vpl/runme.log :
-ERROR: [VPL 12-13638] Failed runs(s) : 'u96v2_sbc_base_Knn_1_0_synth_1'
- 'u96v2_sbc_base_Knn_1_0_synth_1' run failed with below errors.
-ERROR: [Synth 8-344] instance 'load_KNN_0' has duplicate port connection for port 'searchSpace_offset' [/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ipshared/31ce/src/Knn.v:1857]
+[16:55:39] Starting logic placement..
+[16:55:39] Phase 1 Placer Initialization
+[16:55:39] Phase 1.1 Placer Initialization Netlist Sorting
+[16:55:39] Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device
+[16:56:09] Phase 1.3 Build Placer Netlist Model
+[16:56:40] Phase 1.4 Constrain Clocks/Macros
+[16:56:40] Phase 2 Global Placement
+[16:56:40] Phase 2.1 Floorplanning
+[16:56:40] Phase 2.1.1 Partition Driven Placement
+[16:56:40] Phase 2.1.1.1 PBP: Partition Driven Placement
+[16:56:40] Phase 2.1.1.2 PBP: Clock Region Placement
+[16:56:40] Phase 2.1.1.3 PBP: Compute Congestion
+[16:57:10] Phase 2.1.1.4 PBP: UpdateTiming
+[16:57:10] Phase 2.1.1.5 PBP: Add part constraints
+[16:57:10] Phase 2.2 Update Timing before SLR Path Opt
+[16:57:10] Phase 2.3 Post-Processing in Floorplanning
+[16:57:10] Phase 2.4 Global Placement Core
+[16:58:10] Phase 2.4.1 UpdateTiming Before Physical Synthesis
+[16:58:10] Phase 2.4.2 Physical Synthesis In Placer
+[16:58:41] Phase 3 Detail Placement
+[16:58:41] Phase 3.1 Commit Multi Column Macros
+[16:58:41] Phase 3.2 Commit Most Macros & LUTRAMs
+[16:59:11] Phase 3.3 Small Shape DP
+[16:59:11] Phase 3.3.1 Small Shape Clustering
+[16:59:11] Phase 3.3.2 Slice Area Swap
+[16:59:11] Phase 3.3.2.1 Slice Area Swap Initial
+[16:59:11] Phase 3.4 Re-assign LUT pins
+[16:59:11] Phase 3.5 Pipeline Register Optimization
+[16:59:11] Phase 4 Post Placement Optimization and Clean-Up
+[16:59:11] Phase 4.1 Post Commit Optimization
+[16:59:41] Phase 4.1.1 Post Placement Optimization
+[16:59:41] Phase 4.1.1.1 BUFG Insertion
+[16:59:41] Phase 1 Physical Synthesis Initialization
+[16:59:41] Phase 4.1.1.2 Post Placement Timing Optimization
+[16:59:41] Phase 4.2 Post Placement Cleanup
+[17:00:11] Phase 4.3 Placer Reporting
+[17:00:11] Phase 4.3.1 Print Estimated Congestion
+[17:00:11] Phase 4.4 Final Placement Cleanup
+[17:00:11] Finished 4th of 6 tasks (FPGA logic placement). Elapsed time: 00h 04m 32s 
 
-ERROR: [Synth 8-344] instance 'load_KNN_1' has duplicate port connection for port 'searchSpace_offset' [/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ipshared/31ce/src/Knn.v:1896]
+[17:00:11] Starting logic routing..
+[17:00:11] Phase 1 Build RT Design
+[17:00:11] Phase 2 Router Initialization
+[17:00:11] Phase 2.1 Fix Topology Constraints
+[17:00:11] Phase 2.2 Pre Route Cleanup
+[17:00:11] Phase 2.3 Global Clock Net Routing
+[17:00:11] Phase 2.4 Update Timing
+[17:00:42] Phase 2.5 Update Timing for Bus Skew
+[17:00:42] Phase 2.5.1 Update Timing
+[17:00:42] Phase 3 Initial Routing
+[17:00:42] Phase 3.1 Global Routing
+[17:00:42] Phase 3.2 Initial Net Routing
+[17:01:12] Phase 4 Rip-up And Reroute
+[17:01:12] Phase 4.1 Global Iteration 0
+[17:03:13] Phase 4.2 Additional Iteration for Hold
+[17:03:13] Phase 5 Delay and Skew Optimization
+[17:03:13] Phase 5.1 Delay CleanUp
+[17:03:13] Phase 5.1.1 Update Timing
+[17:03:13] Phase 5.1.2 Update Timing
+[17:03:13] Phase 5.2 Clock Skew Optimization
+[17:03:13] Phase 6 Post Hold Fix
+[17:03:13] Phase 6.1 Hold Fix Iter
+[17:03:13] Phase 6.1.1 Update Timing
+[17:03:13] Phase 7 Route finalize
+[17:03:13] Phase 8 Verifying routed nets
+[17:03:13] Phase 9 Depositing Routes
+[17:03:43] Phase 10 Resolve XTalk
+[17:03:43] Phase 11 Route finalize
+[17:03:43] Phase 12 Post Router Timing
+[17:03:43] Finished 5th of 6 tasks (FPGA routing). Elapsed time: 00h 03m 31s 
 
-ERROR: [Synth 8-344] instance 'load_KNN_2' has duplicate port connection for port 'searchSpace_offset' [/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ipshared/31ce/src/Knn.v:1935]
+[17:03:43] Starting bitstream generation..
+[17:03:43] Phase 13 Post-Route Event Processing
+Check VPL, containing 2 checks, has run: 0 errors
+[17:04:34] Run vpl: Step impl: Completed
+[17:04:35] Creating bitmap...
+[17:04:35] Writing bitstream ./u96v2_sbc_base_wrapper.bit...
+[17:04:35] Finished 6th of 6 tasks (FPGA bitstream generation). Elapsed time: 00h 00m 51s 
+[17:04:35] Run vpl: FINISHED. Run Status: impl Complete!
+INFO: [v++ 60-1441] [17:04:35] Run run_link: Step vpl: Completed
+Time (s): cpu = 00:00:12 ; elapsed = 00:21:44 . Memory (MB): peak = 501.977 ; gain = 0.000 ; free physical = 21049 ; free virtual = 39648
+INFO: [v++ 60-1443] [17:04:35] Run run_link: Step rtdgen: Started
+INFO: [v++ 60-1453] Command Line: rtdgen
+INFO: [v++ 60-1454] Run Directory: /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/run_link
+INFO: [v++ 60-1453] Command Line: cf2sw -a /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/int/address_map.xml -sdsl /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/int/sdsl.dat -xclbin /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/int/xclbin_orig.xml -rtd /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/int/knn.rtd -o /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/int/knn.xml
+INFO: [v++ 60-1652] Cf2sw returned exit code: 0
+INFO: [v++ 60-1441] [17:04:40] Run run_link: Step rtdgen: Completed
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 501.977 ; gain = 0.000 ; free physical = 21072 ; free virtual = 39668
+INFO: [v++ 60-1443] [17:04:40] Run run_link: Step xclbinutil: Started
+INFO: [v++ 60-1453] Command Line: xclbinutil --add-section BITSTREAM:RAW:/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/int/system.bit --force --target hw --key-value SYS:dfx_enable:false --add-section :JSON:/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/int/knn.rtd --add-section CLOCK_FREQ_TOPOLOGY:JSON:/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/int/knn_xml.rtd --add-section BUILD_METADATA:JSON:/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/int/knn_build.rtd --add-section EMBEDDED_METADATA:RAW:/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/int/knn.xml --add-section SYSTEM_METADATA:RAW:/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/int/systemDiagramModelSlrBaseAddress.json --key-value SYS:PlatformVBNV:avnet.com_u96v2_sbc_base_u96v2_sbc_base_1_0 --output /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/knn.xclbin
+INFO: [v++ 60-1454] Run Directory: /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/run_link
+XRT Build Version: 2.16.204 (2023.2)
+       Build Date: 2023-10-12 06:45:18
+          Hash ID: fa4c0045003fed0acea4593788dce5ef6d0b66ee
+Creating a default 'in-memory' xclbin image.
 
-ERROR: [Synth 8-6156] failed synthesizing module 'merge_trio_streams_FINAL_flow_control_loop_pipe_sequential_init' [/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ipshared/31ce/src/merge_trio_streams_FINAL_flow_control_loop_pipe_sequential_init.v:11]
+Section: 'BITSTREAM'(0) was successfully added.
+Size   : 5568794 bytes
+Format : RAW
+File   : '/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/int/system.bit'
 
-ERROR: [Synth 8-6156] failed synthesizing module 'merge_trio_streams_FINAL_merge_trio_streams_FINAL_Pipeline_VITIS_LOOP_84_1' [/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ipshared/31ce/src/merge_trio_streams_FINAL_merge_trio_streams_FINAL_Pipeline_VITIS_LOOP_84_1.v:9]
+Section: 'MEM_TOPOLOGY'(6) was successfully added.
+Format : JSON
+File   : 'mem_topology'
 
-ERROR: [Synth 8-6156] failed synthesizing module 'merge_trio_streams_FINAL_inner' [/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ipshared/31ce/src/merge_trio_streams_FINAL_inner.v:9]
+Section: 'IP_LAYOUT'(8) was successfully added.
+Format : JSON
+File   : 'ip_layout'
 
-ERROR: [Synth 8-6156] failed synthesizing module 'merge_trio_streams_FINAL' [/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ipshared/31ce/src/merge_trio_streams_FINAL.v:8]
+Section: 'CONNECTIVITY'(7) was successfully added.
+Format : JSON
+File   : 'connectivity'
+WARNING: Skipping CLOCK_FREQ_TOPOLOGY section for count size is zero.
+WARNING: Section 'CLOCK_FREQ_TOPOLOGY' content is empty.  No data in the given JSON file.
 
-ERROR: [Synth 8-6156] failed synthesizing module 'Knn' [/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ipshared/31ce/src/Knn.v:3]
+Section: 'CLOCK_FREQ_TOPOLOGY'(11) was empty.  No action taken.
+Format : JSON
+File   : '/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/int/knn_xml.rtd'
 
-ERROR: [Synth 8-6156] failed synthesizing module 'u96v2_sbc_base_Knn_1_0' [/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/vivado/vpl/prj/prj.gen/sources_1/bd/u96v2_sbc_base/ip/u96v2_sbc_base_Knn_1_0/synth/u96v2_sbc_base_Knn_1_0.v:53]
+Section: 'BUILD_METADATA'(14) was successfully added.
+Size   : 2813 bytes
+Format : JSON
+File   : '/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/int/knn_build.rtd'
 
-ERROR: [Common 17-69] Command failed: Synthesis failed - please see the console or run log file for details
+Section: 'EMBEDDED_METADATA'(2) was successfully added.
+Size   : 3527 bytes
+Format : RAW
+File   : '/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/int/knn.xml'
 
-ERROR: [VPL 60-773] In '/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/vivado/vpl/runme.log', caught Tcl error:  ERROR: [Common 17-39] 'wait_on_runs' failed due to earlier errors.
-WARNING: [VPL 60-732] Link warning: No monitor points found for BD automation.
-ERROR: [VPL 60-704] Integration error, Failed to complete hardware synthesis. The run name is 'synth_1'. An error stack with function names and arguments may be available in the 'vivado.log'.
-ERROR: [VPL 60-1328] Vpl run 'vpl' failed
-WARNING: [VPL 60-1142] Unable to read data from '/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/vivado/vpl/output/generated_reports.log', generated reports will not be copied.
-ERROR: [VPL 60-806] Failed to finish platform linker
-INFO: [v++ 60-1442] [13:33:16] Run run_link: Step vpl: Failed
-Time (s): cpu = 00:00:10 ; elapsed = 00:05:24 . Memory (MB): peak = 480.934 ; gain = 0.000 ; free physical = 13235 ; free virtual = 28534
-ERROR: [v++ 60-661] v++ link run 'run_link' failed
-ERROR: [v++ 60-626] Kernel link failed to complete
-ERROR: [v++ 60-703] Failed to finish linking
+Section: 'SYSTEM_METADATA'(22) was successfully added.
+Size   : 14801 bytes
+Format : RAW
+File   : '/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/int/systemDiagramModelSlrBaseAddress.json'
+Successfully wrote (5598269 bytes) to the output file: /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/knn.xclbin
+Leaving xclbinutil.
+INFO: [v++ 60-1441] [17:04:40] Run run_link: Step xclbinutil: Completed
+Time (s): cpu = 00:00:00.11 ; elapsed = 00:00:00.57 . Memory (MB): peak = 501.977 ; gain = 0.000 ; free physical = 21059 ; free virtual = 39664
+INFO: [v++ 60-1443] [17:04:40] Run run_link: Step xclbinutilinfo: Started
+INFO: [v++ 60-1453] Command Line: xclbinutil --quiet --force --info /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/knn.xclbin.info --input /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/knn.xclbin
+INFO: [v++ 60-1454] Run Directory: /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/run_link
+INFO: [v++ 60-1441] [17:04:41] Run run_link: Step xclbinutilinfo: Completed
+Time (s): cpu = 00:00:00.21 ; elapsed = 00:00:00.46 . Memory (MB): peak = 501.977 ; gain = 0.000 ; free physical = 21058 ; free virtual = 39663
+INFO: [v++ 60-1443] [17:04:41] Run run_link: Step generate_sc_driver: Started
+INFO: [v++ 60-1453] Command Line: 
+INFO: [v++ 60-1454] Run Directory: /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/link/run_link
+INFO: [v++ 60-1441] [17:04:41] Run run_link: Step generate_sc_driver: Completed
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 501.977 ; gain = 0.000 ; free physical = 21058 ; free virtual = 39663
+Check POST-VPL, containing 1 checks, has run: 0 errors
+INFO: [v++ 60-244] Generating system estimate report...
+INFO: [v++ 60-1092] Generated system estimate report: /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/reports/link/system_estimate_knn.xtxt
+INFO: [v++ 60-2397] Platform default or user specified output type sd_card detected but is not a supported output for v++ --link. Use the v++ --package option instead to create SD card output.
+INFO: [v++ 60-586] Created build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/knn.xclbin
+INFO: [v++ 60-1307] Run completed. Additional information can be found in:
+	Guidance: /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/reports/link/v++_link_knn_guidance.html
+	Timing Report: /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/reports/link/imp/impl_1_u96v2_sbc_base_wrapper_timing_summary_routed.rpt
+	Vivado Log: /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/logs/link/vivado.log
+	Steps Log File: /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/logs/link/link.steps.log
+
+INFO: [v++ 60-2343] Use the vitis_analyzer tool to visualize and navigate the relevant reports. Run the following command. 
+    vitis_analyzer /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE3/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/knn.xclbin.link_summary 
+INFO: [v++ 60-791] Total elapsed time: 0h 22m 27s
 INFO: [v++ 60-1653] Closing dispatch client.
-make: *** [Makefile:162: build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/knn.xclbin] Error 1
 
 === STARTING BITSTREAM LINKING ===

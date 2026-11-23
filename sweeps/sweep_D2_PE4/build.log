@@ -1,4 +1,21 @@
 make: Nothing to be done for 'tapa_HLS'.
-make: *** No rule to make target '/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D2_PE4/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/knn.xclbin'.  Stop.
+mkdir -p ./build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform
+v++ -t hw --platform u96v2_sbc_base_2023_2-vitis-platform --save-temps --kernel_frequency 200 --temp_dir ./build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform -l --config src/knn.ini -o'build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/knn.xclbin' knn.xo
+Option Map File Used: '/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis/2023.2/data/vitis/vpp/optMap.xml'
+
+****** v++ v2023.2 (64-bit)
+  **** SW Build 4026344 on 2023-10-11-15:42:10
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+ERROR: [v++ 60-1258] No valid platform was found that matches 'u96v2_sbc_base_2023_2-vitis-platform'. Please make sure that the platform is specified correctly, and the platform has the right version number. The platform repo paths are:
+	/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/platforms/2023.2
+	/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis/2023.2/platforms
+The valid platforms found from the above repo paths are:
+
+ERROR: [v++ 60-587] Failed to add a platform: specified platform u96v2_sbc_base_2023_2-vitis-platform is not found or is not valid
+INFO: [v++ 60-1662] Stopping dispatch session having empty uuid.
+INFO: [v++ 60-1653] Closing dispatch client.
+make: *** [Makefile:162: build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/knn.xclbin] Error 1
 
 === STARTING BITSTREAM LINKING ===

@@ -10,7 +10,7 @@
     "status": "XO_SUCCESS",
     "has_xo": true,
     "has_xclbin": false,
-    "build_time_sec": 348.74,
+    "build_time_sec": 0.15,
     "performance": {
       "cycles_per_vector": 1,
       "pts_per_pe": 131072,
@@ -40,7 +40,7 @@
     "status": "XO_SUCCESS",
     "has_xo": true,
     "has_xclbin": false,
-    "build_time_sec": 215.26,
+    "build_time_sec": 0.15,
     "performance": {
       "cycles_per_vector": 1,
       "pts_per_pe": 65536,
@@ -70,7 +70,7 @@
     "status": "XO_SUCCESS",
     "has_xo": true,
     "has_xclbin": false,
-    "build_time_sec": 216.86,
+    "build_time_sec": 0.16,
     "performance": {
       "cycles_per_vector": 1,
       "pts_per_pe": 43691,
@@ -100,7 +100,7 @@
     "status": "XO_SUCCESS",
     "has_xo": true,
     "has_xclbin": false,
-    "build_time_sec": 0.14,
+    "build_time_sec": 0.13,
     "performance": {
       "cycles_per_vector": 1,
       "pts_per_pe": 32768,
@@ -130,7 +130,7 @@
     "status": "XO_SUCCESS",
     "has_xo": true,
     "has_xclbin": false,
-    "build_time_sec": 0.13,
+    "build_time_sec": 328.51,
     "performance": {
       "cycles_per_vector": 4,
       "pts_per_pe": 131072,
@@ -160,7 +160,7 @@
     "status": "XO_SUCCESS",
     "has_xo": true,
     "has_xclbin": false,
-    "build_time_sec": 375.13,
+    "build_time_sec": 221.5,
     "performance": {
       "cycles_per_vector": 4,
       "pts_per_pe": 65536,
@@ -190,7 +190,7 @@
     "status": "XO_SUCCESS",
     "has_xo": true,
     "has_xclbin": false,
-    "build_time_sec": 231.13,
+    "build_time_sec": 187.38,
     "performance": {
       "cycles_per_vector": 4,
       "pts_per_pe": 43691,
@@ -220,7 +220,7 @@
     "status": "XO_SUCCESS",
     "has_xo": true,
     "has_xclbin": false,
-    "build_time_sec": 321.95,
+    "build_time_sec": 0.13,
     "performance": {
       "cycles_per_vector": 4,
       "pts_per_pe": 32768,
@@ -250,7 +250,7 @@
     "status": "XO_SUCCESS",
     "has_xo": true,
     "has_xclbin": false,
-    "build_time_sec": 0.2,
+    "build_time_sec": 297.31,
     "performance": {
       "cycles_per_vector": 16,
       "pts_per_pe": 131072,
@@ -280,7 +280,7 @@
     "status": "XO_SUCCESS",
     "has_xo": true,
     "has_xclbin": false,
-    "build_time_sec": 323.39,
+    "build_time_sec": 326.45,
     "performance": {
       "cycles_per_vector": 16,
       "pts_per_pe": 65536,
@@ -310,7 +310,7 @@
     "status": "XO_SUCCESS",
     "has_xo": true,
     "has_xclbin": false,
-    "build_time_sec": 313.66,
+    "build_time_sec": 320.27,
     "performance": {
       "cycles_per_vector": 16,
       "pts_per_pe": 43691,
@@ -340,7 +340,7 @@
     "status": "XO_SUCCESS",
     "has_xo": true,
     "has_xclbin": false,
-    "build_time_sec": 329.92,
+    "build_time_sec": 0.15,
     "performance": {
       "cycles_per_vector": 16,
       "pts_per_pe": 32768,

@@ -276,8 +276,16 @@ for ini_p in ini_candidates:
     if os.path.isfile(ini_p):
         with open(ini_p, "r") as f:
             ini_content = f.read()
-        new_ini = re.sub(r":DDR\[\d+\]", ":DDR[0]", ini_content)
-        new_ini = re.sub(r"sp=Knn\.", "sp=Knn_1.", new_ini)
+        def _replace_sp(m):
+            port = m.group(1)
+            if port.startswith("in_"):
+                pe_idx = int(port.split("_")[1])
+                hp_tag = f"HP{pe_idx % 4}"
+            else:
+                hp_tag = "HP0"
+            return f"sp=Knn_1.{port}:{hp_tag}"
+
+        new_ini = re.sub(r"sp=(?:Knn|Knn_1)\.([A-Za-z0-9_]+):.*", _replace_sp, ini_content)
         if "nk=Knn:1:Knn_1" not in new_ini:
             new_ini = new_ini.replace("[connectivity]", "[connectivity]\nnk=Knn:1:Knn_1")
         if new_ini != ini_content:

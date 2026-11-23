@@ -564,13 +564,11 @@ def Generate_Connectivity_Map(_memory_type, _num_PE, _port_width):
 
     connectivity_file.append('[connectivity]' + "\n")
     if (_memory_type == 'DDR4'):
-        assert (max_port_width%_port_width == 0), f"ERROR: max port width {max_port_width} is not divisible by the port width {_port_width}"
-
         for PE_idx in range(_num_PE):
-            bank_idx = int(PE_idx * _port_width/max_port_width)
-            connectivity_file.append('sp=Knn.in_' + str(PE_idx) + ':DDR[' + str(bank_idx) + ']' + "\n")
+            # Ultra96 has only a single physical memory channel (DDR[0])
+            connectivity_file.append('sp=Knn.in_' + str(PE_idx) + ':DDR[0]' + "\n")
 
-        connectivity_file.append('sp=Knn.final_out:DDR[' + str(0) + ']' + "\n")
+        connectivity_file.append('sp=Knn.final_out:DDR[0]' + "\n")
 
     elif (_memory_type == 'HBM2'):
         ### NOTE: TAPA/Autobridge generates a better mapping

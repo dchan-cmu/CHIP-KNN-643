@@ -4,7 +4,8 @@ clean_graph_cflags.py:
 1. Purges incompatible host compiler flags and adds synthesis definitions for Vitis HLS 2023.2.
 2. Normalizes scalar arguments to standard Verilog constant literals.
 3. Dynamically generates synthesizable C++ stubs for top-level Knn matching multi-PE ports.
-4. Injects required FIFO/mmap pragmas and helper functions into task definitions.
+4. Injects required FIFO/mmap pragmas and helper functions into task definitions in graph.json AND $(TEMP_DIR)/cpp/*.cpp.
+5. Sanitizes knn.ini to ensure all memory-mapped ports target DDR[0] on single-controller platforms like Ultra96.
 """
 import sys, json, os, re
 
@@ -211,10 +212,54 @@ if knn_cpp_content:
             if patched:
                 tdict["code"] = patched
         elif tname in ("merge_dual_streams_FINAL", "merge_trio_streams_FINAL"):
-            if "write_out_mmap" not in tdict.get("code", ""):
+            if "void write_out_mmap" not in tdict.get("code", ""):
                 patched = extract_and_patch_task(tname, knn_cpp_content)
                 if patched:
                     tdict["code"] = patched
+
+# 4. Patch generated C++ files in $(TEMP_DIR)/cpp/
+cpp_dir = os.path.join(graph_dir, "cpp")
+if os.path.isdir(cpp_dir) and knn_cpp_content:
+    knn_stub = build_knn_top_stub(knn_cpp_content)
+    with open(os.path.join(cpp_dir, "Knn.cpp"), "w") as f:
+        f.write(knn_stub)
+    print(f"[clean_graph_cflags] Updated {os.path.join(cpp_dir, 'Knn.cpp')}")
+
+    for fname in os.listdir(cpp_dir):
+        if fname.endswith(".cpp") and fname != "Knn.cpp":
+            target_p = os.path.join(cpp_dir, fname)
+            with open(target_p, "r") as cf:
+                ctext = cf.read()
+            if "FINAL" in fname and "void write_out_mmap" not in ctext:
+                if write_out_code:
+                    new_text = write_out_code + ctext
+                    with open(target_p, "w") as cf:
+                        cf.write(new_text)
+                    print(f"[clean_graph_cflags] Prepended write_out_mmap to {target_p}")
+            elif "para_partial_sort" in fname and "KNN_SWAP" in ctext and "#define KNN_SWAP" not in ctext:
+                if swap_code:
+                    new_text = swap_code + ctext
+                    with open(target_p, "w") as cf:
+                        cf.write(new_text)
+                    print(f"[clean_graph_cflags] Prepended swap_code to {target_p}")
+
+# 5. Sanitize knn.ini for Ultra96 single-DDR architecture
+ini_candidates = [
+    os.path.join(graph_dir, "../src/knn.ini"),
+    os.path.join(graph_dir, "src/knn.ini"),
+    "src/knn.ini",
+    "knn.ini",
+    "../src/knn.ini",
+]
+for ini_p in ini_candidates:
+    if os.path.isfile(ini_p):
+        with open(ini_p, "r") as f:
+            ini_content = f.read()
+        new_ini = re.sub(r":DDR\[\d+\]", ":DDR[0]", ini_content)
+        if new_ini != ini_content:
+            with open(ini_p, "w") as f:
+                f.write(new_ini)
+            print(f"[clean_graph_cflags] Sanitized {ini_p} memory banks to DDR[0]")
 
 with open(path, "w") as f:
     json.dump(data, f, indent=2)

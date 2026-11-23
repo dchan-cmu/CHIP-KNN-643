@@ -143,3 +143,4 @@ dmypy.json
 install_tapa.sh
 sweeps/**/golden/*.bin
 sweeps/**/golden/*.txt
+!sweeps/**/build.log

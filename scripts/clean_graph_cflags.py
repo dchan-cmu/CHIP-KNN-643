@@ -255,7 +255,8 @@ if knn_cpp_content:
 
 # 4. Patch generated C++ files in $(TEMP_DIR)/cpp/
 cpp_dir = os.path.join(graph_dir, "cpp")
-if os.path.isdir(cpp_dir) and knn_cpp_content:
+if knn_cpp_content:
+    os.makedirs(cpp_dir, exist_ok=True)
     for tname, tdict in data.get("tasks", {}).items():
         if "code" in tdict and tdict["code"]:
             target_p = os.path.join(cpp_dir, f"{tname}.cpp")

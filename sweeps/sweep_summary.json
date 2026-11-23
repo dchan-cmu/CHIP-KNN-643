@@ -1,0 +1,334 @@
+[
+  {
+    "config_name": "sweep_D2_PE1",
+    "dimension": 2,
+    "num_pe": 1,
+    "n_points": 131072,
+    "k": 10,
+    "clock_frequency_mhz": 200,
+    "clock_period_ns": 5.0,
+    "status": "HLS_FAILED",
+    "has_xo": false,
+    "has_xclbin": false,
+    "build_time_sec": 129.48,
+    "performance": {
+      "cycles_per_vector": 1,
+      "pts_per_pe": 131072,
+      "estimated_cycles": 131142,
+      "estimated_clock_period_ns": 5.0,
+      "estimated_runtime_sec": 0.00065571,
+      "throughput_features_sec": 399786490.9792439,
+      "throughput_queries_sec": 199893245.48962194
+    },
+    "resources": null
+  },
+  {
+    "config_name": "sweep_D2_PE2",
+    "dimension": 2,
+    "num_pe": 2,
+    "n_points": 131072,
+    "k": 10,
+    "clock_frequency_mhz": 200,
+    "clock_period_ns": 5.0,
+    "status": "HLS_FAILED",
+    "has_xo": false,
+    "has_xclbin": false,
+    "build_time_sec": 92.74,
+    "performance": {
+      "cycles_per_vector": 1,
+      "pts_per_pe": 65536,
+      "estimated_cycles": 65616,
+      "estimated_clock_period_ns": 5.0,
+      "estimated_runtime_sec": 0.00032808,
+      "throughput_features_sec": 799024628.1394781,
+      "throughput_queries_sec": 399512314.06973904
+    },
+    "resources": null
+  },
+  {
+    "config_name": "sweep_D2_PE3",
+    "dimension": 2,
+    "num_pe": 3,
+    "n_points": 131072,
+    "k": 10,
+    "clock_frequency_mhz": 200,
+    "clock_period_ns": 5.0,
+    "status": "HLS_FAILED",
+    "has_xo": false,
+    "has_xclbin": false,
+    "build_time_sec": 95.79,
+    "performance": {
+      "cycles_per_vector": 1,
+      "pts_per_pe": 43691,
+      "estimated_cycles": 43791,
+      "estimated_clock_period_ns": 5.0,
+      "estimated_runtime_sec": 0.000218955,
+      "throughput_features_sec": 1197250576.6024983,
+      "throughput_queries_sec": 598625288.3012491
+    },
+    "resources": null
+  },
+  {
+    "config_name": "sweep_D2_PE4",
+    "dimension": 2,
+    "num_pe": 4,
+    "n_points": 131072,
+    "k": 10,
+    "clock_frequency_mhz": 200,
+    "clock_period_ns": 5.0,
+    "status": "HLS_FAILED",
+    "has_xo": false,
+    "has_xclbin": false,
+    "build_time_sec": 83.24,
+    "performance": {
+      "cycles_per_vector": 1,
+      "pts_per_pe": 32768,
+      "estimated_cycles": 32868,
+      "estimated_clock_period_ns": 5.0,
+      "estimated_runtime_sec": 0.00016434000000000002,
+      "throughput_features_sec": 1595132043.3248143,
+      "throughput_queries_sec": 797566021.6624072
+    },
+    "resources": null
+  },
+  {
+    "config_name": "sweep_D16_PE1",
+    "dimension": 16,
+    "num_pe": 1,
+    "n_points": 131072,
+    "k": 10,
+    "clock_frequency_mhz": 200,
+    "clock_period_ns": 5.0,
+    "status": "XO_SUCCESS",
+    "has_xo": true,
+    "has_xclbin": false,
+    "build_time_sec": 0.13,
+    "performance": {
+      "cycles_per_vector": 4,
+      "pts_per_pe": 131072,
+      "estimated_cycles": 524348,
+      "estimated_clock_period_ns": 5.0,
+      "estimated_runtime_sec": 0.00262174,
+      "throughput_features_sec": 799908457.7418051,
+      "throughput_queries_sec": 49994278.60886282
+    },
+    "resources": {
+      "BRAM": 20,
+      "DSP": 0,
+      "FF": 4610,
+      "LUT": 7520,
+      "URAM": 0,
+      "clock_period_ns": 5.0
+    }
+  },
+  {
+    "config_name": "sweep_D16_PE2",
+    "dimension": 16,
+    "num_pe": 2,
+    "n_points": 131072,
+    "k": 10,
+    "clock_frequency_mhz": 200,
+    "clock_period_ns": 5.0,
+    "status": "XO_SUCCESS",
+    "has_xo": true,
+    "has_xclbin": false,
+    "build_time_sec": 375.13,
+    "performance": {
+      "cycles_per_vector": 4,
+      "pts_per_pe": 65536,
+      "estimated_cycles": 262214,
+      "estimated_clock_period_ns": 5.0,
+      "estimated_runtime_sec": 0.0013110700000000001,
+      "throughput_features_sec": 1599572867.9628088,
+      "throughput_queries_sec": 99973304.24767555
+    },
+    "resources": {
+      "BRAM": 36,
+      "DSP": 0,
+      "FF": 8360,
+      "LUT": 14284,
+      "URAM": 0,
+      "clock_period_ns": 5.0
+    }
+  },
+  {
+    "config_name": "sweep_D16_PE3",
+    "dimension": 16,
+    "num_pe": 3,
+    "n_points": 131072,
+    "k": 10,
+    "clock_frequency_mhz": 200,
+    "clock_period_ns": 5.0,
+    "status": "XO_SUCCESS",
+    "has_xo": true,
+    "has_xclbin": false,
+    "build_time_sec": 231.13,
+    "performance": {
+      "cycles_per_vector": 4,
+      "pts_per_pe": 43691,
+      "estimated_cycles": 174854,
+      "estimated_clock_period_ns": 5.0,
+      "estimated_runtime_sec": 0.00087427,
+      "throughput_features_sec": 2398746382.696421,
+      "throughput_queries_sec": 149921648.91852632
+    },
+    "resources": {
+      "BRAM": 52,
+      "DSP": 6,
+      "FF": 12516,
+      "LUT": 21207,
+      "URAM": 0,
+      "clock_period_ns": 5.0
+    }
+  },
+  {
+    "config_name": "sweep_D16_PE4",
+    "dimension": 16,
+    "num_pe": 4,
+    "n_points": 131072,
+    "k": 10,
+    "clock_frequency_mhz": 200,
+    "clock_period_ns": 5.0,
+    "status": "XO_SUCCESS",
+    "has_xo": true,
+    "has_xclbin": false,
+    "build_time_sec": 333.75,
+    "performance": {
+      "cycles_per_vector": 4,
+      "pts_per_pe": 32768,
+      "estimated_cycles": 131162,
+      "estimated_clock_period_ns": 5.0,
+      "estimated_runtime_sec": 0.00065581,
+      "throughput_features_sec": 3197804242.08231,
+      "throughput_queries_sec": 199862765.1301444
+    },
+    "resources": {
+      "BRAM": 68,
+      "DSP": 0,
+      "FF": 15200,
+      "LUT": 26542,
+      "URAM": 0,
+      "clock_period_ns": 5.0
+    }
+  },
+  {
+    "config_name": "sweep_D64_PE1",
+    "dimension": 64,
+    "num_pe": 1,
+    "n_points": 131072,
+    "k": 10,
+    "clock_frequency_mhz": 200,
+    "clock_period_ns": 5.0,
+    "status": "XO_SUCCESS",
+    "has_xo": true,
+    "has_xclbin": false,
+    "build_time_sec": 0.2,
+    "performance": {
+      "cycles_per_vector": 16,
+      "pts_per_pe": 131072,
+      "estimated_cycles": 2097212,
+      "estimated_clock_period_ns": 5.0,
+      "estimated_runtime_sec": 0.01048606,
+      "throughput_features_sec": 799977112.4712237,
+      "throughput_queries_sec": 12499642.38236287
+    },
+    "resources": {
+      "BRAM": 20,
+      "DSP": 0,
+      "FF": 6162,
+      "LUT": 7732,
+      "URAM": 0,
+      "clock_period_ns": 5.0
+    }
+  },
+  {
+    "config_name": "sweep_D64_PE2",
+    "dimension": 64,
+    "num_pe": 2,
+    "n_points": 131072,
+    "k": 10,
+    "clock_frequency_mhz": 200,
+    "clock_period_ns": 5.0,
+    "status": "XO_SUCCESS",
+    "has_xo": true,
+    "has_xclbin": false,
+    "build_time_sec": 323.39,
+    "performance": {
+      "cycles_per_vector": 16,
+      "pts_per_pe": 65536,
+      "estimated_cycles": 1048646,
+      "estimated_clock_period_ns": 5.0,
+      "estimated_runtime_sec": 0.00524323,
+      "throughput_features_sec": 1599893195.606525,
+      "throughput_queries_sec": 24998331.181351952
+    },
+    "resources": {
+      "BRAM": 36,
+      "DSP": 0,
+      "FF": 11464,
+      "LUT": 14708,
+      "URAM": 0,
+      "clock_period_ns": 5.0
+    }
+  },
+  {
+    "config_name": "sweep_D64_PE3",
+    "dimension": 64,
+    "num_pe": 3,
+    "n_points": 131072,
+    "k": 10,
+    "clock_frequency_mhz": 200,
+    "clock_period_ns": 5.0,
+    "status": "XO_SUCCESS",
+    "has_xo": true,
+    "has_xclbin": false,
+    "build_time_sec": 313.66,
+    "performance": {
+      "cycles_per_vector": 16,
+      "pts_per_pe": 43691,
+      "estimated_cycles": 699146,
+      "estimated_clock_period_ns": 5.0,
+      "estimated_runtime_sec": 0.0034957300000000003,
+      "throughput_features_sec": 2399672743.60434,
+      "throughput_queries_sec": 37494886.61881781
+    },
+    "resources": {
+      "BRAM": 52,
+      "DSP": 6,
+      "FF": 17172,
+      "LUT": 21843,
+      "URAM": 0,
+      "clock_period_ns": 5.0
+    }
+  },
+  {
+    "config_name": "sweep_D64_PE4",
+    "dimension": 64,
+    "num_pe": 4,
+    "n_points": 131072,
+    "k": 10,
+    "clock_frequency_mhz": 200,
+    "clock_period_ns": 5.0,
+    "status": "XO_SUCCESS",
+    "has_xo": true,
+    "has_xclbin": false,
+    "build_time_sec": 321.8,
+    "performance": {
+      "cycles_per_vector": 16,
+      "pts_per_pe": 32768,
+      "estimated_cycles": 524378,
+      "estimated_clock_period_ns": 5.0,
+      "estimated_runtime_sec": 0.00262189,
+      "throughput_features_sec": 3199450777.873976,
+      "throughput_queries_sec": 49991418.40428088
+    },
+    "resources": {
+      "BRAM": 68,
+      "DSP": 0,
+      "FF": 21408,
+      "LUT": 27390,
+      "URAM": 0,
+      "clock_period_ns": 5.0
+    }
+  }
+]

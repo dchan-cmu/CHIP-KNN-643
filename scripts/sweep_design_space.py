@@ -331,12 +331,17 @@ def run_sweep(args):
     """
     Main execution loop across all (dimension, processing elements) configurations.
     """
-    if args.clean and os.path.exists(args.output_dir):
-        print(f"Cleaning previous sweeps directory: {args.output_dir}")
-        shutil.rmtree(args.output_dir)
-        
     os.makedirs(args.output_dir, exist_ok=True)
     
+    if args.clean:
+        # Selectively clean only the configurations being executed in this run
+        for dim in args.dims:
+            for num_pe in args.pes:
+                target_point = os.path.join(args.output_dir, f"sweep_D{dim}_PE{num_pe}")
+                if os.path.exists(target_point):
+                    print(f"Cleaning configuration directory: {target_point}")
+                    shutil.rmtree(target_point)
+        
     sweep_results = []
     total_points = len(args.dims) * len(args.pes)
     clock_period_ns = 1000.0 / args.frequency
@@ -359,7 +364,7 @@ def run_sweep(args):
             print(f"\n[{point_idx}/{total_points}] Configuring: D={dim}, PE={num_pe} -> {config_name}")
             
             # 1. Scaffold and generate golden dataset
-            if args.mode in ("generate-only", "all"):
+            if args.mode in ("generate-only", "all") or not os.path.exists(point_dir):
                 setup_sweep_point(point_dir, dim, num_pe, args)
                 
             # 2. Run build if requested

@@ -1,0 +1,13 @@
+{
+  "n_points": 131072,
+  "dim": 2,
+  "k": 10,
+  "dist_metric": "manhattan",
+  "num_pes": 1,
+  "seed": 63,
+  "fixed_point": {
+    "int_bits": 12,
+    "fract_bits": 20,
+    "total_bits": 32
+  }
+}

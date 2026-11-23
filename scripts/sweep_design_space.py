@@ -456,8 +456,14 @@ def git_auto_push(config_name, point_dir):
         if status_proc.returncode != 0:
             commit_msg = f"Auto-push: complete build for {config_name}"
             subprocess.run(["git", "commit", "-m", commit_msg], check=True)
+            print(f"[auto-push] Rebasing on origin/{branch} before push...")
+            subprocess.run(["git", "pull", "--rebase", "origin", branch], check=False)
             print(f"[auto-push] Pushing {config_name} to origin/{branch}...")
-            subprocess.run(["git", "push", "origin", branch], check=True)
+            res_push = subprocess.run(["git", "push", "origin", branch])
+            if res_push.returncode != 0:
+                print(f"[auto-push] Push failed, retrying after rebase...")
+                subprocess.run(["git", "pull", "--rebase", "origin", branch], check=False)
+                subprocess.run(["git", "push", "origin", branch], check=True)
             print(f"[auto-push] Successfully pushed {config_name} to origin/{branch}.")
         else:
             print(f"[auto-push] No new changes to commit for {config_name}.")

@@ -8,13 +8,19 @@ Option Map File Used: '/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis/
     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
     ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 
-ERROR: [v++ 60-1258] No valid platform was found that matches 'u96v2_sbc_base_2023_2-vitis-platform'. Please make sure that the platform is specified correctly, and the platform has the right version number. The platform repo paths are:
-	/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/platforms/2023.2
-	/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis/2023.2/platforms
-The valid platforms found from the above repo paths are:
-
-ERROR: [v++ 60-587] Failed to add a platform: specified platform u96v2_sbc_base_2023_2-vitis-platform is not found or is not valid
-INFO: [v++ 60-1662] Stopping dispatch session having empty uuid.
+INFO: [v++ 60-1306] Additional information associated with this v++ link can be found at:
+	Reports: /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE4/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/reports/link
+	Log files: /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE4/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/logs/link
+Running Dispatch Server on port: 39789
+INFO: [v++ 60-1548] Creating build summary session with primary output /scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE4/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/knn.xclbin.link_summary, at Mon Nov 23 12:34:18 2026
+INFO: [v++ 60-1315] Creating rulecheck session with output '/scratch/643_vitis_dchan2/CHIP-KNN-643/sweeps/sweep_D16_PE4/build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/reports/link/v++_link_knn_guidance.html', at Mon Nov 23 12:34:18 2026
+INFO: [v++ 60-895]   Target platform: /afs/ece.cmu.edu/class/ece643/software/xilinxVitis/platforms/2023.2/u96v2_sbc_base_2023_2/export/u96v2_sbc_base_2023_2-vitis-platform/u96v2_sbc_base_2023_2-vitis-platform.xpfm
+INFO: [v++ 60-1578]   This platform contains Xilinx Shell Archive '/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/platforms/2023.2/u96v2_sbc_base_2023_2/export/u96v2_sbc_base_2023_2-vitis-platform/hw/u96v2_sbc_base.xsa'
+INFO: [v++ 60-629] Linking for hardware target
+INFO: [v++ 60-423]   Target device: u96v2_sbc_base_2023_2-vitis-platform
+ERROR: [v++ 60-2505] Option '--kernel_frequency' is used with a platform that does not have scalable kernel clocks. Please use '--clock.defaultFreqHz arg' instead.
+ERROR: [v++ 60-628] Kernel link setup failed to complete
+ERROR: [v++ 60-703] Failed to finish linking
 INFO: [v++ 60-1653] Closing dispatch client.
 make: *** [Makefile:162: build_dir.hw.u96v2_sbc_base_2023_2-vitis-platform/knn.xclbin] Error 1
 

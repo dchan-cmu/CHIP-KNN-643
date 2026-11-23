@@ -205,43 +205,63 @@ def extract_and_patch_task(task_name, source_code):
     body = body[:idx] + pragmas + body[idx:]
     return task_preamble + "\n" + body
 
+def sync_task_ports(tdict, sig_part):
+    stream_ports = re.findall(r"tapa::([io])stream<([^>]+)>\s*&?\s*(\w+)", sig_part)
+    if not stream_ports:
+        return
+    existing_ports = tdict.get("ports", [])
+    existing_names = {p["name"]: p for p in existing_ports}
+
+    new_ports = []
+    for p in existing_ports:
+        if p.get("cat") not in ("istream", "ostream"):
+            new_ports.append(p)
+
+    for direction, dtype, sp_name in stream_ports:
+        cat = "istream" if direction == "i" else "ostream"
+        if sp_name in existing_names:
+            p_obj = dict(existing_names[sp_name])
+            p_obj["cat"] = cat
+            new_ports.append(p_obj)
+        else:
+            base_name = re.sub(r"_\d+$", "", sp_name)
+            if base_name in existing_names:
+                p_obj = dict(existing_names[base_name])
+                p_obj["name"] = sp_name
+                p_obj["cat"] = cat
+                new_ports.append(p_obj)
+            else:
+                new_ports.append({
+                    "cat": cat,
+                    "name": sp_name,
+                    "type": dtype.strip(),
+                    "width": 32
+                })
+    tdict["ports"] = new_ports
+
 if knn_cpp_content:
     for tname, tdict in data.get("tasks", {}).items():
-        if tname == "Knn" or "code" not in tdict or not tdict["code"]:
-            patched = extract_and_patch_task(tname, knn_cpp_content)
-            if patched:
-                tdict["code"] = patched
-        elif tname in ("merge_dual_streams_FINAL", "merge_trio_streams_FINAL"):
-            if "void write_out_mmap" not in tdict.get("code", ""):
-                patched = extract_and_patch_task(tname, knn_cpp_content)
-                if patched:
-                    tdict["code"] = patched
+        pattern = rf"(void\s+{re.escape(tname)}\s*\([^)]*\)\s*\{{)"
+        m_sig = re.search(pattern, knn_cpp_content, re.DOTALL | re.MULTILINE)
+        if not m_sig:
+            pattern = rf"(void\s+{re.escape(tname)}\s*\(.*?\n\{{)"
+            m_sig = re.search(pattern, knn_cpp_content, re.DOTALL)
+        if m_sig:
+            sync_task_ports(tdict, m_sig.group(1))
+
+        patched = extract_and_patch_task(tname, knn_cpp_content)
+        if patched:
+            tdict["code"] = patched
 
 # 4. Patch generated C++ files in $(TEMP_DIR)/cpp/
 cpp_dir = os.path.join(graph_dir, "cpp")
 if os.path.isdir(cpp_dir) and knn_cpp_content:
-    knn_stub = build_knn_top_stub(knn_cpp_content)
-    with open(os.path.join(cpp_dir, "Knn.cpp"), "w") as f:
-        f.write(knn_stub)
-    print(f"[clean_graph_cflags] Updated {os.path.join(cpp_dir, 'Knn.cpp')}")
-
-    for fname in os.listdir(cpp_dir):
-        if fname.endswith(".cpp") and fname != "Knn.cpp":
-            target_p = os.path.join(cpp_dir, fname)
-            with open(target_p, "r") as cf:
-                ctext = cf.read()
-            if "FINAL" in fname and "void write_out_mmap" not in ctext:
-                if write_out_code:
-                    new_text = write_out_code + ctext
-                    with open(target_p, "w") as cf:
-                        cf.write(new_text)
-                    print(f"[clean_graph_cflags] Prepended write_out_mmap to {target_p}")
-            elif "para_partial_sort" in fname and "KNN_SWAP" in ctext and "#define KNN_SWAP" not in ctext:
-                if swap_code:
-                    new_text = swap_code + ctext
-                    with open(target_p, "w") as cf:
-                        cf.write(new_text)
-                    print(f"[clean_graph_cflags] Prepended swap_code to {target_p}")
+    for tname, tdict in data.get("tasks", {}).items():
+        if "code" in tdict and tdict["code"]:
+            target_p = os.path.join(cpp_dir, f"{tname}.cpp")
+            with open(target_p, "w") as cf:
+                cf.write(tdict["code"])
+            print(f"[clean_graph_cflags] Wrote patched {target_p}")
 
 # 5. Sanitize knn.ini for Ultra96 single-DDR architecture
 ini_candidates = [

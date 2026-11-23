@@ -43,6 +43,13 @@ import golden_model
 # Ultra96 Total FPGA Resources for percentage calculations
 ULTRA96_TOTAL_RESOURCES = SLR_resource_ZU3EG[0]
 
+# Ultra96 Vitis Platform Repository Path on CMU ECE AFS
+U96_PLATFORM_REPO = "/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/platforms/2023.2/u96v2_sbc_base_2023_2/export"
+if os.path.isdir(U96_PLATFORM_REPO):
+    existing_repo = os.environ.get("PLATFORM_REPO_PATHS", "")
+    if U96_PLATFORM_REPO not in existing_repo:
+        os.environ["PLATFORM_REPO_PATHS"] = f"{U96_PLATFORM_REPO}:{existing_repo}" if existing_repo else U96_PLATFORM_REPO
+
 def parse_args():
     parser = argparse.ArgumentParser(
         description="CHIP-KNN Design Space Sweep for Ultra96 (Dimension x Processing Elements)"
@@ -251,6 +258,10 @@ def build_sweep_point(point_dir, dim, num_pe, args):
     env = os.environ.copy()
     env["PATH"] = f"{os.path.join(REPO_ROOT, '.tapa/usr/bin')}:{env.get('PATH', '')}"
     env["REPO_ROOT"] = REPO_ROOT
+    if os.path.isdir(U96_PLATFORM_REPO):
+        cur_repo = env.get("PLATFORM_REPO_PATHS", "")
+        if U96_PLATFORM_REPO not in cur_repo:
+            env["PLATFORM_REPO_PATHS"] = f"{U96_PLATFORM_REPO}:{cur_repo}" if cur_repo else U96_PLATFORM_REPO
     
     cmd = [
         "make", "tapa_HLS",

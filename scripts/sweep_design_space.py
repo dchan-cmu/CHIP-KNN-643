@@ -533,7 +533,12 @@ def build_sweep_point(point_dir, dim, num_pe, args):
 
     # Verify toolchain availability
     has_tapac = shutil.which("tapac") is not None or os.path.isfile(os.path.join(TAPA_BIN_DIR, "tapac"))
-    has_vitis = shutil.which("vitis_hls") is not None or "XILINX_HLS" in os.environ
+    has_vitis = (
+        shutil.which("vitis_hls") is not None
+        or shutil.which("v++") is not None
+        or "XILINX_HLS" in os.environ
+        or "XILINX_VITIS" in os.environ
+    )
     
     if not (has_tapac and has_vitis):
         with open(build_log_path, "w") as lf:
@@ -836,7 +841,7 @@ def git_auto_push(config_name, point_dir):
     try:
         res_branch = subprocess.run(
             ["git", "rev-parse", "--abbrev-ref", "HEAD"],
-            capture_output=True, text=True, check=True
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True, check=True
         )
         branch = res_branch.stdout.strip()
         if not branch or branch == "HEAD":

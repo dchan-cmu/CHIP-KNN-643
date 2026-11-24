@@ -73,8 +73,20 @@
       "URAM": 0,
       "clock_period_ns": 5.0
     },
-    "impl_resources": null,
-    "impl_timing": null,
+    "impl_resources": {
+      "LUT": 32389,
+      "FF": 32668,
+      "BRAM": 15.0,
+      "DSP": 0,
+      "URAM": 0
+    },
+    "impl_timing": {
+      "wns_ns": 0.495,
+      "tns_ns": 0.0,
+      "target_clock_ns": 5.0,
+      "achieved_clock_ns": 5.0,
+      "fmax_mhz": 222.0
+    },
     "simulation": null
   },
   {
@@ -88,7 +100,7 @@
     "status": "BITSTREAM_SUCCESS",
     "has_xo": true,
     "has_xclbin": true,
-    "build_time_sec": 0.15,
+    "build_time_sec": 0.0,
     "performance": {
       "cycles_per_vector": 1,
       "pts_per_pe": 43691,
@@ -105,7 +117,22 @@
       "LUT": 45837,
       "URAM": 0,
       "clock_period_ns": 5.0
-    }
+    },
+    "impl_resources": {
+      "LUT": 39770,
+      "FF": 38755,
+      "BRAM": 15.0,
+      "DSP": 0,
+      "URAM": 0
+    },
+    "impl_timing": {
+      "wns_ns": 0.471,
+      "tns_ns": 0.0,
+      "target_clock_ns": 5.0,
+      "achieved_clock_ns": 5.0,
+      "fmax_mhz": 220.8
+    },
+    "simulation": null
   },
   {
     "config_name": "sweep_D2_PE4",
@@ -118,7 +145,7 @@
     "status": "BITSTREAM_SUCCESS",
     "has_xo": true,
     "has_xclbin": true,
-    "build_time_sec": 0.16,
+    "build_time_sec": 0.0,
     "performance": {
       "cycles_per_vector": 1,
       "pts_per_pe": 32768,
@@ -135,7 +162,48 @@
       "LUT": 60630,
       "URAM": 0,
       "clock_period_ns": 5.0
-    }
+    },
+    "impl_resources": {
+      "LUT": 48413,
+      "FF": 44077,
+      "BRAM": 15.0,
+      "DSP": 0,
+      "URAM": 0
+    },
+    "impl_timing": {
+      "wns_ns": 0.373,
+      "tns_ns": 0.0,
+      "target_clock_ns": 5.0,
+      "achieved_clock_ns": 5.0,
+      "fmax_mhz": 216.1
+    },
+    "simulation": null
+  },
+  {
+    "config_name": "sweep_D2_PE5",
+    "dimension": 2,
+    "num_pe": 5,
+    "n_points": 131072,
+    "k": 10,
+    "clock_frequency_mhz": 200,
+    "clock_period_ns": 5.0,
+    "status": "SCAFFOLDED",
+    "has_xo": false,
+    "has_xclbin": false,
+    "build_time_sec": 0.0,
+    "performance": {
+      "cycles_per_vector": 1,
+      "pts_per_pe": 26215,
+      "estimated_cycles": 26335,
+      "estimated_clock_period_ns": 5.0,
+      "estimated_runtime_sec": 0.00013167500000000002,
+      "throughput_features_sec": 1990841086.0072145,
+      "throughput_queries_sec": 995420543.0036073
+    },
+    "resources": null,
+    "impl_resources": null,
+    "impl_timing": null,
+    "simulation": null
   },
   {
     "config_name": "sweep_D16_PE1",
@@ -148,7 +216,7 @@
     "status": "BITSTREAM_SUCCESS",
     "has_xo": true,
     "has_xclbin": true,
-    "build_time_sec": 0.15,
+    "build_time_sec": 0.0,
     "performance": {
       "cycles_per_vector": 4,
       "pts_per_pe": 131072,
@@ -179,7 +247,8 @@
       "target_clock_ns": 5.0,
       "achieved_clock_ns": 5.0,
       "fmax_mhz": 293.1
-    }
+    },
+    "simulation": null
   },
   {
     "config_name": "sweep_D16_PE2",
@@ -192,7 +261,7 @@
     "status": "BITSTREAM_SUCCESS",
     "has_xo": true,
     "has_xclbin": true,
-    "build_time_sec": 0.15,
+    "build_time_sec": 0.0,
     "performance": {
       "cycles_per_vector": 4,
       "pts_per_pe": 65536,
@@ -209,7 +278,22 @@
       "LUT": 14284,
       "URAM": 0,
       "clock_period_ns": 5.0
-    }
+    },
+    "impl_resources": {
+      "LUT": 22995,
+      "FF": 26333,
+      "BRAM": 15.0,
+      "DSP": 0,
+      "URAM": 0
+    },
+    "impl_timing": {
+      "wns_ns": 1.459,
+      "tns_ns": 0.0,
+      "target_clock_ns": 5.0,
+      "achieved_clock_ns": 5.0,
+      "fmax_mhz": 282.4
+    },
+    "simulation": null
   },
   {
     "config_name": "sweep_D16_PE3",
@@ -222,7 +306,7 @@
     "status": "BITSTREAM_SUCCESS",
     "has_xo": true,
     "has_xclbin": true,
-    "build_time_sec": 0.15,
+    "build_time_sec": 0.0,
     "performance": {
       "cycles_per_vector": 4,
       "pts_per_pe": 43691,
@@ -239,7 +323,22 @@
       "LUT": 21207,
       "URAM": 0,
       "clock_period_ns": 5.0
-    }
+    },
+    "impl_resources": {
+      "LUT": 26256,
+      "FF": 29078,
+      "BRAM": 15.0,
+      "DSP": 0,
+      "URAM": 0
+    },
+    "impl_timing": {
+      "wns_ns": 0.542,
+      "tns_ns": 0.0,
+      "target_clock_ns": 5.0,
+      "achieved_clock_ns": 5.0,
+      "fmax_mhz": 224.3
+    },
+    "simulation": null
   },
   {
     "config_name": "sweep_D16_PE4",
@@ -252,7 +351,7 @@
     "status": "BITSTREAM_SUCCESS",
     "has_xo": true,
     "has_xclbin": true,
-    "build_time_sec": 0.15,
+    "build_time_sec": 0.0,
     "performance": {
       "cycles_per_vector": 4,
       "pts_per_pe": 32768,
@@ -269,7 +368,48 @@
       "LUT": 28086,
       "URAM": 0,
       "clock_period_ns": 5.0
-    }
+    },
+    "impl_resources": {
+      "LUT": 29685,
+      "FF": 31414,
+      "BRAM": 15.0,
+      "DSP": 0,
+      "URAM": 0
+    },
+    "impl_timing": {
+      "wns_ns": 0.628,
+      "tns_ns": 0.0,
+      "target_clock_ns": 5.0,
+      "achieved_clock_ns": 5.0,
+      "fmax_mhz": 228.7
+    },
+    "simulation": null
+  },
+  {
+    "config_name": "sweep_D16_PE5",
+    "dimension": 16,
+    "num_pe": 5,
+    "n_points": 131072,
+    "k": 10,
+    "clock_frequency_mhz": 200,
+    "clock_period_ns": 5.0,
+    "status": "SCAFFOLDED",
+    "has_xo": false,
+    "has_xclbin": false,
+    "build_time_sec": 0.0,
+    "performance": {
+      "cycles_per_vector": 4,
+      "pts_per_pe": 26215,
+      "estimated_cycles": 104970,
+      "estimated_clock_period_ns": 5.0,
+      "estimated_runtime_sec": 0.00052485,
+      "throughput_features_sec": 3995716871.4870915,
+      "throughput_queries_sec": 249732304.46794322
+    },
+    "resources": null,
+    "impl_resources": null,
+    "impl_timing": null,
+    "simulation": null
   },
   {
     "config_name": "sweep_D64_PE1",
@@ -282,7 +422,7 @@
     "status": "BITSTREAM_SUCCESS",
     "has_xo": true,
     "has_xclbin": true,
-    "build_time_sec": 0.15,
+    "build_time_sec": 0.0,
     "performance": {
       "cycles_per_vector": 16,
       "pts_per_pe": 131072,
@@ -313,7 +453,8 @@
       "target_clock_ns": 5.0,
       "achieved_clock_ns": 5.0,
       "fmax_mhz": 243.3
-    }
+    },
+    "simulation": null
   },
   {
     "config_name": "sweep_D64_PE2",
@@ -326,7 +467,7 @@
     "status": "BITSTREAM_SUCCESS",
     "has_xo": true,
     "has_xclbin": true,
-    "build_time_sec": 0.18,
+    "build_time_sec": 0.0,
     "performance": {
       "cycles_per_vector": 16,
       "pts_per_pe": 65536,
@@ -343,7 +484,22 @@
       "LUT": 14708,
       "URAM": 0,
       "clock_period_ns": 5.0
-    }
+    },
+    "impl_resources": {
+      "LUT": 23911,
+      "FF": 29439,
+      "BRAM": 15.0,
+      "DSP": 0,
+      "URAM": 0
+    },
+    "impl_timing": {
+      "wns_ns": 0.979,
+      "tns_ns": 0.0,
+      "target_clock_ns": 5.0,
+      "achieved_clock_ns": 5.0,
+      "fmax_mhz": 248.7
+    },
+    "simulation": null
   },
   {
     "config_name": "sweep_D64_PE3",
@@ -356,7 +512,7 @@
     "status": "BITSTREAM_SUCCESS",
     "has_xo": true,
     "has_xclbin": true,
-    "build_time_sec": 0.15,
+    "build_time_sec": 0.0,
     "performance": {
       "cycles_per_vector": 16,
       "pts_per_pe": 43691,
@@ -373,7 +529,22 @@
       "LUT": 21843,
       "URAM": 0,
       "clock_period_ns": 5.0
-    }
+    },
+    "impl_resources": {
+      "LUT": 27612,
+      "FF": 33737,
+      "BRAM": 15.0,
+      "DSP": 0,
+      "URAM": 0
+    },
+    "impl_timing": {
+      "wns_ns": 0.521,
+      "tns_ns": 0.0,
+      "target_clock_ns": 5.0,
+      "achieved_clock_ns": 5.0,
+      "fmax_mhz": 223.3
+    },
+    "simulation": null
   },
   {
     "config_name": "sweep_D64_PE4",
@@ -386,7 +557,7 @@
     "status": "BITSTREAM_SUCCESS",
     "has_xo": true,
     "has_xclbin": true,
-    "build_time_sec": 0.15,
+    "build_time_sec": 0.0,
     "performance": {
       "cycles_per_vector": 16,
       "pts_per_pe": 32768,
@@ -403,6 +574,47 @@
       "LUT": 28934,
       "URAM": 0,
       "clock_period_ns": 5.0
-    }
+    },
+    "impl_resources": {
+      "LUT": 31511,
+      "FF": 37627,
+      "BRAM": 15.0,
+      "DSP": 0,
+      "URAM": 0
+    },
+    "impl_timing": {
+      "wns_ns": 1.085,
+      "tns_ns": 0.0,
+      "target_clock_ns": 5.0,
+      "achieved_clock_ns": 5.0,
+      "fmax_mhz": 255.4
+    },
+    "simulation": null
+  },
+  {
+    "config_name": "sweep_D64_PE5",
+    "dimension": 64,
+    "num_pe": 5,
+    "n_points": 131072,
+    "k": 10,
+    "clock_frequency_mhz": 200,
+    "clock_period_ns": 5.0,
+    "status": "SCAFFOLDED",
+    "has_xo": false,
+    "has_xclbin": false,
+    "build_time_sec": 0.0,
+    "performance": {
+      "cycles_per_vector": 16,
+      "pts_per_pe": 26215,
+      "estimated_cycles": 419550,
+      "estimated_clock_period_ns": 5.0,
+      "estimated_runtime_sec": 0.0020977500000000002,
+      "throughput_features_sec": 3998859730.663806,
+      "throughput_queries_sec": 62482183.29162197
+    },
+    "resources": null,
+    "impl_resources": null,
+    "impl_timing": null,
+    "simulation": null
   }
 ]

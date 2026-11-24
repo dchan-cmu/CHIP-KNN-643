@@ -27,7 +27,19 @@
     "URAM": 0,
     "clock_period_ns": 5.0
   },
-  "impl_resources": null,
-  "impl_timing": null,
+  "impl_resources": {
+    "LUT": 32389,
+    "FF": 32668,
+    "BRAM": 15.0,
+    "DSP": 0,
+    "URAM": 0
+  },
+  "impl_timing": {
+    "wns_ns": 0.495,
+    "tns_ns": 0.0,
+    "target_clock_ns": 5.0,
+    "achieved_clock_ns": 5.0,
+    "fmax_mhz": 222.0
+  },
   "simulation": null
 }

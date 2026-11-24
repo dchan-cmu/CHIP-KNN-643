@@ -9,7 +9,7 @@
   "status": "BITSTREAM_SUCCESS",
   "has_xo": true,
   "has_xclbin": true,
-  "build_time_sec": 0.15,
+  "build_time_sec": 0.0,
   "performance": {
     "cycles_per_vector": 16,
     "pts_per_pe": 43691,
@@ -26,5 +26,20 @@
     "LUT": 21843,
     "URAM": 0,
     "clock_period_ns": 5.0
-  }
+  },
+  "impl_resources": {
+    "LUT": 27612,
+    "FF": 33737,
+    "BRAM": 15.0,
+    "DSP": 0,
+    "URAM": 0
+  },
+  "impl_timing": {
+    "wns_ns": 0.521,
+    "tns_ns": 0.0,
+    "target_clock_ns": 5.0,
+    "achieved_clock_ns": 5.0,
+    "fmax_mhz": 223.3
+  },
+  "simulation": null
 }

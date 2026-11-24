@@ -1,0 +1,3 @@
+[sweep_design_space] Notice: TAPA or Vitis HLS toolchain not detected in PATH.
+[sweep_design_space] Generated synthesizable sources, Makefiles, and golden data for D=16, PE=5.
+[sweep_design_space] Run 'make tapa_HLS' on the Vitis build machine to execute hardware build.

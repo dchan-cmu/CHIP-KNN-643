@@ -180,32 +180,6 @@
     "simulation": null
   },
   {
-    "config_name": "sweep_D2_PE5",
-    "dimension": 2,
-    "num_pe": 5,
-    "n_points": 131072,
-    "k": 10,
-    "clock_frequency_mhz": 200,
-    "clock_period_ns": 5.0,
-    "status": "HLS_FAILED",
-    "has_xo": false,
-    "has_xclbin": false,
-    "build_time_sec": 160.64,
-    "performance": {
-      "cycles_per_vector": 1,
-      "pts_per_pe": 26215,
-      "estimated_cycles": 26335,
-      "estimated_clock_period_ns": 5.0,
-      "estimated_runtime_sec": 0.00013167500000000002,
-      "throughput_features_sec": 1990841086.0072145,
-      "throughput_queries_sec": 995420543.0036073
-    },
-    "resources": null,
-    "impl_resources": null,
-    "impl_timing": null,
-    "simulation": null
-  },
-  {
     "config_name": "sweep_D16_PE1",
     "dimension": 16,
     "num_pe": 1,
@@ -386,32 +360,6 @@
     "simulation": null
   },
   {
-    "config_name": "sweep_D16_PE5",
-    "dimension": 16,
-    "num_pe": 5,
-    "n_points": 131072,
-    "k": 10,
-    "clock_frequency_mhz": 200,
-    "clock_period_ns": 5.0,
-    "status": "HLS_FAILED",
-    "has_xo": false,
-    "has_xclbin": false,
-    "build_time_sec": 97.98,
-    "performance": {
-      "cycles_per_vector": 4,
-      "pts_per_pe": 26215,
-      "estimated_cycles": 104970,
-      "estimated_clock_period_ns": 5.0,
-      "estimated_runtime_sec": 0.00052485,
-      "throughput_features_sec": 3995716871.4870915,
-      "throughput_queries_sec": 249732304.46794322
-    },
-    "resources": null,
-    "impl_resources": null,
-    "impl_timing": null,
-    "simulation": null
-  },
-  {
     "config_name": "sweep_D64_PE1",
     "dimension": 64,
     "num_pe": 1,
@@ -589,32 +537,6 @@
       "achieved_clock_ns": 5.0,
       "fmax_mhz": 255.4
     },
-    "simulation": null
-  },
-  {
-    "config_name": "sweep_D64_PE5",
-    "dimension": 64,
-    "num_pe": 5,
-    "n_points": 131072,
-    "k": 10,
-    "clock_frequency_mhz": 200,
-    "clock_period_ns": 5.0,
-    "status": "HLS_FAILED",
-    "has_xo": false,
-    "has_xclbin": false,
-    "build_time_sec": 91.68,
-    "performance": {
-      "cycles_per_vector": 16,
-      "pts_per_pe": 26215,
-      "estimated_cycles": 419550,
-      "estimated_clock_period_ns": 5.0,
-      "estimated_runtime_sec": 0.0020977500000000002,
-      "throughput_features_sec": 3998859730.663806,
-      "throughput_queries_sec": 62482183.29162197
-    },
-    "resources": null,
-    "impl_resources": null,
-    "impl_timing": null,
     "simulation": null
   }
 ]

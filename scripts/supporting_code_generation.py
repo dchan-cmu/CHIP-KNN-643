@@ -544,6 +544,13 @@ def Generate_Host_Code(_num_PE, _knn_config):
         _host__file.append('    match = verify(sw_dist, hw_dist_raw, hw_dist, sw_id, hw_id, query_data, searchspace_data, TOP);' + "\n")
     else:
         _host__file.append('    match = verify(sw_dist, hw_dist, sw_id, hw_id, query_data, searchspace_data, TOP);' + "\n")
+    _host__file.append('    FILE* fp_out = fopen("hw_output.txt", "w");' + "\n")
+    _host__file.append('    if (fp_out) {' + "\n")
+    _host__file.append('        for (int i = 0; i < TOP; ++i) {' + "\n")
+    _host__file.append('            fprintf(fp_out, "%d %f\\n", hw_id[i], static_cast<double>(hw_dist[i]));' + "\n")
+    _host__file.append('        }' + "\n")
+    _host__file.append('        fclose(fp_out);' + "\n")
+    _host__file.append('    }' + "\n")
     _host__file.append('    clog << (match ? "PASSED" : "FAILED") << endl;' + "\n")
     _host__file.append('    return (match ? EXIT_SUCCESS : EXIT_FAILURE);' + "\n")
     _host__file.append('}' + "\n")

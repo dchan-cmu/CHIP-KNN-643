@@ -6,10 +6,10 @@
   "k": 10,
   "clock_frequency_mhz": 200,
   "clock_period_ns": 5.0,
-  "status": "BITSTREAM_SUCCESS",
-  "has_xo": true,
-  "has_xclbin": true,
-  "build_time_sec": 0.15,
+  "status": "SCAFFOLDED",
+  "has_xo": false,
+  "has_xclbin": false,
+  "build_time_sec": 0.0,
   "performance": {
     "cycles_per_vector": 16,
     "pts_per_pe": 131072,
@@ -19,12 +19,8 @@
     "throughput_features_sec": 799977112.4712237,
     "throughput_queries_sec": 12499642.38236287
   },
-  "resources": {
-    "BRAM": 20,
-    "DSP": 0,
-    "FF": 6162,
-    "LUT": 7732,
-    "URAM": 0,
-    "clock_period_ns": 5.0
-  }
+  "resources": null,
+  "impl_resources": null,
+  "impl_timing": null,
+  "simulation": null
 }

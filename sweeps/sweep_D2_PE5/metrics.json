@@ -1,0 +1,45 @@
+{
+  "config_name": "sweep_D2_PE5",
+  "dimension": 2,
+  "num_pe": 5,
+  "n_points": 131072,
+  "k": 10,
+  "clock_frequency_mhz": 200,
+  "clock_period_ns": 5.0,
+  "status": "BITSTREAM_SUCCESS",
+  "has_xo": true,
+  "has_xclbin": true,
+  "build_time_sec": 370.09,
+  "performance": {
+    "cycles_per_vector": 1,
+    "pts_per_pe": 26215,
+    "estimated_cycles": 26335,
+    "estimated_clock_period_ns": 5.0,
+    "estimated_runtime_sec": 0.00013167500000000002,
+    "throughput_features_sec": 1990841086.0072145,
+    "throughput_queries_sec": 995420543.0036073
+  },
+  "resources": {
+    "BRAM": 84,
+    "DSP": 20,
+    "FF": 37158,
+    "LUT": 76174,
+    "URAM": 0,
+    "clock_period_ns": 5.0
+  },
+  "impl_resources": {
+    "LUT": 56737,
+    "FF": 51786,
+    "BRAM": 19.5,
+    "DSP": 0,
+    "URAM": 0
+  },
+  "impl_timing": {
+    "wns_ns": 0.179,
+    "tns_ns": 0.0,
+    "target_clock_ns": 5.0,
+    "achieved_clock_ns": 5.0,
+    "fmax_mhz": 207.4
+  },
+  "simulation": null
+}

@@ -23,12 +23,32 @@ import time
 import math
 import subprocess
 import argparse
+import re
 
 # Add scripts directory to path
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 REPO_ROOT = os.path.dirname(SCRIPT_DIR)
 if SCRIPT_DIR not in sys.path:
     sys.path.insert(0, SCRIPT_DIR)
+
+# Auto-add local TAPA binary directory to PATH
+TAPA_BIN_DIR = os.path.join(REPO_ROOT, ".tapa", "usr", "bin")
+if os.path.isdir(TAPA_BIN_DIR):
+    cur_p = os.environ.get("PATH", "")
+    if TAPA_BIN_DIR not in cur_p:
+        os.environ["PATH"] = f"{TAPA_BIN_DIR}:{cur_p}"
+
+# Auto-detect CMU ECE AFS Vitis toolchain if not in PATH
+VITIS_HLS_AFS = "/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/bin"
+VITIS_AFS = "/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis/2023.2/bin"
+if os.path.isdir(VITIS_HLS_AFS):
+    cur_p = os.environ.get("PATH", "")
+    if VITIS_HLS_AFS not in cur_p:
+        os.environ["PATH"] = f"{VITIS_HLS_AFS}:{VITIS_AFS}:{cur_p}"
+    if "XILINX_HLS" not in os.environ:
+        os.environ["XILINX_HLS"] = "/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2"
+    if "XILINX_VITIS" not in os.environ:
+        os.environ["XILINX_VITIS"] = "/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis/2023.2"
 
 from config import (
     SLR_resource, SLR_resource_ZU3EG, FPGA_target_name, FPGA_part_name,
@@ -279,7 +299,7 @@ def parse_implementation_reports(point_dir, FPGA_target_name):
     timing_file = None
     for root, dirs, files in os.walk(reports_dst):
         for f in files:
-            if "utilization_routed" in f:
+            if "util_routed" in f or "utilization_routed" in f:
                 util_file = os.path.join(root, f)
             elif "timing_summary_routed" in f:
                 timing_file = os.path.join(root, f)
@@ -327,14 +347,22 @@ def parse_implementation_reports(point_dir, FPGA_target_name):
         try:
             with open(timing_file, "r", errors="ignore") as f:
                 content = f.read()
+            m_timing_table = re.search(r"WNS\(ns\)\s+TNS\(ns\)[^\n]*\n[^\n]*\n\s*([-\d\.]+)\s+([-\d\.]+)", content)
             m_wns = re.search(r"Worst Negative Slack \(WNS\):\s*([-\d\.]+)", content)
-            m_tns = re.search(r"Total Negative Slack \(TNS\):\s*([-\d\.]+)", content)
-            if m_wns:
+            if m_timing_table:
+                wns = float(m_timing_table.group(1))
+                tns = float(m_timing_table.group(2))
+            elif m_wns:
                 wns = float(m_wns.group(1))
+                m_tns = re.search(r"Total Negative Slack \(TNS\):\s*([-\d\.]+)", content)
                 tns = float(m_tns.group(1)) if m_tns else 0.0
+            else:
+                wns = None
+
+            if wns is not None:
                 target_clk = 5.0
                 achieved_period = target_clk - min(0.0, wns)
-                fmax = 1000.0 / achieved_period
+                fmax = 1000.0 / (target_clk - wns) if (target_clk - wns) > 0 else 0.0
                 impl_timing = {
                     "wns_ns": wns,
                     "tns_ns": tns,
@@ -424,6 +452,27 @@ def run_simulation(point_dir, dim, num_pe, sim_mode, args, env):
 
     return sim_result
 
+def load_hls_report(point_dir, report_path=None):
+    resources = None
+    target_rep = os.path.join(point_dir, "report.json")
+    rep = report_path if (report_path and os.path.isfile(report_path)) else target_rep
+    if os.path.isfile(rep):
+        try:
+            with open(rep, "r") as rf:
+                rdata = json.load(rf)
+            area_tot = rdata.get("area", {}).get("total", {})
+            resources = {
+                "BRAM": area_tot.get("BRAM_18K", 0),
+                "DSP": area_tot.get("DSP", 0),
+                "FF": area_tot.get("FF", 0),
+                "LUT": area_tot.get("LUT", 0),
+                "URAM": area_tot.get("URAM", 0),
+                "clock_period_ns": float(rdata.get("performance", {}).get("clock_period", 5.0))
+            }
+        except Exception as e:
+            print(f"[reports] Error reading report.json: {e}")
+    return resources
+
 def build_sweep_point(point_dir, dim, num_pe, args):
     """
     Run HLS synthesis and TAPA XO packaging for one design point.
@@ -434,9 +483,56 @@ def build_sweep_point(point_dir, dim, num_pe, args):
     
     build_status = "PENDING"
     start_time = time.time()
-    
+
+    # Check for existing generated artifacts
+    temp_dir_pattern = f"_x.tapa_HLS.{FPGA_target_name}"
+    xo_path = os.path.join(point_dir, temp_dir_pattern, "knn.xo")
+    point_xo = os.path.join(point_dir, "knn.xo")
+    report_path = os.path.join(point_dir, temp_dir_pattern, "report.json")
+    has_xo = os.path.isfile(xo_path) or os.path.isfile(point_xo)
+
+    build_dir = os.path.join(point_dir, f"build_dir.hw.{FPGA_target_name}")
+    xclbin_target = os.path.join(point_dir, "knn.xclbin")
+    build_xclbin = os.path.join(build_dir, "knn.xclbin")
+    has_xclbin = os.path.isfile(xclbin_target) or os.path.isfile(build_xclbin)
+
+    # If the target requested is already fully built, reuse it and parse metrics
+    if args.build_bitstream and has_xclbin:
+        print(f"[{dim}D-{num_pe}PE] Found existing bitstream (knn.xclbin). Skipping rebuild.", flush=True)
+        build_status = "BITSTREAM_SUCCESS"
+        if os.path.isfile(build_xclbin) and not os.path.isfile(xclbin_target):
+            shutil.copy2(build_xclbin, xclbin_target)
+        impl_resources, impl_timing = parse_implementation_reports(point_dir, FPGA_target_name)
+        resources = load_hls_report(point_dir, report_path)
+        os.chdir(curr_dir)
+        return {
+            "status": build_status,
+            "build_time_sec": 0.0,
+            "has_xo": True,
+            "has_xclbin": True,
+            "resources": resources,
+            "impl_resources": impl_resources,
+            "impl_timing": impl_timing,
+            "report_path": report_path if os.path.isfile(report_path) else None
+        }
+    elif not args.build_bitstream and has_xo:
+        print(f"[{dim}D-{num_pe}PE] Found existing XO (knn.xo). Skipping HLS rebuild.", flush=True)
+        build_status = "XO_SUCCESS"
+        resources = load_hls_report(point_dir, report_path)
+        os.chdir(curr_dir)
+        return {
+            "status": build_status,
+            "build_time_sec": 0.0,
+            "has_xo": True,
+            "has_xclbin": has_xclbin,
+            "resources": resources,
+            "impl_resources": None,
+            "impl_timing": None,
+            "report_path": report_path if os.path.isfile(report_path) else None
+        }
+
     # Verify toolchain availability
-    has_tapac = shutil.which("tapac") is not None
+    has_tapac = shutil.which("tapac") is not None or os.path.isfile(os.path.join(TAPA_BIN_DIR, "tapac"))
     has_vitis = shutil.which("vitis_hls") is not None or "XILINX_HLS" in os.environ
     
     if not (has_tapac and has_vitis):

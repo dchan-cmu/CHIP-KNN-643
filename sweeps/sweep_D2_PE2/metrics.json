@@ -9,7 +9,7 @@
   "status": "BITSTREAM_SUCCESS",
   "has_xo": true,
   "has_xclbin": true,
-  "build_time_sec": 0.15,
+  "build_time_sec": 0.0,
   "performance": {
     "cycles_per_vector": 1,
     "pts_per_pe": 65536,
@@ -26,5 +26,8 @@
     "LUT": 30560,
     "URAM": 0,
     "clock_period_ns": 5.0
-  }
+  },
+  "impl_resources": null,
+  "impl_timing": null,
+  "simulation": null
 }

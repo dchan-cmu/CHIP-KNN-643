@@ -495,6 +495,51 @@
     "simulation": null
   },
   {
+    "config_name": "sweep_D16_PE7",
+    "dimension": 16,
+    "num_pe": 7,
+    "n_points": 131072,
+    "k": 10,
+    "clock_frequency_mhz": 200,
+    "clock_period_ns": 5.0,
+    "status": "BITSTREAM_SUCCESS",
+    "has_xo": true,
+    "has_xclbin": true,
+    "build_time_sec": 343.83,
+    "performance": {
+      "cycles_per_vector": 4,
+      "pts_per_pe": 18725,
+      "estimated_cycles": 75010,
+      "estimated_clock_period_ns": 5.0,
+      "estimated_runtime_sec": 0.00037505,
+      "throughput_features_sec": 5591659778.696174,
+      "throughput_queries_sec": 349478736.16851085
+    },
+    "resources": {
+      "BRAM": 116,
+      "DSP": 14,
+      "FF": 27600,
+      "LUT": 48909,
+      "URAM": 0,
+      "clock_period_ns": 5.0
+    },
+    "impl_resources": {
+      "LUT": 44093,
+      "FF": 51100,
+      "BRAM": 46.5,
+      "DSP": 0,
+      "URAM": 0
+    },
+    "impl_timing": {
+      "wns_ns": 0.544,
+      "tns_ns": 0.0,
+      "target_clock_ns": 5.0,
+      "achieved_clock_ns": 5.0,
+      "fmax_mhz": 224.4
+    },
+    "simulation": null
+  },
+  {
     "config_name": "sweep_D64_PE1",
     "dimension": 64,
     "num_pe": 1,

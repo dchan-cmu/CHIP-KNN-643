@@ -1,0 +1,58 @@
+[
+  {
+    "pe_idx": 0,
+    "start_pt": 0,
+    "end_pt": 18724,
+    "count": 18724,
+    "bin_file": "search_space_pe0.bin",
+    "txt_file": "search_space_pe0.txt"
+  },
+  {
+    "pe_idx": 1,
+    "start_pt": 18724,
+    "end_pt": 37448,
+    "count": 18724,
+    "bin_file": "search_space_pe1.bin",
+    "txt_file": "search_space_pe1.txt"
+  },
+  {
+    "pe_idx": 2,
+    "start_pt": 37448,
+    "end_pt": 56172,
+    "count": 18724,
+    "bin_file": "search_space_pe2.bin",
+    "txt_file": "search_space_pe2.txt"
+  },
+  {
+    "pe_idx": 3,
+    "start_pt": 56172,
+    "end_pt": 74896,
+    "count": 18724,
+    "bin_file": "search_space_pe3.bin",
+    "txt_file": "search_space_pe3.txt"
+  },
+  {
+    "pe_idx": 4,
+    "start_pt": 74896,
+    "end_pt": 93620,
+    "count": 18724,
+    "bin_file": "search_space_pe4.bin",
+    "txt_file": "search_space_pe4.txt"
+  },
+  {
+    "pe_idx": 5,
+    "start_pt": 93620,
+    "end_pt": 112344,
+    "count": 18724,
+    "bin_file": "search_space_pe5.bin",
+    "txt_file": "search_space_pe5.txt"
+  },
+  {
+    "pe_idx": 6,
+    "start_pt": 112344,
+    "end_pt": 131072,
+    "count": 18728,
+    "bin_file": "search_space_pe6.bin",
+    "txt_file": "search_space_pe6.txt"
+  }
+]

@@ -1,0 +1,45 @@
+{
+  "config_name": "sweep_D16_PE11",
+  "dimension": 16,
+  "num_pe": 11,
+  "n_points": 131072,
+  "k": 10,
+  "clock_frequency_mhz": 200,
+  "clock_period_ns": 5.0,
+  "status": "BITSTREAM_SUCCESS",
+  "has_xo": true,
+  "has_xclbin": true,
+  "build_time_sec": 363.89,
+  "performance": {
+    "cycles_per_vector": 4,
+    "pts_per_pe": 11916,
+    "estimated_cycles": 47794,
+    "estimated_clock_period_ns": 5.0,
+    "estimated_runtime_sec": 0.00023897,
+    "throughput_features_sec": 8775796125.036615,
+    "throughput_queries_sec": 548487257.8147885
+  },
+  "resources": {
+    "BRAM": 180,
+    "DSP": 22,
+    "FF": 42672,
+    "LUT": 76755,
+    "URAM": 0,
+    "clock_period_ns": 5.0
+  },
+  "impl_resources": {
+    "LUT": 61370,
+    "FF": 70894,
+    "BRAM": 73.5,
+    "DSP": 0,
+    "URAM": 0
+  },
+  "impl_timing": {
+    "wns_ns": 0.319,
+    "tns_ns": 0.0,
+    "target_clock_ns": 5.0,
+    "achieved_clock_ns": 5.0,
+    "fmax_mhz": 213.6
+  },
+  "simulation": null
+}

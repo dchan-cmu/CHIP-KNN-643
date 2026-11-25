@@ -1,0 +1,104 @@
+{
+  "schema": "v0.0.20210922",
+  "name": "Knn",
+  "performance": {
+    "source": "hls",
+    "clock_period": "5.0",
+    "critical_path": {
+      "load_KNN": {
+        "source": "hls",
+        "clock_period": "5.0"
+      }
+    }
+  },
+  "area": {
+    "source": "hls",
+    "total": {
+      "BRAM_18K": 164,
+      "DSP": 20,
+      "FF": 38978,
+      "LUT": 69981,
+      "URAM": 0
+    },
+    "breakdown": {
+      "compute_KNN": {
+        "count": 10,
+        "area": {
+          "source": "hls",
+          "total": {
+            "BRAM_18K": 0,
+            "DSP": 0,
+            "FF": 1243,
+            "LUT": 2785,
+            "URAM": 0
+          }
+        }
+      },
+      "load_KNN": {
+        "count": 10,
+        "area": {
+          "source": "hls",
+          "total": {
+            "BRAM_18K": 0,
+            "DSP": 0,
+            "FF": 2,
+            "LUT": 14,
+            "URAM": 0
+          }
+        }
+      },
+      "merge_dual_streams": {
+        "count": 6,
+        "area": {
+          "source": "hls",
+          "total": {
+            "BRAM_18K": 0,
+            "DSP": 0,
+            "FF": 198,
+            "LUT": 877,
+            "URAM": 0
+          }
+        }
+      },
+      "merge_dual_streams_FINAL": {
+        "count": 1,
+        "area": {
+          "source": "hls",
+          "total": {
+            "BRAM_18K": 0,
+            "DSP": 0,
+            "FF": 437,
+            "LUT": 1225,
+            "URAM": 0
+          }
+        }
+      },
+      "merge_trio_streams": {
+        "count": 1,
+        "area": {
+          "source": "hls",
+          "total": {
+            "BRAM_18K": 0,
+            "DSP": 0,
+            "FF": 294,
+            "LUT": 1549,
+            "URAM": 0
+          }
+        }
+      },
+      "para_partial_sort": {
+        "count": 10,
+        "area": {
+          "source": "hls",
+          "total": {
+            "BRAM_18K": 0,
+            "DSP": 2,
+            "FF": 1260,
+            "LUT": 2217,
+            "URAM": 0
+          }
+        }
+      }
+    }
+  }
+}

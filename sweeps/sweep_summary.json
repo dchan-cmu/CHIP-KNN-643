@@ -540,6 +540,186 @@
     "simulation": null
   },
   {
+    "config_name": "sweep_D16_PE8",
+    "dimension": 16,
+    "num_pe": 8,
+    "n_points": 131072,
+    "k": 10,
+    "clock_frequency_mhz": 200,
+    "clock_period_ns": 5.0,
+    "status": "BITSTREAM_SUCCESS",
+    "has_xo": true,
+    "has_xclbin": true,
+    "build_time_sec": 238.41,
+    "performance": {
+      "cycles_per_vector": 4,
+      "pts_per_pe": 16384,
+      "estimated_cycles": 65646,
+      "estimated_clock_period_ns": 5.0,
+      "estimated_runtime_sec": 0.00032823,
+      "throughput_features_sec": 6389275812.69232,
+      "throughput_queries_sec": 399329738.29327
+    },
+    "resources": {
+      "BRAM": 132,
+      "DSP": 0,
+      "FF": 30064,
+      "LUT": 55688,
+      "URAM": 0,
+      "clock_period_ns": 5.0
+    },
+    "impl_resources": {
+      "LUT": 49855,
+      "FF": 58364,
+      "BRAM": 60.0,
+      "DSP": 0,
+      "URAM": 0
+    },
+    "impl_timing": {
+      "wns_ns": 0.688,
+      "tns_ns": 0.0,
+      "target_clock_ns": 5.0,
+      "achieved_clock_ns": 5.0,
+      "fmax_mhz": 231.9
+    },
+    "simulation": null
+  },
+  {
+    "config_name": "sweep_D16_PE9",
+    "dimension": 16,
+    "num_pe": 9,
+    "n_points": 131072,
+    "k": 10,
+    "clock_frequency_mhz": 200,
+    "clock_period_ns": 5.0,
+    "status": "BITSTREAM_SUCCESS",
+    "has_xo": true,
+    "has_xclbin": true,
+    "build_time_sec": 363.34,
+    "performance": {
+      "cycles_per_vector": 4,
+      "pts_per_pe": 14564,
+      "estimated_cycles": 58386,
+      "estimated_clock_period_ns": 5.0,
+      "estimated_runtime_sec": 0.00029193000000000003,
+      "throughput_features_sec": 7183749528.996676,
+      "throughput_queries_sec": 448984345.5622923
+    },
+    "resources": {
+      "BRAM": 148,
+      "DSP": 18,
+      "FF": 35182,
+      "LUT": 63016,
+      "URAM": 0,
+      "clock_period_ns": 5.0
+    },
+    "impl_resources": {
+      "LUT": 53436,
+      "FF": 62829,
+      "BRAM": 64.5,
+      "DSP": 0,
+      "URAM": 0
+    },
+    "impl_timing": {
+      "wns_ns": 0.339,
+      "tns_ns": 0.0,
+      "target_clock_ns": 5.0,
+      "achieved_clock_ns": 5.0,
+      "fmax_mhz": 214.5
+    },
+    "simulation": null
+  },
+  {
+    "config_name": "sweep_D16_PE10",
+    "dimension": 16,
+    "num_pe": 10,
+    "n_points": 131072,
+    "k": 10,
+    "clock_frequency_mhz": 200,
+    "clock_period_ns": 5.0,
+    "status": "BITSTREAM_SUCCESS",
+    "has_xo": true,
+    "has_xclbin": true,
+    "build_time_sec": 361.06,
+    "performance": {
+      "cycles_per_vector": 4,
+      "pts_per_pe": 13108,
+      "estimated_cycles": 52562,
+      "estimated_clock_period_ns": 5.0,
+      "estimated_runtime_sec": 0.00026281,
+      "throughput_features_sec": 7979726798.828052,
+      "throughput_queries_sec": 498732924.9267532
+    },
+    "resources": {
+      "BRAM": 164,
+      "DSP": 20,
+      "FF": 38978,
+      "LUT": 69981,
+      "URAM": 0,
+      "clock_period_ns": 5.0
+    },
+    "impl_resources": {
+      "LUT": 57497,
+      "FF": 66911,
+      "BRAM": 69.0,
+      "DSP": 0,
+      "URAM": 0
+    },
+    "impl_timing": {
+      "wns_ns": 0.588,
+      "tns_ns": 0.0,
+      "target_clock_ns": 5.0,
+      "achieved_clock_ns": 5.0,
+      "fmax_mhz": 226.7
+    },
+    "simulation": null
+  },
+  {
+    "config_name": "sweep_D16_PE11",
+    "dimension": 16,
+    "num_pe": 11,
+    "n_points": 131072,
+    "k": 10,
+    "clock_frequency_mhz": 200,
+    "clock_period_ns": 5.0,
+    "status": "BITSTREAM_SUCCESS",
+    "has_xo": true,
+    "has_xclbin": true,
+    "build_time_sec": 363.89,
+    "performance": {
+      "cycles_per_vector": 4,
+      "pts_per_pe": 11916,
+      "estimated_cycles": 47794,
+      "estimated_clock_period_ns": 5.0,
+      "estimated_runtime_sec": 0.00023897,
+      "throughput_features_sec": 8775796125.036615,
+      "throughput_queries_sec": 548487257.8147885
+    },
+    "resources": {
+      "BRAM": 180,
+      "DSP": 22,
+      "FF": 42672,
+      "LUT": 76755,
+      "URAM": 0,
+      "clock_period_ns": 5.0
+    },
+    "impl_resources": {
+      "LUT": 61370,
+      "FF": 70894,
+      "BRAM": 73.5,
+      "DSP": 0,
+      "URAM": 0
+    },
+    "impl_timing": {
+      "wns_ns": 0.319,
+      "tns_ns": 0.0,
+      "target_clock_ns": 5.0,
+      "achieved_clock_ns": 5.0,
+      "fmax_mhz": 213.6
+    },
+    "simulation": null
+  },
+  {
     "config_name": "sweep_D64_PE1",
     "dimension": 64,
     "num_pe": 1,
@@ -716,6 +896,276 @@
       "target_clock_ns": 5.0,
       "achieved_clock_ns": 5.0,
       "fmax_mhz": 255.4
+    },
+    "simulation": null
+  },
+  {
+    "config_name": "sweep_D64_PE5",
+    "dimension": 64,
+    "num_pe": 5,
+    "n_points": 131072,
+    "k": 10,
+    "clock_frequency_mhz": 200,
+    "clock_period_ns": 5.0,
+    "status": "BITSTREAM_SUCCESS",
+    "has_xo": true,
+    "has_xclbin": true,
+    "build_time_sec": 344.87,
+    "performance": {
+      "cycles_per_vector": 16,
+      "pts_per_pe": 26215,
+      "estimated_cycles": 419550,
+      "estimated_clock_period_ns": 5.0,
+      "estimated_runtime_sec": 0.0020977500000000002,
+      "throughput_features_sec": 3998859730.663806,
+      "throughput_queries_sec": 62482183.29162197
+    },
+    "resources": {
+      "BRAM": 84,
+      "DSP": 10,
+      "FF": 27768,
+      "LUT": 36199,
+      "URAM": 0,
+      "clock_period_ns": 5.0
+    },
+    "impl_resources": {
+      "LUT": 35857,
+      "FF": 43442,
+      "BRAM": 19.5,
+      "DSP": 0,
+      "URAM": 0
+    },
+    "impl_timing": {
+      "wns_ns": 0.842,
+      "tns_ns": 0.0,
+      "target_clock_ns": 5.0,
+      "achieved_clock_ns": 5.0,
+      "fmax_mhz": 240.5
+    },
+    "simulation": null
+  },
+  {
+    "config_name": "sweep_D64_PE6",
+    "dimension": 64,
+    "num_pe": 6,
+    "n_points": 131072,
+    "k": 10,
+    "clock_frequency_mhz": 200,
+    "clock_period_ns": 5.0,
+    "status": "BITSTREAM_SUCCESS",
+    "has_xo": true,
+    "has_xclbin": true,
+    "build_time_sec": 339.86,
+    "performance": {
+      "cycles_per_vector": 16,
+      "pts_per_pe": 21846,
+      "estimated_cycles": 349646,
+      "estimated_clock_period_ns": 5.0,
+      "estimated_runtime_sec": 0.0017482300000000001,
+      "throughput_features_sec": 4798343467.392734,
+      "throughput_queries_sec": 74974116.67801146
+    },
+    "resources": {
+      "BRAM": 100,
+      "DSP": 12,
+      "FF": 33216,
+      "LUT": 43402,
+      "URAM": 0,
+      "clock_period_ns": 5.0
+    },
+    "impl_resources": {
+      "LUT": 41734,
+      "FF": 52795,
+      "BRAM": 33.0,
+      "DSP": 0,
+      "URAM": 0
+    },
+    "impl_timing": {
+      "wns_ns": 0.935,
+      "tns_ns": 0.0,
+      "target_clock_ns": 5.0,
+      "achieved_clock_ns": 5.0,
+      "fmax_mhz": 246.0
+    },
+    "simulation": null
+  },
+  {
+    "config_name": "sweep_D64_PE7",
+    "dimension": 64,
+    "num_pe": 7,
+    "n_points": 131072,
+    "k": 10,
+    "clock_frequency_mhz": 200,
+    "clock_period_ns": 5.0,
+    "status": "BITSTREAM_SUCCESS",
+    "has_xo": true,
+    "has_xclbin": true,
+    "build_time_sec": 341.2,
+    "performance": {
+      "cycles_per_vector": 16,
+      "pts_per_pe": 18725,
+      "estimated_cycles": 299710,
+      "estimated_clock_period_ns": 5.0,
+      "estimated_runtime_sec": 0.00149855,
+      "throughput_features_sec": 5597816556.004137,
+      "throughput_queries_sec": 87465883.68756464
+    },
+    "resources": {
+      "BRAM": 116,
+      "DSP": 14,
+      "FF": 38464,
+      "LUT": 50393,
+      "URAM": 0,
+      "clock_period_ns": 5.0
+    },
+    "impl_resources": {
+      "LUT": 47305,
+      "FF": 61969,
+      "BRAM": 46.5,
+      "DSP": 0,
+      "URAM": 0
+    },
+    "impl_timing": {
+      "wns_ns": 0.556,
+      "tns_ns": 0.0,
+      "target_clock_ns": 5.0,
+      "achieved_clock_ns": 5.0,
+      "fmax_mhz": 225.0
+    },
+    "simulation": null
+  },
+  {
+    "config_name": "sweep_D64_PE8",
+    "dimension": 64,
+    "num_pe": 8,
+    "n_points": 131072,
+    "k": 10,
+    "clock_frequency_mhz": 200,
+    "clock_period_ns": 5.0,
+    "status": "BITSTREAM_SUCCESS",
+    "has_xo": true,
+    "has_xclbin": true,
+    "build_time_sec": 337.3,
+    "performance": {
+      "cycles_per_vector": 16,
+      "pts_per_pe": 16384,
+      "estimated_cycles": 262254,
+      "estimated_clock_period_ns": 5.0,
+      "estimated_runtime_sec": 0.00131127,
+      "throughput_features_sec": 6397315579.552648,
+      "throughput_queries_sec": 99958055.93051012
+    },
+    "resources": {
+      "BRAM": 132,
+      "DSP": 0,
+      "FF": 42480,
+      "LUT": 57384,
+      "URAM": 0,
+      "clock_period_ns": 5.0
+    },
+    "impl_resources": {
+      "LUT": 53515,
+      "FF": 70778,
+      "BRAM": 60.0,
+      "DSP": 0,
+      "URAM": 0
+    },
+    "impl_timing": {
+      "wns_ns": 0.728,
+      "tns_ns": 0.0,
+      "target_clock_ns": 5.0,
+      "achieved_clock_ns": 5.0,
+      "fmax_mhz": 234.1
+    },
+    "simulation": null
+  },
+  {
+    "config_name": "sweep_D64_PE9",
+    "dimension": 64,
+    "num_pe": 9,
+    "n_points": 131072,
+    "k": 10,
+    "clock_frequency_mhz": 200,
+    "clock_period_ns": 5.0,
+    "status": "BITSTREAM_SUCCESS",
+    "has_xo": true,
+    "has_xclbin": true,
+    "build_time_sec": 334.74,
+    "performance": {
+      "cycles_per_vector": 16,
+      "pts_per_pe": 14564,
+      "estimated_cycles": 233154,
+      "estimated_clock_period_ns": 5.0,
+      "estimated_runtime_sec": 0.00116577,
+      "throughput_features_sec": 7195765888.640126,
+      "throughput_queries_sec": 112433842.01000197
+    },
+    "resources": {
+      "BRAM": 148,
+      "DSP": 18,
+      "FF": 49150,
+      "LUT": 64924,
+      "URAM": 0,
+      "clock_period_ns": 5.0
+    },
+    "impl_resources": {
+      "LUT": 57513,
+      "FF": 76803,
+      "BRAM": 64.5,
+      "DSP": 0,
+      "URAM": 0
+    },
+    "impl_timing": {
+      "wns_ns": 0.334,
+      "tns_ns": 0.0,
+      "target_clock_ns": 5.0,
+      "achieved_clock_ns": 5.0,
+      "fmax_mhz": 214.3
+    },
+    "simulation": null
+  },
+  {
+    "config_name": "sweep_D64_PE10",
+    "dimension": 64,
+    "num_pe": 10,
+    "n_points": 131072,
+    "k": 10,
+    "clock_frequency_mhz": 200,
+    "clock_period_ns": 5.0,
+    "status": "BITSTREAM_SUCCESS",
+    "has_xo": true,
+    "has_xclbin": true,
+    "build_time_sec": 337.98,
+    "performance": {
+      "cycles_per_vector": 16,
+      "pts_per_pe": 13108,
+      "estimated_cycles": 209858,
+      "estimated_clock_period_ns": 5.0,
+      "estimated_runtime_sec": 0.00104929,
+      "throughput_features_sec": 7994556319.034776,
+      "throughput_queries_sec": 124914942.48491837
+    },
+    "resources": {
+      "BRAM": 164,
+      "DSP": 20,
+      "FF": 54498,
+      "LUT": 72101,
+      "URAM": 0,
+      "clock_period_ns": 5.0
+    },
+    "impl_resources": {
+      "LUT": 62066,
+      "FF": 82440,
+      "BRAM": 69.0,
+      "DSP": 0,
+      "URAM": 0
+    },
+    "impl_timing": {
+      "wns_ns": 0.187,
+      "tns_ns": 0.0,
+      "target_clock_ns": 5.0,
+      "achieved_clock_ns": 5.0,
+      "fmax_mhz": 207.8
     },
     "simulation": null
   }

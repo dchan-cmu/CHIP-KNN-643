@@ -1,0 +1,45 @@
+{
+  "config_name": "sweep_D64_PE7",
+  "dimension": 64,
+  "num_pe": 7,
+  "n_points": 131072,
+  "k": 10,
+  "clock_frequency_mhz": 200,
+  "clock_period_ns": 5.0,
+  "status": "BITSTREAM_SUCCESS",
+  "has_xo": true,
+  "has_xclbin": true,
+  "build_time_sec": 341.2,
+  "performance": {
+    "cycles_per_vector": 16,
+    "pts_per_pe": 18725,
+    "estimated_cycles": 299710,
+    "estimated_clock_period_ns": 5.0,
+    "estimated_runtime_sec": 0.00149855,
+    "throughput_features_sec": 5597816556.004137,
+    "throughput_queries_sec": 87465883.68756464
+  },
+  "resources": {
+    "BRAM": 116,
+    "DSP": 14,
+    "FF": 38464,
+    "LUT": 50393,
+    "URAM": 0,
+    "clock_period_ns": 5.0
+  },
+  "impl_resources": {
+    "LUT": 47305,
+    "FF": 61969,
+    "BRAM": 46.5,
+    "DSP": 0,
+    "URAM": 0
+  },
+  "impl_timing": {
+    "wns_ns": 0.556,
+    "tns_ns": 0.0,
+    "target_clock_ns": 5.0,
+    "achieved_clock_ns": 5.0,
+    "fmax_mhz": 225.0
+  },
+  "simulation": null
+}

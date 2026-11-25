@@ -536,6 +536,59 @@ def plot_dashboard(records, out_path, dpi=300):
 
 
 # ==============================================================================
+# Plot 6: Post-Route Timing Slack & Fmax vs Physical Utilization
+# ==============================================================================
+def plot_timing_vs_utilization(records, out_path, dpi=300):
+    """
+    Plot post-route WNS and achieved Fmax vs CLB LUT utilization across all bitstreams.
+    """
+    valid = [r for r in records if r["impl_lut"] and r["wns_ns"] is not None and r["fmax_mhz"]]
+    if not valid:
+        return
+
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
+
+    dim_colors = {2: THEME["accent_red"], 16: THEME["accent_purple"], 64: THEME["accent_cyan"]}
+
+    # Left: WNS vs LUT%
+    for d in sorted(list(set(r["dim"] for r in valid))):
+        sub = sorted([r for r in valid if r["dim"] == d], key=lambda x: x["impl_lut"])
+        lut_pct = [(r["impl_lut"] / 70560.0) * 100.0 for r in sub]
+        wns = [r["wns_ns"] for r in sub]
+        col = dim_colors.get(d, THEME["accent_blue"])
+        ax1.plot(lut_pct, wns, marker="o", color=col, linewidth=2, label=f"D={d}")
+        for r, lp, w in zip(sub, lut_pct, wns):
+            if r["pe"] in (1, sub[-1]["pe"]):
+                ax1.annotate(f"PE{r['pe']}", (lp, w), textcoords="offset points", xytext=(5, 5), fontsize=8, color=col)
+
+    ax1.axhline(0.0, color=THEME["accent_red"], linestyle="--", linewidth=1.5, label="Timing Failure (WNS < 0)")
+    ax1.axvline(80.0, color=THEME["accent_yellow"], linestyle=":", linewidth=1.2, label="80% Routing Congestion")
+    ax1.set_xlabel("Physical Routed CLB LUT Utilization (%)")
+    ax1.set_ylabel("Worst Negative Slack - WNS (ns)")
+    ax1.set_title("POST-ROUTE TIMING SLACK (TARGET = 200 MHz)")
+    ax1.legend(facecolor=THEME["bg_secondary"], edgecolor=THEME["border"], loc="upper right")
+
+    # Right: Fmax vs LUT%
+    for d in sorted(list(set(r["dim"] for r in valid))):
+        sub = sorted([r for r in valid if r["dim"] == d], key=lambda x: x["impl_lut"])
+        lut_pct = [(r["impl_lut"] / 70560.0) * 100.0 for r in sub]
+        fmax = [r["fmax_mhz"] for r in sub]
+        col = dim_colors.get(d, THEME["accent_blue"])
+        ax2.plot(lut_pct, fmax, marker="s", color=col, linewidth=2, label=f"D={d}")
+
+    ax2.axhline(200.0, color=THEME["accent_green"], linestyle="--", linewidth=1.2, label="200 MHz Target Clock")
+    ax2.set_xlabel("Physical Routed CLB LUT Utilization (%)")
+    ax2.set_ylabel("Achieved Maximum Frequency - Fmax (MHz)")
+    ax2.set_title("PHYSICAL TIMING CLOSURE: ACHIEVED Fmax")
+    ax2.legend(facecolor=THEME["bg_secondary"], edgecolor=THEME["border"], loc="upper right")
+
+    plt.subplots_adjust(left=0.08, right=0.95, top=0.90, bottom=0.12, wspace=0.25)
+    plt.savefig(out_path, dpi=dpi, bbox_inches="tight")
+    plt.close()
+    print(f"[plot_throughput_surface] Saved timing vs utilization plot to {out_path}")
+
+
+# ==============================================================================
 # CLI Entry Point
 # ==============================================================================
 def main():
@@ -560,6 +613,7 @@ def main():
     plot_2d_heatmap(records, os.path.join(args.out_dir, "throughput_heatmap_matrix.png"), dpi=args.dpi)
     plot_scaling_curves(records, os.path.join(args.out_dir, "throughput_scaling_curves.png"), dpi=args.dpi)
     plot_logic_efficiency(records, os.path.join(args.out_dir, "throughput_logic_efficiency.png"), dpi=args.dpi)
+    plot_timing_vs_utilization(records, os.path.join(args.out_dir, "timing_vs_utilization.png"), dpi=args.dpi)
     plot_dashboard(records, os.path.join(args.out_dir, "throughput_dashboard.png"), dpi=args.dpi)
 
     print(f"\n[plot_throughput_surface] All plots generated in '{args.out_dir}/'")

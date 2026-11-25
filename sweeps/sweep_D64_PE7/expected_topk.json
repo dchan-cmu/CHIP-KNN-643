@@ -1,0 +1,62 @@
+[
+  {
+    "rank": 0,
+    "id": 84541,
+    "distance": 365.36723613739014,
+    "distance_fixed_hex": "0x16d5e033"
+  },
+  {
+    "rank": 1,
+    "id": 9757,
+    "distance": 368.08098316192627,
+    "distance_fixed_hex": "0x17014bb5"
+  },
+  {
+    "rank": 2,
+    "id": 123363,
+    "distance": 369.01559257507324,
+    "distance_fixed_hex": "0x17103fde"
+  },
+  {
+    "rank": 3,
+    "id": 7683,
+    "distance": 369.78929805755615,
+    "distance_fixed_hex": "0x171ca0f7"
+  },
+  {
+    "rank": 4,
+    "id": 84940,
+    "distance": 375.2446298599243,
+    "distance_fixed_hex": "0x1773ea01"
+  },
+  {
+    "rank": 5,
+    "id": 61901,
+    "distance": 377.86145877838135,
+    "distance_fixed_hex": "0x179dc889"
+  },
+  {
+    "rank": 6,
+    "id": 123110,
+    "distance": 380.3812084197998,
+    "distance_fixed_hex": "0x17c6196e"
+  },
+  {
+    "rank": 7,
+    "id": 102136,
+    "distance": 380.9712133407593,
+    "distance_fixed_hex": "0x17cf8a17"
+  },
+  {
+    "rank": 8,
+    "id": 46910,
+    "distance": 381.39222240448,
+    "distance_fixed_hex": "0x17d6468b"
+  },
+  {
+    "rank": 9,
+    "id": 24556,
+    "distance": 382.4488410949707,
+    "distance_fixed_hex": "0x17e72e74"
+  }
+]

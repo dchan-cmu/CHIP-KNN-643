@@ -943,5 +943,50 @@
       "fmax_mhz": 240.5
     },
     "simulation": null
+  },
+  {
+    "config_name": "sweep_D64_PE6",
+    "dimension": 64,
+    "num_pe": 6,
+    "n_points": 131072,
+    "k": 10,
+    "clock_frequency_mhz": 200,
+    "clock_period_ns": 5.0,
+    "status": "BITSTREAM_SUCCESS",
+    "has_xo": true,
+    "has_xclbin": true,
+    "build_time_sec": 339.86,
+    "performance": {
+      "cycles_per_vector": 16,
+      "pts_per_pe": 21846,
+      "estimated_cycles": 349646,
+      "estimated_clock_period_ns": 5.0,
+      "estimated_runtime_sec": 0.0017482300000000001,
+      "throughput_features_sec": 4798343467.392734,
+      "throughput_queries_sec": 74974116.67801146
+    },
+    "resources": {
+      "BRAM": 100,
+      "DSP": 12,
+      "FF": 33216,
+      "LUT": 43402,
+      "URAM": 0,
+      "clock_period_ns": 5.0
+    },
+    "impl_resources": {
+      "LUT": 41734,
+      "FF": 52795,
+      "BRAM": 33.0,
+      "DSP": 0,
+      "URAM": 0
+    },
+    "impl_timing": {
+      "wns_ns": 0.935,
+      "tns_ns": 0.0,
+      "target_clock_ns": 5.0,
+      "achieved_clock_ns": 5.0,
+      "fmax_mhz": 246.0
+    },
+    "simulation": null
   }
 ]

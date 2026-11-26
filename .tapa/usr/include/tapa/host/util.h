@@ -1,0 +1,31 @@
+// Copyright (c) 2024 RapidStream Design Automation, Inc. and contributors.
+// All rights reserved. The contributor(s) of this file has/have agreed to the
+// RapidStream Contributor License Agreement.
+
+#pragma once
+
+#include <cstring>
+
+#include "tapa/base/util.h"
+
+namespace tapa {
+
+inline void wait() noexcept {}  // no clock in CPU simulation
+inline void wait(int) noexcept {}
+
+/// Reinterprets the object representation of @p from as type @c To.
+/// Slightly different from C++20 @c std::bit_cast.
+template <typename To, typename From>
+inline typename std::enable_if<sizeof(To) == sizeof(From), To>::type  //
+bit_cast(From from) noexcept {
+  To to;
+  std::memcpy(&to, &from, sizeof(To));
+  return to;
+}
+
+template <typename T, size_t Depth = 1>
+T reg(T x) {
+  return x;
+}
+
+}  // namespace tapa

@@ -1,0 +1,35 @@
+#!/bin/bash
+REAL_VITIS_HLS="/afs/ece.cmu.edu/class/ece643/software/xilinxVitis/Vitis_HLS/2023.2/bin/vitis_hls"
+if [ ! -x "$REAL_VITIS_HLS" ] && [ -n "$XILINX_HLS" ]; then
+    REAL_VITIS_HLS="$XILINX_HLS/bin/vitis_hls"
+fi
+
+for arg in "$@"; do
+    if [ -f "$arg" ]; then
+        sed -i \
+            -e 's|-U__SYNTHESIS__|-D__SYNTHESIS__|g' \
+            -e 's|-std=c++17|-std=c++14|g' \
+            -e 's|-DTAPA_TARGET_=XILINX_HLS|-DTAPA_TARGET_=XILINX_HLS -DTAPA_TARGET_DEVICE_ -DTAPA_TARGET_XILINX_HLS_ -D__SYNTHESIS__ -D__VITIS_HLS__ -DHLS_STREAM_THREAD_UNSAFE -D__thread= -Dthread_local=|g' \
+            -e 's|-I/usr/include/c++/[^ "]*||g' \
+            -e 's|-I/usr/include/x86_64-linux-gnu||g' \
+            -e 's|-I/usr/include||g' \
+            -e 's|-I/usr/bin/[^ "]*||g' \
+            "$arg"
+        echo "=== [vitis_hls wrapper] Filtered $arg ===" >&2
+    fi
+done
+
+"$REAL_VITIS_HLS" "$@"
+RET=$?
+if [ $RET -ne 0 ]; then
+    echo "=== [vitis_hls wrapper] Vitis HLS failed with exit code $RET ===" >&2
+    for d in /tmp/run-hls-*; do
+        if [ -d "$d" ]; then
+            for rpt in $(find "$d" -name "*.rpt" -o -name "*.log"); do
+                echo "=== LOG FILE: $rpt ===" >&2
+                tail -n 100 "$rpt" >&2
+            done
+        fi
+    done
+fi
+exit $RET

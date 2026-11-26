@@ -1,0 +1,28 @@
+// Copyright (c) 2024 RapidStream Design Automation, Inc. and contributors.
+// All rights reserved. The contributor(s) of this file has/have agreed to the
+// RapidStream Contributor License Agreement.
+
+#pragma once
+
+#include <cstddef>
+#include <cstdint>
+
+#include <limits>
+
+namespace tapa {
+
+inline constexpr uint64_t kStreamDefaultDepth = 2;
+inline constexpr uint64_t kStreamInfiniteDepth =
+    std::numeric_limits<uint64_t>::max();
+
+namespace internal {
+
+template <typename T>
+struct [[gnu::packed]] elem_t {
+  T val;
+  bool eot;
+};
+
+}  // namespace internal
+
+}  // namespace tapa
